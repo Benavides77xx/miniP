@@ -21,10 +21,10 @@ public class Persona {
     private String celular_per;
     private Date fecha_nac;
     private String correo;
-    private String codigo_tipo_samgre;
+    private String codigo_tipo_sangre;
     private String codigo_pais;
 
-    public Persona(String cedula_per, String nombre_per, String Apellido, int edad_per, char genero, String celular_per, Date fecha_nac, String correo, String codigo_tipo_samgre, String codigo_pais) {
+    public Persona(String cedula_per, String nombre_per, String Apellido, int edad_per, char genero, String celular_per, Date fecha_nac, String correo, String codigo_tipo_sangre, String codigo_pais) {
         this.cedula_per = cedula_per;
         this.nombre_per = nombre_per;
         this.Apellido = Apellido;
@@ -33,7 +33,7 @@ public class Persona {
         this.celular_per = celular_per;
         this.fecha_nac = fecha_nac;
         this.correo = correo;
-        this.codigo_tipo_samgre = codigo_tipo_samgre;
+        this.codigo_tipo_sangre = codigo_tipo_sangre;
         this.codigo_pais = codigo_pais;
     }
 
@@ -104,12 +104,12 @@ public class Persona {
         this.correo = correo;
     }
 
-    public String getCodigo_tipo_samgre() {
-        return codigo_tipo_samgre;
+    public String getCodigo_tipo_sangre() {
+        return codigo_tipo_sangre;
     }
 
-    public void setCodigo_tipo_samgre(String codigo_tipo_samgre) {
-        this.codigo_tipo_samgre = codigo_tipo_samgre;
+    public void setCodigo_tipo_sangre(String codigo_tipo_sangre) {
+        this.codigo_tipo_sangre = codigo_tipo_sangre;
     }
 
     public String getCodigo_pais() {
@@ -122,8 +122,10 @@ public class Persona {
 
     @Override
     public String toString() {
-        return "Persona{" + "cedula_per=" + cedula_per + ", nombre_per=" + nombre_per + ", Apellido=" + Apellido + ", edad_per=" + edad_per + ", genero=" + genero + ", celular_per=" + celular_per + ", fecha_nac=" + fecha_nac + ", correo=" + correo + ", codigo_tipo_samgre=" + codigo_tipo_samgre + ", codigo_pais=" + codigo_pais + '}';
+        return "Persona{" + "cedula_per=" + cedula_per + ", nombre_per=" + nombre_per + ", Apellido=" + Apellido + ", edad_per=" + edad_per + ", genero=" + genero + ", celular_per=" + celular_per + ", fecha_nac=" + fecha_nac + ", correo=" + correo + ", codigo_tipo_sangre=" + codigo_tipo_sangre + ", codigo_pais=" + codigo_pais + '}';
     }
+
+    
     
     
     
