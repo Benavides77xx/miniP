@@ -5,6 +5,7 @@
  */
 package Freddy;
 
+import Clases.Taquillero;
 import com.db4o.*;
 import java.util.Date;
 import javax.swing.JOptionPane;
@@ -22,24 +23,24 @@ public class Modificar_Taquillero extends javax.swing.JFrame {
     public Modificar_Taquillero() {
         initComponents();
     }
-    
+
     String Cedula_per_taq = "";
-    String nombre_per_taq= "";
-    String apellido_per_taq= "";
-    int edad_per_taq;
+    String nombre_per_taq = "";
+    String apellido_per_taq = "";
+    int edad_per_taq = 0;
     char genero_per_taq;
-    String celular_per_taq= "";
+    String celular_per_taq = "";
     Date fechanac_per_taq;
-    String correo_per_taq= "";
-    String tiposangre_per_taq= "";
-    String codigo_pais_per_taq= "";
-    String idtaquillero= "";
-    String certificaciones= "";
-    String estatus_empleo= "";
-    double salario;
+    String correo_per_taq = "";
+    String tiposangre_per_taq = "";
+    String codigo_pais_per_taq = "";
+    String idtaquillero = "";
+    String certificaciones = "";
+    String estatus_empleo = "";
+    double salario = 0.0;
     Date fecha_contratacion;
-    String recomendaciones= "";
-    
+    String recomendaciones = "";
+
     public void buscar(ObjectContainer basep) {//cargardatos
 
         Modificarjb.setEnabled(false);
@@ -60,7 +61,7 @@ public class Modificar_Taquillero extends javax.swing.JFrame {
 
             } else {
 
-                Taquillero Ebuscar = new Taquillero(null, null, IDAux, null, null, null);
+                Taquillero Ebuscar = new Taquillero(IDAux, null, null, 0, null, null, null, null, null, 0, '\0', null, null, null, null, null);
 
                 ObjectSet result = basep.get(Ebuscar);
                 for (int i = 0; i < result.size(); i++) {
@@ -69,20 +70,22 @@ public class Modificar_Taquillero extends javax.swing.JFrame {
 
                     miE = (Taquillero) result.get(i);
 
-                    Ced_Taquillero.setText(miE.g);
-                    nom_taquillero.setText(miE.getTipo());
-                    ape_tequillero.setText(miE.getNombre());
-                    edad_taquillero.setText(miE.getEstilo());
-                    id_taquillero.setText(miE.getDescripcion());
-                    fechaNa.setDate((miE.getFecha_creacion()));
-                    estatu_empleo_taquillero
-                    cel_taquillero
-                    Correo_taquillero
-                    Cerficacion_taquillero
-                    estatu_empleo_taquillero
-                    sal_taquillero
-                    fechaCo
-                    recom_taquillero
+                    Ced_Taquillero.setText(miE.getCedula_per());
+                    nom_taquillero.setText(miE.getNombre_per());
+                    ape_tequillero.setText(miE.getApellido());
+                    edad_taquillero.setText(String.valueOf(miE.getEdad_per()));
+                    cel_taquillero.setText(miE.getCelular_per());
+                    fechaNa.setDate((miE.getFecha_nac()));
+                    Correo_taquillero.setText(miE.getCorreo());
+                    tipo_sangre_txt.setText(miE.getCodigo_tipo_sangre());
+                    pais_txt.setText(miE.getCodigo_pais());
+                    id_taquillero.setText(miE.getId_taquillero());
+                    fechaCo.setDate((miE.getFecha_contratacion()));
+                    Cerficacion_taquillero.setText(miE.getCertificaciones());
+                    estatu_empleo_taquillero.setText(miE.getEstatus_empleo());
+                    fechaCo.setDate((miE.getFecha_contratacion()));
+                    recom_taquillero.setText(miE.getRecomendaciones());
+                    sal_taquillero.setText(String.valueOf(miE.getSalario()));
 
                     Modificarjb.setEnabled(true);
                     //Hacer editable los campos de texto
@@ -90,7 +93,7 @@ public class Modificar_Taquillero extends javax.swing.JFrame {
                     HabilitarCampos_deTexto();
                     id_taquillero.setEditable(false);
                     Ced_Taquillero.setEditable(false);
-                    
+
                 }
 
             }
@@ -123,18 +126,27 @@ public class Modificar_Taquillero extends javax.swing.JFrame {
         estatu_empleo_taquillero.setEditable(true);
         sal_taquillero.setEditable(true);
         recom_taquillero.setEditable(true);
-
+        tipo_sangre_txt.setEditable(true);
+        pais_txt.setEditable(true);
 
     }
 
     public void Modificar_pintura(ObjectContainer basep) {
 
-        Taquillero Emodi = new Taquillero(null, null, cod_pintura.getText(), null, null, null);
+        Taquillero Emodi = new Taquillero(id_taquillero.getText(), null, null, 0, null, null, Ced_Taquillero.getText(), null, null, 0, '\0', null, null, null, null, null);
         ObjectSet result = basep.get(Emodi);
         Taquillero Emodificar = (Taquillero) result.next();
+        Emodificar.setNombre_per(nom_taquillero.getText());
+        Emodificar.setApellido(ape_tequillero.getText());
+        Emodificar.setEdad_per(Integer.parseInt(edad_taquillero.getText()));
+        Emodificar.setCelular_per(cel_taquillero.getText());
+        Emodificar.setCorreo(Correo_taquillero.getText());
+        Emodificar.setCertificaciones(Cerficacion_taquillero.getText());
         Emodificar.setEstatus_empleo(estatu_empleo_taquillero.getText());
-        Emodificar.setFecha_contratacion(fecha_contratacion);
-        
+        Emodificar.setSalario(Double.parseDouble(sal_taquillero.getText()));
+        Emodificar.setRecomendaciones(recom_taquillero.getText());
+        Emodificar.setCodigo_tipo_sangre(tipo_sangre_txt.getText());
+        Emodificar.setCodigo_pais(pais_txt.getText());
         ;
         basep.set(Emodificar);
         JOptionPane.showMessageDialog(null, "La pintura fue modificado exitosamente");
@@ -147,8 +159,8 @@ public class Modificar_Taquillero extends javax.swing.JFrame {
 
         basep.close();
     }
-    
-     public void mostrarDatos(ObjectSet result) {
+
+    public void mostrarDatos(ObjectSet result) {
         DefaultTableModel model = (DefaultTableModel) jtableregistro.getModel();
         model.setRowCount(0); // Limpiar la tabla
 
@@ -159,12 +171,21 @@ public class Modificar_Taquillero extends javax.swing.JFrame {
                 Taquillero mitaquillero = (Taquillero) result.next();
                 Object[] fila = {
                     mitaquillero.getId_taquillero(),
+                    mitaquillero.getCedula_per(),
+                    mitaquillero.getNombre_per(),
+                    mitaquillero.getApellido(),
+                    mitaquillero.getEdad_per(),
+                    mitaquillero.getGenero(),
+                    mitaquillero.getCelular_per(),
+                    String.valueOf(mitaquillero.getFecha_nac()),
+                    mitaquillero.getCorreo(),
+                    mitaquillero.getCodigo_tipo_sangre(),
+                    mitaquillero.getCodigo_pais(),
                     mitaquillero.getCertificaciones(),
+                    mitaquillero.getEstatus_empleo(),
                     mitaquillero.getSalario(),
-                    String.valueOf(mitaquillero.getFecha_contratacion()),                   
-                    mitaquillero.getRecomendaciones(),
-                    
-                };
+                    String.valueOf(mitaquillero.getFecha_contratacion()),
+                    mitaquillero.getRecomendaciones(),};
                 model.addRow(fila);
             }
         }
@@ -210,10 +231,12 @@ public class Modificar_Taquillero extends javax.swing.JFrame {
         sal_taquillero = new javax.swing.JTextField();
         fechaCo = new com.toedter.calendar.JDateChooser();
         recom_taquillero = new javax.swing.JTextField();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jtableregistro = new javax.swing.JTable();
         Modificarjb = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jtableregistro = new javax.swing.JTable();
+        tipo_sangre_txt = new javax.swing.JTextField();
+        pais_txt = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -273,24 +296,6 @@ public class Modificar_Taquillero extends javax.swing.JFrame {
 
         recom_taquillero.setBackground(new java.awt.Color(255, 255, 255));
 
-        jtableregistro.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Codigo", "Nombre", "Fecha", "Descripcion", "Tipo", "Estilo"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane2.setViewportView(jtableregistro);
-
         Modificarjb.setText("Guardar");
         Modificarjb.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -305,6 +310,28 @@ public class Modificar_Taquillero extends javax.swing.JFrame {
             }
         });
 
+        jtableregistro.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID Taquillero", "Cedula", "Nombre", "Apellido", "Edad", "Genero", "Celular", "Fecha Nacimiento", "Correo", "Tipo Sangre", "Pais", "Cerficaciones", "Estatus Empleo", "Salario", "Fecha Contratacion", "Recomendaciones"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, true, true, true, true, true, true, true, true, true, true, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(jtableregistro);
+
+        tipo_sangre_txt.setBackground(new java.awt.Color(255, 255, 255));
+
+        pais_txt.setBackground(new java.awt.Color(255, 255, 255));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -312,9 +339,6 @@ public class Modificar_Taquillero extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 894, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -372,28 +396,33 @@ public class Modificar_Taquillero extends javax.swing.JFrame {
                                     .addComponent(jLabel10)
                                     .addComponent(jLabel11)
                                     .addComponent(jLabel8))
+                                .addGap(49, 49, 49)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(49, 49, 49)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(fechaNa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(Correo_taquillero)
-                                            .addComponent(cel_taquillero))
-                                        .addGap(236, 236, 236))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(223, 223, 223)
-                                        .addComponent(Modificarjb)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                    .addComponent(fechaNa, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
+                                    .addComponent(Correo_taquillero)
+                                    .addComponent(cel_taquillero)
+                                    .addComponent(tipo_sangre_txt)
+                                    .addComponent(pais_txt))
+                                .addGap(236, 236, 236))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(jLabel17)
                                 .addGap(18, 18, 18)))
-                        .addComponent(recom_taquillero)
-                        .addGap(167, 167, 167))))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(recom_taquillero, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
+                                .addGap(167, 167, 167))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(Modificarjb)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(404, 404, 404)
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -451,22 +480,32 @@ public class Modificar_Taquillero extends javax.swing.JFrame {
                             .addComponent(jLabel9)
                             .addComponent(Correo_taquillero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel10)
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel11)
-                            .addComponent(Modificarjb, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel10)
+                                    .addComponent(tipo_sangre_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel11)
+                                    .addComponent(pais_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(Modificarjb, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(29, 29, 29))))
                     .addComponent(fechaNa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -560,7 +599,9 @@ public class Modificar_Taquillero extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jtableregistro;
     private javax.swing.JTextField nom_taquillero;
+    private javax.swing.JTextField pais_txt;
     private javax.swing.JTextField recom_taquillero;
     private javax.swing.JTextField sal_taquillero;
+    private javax.swing.JTextField tipo_sangre_txt;
     // End of variables declaration//GEN-END:variables
 }

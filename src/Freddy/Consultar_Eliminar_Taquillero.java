@@ -5,6 +5,7 @@
  */
 package Freddy;
 
+import Clases.Taquillero;
 import com.db4o.*;
 
 import com.db4o.ObjectSet;
@@ -23,7 +24,7 @@ public class Consultar_Eliminar_Taquillero extends javax.swing.JFrame {
     public Consultar_Eliminar_Taquillero() {
         initComponents();
     }
-    
+
     public void Filtro(ObjectContainer basep) {
 
         if (jCBfiltro.getSelectedIndex() == 0) {
@@ -31,14 +32,14 @@ public class Consultar_Eliminar_Taquillero extends javax.swing.JFrame {
         } else {
 
             if (jCBfiltro.getSelectedIndex() == 1) {
-                Taquillero Abuscar = new Taquillero(null, null, null, null, null, null);
+                Taquillero Abuscar = new Taquillero(null, null, null, 0, null, null, null, null, null, 0, '\0', null, null, null, null, null);
                 ObjectSet result = basep.get(Abuscar);
                 mostrarDatos(result);
 
             } else {
                 if (jCBfiltro.getSelectedIndex() == 2) {
-                    String cod_arte_pintura = JOptionPane.showInputDialog("Ingrese el ID a consultar");
-                    Taquillero Abuscar = new Taquillero(null, null, cod_arte_pintura, null, null, null);
+                    String jTFid = JOptionPane.showInputDialog("Ingrese el ID a consultar");
+                    Taquillero Abuscar = new Taquillero(jTFid, null, null, 0, null, null, null, null, null, 0, '\0', null, null, null, null, null);
                     ObjectSet result = basep.get(Abuscar);
                     mostrarDatos(result);
 
@@ -50,7 +51,7 @@ public class Consultar_Eliminar_Taquillero extends javax.swing.JFrame {
         jCBfiltro.setSelectedIndex(0);
     }
 
-      public void mostrarDatos(ObjectSet result) {
+    public void mostrarDatos(ObjectSet result) {
         DefaultTableModel model = (DefaultTableModel) jtableregistro.getModel();
         model.setRowCount(0); // Limpiar la tabla
 
@@ -61,28 +62,37 @@ public class Consultar_Eliminar_Taquillero extends javax.swing.JFrame {
                 Taquillero mitaquillero = (Taquillero) result.next();
                 Object[] fila = {
                     mitaquillero.getId_taquillero(),
+                    mitaquillero.getCedula_per(),
+                    mitaquillero.getNombre_per(),
+                    mitaquillero.getApellido(),
+                    mitaquillero.getEdad_per(),
+                    mitaquillero.getGenero(),
+                    mitaquillero.getCelular_per(),
+                    String.valueOf(mitaquillero.getFecha_nac()),
+                    mitaquillero.getCorreo(),
+                    mitaquillero.getCodigo_tipo_sangre(),
+                    mitaquillero.getCodigo_pais(),
                     mitaquillero.getCertificaciones(),
+                    mitaquillero.getEstatus_empleo(),
                     mitaquillero.getSalario(),
-                    String.valueOf(mitaquillero.getFecha_contratacion()),                   
-                    mitaquillero.getRecomendaciones(),
-                    
-                };
+                    String.valueOf(mitaquillero.getFecha_contratacion()),
+                    mitaquillero.getRecomendaciones(),};
                 model.addRow(fila);
             }
         }
     }
-     
-     public void Eliminar_pintura(ObjectContainer basep) {
+
+    public void Eliminar_pintura(ObjectContainer basep) {
         Crear_Taquillero Ainterfaz = new Crear_Taquillero();
         if (jTFid.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Ingrese un ID");
         } else {
 
             String IDA = jTFid.getText();
-            Taquillero Abuscar = new Taquillero(null, null, IDA, null, null, null);
+            Taquillero Abuscar = new Taquillero(IDA, null, null, 0, null, null, null, null, null, 0, '\0', null, null, null, null, null);
             ObjectSet result = basep.get(Abuscar);
 
-            if (Ainterfaz.verificarbasep, IDA) == 0) {
+            if (Ainterfaz.verificar(basep, IDA) == 0) {
                 JOptionPane.showMessageDialog(null, "La Pintura no existe en la base de datos");
 
             } else {
@@ -96,8 +106,8 @@ public class Consultar_Eliminar_Taquillero extends javax.swing.JFrame {
         //Borrar el campo de texto
         jTFid.setText("");
     }
-     
-      public static void Cerrar_BD(ObjectContainer basep) {
+
+    public static void Cerrar_BD(ObjectContainer basep) {
 
         basep.close();
     }
@@ -115,8 +125,6 @@ public class Consultar_Eliminar_Taquillero extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         buscar_button = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jtableregistro = new javax.swing.JTable();
         jCBfiltro = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -124,6 +132,8 @@ public class Consultar_Eliminar_Taquillero extends javax.swing.JFrame {
         jTFid = new javax.swing.JTextField();
         eliminar_button = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jtableregistro = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -145,24 +155,6 @@ public class Consultar_Eliminar_Taquillero extends javax.swing.JFrame {
                 buscar_buttonActionPerformed(evt);
             }
         });
-
-        jtableregistro.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Codigo", "Nombre", "Fecha", "Descripcion", "Tipo", "Estilo"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane2.setViewportView(jtableregistro);
 
         jCBfiltro.setFont(new java.awt.Font("Arial", 2, 12)); // NOI18N
         jCBfiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una opción", "Ver todos", "ID Taquillero", " ", " " }));
@@ -203,14 +195,28 @@ public class Consultar_Eliminar_Taquillero extends javax.swing.JFrame {
             }
         });
 
+        jtableregistro.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID Taquillero", "Cedula", "Nombre", "Apellido", "Edad", "Genero", "Celular", "Fecha Nacimiento", "Correo", "Tipo Sangre", "Pais", "Cerficaciones", "Estatus Empleo", "Salario", "Fecha Contratacion", "Recomendaciones"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, true, true, true, true, true, true, true, true, true, true, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(jtableregistro);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2)
-                .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -237,6 +243,10 @@ public class Consultar_Eliminar_Taquillero extends javax.swing.JFrame {
                             .addGap(167, 167, 167)
                             .addComponent(jLabel3))))
                 .addGap(0, 20, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -257,9 +267,9 @@ public class Consultar_Eliminar_Taquillero extends javax.swing.JFrame {
                     .addComponent(jLabel5)
                     .addComponent(jTFid, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(eliminar_button))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)
+                .addGap(37, 37, 37))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -277,7 +287,7 @@ public class Consultar_Eliminar_Taquillero extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buscar_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscar_buttonActionPerformed
-        ObjectContainer BaseD = Db4o.openFile(Pintura_Interfaz.direccionBD);
+        ObjectContainer BaseD = Db4o.openFile(Crear_Taquillero.direccionBD);
         Filtro(BaseD);
         Cerrar_BD(BaseD);
     }//GEN-LAST:event_buscar_buttonActionPerformed
@@ -293,9 +303,7 @@ public class Consultar_Eliminar_Taquillero extends javax.swing.JFrame {
     }//GEN-LAST:event_eliminar_buttonActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        this.dispose();
-        //menuPrincipal ventaina = new  menuPrincipal();
-        ventaina.setVisible(true);
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

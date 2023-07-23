@@ -5,6 +5,7 @@
  */
 package Freddy;
 
+import Clases.Taquillero;
 import java.util.Date;
 import com.db4o.*;
 import java.text.SimpleDateFormat;
@@ -71,6 +72,8 @@ public class Crear_Taquillero extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jtableregistro = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
+        tipo_sangre_txt = new javax.swing.JTextField();
+        pais_txt = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -135,11 +138,11 @@ public class Crear_Taquillero extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Codigo", "Nombre", "Fecha", "Descripcion", "Tipo", "Estilo"
+                "ID Taquillero", "Cedula", "Nombre", "Apellido", "Edad", "Genero", "Celular", "Fecha Nacimiento", "Correo", "Tipo Sangre", "Pais", "Cerficaciones", "Estatus Empleo", "Salario", "Fecha Contratacion", "Recomendaciones"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false, true, true, true, true, true, true, true, true, true, true, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -155,6 +158,10 @@ public class Crear_Taquillero extends javax.swing.JFrame {
             }
         });
 
+        tipo_sangre_txt.setBackground(new java.awt.Color(255, 255, 255));
+
+        pais_txt.setBackground(new java.awt.Color(255, 255, 255));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -162,9 +169,6 @@ public class Crear_Taquillero extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 894, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -213,6 +217,10 @@ public class Crear_Taquillero extends javax.swing.JFrame {
                                 .addComponent(fechaCo, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jLabel17)
+                                .addGap(18, 18, 18))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel7)
@@ -220,24 +228,28 @@ public class Crear_Taquillero extends javax.swing.JFrame {
                                     .addComponent(jLabel10)
                                     .addComponent(jLabel11)
                                     .addComponent(jLabel8))
-                                .addGap(49, 49, 49)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(fechaNa, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
-                                    .addComponent(Correo_taquillero)
-                                    .addComponent(cel_taquillero))
-                                .addGap(236, 236, 236))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jLabel17)
-                                .addGap(18, 18, 18)))
-                        .addComponent(recom_taquillero, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                        .addGap(239, 239, 239)
+                                        .addComponent(jLabel1)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(49, 49, 49)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(fechaNa, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
+                                            .addComponent(Correo_taquillero)
+                                            .addComponent(cel_taquillero)
+                                            .addComponent(tipo_sangre_txt)
+                                            .addComponent(pais_txt))
+                                        .addGap(150, 150, 150)
+                                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))))
+                        .addComponent(recom_taquillero, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
                         .addGap(167, 167, 167))))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(404, 404, 404)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(29, 29, 29)
+                .addComponent(jScrollPane2)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -294,18 +306,18 @@ public class Crear_Taquillero extends javax.swing.JFrame {
                             .addComponent(jLabel9)
                             .addComponent(Correo_taquillero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel10)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel11))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel10)
+                            .addComponent(tipo_sangre_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel11)
+                            .addComponent(pais_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(fechaNa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -332,24 +344,24 @@ public class Crear_Taquillero extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     String Cedula_per_taq = "";
-    String nombre_per_taq= "";
-    String apellido_per_taq= "";
-    int edad_per_taq;
+    String nombre_per_taq = "";
+    String apellido_per_taq = "";
+    int edad_per_taq = 0;
     char genero_per_taq;
-    String celular_per_taq= "";
+    String celular_per_taq = "";
     Date fechanac_per_taq;
-    String correo_per_taq= "";
-    String tiposangre_per_taq= "";
-    String codigo_pais_per_taq= "";
-    String idtaquillero= "";
-    String certificaciones= "";
-    String estatus_empleo= "";
-    double salario;
+    String correo_per_taq = "";
+    String tiposangre_per_taq = "";
+    String codigo_pais_per_taq = "";
+    String idtaquillero = "";
+    String certificaciones = "";
+    String estatus_empleo = "";
+    double salario = 0.0;
     Date fecha_contratacion;
-    String recomendaciones= "";
+    String recomendaciones = "";
 
-    public static String direccionBD = ("C:\\Users\\Lenovo\\Desktop\\Proyecto Final\\guia.yap");
-    
+    public static String direccionBD = ("C:\\Users\\Lenovo\\Desktop\\MiniProyecto\\miniproyecto.yap");
+
     public void LimpiarCampos() {
 
         Ced_Taquillero.setText("");
@@ -364,35 +376,37 @@ public class Crear_Taquillero extends javax.swing.JFrame {
         sal_taquillero.setText("");
         recom_taquillero.setText("");
     }
-    
+
     public void asignarVariables(ObjectContainer BaseD) {
+        Cedula_per_taq = Ced_Taquillero.getText();
+        nombre_per_taq = nom_taquillero.getText();
+        apellido_per_taq = ape_tequillero.getText();
 
-         Cedula_per_taq = "";
-     nombre_per_taq= "";
-     apellido_per_taq= "";
-     edad_per_taq;
-     genero_per_taq;
-     celular_per_taq= "";
-     fechanac_per_taq;
-     correo_per_taq= "";
-     tiposangre_per_taq= "";
-     codigo_pais_per_taq= "";
-     idtaquillero= id_taquillero.getText();
-     certificaciones= Cerficacion_taquillero.getText();
-     estatus_empleo= estatu_empleo_taquillero.getText();
-     String salarioStr = sal_taquillero.getText();
-     salario = Double.parseDouble(salarioStr);
-     fecha_contratacion = fechaCo.getDate();
-     recomendaciones= recom_taquillero.getText();
+        String edadStr = edad_taquillero.getText();
+        edad_per_taq = !edadStr.isEmpty() ? Integer.parseInt(edadStr) : 0;
 
+        // genero_per_taq;
+        celular_per_taq = cel_taquillero.getText();
+        fechanac_per_taq = fechaNa.getDate();
+        correo_per_taq = Correo_taquillero.getText();
+        tiposangre_per_taq = tipo_sangre_txt.getText();
+        codigo_pais_per_taq = pais_txt.getText();
+        idtaquillero = id_taquillero.getText();
+        certificaciones = Cerficacion_taquillero.getText();
+        estatus_empleo = estatu_empleo_taquillero.getText();
+
+        String salarioStr = sal_taquillero.getText();
+        salario = !salarioStr.isEmpty() ? Double.parseDouble(salarioStr) : 0.0;
+
+        fecha_contratacion = fechaCo.getDate();
+        recomendaciones = recom_taquillero.getText();
     }
-    
-    
+
     public void crearUsuario(ObjectContainer BaseD) {
         asignarVariables(BaseD);
 
-        if (verificar(BaseD, id_taquillero) == 0) {
-            Taquillero miUsuario = new Taquilleronb (estilos_pintura, tipos_pintura, cod_arte_pintura, nombre_pintura, descripcion_pintura, fecha_creacion_pintura);
+        if (verificar(BaseD, idtaquillero) == 0) {
+            Taquillero miUsuario = new Taquillero(idtaquillero, certificaciones, estatus_empleo, salario, fecha_contratacion, recomendaciones, Cedula_per_taq, nombre_per_taq, apellido_per_taq, edad_per_taq, genero_per_taq, celular_per_taq, fechanac_per_taq, correo_per_taq, tiposangre_per_taq, codigo_pais_per_taq);
 
             BaseD.set(miUsuario);
             JOptionPane.showMessageDialog(null, "Usuario Creado");
@@ -404,9 +418,9 @@ public class Crear_Taquillero extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "El usuario ya existe", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
-    public static int verificar(ObjectContainer BaseD, String id_taquillero) {
-        Taquillero buscarUsuario = new Taquillero(null, null, cod_arte_pintura, null, null, null);
+
+    public static int verificar(ObjectContainer BaseD, String idtaquillero) {
+        Taquillero buscarUsuario = new Taquillero(idtaquillero, null, null, 0, null, null, null, null, null, 0, '\0', null, null, null, null, null);
         ObjectSet resul = BaseD.queryByExample(buscarUsuario);
         return resul.size();
     }
@@ -422,21 +436,30 @@ public class Crear_Taquillero extends javax.swing.JFrame {
                 Taquillero mitaquillero = (Taquillero) result.next();
                 Object[] fila = {
                     mitaquillero.getId_taquillero(),
+                    mitaquillero.getCedula_per(),
+                    mitaquillero.getNombre_per(),
+                    mitaquillero.getApellido(),
+                    mitaquillero.getEdad_per(),
+                    mitaquillero.getGenero(),
+                    mitaquillero.getCelular_per(),
+                    String.valueOf(mitaquillero.getFecha_nac()),
+                    mitaquillero.getCorreo(),
+                    mitaquillero.getCodigo_tipo_sangre(),
+                    mitaquillero.getCodigo_pais(),
                     mitaquillero.getCertificaciones(),
+                    mitaquillero.getEstatus_empleo(),
                     mitaquillero.getSalario(),
-                    String.valueOf(mitaquillero.getFecha_contratacion()),                   
-                    mitaquillero.getRecomendaciones(),
-                    
-                };
+                    String.valueOf(mitaquillero.getFecha_contratacion()),
+                    mitaquillero.getRecomendaciones(),};
                 model.addRow(fila);
             }
         }
     }
+
     public static void Cerrar_BD(ObjectContainer basep) {
 
         basep.close();
     }
- 
 
     /**
      * @param args the command line arguments
@@ -507,7 +530,9 @@ public class Crear_Taquillero extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jtableregistro;
     private javax.swing.JTextField nom_taquillero;
+    private javax.swing.JTextField pais_txt;
     private javax.swing.JTextField recom_taquillero;
     private javax.swing.JTextField sal_taquillero;
+    private javax.swing.JTextField tipo_sangre_txt;
     // End of variables declaration//GEN-END:variables
 }
