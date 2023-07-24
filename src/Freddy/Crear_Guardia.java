@@ -213,24 +213,6 @@ public class Crear_Guardia extends javax.swing.JFrame {
 
         jLabel15.setText("Disponibilidad");
 
-        Ced_Taquillero.setBackground(new java.awt.Color(255, 255, 255));
-
-        nom_taquillero.setBackground(new java.awt.Color(255, 255, 255));
-
-        ape_tequillero.setBackground(new java.awt.Color(255, 255, 255));
-
-        edad_taquillero.setBackground(new java.awt.Color(255, 255, 255));
-
-        cel_taquillero.setBackground(new java.awt.Color(255, 255, 255));
-
-        Correo_taquillero.setBackground(new java.awt.Color(255, 255, 255));
-
-        id_guardia.setBackground(new java.awt.Color(255, 255, 255));
-
-        años_experienca.setBackground(new java.awt.Color(255, 255, 255));
-
-        disponibilidad_guardia.setBackground(new java.awt.Color(255, 255, 255));
-
         jtableregistro.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -256,13 +238,7 @@ public class Crear_Guardia extends javax.swing.JFrame {
             }
         });
 
-        tipo_sangre_txt.setBackground(new java.awt.Color(255, 255, 255));
-
-        pais_txt.setBackground(new java.awt.Color(255, 255, 255));
-
         jLabel16.setText("Especialidad");
-
-        especialidad_guardia.setBackground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -345,11 +321,12 @@ public class Crear_Guardia extends javax.swing.JFrame {
                     .addComponent(Ced_Taquillero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(id_guardia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel13)
-                    .addComponent(nom_taquillero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(años_experienca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel3)
+                        .addComponent(nom_taquillero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(años_experienca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)

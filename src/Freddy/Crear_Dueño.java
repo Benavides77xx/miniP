@@ -217,26 +217,6 @@ public class Crear_Dueño extends javax.swing.JFrame {
 
         jLabel16.setText("Habilidades finacieras");
 
-        Ced_Taquillero.setBackground(new java.awt.Color(255, 255, 255));
-
-        nom_taquillero.setBackground(new java.awt.Color(255, 255, 255));
-
-        ape_tequillero.setBackground(new java.awt.Color(255, 255, 255));
-
-        edad_taquillero.setBackground(new java.awt.Color(255, 255, 255));
-
-        cel_taquillero.setBackground(new java.awt.Color(255, 255, 255));
-
-        Correo_taquillero.setBackground(new java.awt.Color(255, 255, 255));
-
-        id_dueño.setBackground(new java.awt.Color(255, 255, 255));
-
-        historiall_propiedad_txt.setBackground(new java.awt.Color(255, 255, 255));
-
-        años_experiencia.setBackground(new java.awt.Color(255, 255, 255));
-
-        habilidades_financieras_txt.setBackground(new java.awt.Color(255, 255, 255));
-
         jtableregistro.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -262,10 +242,6 @@ public class Crear_Dueño extends javax.swing.JFrame {
             }
         });
 
-        tipo_sangre_txt.setBackground(new java.awt.Color(255, 255, 255));
-
-        pais_txt.setBackground(new java.awt.Color(255, 255, 255));
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -281,10 +257,10 @@ public class Crear_Dueño extends javax.swing.JFrame {
                             .addComponent(jLabel11)
                             .addComponent(jLabel8))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(239, 239, 239)
                                 .addComponent(jLabel1)
-                                .addContainerGap(478, Short.MAX_VALUE))
+                                .addContainerGap())
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(49, 49, 49)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -306,11 +282,11 @@ public class Crear_Dueño extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addGap(98, 98, 98)
-                                .addComponent(ape_tequillero, javax.swing.GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE))
+                                .addComponent(ape_tequillero))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel5)
                                 .addGap(122, 122, 122)
-                                .addComponent(edad_taquillero, javax.swing.GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE))
+                                .addComponent(edad_taquillero))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel3)
@@ -318,7 +294,7 @@ public class Crear_Dueño extends javax.swing.JFrame {
                                     .addComponent(jLabel2))
                                 .addGap(105, 105, 105)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(nom_taquillero, javax.swing.GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)
+                                    .addComponent(nom_taquillero)
                                     .addComponent(Ced_Taquillero))))
                         .addGap(65, 65, 65)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -363,11 +339,12 @@ public class Crear_Dueño extends javax.swing.JFrame {
                     .addComponent(nom_taquillero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(historiall_propiedad_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel15)
-                    .addComponent(ape_tequillero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(años_experiencia, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(años_experiencia, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel4)
+                        .addComponent(jLabel15)
+                        .addComponent(ape_tequillero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)

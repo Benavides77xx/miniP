@@ -5,7 +5,7 @@
  */
 package Freddy;
 
-import Clases.Taquillero;
+import Clases.Guardia;
 import com.db4o.*;
 
 import java.util.Date;
@@ -45,30 +45,30 @@ public class Modificar_Guardia extends javax.swing.JFrame {
 
         Modificarjb.setEnabled(false);
         String IDAux;
-        IDAux = id_taquillero.getText();
+        IDAux = id_guardia.getText();
 
         Crear_Taquillero EAux = new Crear_Taquillero();
 
-        if (id_taquillero.getText().isEmpty()) {
+        if (id_guardia.getText().isEmpty()) {
 
             JOptionPane.showMessageDialog(null, "Ingrese un ID");
         } else {
 
             if (EAux.verificar(basep, IDAux) == 0) {
 
-                JOptionPane.showMessageDialog(null, "La pintura no existe en la base de datos");
+                JOptionPane.showMessageDialog(null, "El guardia no existe en la base de datos");
                 LimpiarCampos();
 
             } else {
 
-                Taquillero Ebuscar = new Taquillero(IDAux, null, null, 0, null, null, null, null, null, 0, '\0', null, null, null, null, null);
+                Guardia Ebuscar = new Guardia(IDAux, 0, false, null, null, null, null, 0, '\0', null, null, null, null, null);
 
                 ObjectSet result = basep.get(Ebuscar);
                 for (int i = 0; i < result.size(); i++) {
 
-                    Taquillero miE = new Taquillero();
+                    Guardia miE = new Guardia();
 
-                    miE = (Taquillero) result.get(i);
+                    miE = (Guardia) result.get(i);
 
                     Ced_Taquillero.setText(miE.getCedula_per());
                     nom_taquillero.setText(miE.getNombre_per());
@@ -264,24 +264,6 @@ public class Modificar_Guardia extends javax.swing.JFrame {
 
         jLabel15.setText("Disponibilidad");
 
-        Ced_Taquillero.setBackground(new java.awt.Color(255, 255, 255));
-
-        nom_taquillero.setBackground(new java.awt.Color(255, 255, 255));
-
-        ape_tequillero.setBackground(new java.awt.Color(255, 255, 255));
-
-        edad_taquillero.setBackground(new java.awt.Color(255, 255, 255));
-
-        cel_taquillero.setBackground(new java.awt.Color(255, 255, 255));
-
-        Correo_taquillero.setBackground(new java.awt.Color(255, 255, 255));
-
-        id_guardia.setBackground(new java.awt.Color(255, 255, 255));
-
-        años_experienca.setBackground(new java.awt.Color(255, 255, 255));
-
-        disponibilidad_guardia.setBackground(new java.awt.Color(255, 255, 255));
-
         jtableregistro.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -300,13 +282,7 @@ public class Modificar_Guardia extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(jtableregistro);
 
-        tipo_sangre_txt.setBackground(new java.awt.Color(255, 255, 255));
-
-        pais_txt.setBackground(new java.awt.Color(255, 255, 255));
-
         jLabel16.setText("Especialidad");
-
-        especialidad_guardia.setBackground(new java.awt.Color(255, 255, 255));
 
         jButton2.setText("BUSCAR");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -407,11 +383,12 @@ public class Modificar_Guardia extends javax.swing.JFrame {
                     .addComponent(id_guardia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel13)
-                    .addComponent(nom_taquillero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(años_experienca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel3)
+                        .addComponent(nom_taquillero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(años_experienca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
