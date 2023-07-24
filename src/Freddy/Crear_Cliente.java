@@ -55,6 +55,7 @@ public class Crear_Cliente extends javax.swing.JFrame {
         Correo_taquillero.setText("");
         tipo_sangre_txt.setText("");
         pais_txt.setText("");
+        pais_txt.setText("");
         id_cliente.setText("");
         habilidades_cli.setText("");
         intereses_per_cli.setText("");
@@ -74,6 +75,7 @@ public class Crear_Cliente extends javax.swing.JFrame {
         fechanac_per_taq = fechaNa.getDate();
         correo_per_taq = Correo_taquillero.getText();
         tiposangre_per_taq = tipo_sangre_txt.getText();
+        codigo_pais_per_taq = pais_txt.getText();
         codigo_pais_per_taq = pais_txt.getText();
         id_cliente_per = id_cliente.getText();
         habilidades_cli_per = habilidades_cli.getText();

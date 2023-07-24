@@ -11,14 +11,14 @@ import java.util.Date;
  *
  * @author Lenovo
  */
-public class Guardia extends Persona{
-    
+public class Guardia extends Persona {
+
     private String id_guardia;
-    private String años_expreriencia;
-    private int disponibilidad;
+    private int años_expreriencia;
+    private boolean disponibilidad;
     private String cod_especialidad;
 
-    public Guardia(String id_guardia, String años_expreriencia, int disponibilidad, String cod_especialidad, String cedula_per, String nombre_per, String Apellido, int edad_per, char genero, String celular_per, Date fecha_nac, String correo, String codigo_tipo_sangre, String codigo_pais) {
+    public Guardia(String id_guardia, int años_expreriencia, boolean disponibilidad, String cod_especialidad, String cedula_per, String nombre_per, String Apellido, int edad_per, char genero, String celular_per, Date fecha_nac, String correo, String codigo_tipo_sangre, String codigo_pais) {
         super(cedula_per, nombre_per, Apellido, edad_per, genero, celular_per, fecha_nac, correo, codigo_tipo_sangre, codigo_pais);
         this.id_guardia = id_guardia;
         this.años_expreriencia = años_expreriencia;
@@ -26,7 +26,7 @@ public class Guardia extends Persona{
         this.cod_especialidad = cod_especialidad;
     }
 
-    public Guardia(String id_guardia, String años_expreriencia, int disponibilidad, String cod_especialidad) {
+    public Guardia(String id_guardia, int años_expreriencia, boolean disponibilidad, String cod_especialidad) {
         this.id_guardia = id_guardia;
         this.años_expreriencia = años_expreriencia;
         this.disponibilidad = disponibilidad;
@@ -44,19 +44,19 @@ public class Guardia extends Persona{
         this.id_guardia = id_guardia;
     }
 
-    public String getAños_expreriencia() {
+    public int getAños_expreriencia() {
         return años_expreriencia;
     }
 
-    public void setAños_expreriencia(String años_expreriencia) {
+    public void setAños_expreriencia(int años_expreriencia) {
         this.años_expreriencia = años_expreriencia;
     }
 
-    public int getDisponibilidad() {
+    public boolean isDisponibilidad() {
         return disponibilidad;
     }
 
-    public void setDisponibilidad(int disponibilidad) {
+    public void setDisponibilidad(boolean disponibilidad) {
         this.disponibilidad = disponibilidad;
     }
 
@@ -72,7 +72,5 @@ public class Guardia extends Persona{
     public String toString() {
         return "Guardia{" + "id_guardia=" + id_guardia + ", a\u00f1os_expreriencia=" + años_expreriencia + ", disponibilidad=" + disponibilidad + ", cod_especialidad=" + cod_especialidad + '}';
     }
-    
-    
-    
+
 }
