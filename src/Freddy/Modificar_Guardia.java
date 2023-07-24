@@ -24,7 +24,7 @@ public class Modificar_Guardia extends javax.swing.JFrame {
     public Modificar_Guardia() {
         initComponents();
     }
-    
+
     String Cedula_per_taq = "";
     String nombre_per_taq = "";
     String apellido_per_taq = "";
@@ -39,8 +39,7 @@ public class Modificar_Guardia extends javax.swing.JFrame {
     int años_expreriencia_guar;
     boolean disponibilidad_guar;
     String especialidad_guar = "";
-    
-    
+
     public void buscar(ObjectContainer basep) {//cargardatos
 
         Modificarjb.setEnabled(false);
@@ -79,19 +78,16 @@ public class Modificar_Guardia extends javax.swing.JFrame {
                     Correo_taquillero.setText(miE.getCorreo());
                     tipo_sangre_txt.setText(miE.getCodigo_tipo_sangre());
                     pais_txt.setText(miE.getCodigo_pais());
-                    id_taquillero.setText(miE.getId_taquillero());
-                    fechaCo.setDate((miE.getFecha_contratacion()));
-                    Cerficacion_taquillero.setText(miE.getCertificaciones());
-                    estatu_empleo_taquillero.setText(miE.getEstatus_empleo());
-                    fechaCo.setDate((miE.getFecha_contratacion()));
-                    recom_taquillero.setText(miE.getRecomendaciones());
-                    sal_taquillero.setText(String.valueOf(miE.getSalario()));
+                    id_guardia.setText(miE.getId_guardia());
+                    años_experienca.setText(String.valueOf(miE.getAños_expreriencia()));
+                    disponibilidad_guardia.setText(String.valueOf(miE.isDisponibilidad()));
+                    especialidad_guardia.setText(miE.getCod_especialidad());
 
                     Modificarjb.setEnabled(true);
                     //Hacer editable los campos de texto
                     mostrarDatos(result);
                     HabilitarCampos_deTexto();
-                    id_taquillero.setEditable(false);
+                    id_guardia.setEditable(false);
                     Ced_Taquillero.setEditable(false);
 
                 }
@@ -109,11 +105,11 @@ public class Modificar_Guardia extends javax.swing.JFrame {
         edad_taquillero.setText("");
         cel_taquillero.setText("");
         Correo_taquillero.setText("");
-        id_taquillero.setText("");
-        Cerficacion_taquillero.setText("");
-        estatu_empleo_taquillero.setText("");
-        sal_taquillero.setText("");
-        recom_taquillero.setText("");
+        id_guardia.setText("");
+        años_experienca.setText("");
+        disponibilidad_guardia.setText("");
+        especialidad_guardia.setText("");
+
     }
 
     public void HabilitarCampos_deTexto() {
@@ -122,10 +118,10 @@ public class Modificar_Guardia extends javax.swing.JFrame {
         edad_taquillero.setEditable(true);
         cel_taquillero.setEditable(true);
         Correo_taquillero.setEditable(true);
-        Cerficacion_taquillero.setEditable(true);
-        estatu_empleo_taquillero.setEditable(true);
-        sal_taquillero.setEditable(true);
-        recom_taquillero.setEditable(true);
+
+        años_experienca.setEditable(true);
+        disponibilidad_guardia.setEditable(true);
+        especialidad_guardia.setEditable(true);
         tipo_sangre_txt.setEditable(true);
         pais_txt.setEditable(true);
 
@@ -133,18 +129,17 @@ public class Modificar_Guardia extends javax.swing.JFrame {
 
     public void Modificar_pintura(ObjectContainer basep) {
 
-        Taquillero Emodi = new Taquillero(id_taquillero.getText(), null, null, 0, null, null, Ced_Taquillero.getText(), null, null, 0, '\0', null, null, null, null, null);
+        Guardia Emodi = new Guardia(id_guardia.getText(), 0, false, null, null, null, null, 0, '\0', null, null, null, null, null);
         ObjectSet result = basep.get(Emodi);
-        Taquillero Emodificar = (Taquillero) result.next();
+        Guardia Emodificar = (Guardia) result.next();
         Emodificar.setNombre_per(nom_taquillero.getText());
         Emodificar.setApellido(ape_tequillero.getText());
         Emodificar.setEdad_per(Integer.parseInt(edad_taquillero.getText()));
         Emodificar.setCelular_per(cel_taquillero.getText());
         Emodificar.setCorreo(Correo_taquillero.getText());
-        Emodificar.setCertificaciones(Cerficacion_taquillero.getText());
-        Emodificar.setEstatus_empleo(estatu_empleo_taquillero.getText());
-        Emodificar.setSalario(Double.parseDouble(sal_taquillero.getText()));
-        Emodificar.setRecomendaciones(recom_taquillero.getText());
+        Emodificar.setAños_expreriencia(Integer.parseInt(años_experienca.getText()));
+        Emodificar.setDisponibilidad(Boolean.parseBoolean(disponibilidad_guardia.getText()));
+        Emodificar.setCod_especialidad(especialidad_guardia.getText());
         Emodificar.setCodigo_tipo_sangre(tipo_sangre_txt.getText());
         Emodificar.setCodigo_pais(pais_txt.getText());
         ;
@@ -168,9 +163,9 @@ public class Modificar_Guardia extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "El usuario no existe");
         } else {
             while (result.hasNext()) {
-                Taquillero mitaquillero = (Taquillero) result.next();
+                Guardia mitaquillero = (Guardia) result.next();
                 Object[] fila = {
-                    mitaquillero.getId_taquillero(),
+                    mitaquillero.getId_guardia(),
                     mitaquillero.getCedula_per(),
                     mitaquillero.getNombre_per(),
                     mitaquillero.getApellido(),
@@ -181,11 +176,10 @@ public class Modificar_Guardia extends javax.swing.JFrame {
                     mitaquillero.getCorreo(),
                     mitaquillero.getCodigo_tipo_sangre(),
                     mitaquillero.getCodigo_pais(),
-                    mitaquillero.getCertificaciones(),
-                    mitaquillero.getEstatus_empleo(),
-                    mitaquillero.getSalario(),
-                    String.valueOf(mitaquillero.getFecha_contratacion()),
-                    mitaquillero.getRecomendaciones(),};
+                    mitaquillero.getAños_expreriencia(),
+                    mitaquillero.isDisponibilidad(),
+                    mitaquillero.getCod_especialidad()
+                };
                 model.addRow(fila);
             }
         }
@@ -457,7 +451,7 @@ public class Modificar_Guardia extends javax.swing.JFrame {
         ObjectContainer BaseD = Db4o.openFile(Crear_Taquillero.direccionBD);
         Modificar_pintura(BaseD);
         Cerrar_BD(BaseD);
-        id_taquillero.setEditable(true);
+        id_guardia.setEditable(true);
     }//GEN-LAST:event_ModificarjbActionPerformed
 
     /**

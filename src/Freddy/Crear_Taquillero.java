@@ -5,6 +5,7 @@
  */
 package Freddy;
 
+import Clases.Persona;
 import Clases.Taquillero;
 import java.util.Date;
 import com.db4o.*;
@@ -406,8 +407,18 @@ public class Crear_Taquillero extends javax.swing.JFrame {
 
     public void crearUsuario(ObjectContainer BaseD) {
         asignarVariables(BaseD);
+        boolean error = false;
+        if (verificarced(BaseD, Cedula_per_taq) != 0) {
+            error = true;
+            JOptionPane.showMessageDialog(null, "La cedula ya existe", "Error", JOptionPane.ERROR_MESSAGE);
+        }
 
         if (verificar(BaseD, idtaquillero) == 0) {
+            error = true;
+            JOptionPane.showMessageDialog(null, "El Taquillero ya existe", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+        if (!error) {
             Taquillero miUsuario = new Taquillero(idtaquillero, certificaciones, estatus_empleo, salario, fecha_contratacion, recomendaciones, Cedula_per_taq, nombre_per_taq, apellido_per_taq, edad_per_taq, genero_per_taq, celular_per_taq, fechanac_per_taq, correo_per_taq, tiposangre_per_taq, codigo_pais_per_taq);
 
             BaseD.set(miUsuario);
@@ -416,14 +427,19 @@ public class Crear_Taquillero extends javax.swing.JFrame {
             ObjectSet result = BaseD.queryByExample(new Taquillero());
             mostrarDatos(result);
             LimpiarCampos();
-        } else {
-            JOptionPane.showMessageDialog(null, "El usuario ya existe", "Error", JOptionPane.ERROR_MESSAGE);
         }
+
     }
 
     public static int verificar(ObjectContainer BaseD, String idtaquillero) {
         Taquillero buscarUsuario = new Taquillero(idtaquillero, null, null, 0, null, null, null, null, null, 0, '\0', null, null, null, null, null);
         ObjectSet resul = BaseD.queryByExample(buscarUsuario);
+        return resul.size();
+    }
+
+    public static int verificarced(ObjectContainer BaseD, String Cedula_per_taq) {
+        Persona buscarUsuario1 = new Persona(Cedula_per_taq, null, null, 0, '\0', null, null, null, null, null);
+        ObjectSet resul = BaseD.queryByExample(buscarUsuario1);
         return resul.size();
     }
 

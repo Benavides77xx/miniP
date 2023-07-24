@@ -6,6 +6,7 @@
 package Freddy;
 
 import Clases.Guardia;
+import Clases.Persona;
 import com.db4o.*;
 import java.util.Date;
 import javax.swing.JOptionPane;
@@ -84,9 +85,18 @@ public class Crear_Guardia extends javax.swing.JFrame {
     }
 
     public void crearCliente(ObjectContainer BaseD) {
-        asignarVariables(BaseD);
 
+        asignarVariables(BaseD);
+        boolean error = false;
+        if (verificarced(BaseD, Cedula_per_taq) != 0) {
+            error = true;
+            JOptionPane.showMessageDialog(null, "La cedula ya existe", "Error", JOptionPane.ERROR_MESSAGE);
+        }
         if (verificar(BaseD, id_guardia_per) == 0) {
+            error = true;
+            JOptionPane.showMessageDialog(null, "El Guardia ya existe", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        if (!error) {
             Guardia miUsuario = new Guardia(id_guardia_per, años_expreriencia_guar, disponibilidad_guar, especialidad_guar, Cedula_per_taq, nombre_per_taq, apellido_per_taq, edad_per_taq, genero_per_taq, celular_per_taq, fechanac_per_taq, correo_per_taq, tiposangre_per_taq, codigo_pais_per_taq);
 
             BaseD.set(miUsuario);
@@ -95,14 +105,18 @@ public class Crear_Guardia extends javax.swing.JFrame {
             ObjectSet result = BaseD.queryByExample(new Guardia());
             mostrarDatos(result);
             LimpiarCampos();
-        } else {
-            JOptionPane.showMessageDialog(null, "El usuario ya existe", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
     public static int verificar(ObjectContainer BaseD, String id_guardia_per) {
         Guardia buscarUsuario = new Guardia(id_guardia_per, 0, false, null, null, null, null, 0, '\0', null, null, null, null, null);
         ObjectSet resul = BaseD.queryByExample(buscarUsuario);
+        return resul.size();
+    }
+
+    public static int verificarced(ObjectContainer BaseD, String Cedula_per_taq) {
+        Persona buscarUsuario1 = new Persona(Cedula_per_taq, null, null, 0, '\0', null, null, null, null, null);
+        ObjectSet resul = BaseD.queryByExample(buscarUsuario1);
         return resul.size();
     }
 
@@ -218,7 +232,7 @@ public class Crear_Guardia extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID Cliente", "Cedula", "Nombre", "Apellido", "Edad", "Genero", "Celular", "Fecha Nacimiento", "Correo", "Tipo Sangre", "Pais", "Habilidades", "Intereses Personales"
+                "ID Guardia", "Cedula", "Nombre", "Apellido", "Edad", "Genero", "Celular", "Fecha Nacimiento", "Correo", "Tipo Sangre", "Pais", "Habilidades", "Intereses Personales"
             }
         ) {
             boolean[] canEdit = new boolean [] {
