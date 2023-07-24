@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package jose;
+import Clases.Persona;
 import Clases.Tipo_sangre;
 import com.db4o.Db4o;
 import com.db4o.ObjectContainer;
@@ -140,7 +141,7 @@ public class tipoSangre_ConsultarEliminar extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tablaConsultar);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 220, 700, 140));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 220, 700, 140));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Regresar.png"))); // NOI18N
         jButton1.setText("Regresar");
@@ -156,11 +157,11 @@ public class tipoSangre_ConsultarEliminar extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 888, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 488, Short.MAX_VALUE)
         );
 
         pack();
@@ -181,47 +182,44 @@ public class tipoSangre_ConsultarEliminar extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3MouseClicked
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        //
-        //        String codigo_cassete = txtCodigo.getText();
-        //
-        //        // Abre la base de datos
-        //        ObjectContainer baseDeDatos = Db4o.openFile(Inicio.direccionBD);
-        //
-        //        try {
-            //            // Verifica si existen Alquileres asociados a este cassetes
-            //            Aquiler cass = new Aquiler(null, null, codigo_cassete, null, null, 0, 0);
-            //            ObjectSet result = baseDeDatos.get(cass);
-            //            if (result.size() > 0) {
-                //                JOptionPane.showMessageDialog(this, "No se puede eliminar el cassete porque tiene alquileres asociados","ERROR",0);
-                //                return;
-                //            }
-            //
-            //            // Busca el cassete a eliminar
-            //            Cassete cliente = new Cassete(codigo_cassete, null, 0, null, 0);
-            //            ObjectSet cassResult = baseDeDatos.get(cliente);
-            //
-            //            if (cassResult.size() == 0) {
-                //                JOptionPane.showMessageDialog(null, "El cassete no existe");
-                //            } else {
-                //                // Elimina el cassete encontrado
-                //                baseDeDatos.delete(cassResult.get(0));
-                //                JOptionPane.showMessageDialog(null, "El cassete se ha eliminado correctamente");
-                //
-                //                // Actualiza la tabla después de eliminar el cliente
-                //                Filtro(baseDeDatos);
-                //            }
-            //        } finally {
-            //            // Cierra la base de datos
-            //
-            //            baseDeDatos.close();
-            //        }
-        //
-        //        // TODO add your handling code here:
+        String codigo_tipo_sangre = txtCodigo.getText();
+
+        // Abre la base de datos
+        ObjectContainer baseDeDatos = Db4o.openFile(INICIO.direccionBD);
+
+        try {
+            // Verifica si existen Personas asociados a este Tipo de sangre
+            Persona verifica = new Persona(null, null,null, 0,'\0',null,null,null,codigo_tipo_sangre, null);
+            ObjectSet result = baseDeDatos.get(verifica);
+            if (result.size() > 0) {
+                JOptionPane.showMessageDialog(this, "No se puede eliminar el Tipo de sangre porque tiene Personas asociadas","ERROR",0);
+                return;
+            }
+
+            // Busca el tipo de sangre a eliminar
+            Tipo_sangre Elim = new Tipo_sangre(codigo_tipo_sangre, null, 0);
+            ObjectSet clienteResult = baseDeDatos.get(Elim);
+
+            if (clienteResult.size() == 0) {
+                JOptionPane.showMessageDialog(null, "El tipo de sangre no existe");
+            } else {
+                // Elimina el tipo de sangre encontrado
+                baseDeDatos.delete(clienteResult.get(0));
+                JOptionPane.showMessageDialog(null, "El tipo de sangre se ha eliminado correctamente");
+
+                // Actualiza la tabla después de eliminar el cliente
+                Filtro(baseDeDatos);
+            }
+        } finally {
+            // Cierra la base de datos
+            
+            baseDeDatos.close();
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void tablaConsultarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaConsultarMouseClicked
-        //        int i = tablaConsultar.getSelectedRow();
-        //        txtCodigo.setText(tablaConsultar.getValueAt(i, 0).toString());
+                int i = tablaConsultar.getSelectedRow();
+                txtCodigo.setText(tablaConsultar.getValueAt(i, 0).toString());
     }//GEN-LAST:event_tablaConsultarMouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

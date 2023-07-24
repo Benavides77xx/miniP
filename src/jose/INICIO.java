@@ -294,6 +294,11 @@ public class INICIO extends javax.swing.JFrame {
         jMenu20.add(jMenuItem10);
 
         jMenuItem9.setText("Modificar");
+        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem9ActionPerformed(evt);
+            }
+        });
         jMenu20.add(jMenuItem9);
 
         Personas.add(jMenu20);
@@ -318,6 +323,11 @@ public class INICIO extends javax.swing.JFrame {
         jMenu21.add(jMenuItem12);
 
         jMenuItem13.setText("Modificar");
+        jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem13ActionPerformed(evt);
+            }
+        });
         jMenu21.add(jMenuItem13);
 
         Personas.add(jMenu21);
@@ -348,6 +358,11 @@ public class INICIO extends javax.swing.JFrame {
         jMenu8.add(jMenuItem27);
 
         jMenuItem28.setText("Modificar");
+        jMenuItem28.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem28ActionPerformed(evt);
+            }
+        });
         jMenu8.add(jMenuItem28);
 
         jMenu2.add(jMenu8);
@@ -372,6 +387,11 @@ public class INICIO extends javax.swing.JFrame {
         jMenu9.add(jMenuItem16);
 
         jMenuItem17.setText("Modificar");
+        jMenuItem17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem17ActionPerformed(evt);
+            }
+        });
         jMenu9.add(jMenuItem17);
 
         jMenu2.add(jMenu9);
@@ -549,6 +569,30 @@ public class INICIO extends javax.swing.JFrame {
         Pais_crud mostrar = new Pais_crud();
         mostrar.setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem11ActionPerformed
+
+    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+          this.dispose();
+        tipoSangre_modificar mostrar = new tipoSangre_modificar();
+        mostrar.setVisible(true);   
+    }//GEN-LAST:event_jMenuItem9ActionPerformed
+
+    private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
+         this.dispose();
+        Pais_modificar mostrar = new Pais_modificar();
+        mostrar.setVisible(true); 
+    }//GEN-LAST:event_jMenuItem13ActionPerformed
+
+    private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed
+        this.dispose();
+        Mantenimiento_modificar mostrar = new Mantenimiento_modificar();
+        mostrar.setVisible(true);
+    }//GEN-LAST:event_jMenuItem17ActionPerformed
+
+    private void jMenuItem28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem28ActionPerformed
+      this.dispose();
+        Juego_modificar mostrar = new Juego_modificar();
+        mostrar.setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem28ActionPerformed
 
      /**
      * @param args the command line arguments
