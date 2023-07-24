@@ -5,8 +5,10 @@
  */
 package Freddy;
 
-import Clases.Taquillero;
+import Clases.Cliente;
+
 import com.db4o.*;
+
 import com.db4o.ObjectSet;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -15,12 +17,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Lenovo
  */
-public class Consultar_Eliminar_Taquillero extends javax.swing.JFrame {
+public class Consultar_Eliminar_Cliente extends javax.swing.JFrame {
 
     /**
-     * Creates new form Consultar_Eliminar_Taquillero
+     * Creates new form Consultar_Eliminar_Cliente
      */
-    public Consultar_Eliminar_Taquillero() {
+    public Consultar_Eliminar_Cliente() {
         initComponents();
     }
 
@@ -31,14 +33,14 @@ public class Consultar_Eliminar_Taquillero extends javax.swing.JFrame {
         } else {
 
             if (jCBfiltro.getSelectedIndex() == 1) {
-                Taquillero Abuscar = new Taquillero(null, null, null, 0, null, null, null, null, null, 0, '\0', null, null, null, null, null);
+                Cliente Abuscar = new Cliente(null, null, null, null, null, null, 0, '\0', null, null, null, null, null);
                 ObjectSet result = basep.get(Abuscar);
                 mostrarDatos(result);
 
             } else {
                 if (jCBfiltro.getSelectedIndex() == 2) {
                     String jTFid = JOptionPane.showInputDialog("Ingrese el ID a consultar");
-                    Taquillero Abuscar = new Taquillero(jTFid, null, null, 0, null, null, null, null, null, 0, '\0', null, null, null, null, null);
+                    Cliente Abuscar = new Cliente(jTFid, null, null, null, null, null, 0, '\0', null, null, null, null, null);
                     ObjectSet result = basep.get(Abuscar);
                     mostrarDatos(result);
 
@@ -58,9 +60,9 @@ public class Consultar_Eliminar_Taquillero extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "El usuario no existe");
         } else {
             while (result.hasNext()) {
-                Taquillero mitaquillero = (Taquillero) result.next();
+                Cliente mitaquillero = (Cliente) result.next();
                 Object[] fila = {
-                    mitaquillero.getId_taquillero(),
+                    mitaquillero.getId_cliente(),
                     mitaquillero.getCedula_per(),
                     mitaquillero.getNombre_per(),
                     mitaquillero.getApellido(),
@@ -71,11 +73,8 @@ public class Consultar_Eliminar_Taquillero extends javax.swing.JFrame {
                     mitaquillero.getCorreo(),
                     mitaquillero.getCodigo_tipo_sangre(),
                     mitaquillero.getCodigo_pais(),
-                    mitaquillero.getCertificaciones(),
-                    mitaquillero.getEstatus_empleo(),
-                    mitaquillero.getSalario(),
-                    String.valueOf(mitaquillero.getFecha_contratacion()),
-                    mitaquillero.getRecomendaciones(),};
+                    mitaquillero.getHabilidades(),
+                    mitaquillero.getIntereses_personales(),};
                 model.addRow(fila);
             }
         }
@@ -88,16 +87,16 @@ public class Consultar_Eliminar_Taquillero extends javax.swing.JFrame {
         } else {
 
             String IDA = jTFid.getText();
-            Taquillero Abuscar = new Taquillero(IDA, null, null, 0, null, null, null, null, null, 0, '\0', null, null, null, null, null);
+            Cliente Abuscar = new Cliente(IDA, null, null, null, null, null, 0, '\0', null, null, null, null, null);
             ObjectSet result = basep.get(Abuscar);
 
             if (Ainterfaz.verificar(basep, IDA) == 0) {
-                JOptionPane.showMessageDialog(null, "La Pintura no existe en la base de datos");
+                JOptionPane.showMessageDialog(null, "El Cliente no existe en la base de datos");
 
             } else {
-                Taquillero AsignaturaElim = (Taquillero) result.next();
+                Cliente AsignaturaElim = (Cliente) result.next();
                 basep.delete(AsignaturaElim);
-                JOptionPane.showMessageDialog(null, "La Pintura fue anulada exitosamente");
+                JOptionPane.showMessageDialog(null, "El Cliente fue anulada exitosamente");
             }
 
         }
@@ -141,7 +140,7 @@ public class Consultar_Eliminar_Taquillero extends javax.swing.JFrame {
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));
         jLabel1.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel1.setText("Seleccione un campo para buscar al Taquillero");
+        jLabel1.setText("Seleccione un campo para buscar al Cliente");
 
         jLabel2.setBackground(new java.awt.Color(0, 0, 0));
         jLabel2.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
@@ -156,7 +155,7 @@ public class Consultar_Eliminar_Taquillero extends javax.swing.JFrame {
         });
 
         jCBfiltro.setFont(new java.awt.Font("Arial", 2, 12)); // NOI18N
-        jCBfiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una opción", "Ver todos", "ID Cliente", " ", " " }));
+        jCBfiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una opción", "Ver todos", "ID Taquillero", " ", " " }));
         jCBfiltro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCBfiltroActionPerformed(evt);
@@ -166,12 +165,12 @@ public class Consultar_Eliminar_Taquillero extends javax.swing.JFrame {
         jLabel3.setBackground(new java.awt.Color(0, 0, 0));
         jLabel3.setFont(new java.awt.Font("DialogInput", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel3.setText("Consultar y Eliminar Taquillero");
+        jLabel3.setText("Consultar y Eliminar Cliente");
 
         jLabel4.setBackground(new java.awt.Color(0, 0, 0));
         jLabel4.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel4.setText("Ingrese el ID del Cliente a eliminar");
+        jLabel4.setText("Ingrese el ID del Taquillero a eliminar");
 
         jLabel5.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
@@ -199,11 +198,11 @@ public class Consultar_Eliminar_Taquillero extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID Cliente", "Cedula", "Nombre", "Apellido", "Edad", "Genero", "Celular", "Fecha Nacimiento", "Correo", "Tipo Sangre", "Pais", "Habilidades", "Intereses Personales"
+                "ID Taquillero", "Cedula", "Nombre", "Apellido", "Edad", "Genero", "Celular", "Fecha Nacimiento", "Correo", "Tipo Sangre", "Pais", "Cerficaciones", "Estatus Empleo", "Salario", "Fecha Contratacion", "Recomendaciones"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, true, true, true, true, true, true, true, true
+                false, false, false, false, false, true, true, true, true, true, true, true, true, true, true, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -217,36 +216,34 @@ public class Consultar_Eliminar_Taquillero extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jCBfiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(buscar_button)
-                        .addGap(194, 194, 194)
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTFid, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(eliminar_button))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(167, 167, 167)
-                        .addComponent(jLabel3)))
-                .addGap(0, 91, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane2))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(40, 40, 40)
+                            .addComponent(jLabel2)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jCBfiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(buscar_button)
+                            .addGap(194, 194, 194)
+                            .addComponent(jLabel5)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jTFid, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(eliminar_button))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(167, 167, 167)
+                            .addComponent(jLabel3))))
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -269,8 +266,8 @@ public class Consultar_Eliminar_Taquillero extends javax.swing.JFrame {
                     .addComponent(jTFid, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(eliminar_button))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 286, Short.MAX_VALUE)
+                .addGap(37, 37, 37))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -324,20 +321,20 @@ public class Consultar_Eliminar_Taquillero extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Consultar_Eliminar_Taquillero.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Consultar_Eliminar_Cliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Consultar_Eliminar_Taquillero.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Consultar_Eliminar_Cliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Consultar_Eliminar_Taquillero.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Consultar_Eliminar_Cliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Consultar_Eliminar_Taquillero.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Consultar_Eliminar_Cliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Consultar_Eliminar_Taquillero().setVisible(true);
+                new Consultar_Eliminar_Cliente().setVisible(true);
             }
         });
     }

@@ -5,7 +5,7 @@
  */
 package Freddy;
 
-import Clases.Taquillero;
+import Clases.Dueño;
 import com.db4o.*;
 import com.db4o.ObjectSet;
 import javax.swing.JOptionPane;
@@ -15,12 +15,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Lenovo
  */
-public class Consultar_Eliminar_Taquillero extends javax.swing.JFrame {
+public class Consultar_Eliminar_Dueño extends javax.swing.JFrame {
 
     /**
-     * Creates new form Consultar_Eliminar_Taquillero
+     * Creates new form Consultar_Eliminar_Dueño
      */
-    public Consultar_Eliminar_Taquillero() {
+    public Consultar_Eliminar_Dueño() {
         initComponents();
     }
 
@@ -31,14 +31,14 @@ public class Consultar_Eliminar_Taquillero extends javax.swing.JFrame {
         } else {
 
             if (jCBfiltro.getSelectedIndex() == 1) {
-                Taquillero Abuscar = new Taquillero(null, null, null, 0, null, null, null, null, null, 0, '\0', null, null, null, null, null);
+                Dueño Abuscar = new Dueño(null, null, 0, null, null, null, null, 0, '\0', null, null, null, null, null);
                 ObjectSet result = basep.get(Abuscar);
                 mostrarDatos(result);
 
             } else {
                 if (jCBfiltro.getSelectedIndex() == 2) {
                     String jTFid = JOptionPane.showInputDialog("Ingrese el ID a consultar");
-                    Taquillero Abuscar = new Taquillero(jTFid, null, null, 0, null, null, null, null, null, 0, '\0', null, null, null, null, null);
+                    Dueño Abuscar = new Dueño(jTFid, null, 0, null, null, null, null, 0, '\0', null, null, null, null, null);
                     ObjectSet result = basep.get(Abuscar);
                     mostrarDatos(result);
 
@@ -58,9 +58,9 @@ public class Consultar_Eliminar_Taquillero extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "El usuario no existe");
         } else {
             while (result.hasNext()) {
-                Taquillero mitaquillero = (Taquillero) result.next();
+                Dueño mitaquillero = (Dueño) result.next();
                 Object[] fila = {
-                    mitaquillero.getId_taquillero(),
+                    mitaquillero.getId_dueño(),
                     mitaquillero.getCedula_per(),
                     mitaquillero.getNombre_per(),
                     mitaquillero.getApellido(),
@@ -71,11 +71,9 @@ public class Consultar_Eliminar_Taquillero extends javax.swing.JFrame {
                     mitaquillero.getCorreo(),
                     mitaquillero.getCodigo_tipo_sangre(),
                     mitaquillero.getCodigo_pais(),
-                    mitaquillero.getCertificaciones(),
-                    mitaquillero.getEstatus_empleo(),
-                    mitaquillero.getSalario(),
-                    String.valueOf(mitaquillero.getFecha_contratacion()),
-                    mitaquillero.getRecomendaciones(),};
+                    mitaquillero.getHistorial_propiedad(),
+                    mitaquillero.getAños_experiencia(),
+                    mitaquillero.getHabilidades_finacieras(),};
                 model.addRow(fila);
             }
         }
@@ -88,14 +86,14 @@ public class Consultar_Eliminar_Taquillero extends javax.swing.JFrame {
         } else {
 
             String IDA = jTFid.getText();
-            Taquillero Abuscar = new Taquillero(IDA, null, null, 0, null, null, null, null, null, 0, '\0', null, null, null, null, null);
+            Dueño Abuscar = new Dueño(IDA, null, 0, null, null, null, null, 0, '\0', null, null, null, null, null);
             ObjectSet result = basep.get(Abuscar);
 
             if (Ainterfaz.verificar(basep, IDA) == 0) {
                 JOptionPane.showMessageDialog(null, "La Pintura no existe en la base de datos");
 
             } else {
-                Taquillero AsignaturaElim = (Taquillero) result.next();
+                Dueño AsignaturaElim = (Dueño) result.next();
                 basep.delete(AsignaturaElim);
                 JOptionPane.showMessageDialog(null, "La Pintura fue anulada exitosamente");
             }
@@ -141,7 +139,7 @@ public class Consultar_Eliminar_Taquillero extends javax.swing.JFrame {
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));
         jLabel1.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel1.setText("Seleccione un campo para buscar al Taquillero");
+        jLabel1.setText("Seleccione un campo para buscar al Dueño");
 
         jLabel2.setBackground(new java.awt.Color(0, 0, 0));
         jLabel2.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
@@ -166,7 +164,7 @@ public class Consultar_Eliminar_Taquillero extends javax.swing.JFrame {
         jLabel3.setBackground(new java.awt.Color(0, 0, 0));
         jLabel3.setFont(new java.awt.Font("DialogInput", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel3.setText("Consultar y Eliminar Taquillero");
+        jLabel3.setText("Consultar y Eliminar Dueño");
 
         jLabel4.setBackground(new java.awt.Color(0, 0, 0));
         jLabel4.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
@@ -235,7 +233,7 @@ public class Consultar_Eliminar_Taquillero extends javax.swing.JFrame {
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(167, 167, 167)
                         .addComponent(jLabel3)))
-                .addGap(0, 91, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -270,7 +268,7 @@ public class Consultar_Eliminar_Taquillero extends javax.swing.JFrame {
                     .addComponent(eliminar_button))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -324,20 +322,20 @@ public class Consultar_Eliminar_Taquillero extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Consultar_Eliminar_Taquillero.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Consultar_Eliminar_Dueño.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Consultar_Eliminar_Taquillero.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Consultar_Eliminar_Dueño.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Consultar_Eliminar_Taquillero.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Consultar_Eliminar_Dueño.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Consultar_Eliminar_Taquillero.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Consultar_Eliminar_Dueño.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Consultar_Eliminar_Taquillero().setVisible(true);
+                new Consultar_Eliminar_Dueño().setVisible(true);
             }
         });
     }

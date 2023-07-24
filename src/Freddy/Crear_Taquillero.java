@@ -370,6 +370,8 @@ public class Crear_Taquillero extends javax.swing.JFrame {
         edad_taquillero.setText("");
         cel_taquillero.setText("");
         Correo_taquillero.setText("");
+        tipo_sangre_txt.setText("");
+        pais_txt.setText("");
         id_taquillero.setText("");
         Cerficacion_taquillero.setText("");
         estatu_empleo_taquillero.setText("");
