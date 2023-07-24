@@ -45,10 +45,10 @@ public class Mantenimiento_crud extends javax.swing.JFrame {
             } else {
                 txtcodman.setText("");
             }       
-            if (comprobarTecnico(basep,id_tecnico) == 0) {
-                error = true;
-                JOptionPane.showMessageDialog(null, "No existe ningun tecnico con este codigo registrado");
-            }       
+//            if (comprobarTecnico(basep,id_tecnico) == 0) {
+//                error = true;
+//                JOptionPane.showMessageDialog(null, "No existe ningun tecnico con este codigo registrado");
+//            }       
             if (comprobarJuego(basep,codigo_juego) == 0 ) {
                 error = true;
                 JOptionPane.showMessageDialog(null, "No existe ningun juego con este codigo registrado");

@@ -9,10 +9,11 @@ package jose;
   import com.db4o.ObjectContainer;
 public class INICIO extends javax.swing.JFrame {
 
-  public static String direccionBD = ("E:\\tareaGrupalBBDD\\TAREA.yap");//RUTA DE LA BASE DE DATOS
+  public static String direccionBD = ("C:\\Users\\Steven Zhicay\\Documents\\Base MINI PRO\\Prueba.yap");//RUTA DE LA BASE DE DATOS
 
     public INICIO() {
         initComponents();
+        
     }
 
     /**
@@ -170,6 +171,11 @@ public class INICIO extends javax.swing.JFrame {
         jMenu6.setText("Guardia");
 
         jMenuItem6.setText("jMenuItem6");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
         jMenu6.add(jMenuItem6);
 
         jMenu17.setText("Especialidad");
@@ -261,6 +267,10 @@ public class INICIO extends javax.swing.JFrame {
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem7ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
 
      /**
      * @param args the command line arguments
