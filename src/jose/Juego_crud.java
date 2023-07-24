@@ -20,7 +20,7 @@ public class Juego_crud extends javax.swing.JFrame {
      double duracion=0;
      String id_dueño="";   
     
-    public static String direccionBD = ("C:\\Users\\jose\\Documents\\Base guia\\guia.yap");
+    
     
     public Juego_crud() {
         initComponents();
@@ -196,9 +196,10 @@ public class Juego_crud extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        ObjectContainer BaseD = Db4o.openFile(direccionBD);
+        ObjectContainer BaseD = Db4o.openFile(INICIO.direccionBD);
         crearJuego(BaseD);
         Cerrar_BD(BaseD);
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
