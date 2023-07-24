@@ -81,7 +81,7 @@ public class Consultar_Eliminar_Guardia extends javax.swing.JFrame {
     }
 
     public void Eliminar_pintura(ObjectContainer basep) {
-        Crear_Taquillero Ainterfaz = new Crear_Taquillero();
+        Crear_Guardia Ainterfaz = new Crear_Guardia();
         if (jTFid.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Ingrese un ID");
         } else {

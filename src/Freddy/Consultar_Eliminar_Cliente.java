@@ -81,7 +81,7 @@ public class Consultar_Eliminar_Cliente extends javax.swing.JFrame {
     }
 
     public void Eliminar_pintura(ObjectContainer basep) {
-        Crear_Taquillero Ainterfaz = new Crear_Taquillero();
+        Crear_Cliente Ainterfaz = new Crear_Cliente();
         if (jTFid.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Ingrese un ID");
         } else {
