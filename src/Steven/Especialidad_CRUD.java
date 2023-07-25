@@ -5,6 +5,7 @@
  */
 package Steven;
 
+import Clases.Guardia;
 import Clases.Juego;
 import ClasesSteven.Especialidad;
 import com.db4o.Db4o;
@@ -12,8 +13,6 @@ import com.db4o.ObjectContainer;
 import com.db4o.ObjectSet;
 import javax.swing.JOptionPane;
 import jose.INICIO;
-
-
 
 /**
  *
@@ -197,10 +196,10 @@ public class Especialidad_CRUD extends javax.swing.JFrame {
         if (comprobarEspecialidad(basep, cod_especialida) != 0) {
             error = true;
             JOptionPane.showMessageDialog(this, "Ya existe una especialidad con este codigo", "ERROR", JOptionPane.ERROR_MESSAGE);
-        } //else if (comprobarGuardia(basep, id_guardia) == 0) {
-            //error = true;
-            //JOptionPane.showMessageDialog(null, "No existe ningun guardia registrado con este codigo", "Error (Reglas de integridad)", JOptionPane.ERROR_MESSAGE);
-        //}
+        } else if (comprobarGuardia(basep, id_guardia) == 0) {
+            error = true;
+            JOptionPane.showMessageDialog(null, "No existe ningun guardia registrado con este codigo", "Error (Reglas de integridad)", JOptionPane.ERROR_MESSAGE);
+        }
 
         if (!error) {
             Especialidad crearE = new Especialidad(cod_especialida, nombre_esp, descripcion, id_guardia);
@@ -210,19 +209,21 @@ public class Especialidad_CRUD extends javax.swing.JFrame {
         }
 
     }
-     public static int comprobarEspecialidad(ObjectContainer basep, String cod_especialida) {
+
+    public static int comprobarEspecialidad(ObjectContainer basep, String cod_especialida) {
         Especialidad buscarE = new Especialidad(cod_especialida, null, null, null);
         ObjectSet result = basep.get(buscarE);
         return result.size();
     }
 
-//    public static int comprobarGuardia(ObjectContainer basep, String id_guardia) {
-//        ObjectSet result = basep.get(new Guardia(id_guardia, null, null,null));
-//        return result.size();
-//    }
+    public static int comprobarGuardia(ObjectContainer basep, String id_guardia) {
+        ObjectSet result = basep.get(new Guardia(id_guardia, 0, false, null));
+        return result.size();
+    }
+
     public static void Cerrar_BD(ObjectContainer basep) {
         basep.close();
-    } 
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton jButton2;

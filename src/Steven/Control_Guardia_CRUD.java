@@ -5,6 +5,7 @@
  */
 package Steven;
 
+import Clases.Guardia;
 import ClasesSteven.Area;
 import ClasesSteven.Control_guardia;
 import com.db4o.Db4o;
@@ -74,7 +75,7 @@ public class Control_Guardia_CRUD extends javax.swing.JFrame {
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 80, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel8.setText("Descripcion");
+        jLabel8.setText("Observaciones:");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 200, -1, -1));
 
         txtcodigo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -214,11 +215,10 @@ public class Control_Guardia_CRUD extends javax.swing.JFrame {
         if (comprobarControl(basep, cod_control_gua) != 0) {
             error = true;
             JOptionPane.showMessageDialog(this, "Ya existe un control con este codigo", "ERROR", JOptionPane.ERROR_MESSAGE);
-        } //else if (comprobarGuardia(basep, id_guardia) == 0) {
-        //            error = true;
-        //            JOptionPane.showMessageDialog(null, "No existe ningun guardia registrado con este codigo", "Error (Reglas de integridad)", JOptionPane.ERROR_MESSAGE);
-        //        } 
-        else if (comprobarArea(basep, cod_area) == 0) {
+        } else if (comprobarGuardia(basep, id_guardia) == 0) {
+            error = true;
+            JOptionPane.showMessageDialog(null, "No existe ningun guardia registrado con este codigo", "Error (Reglas de integridad)", JOptionPane.ERROR_MESSAGE);
+        } else if (comprobarArea(basep, cod_area) == 0) {
             error = true;
             JOptionPane.showMessageDialog(null, "No existe ningun area registrado con este codigo", "Error (Reglas de integridad)", JOptionPane.ERROR_MESSAGE);
         }
@@ -237,10 +237,11 @@ public class Control_Guardia_CRUD extends javax.swing.JFrame {
         return result.size();
     }
 
-//    public static int comprobarGuardia(ObjectContainer basep, String id_guardia) {
-//        ObjectSet result = basep.get(new Guardia(id_comerciante, 0, 0, null));
-//        return result.size();
-//    }
+    public static int comprobarGuardia(ObjectContainer basep, String id_guardia) {
+        ObjectSet result = basep.get(new Guardia(id_guardia, 0, false, null));
+        return result.size();
+    }
+
     public static int comprobarArea(ObjectContainer basep, String cod_area) {
         ObjectSet result = basep.get(new Area(cod_area, null, null, 0, false, null, null, null));
         return result.size();

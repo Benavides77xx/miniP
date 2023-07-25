@@ -16,6 +16,9 @@ public class Comerciante {
     private int num_ventas;
     private String cedula_persona;
 
+    public Comerciante() {
+    }
+
     public Comerciante(String id_comerciante, int años_exp, int num_ventas, String cedula_persona) {
         this.id_comerciante = id_comerciante;
         this.años_exp = años_exp;

@@ -10,6 +10,7 @@ package ClasesSteven;
  * @author Steven Zhicay
  */
 public class Area {
+
     private String cod_area;
     private String nombre;
     private String tamaño;
@@ -18,6 +19,9 @@ public class Area {
     private String descripcion;
     private String id_guardia;
     private String cod_puesto;
+
+    public Area() {
+    }
 
     public Area(String cod_area, String nombre, String tamaño, int capacidad, boolean disponibilida, String descripcion, String id_guardia, String cod_puesto) {
         this.cod_area = cod_area;
@@ -98,5 +102,5 @@ public class Area {
     public String toString() {
         return "Area{" + "cod_area=" + cod_area + ", nombre=" + nombre + ", tama\u00f1o=" + tamaño + ", capacidad=" + capacidad + ", disponibilida=" + disponibilida + ", descripcion=" + descripcion + ", id_guardia=" + id_guardia + ", cod_puesto=" + cod_puesto + '}';
     }
-    
+
 }

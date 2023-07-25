@@ -10,10 +10,14 @@ package ClasesSteven;
  * @author Steven Zhicay
  */
 public class Especialidad {
+
     private String cod_especialidad;
     private String nombre_esp;
     private String descripcion;
     private String id_guardia;
+
+    public Especialidad() {
+    }
 
     public Especialidad(String cod_especialidad, String nombre_esp, String descripcion, String id_guardia) {
         this.cod_especialidad = cod_especialidad;
@@ -58,5 +62,5 @@ public class Especialidad {
     public String toString() {
         return "Especialidad{" + "cod_especialidad=" + cod_especialidad + ", nombre_esp=" + nombre_esp + ", descripcion=" + descripcion + ", id_guardia=" + id_guardia + '}';
     }
-    
+
 }
