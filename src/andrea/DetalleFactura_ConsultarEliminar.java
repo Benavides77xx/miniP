@@ -5,11 +5,13 @@
  */
 package andrea;
 
+import Clases.Detalle_factura;
 import com.db4o.Db4o;
 import com.db4o.ObjectContainer;
 import com.db4o.ObjectSet;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import jose.INICIO;
 
 /**
  *
@@ -24,21 +26,21 @@ public class DetalleFactura_ConsultarEliminar extends javax.swing.JFrame {
         initComponents();
     }
     
-    public void detallefact (ObjectContainer basep) {
+    public void Filtro (ObjectContainer basep) {
         
      if (eleccion.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(null, "Seleccione una de las opciones");
         } else {
 
             if (eleccion.getSelectedIndex() == 2) {
-                Detalle_factura bus_tec = new Detalle_factura(null,0,null,0.0,null);
+                Detalle_factura bus_tec = new Detalle_factura(null,0,0,null,null);
                 ObjectSet result = basep.get(bus_tec);
                 mostrarDatos(result);
 
             } else {
                 if (eleccion.getSelectedIndex() == 1) {
                     String opc = JOptionPane.showInputDialog("Ingrese el codigo a consultar");
-                    Detalle_factura buscartcc = new Detalle_factura(opc,0,null,0.0,null);
+                    Detalle_factura buscartcc = new Detalle_factura(opc,0,0,null,null);
                     ObjectSet result = basep.get(buscartcc);
                     mostrarDatos(result);
 
@@ -60,43 +62,41 @@ public class DetalleFactura_ConsultarEliminar extends javax.swing.JFrame {
                 Detalle_factura mitick = (Detalle_factura) result.next();
                 Object[] fila = {
                     mitick.getCod_det_fact(),
-                    mitick.getCan_ticket(),
+                    mitick.getCantidad_ticket(),
                     mitick.getCodigo_ticket(),
                     mitick.getSub_total(),
-                    mitick.getCodigo_fact(),
+                    mitick.getCod_det_fact(),
                     };
                 
                 modelo.addRow(fila);
             }
         }
     }
-    public void eliminardt (ObjectContainer basep) {
-        Tecnico_crud Ainterfaz = new Tecnico_crud();
-        if (eliminardt.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Ingrese un ID");
-        } else {
+//    public void eliminardt (ObjectContainer basep) {
+//        Tecnico_crud Ainterfaz = new Tecnico_crud();
+//        if (eliminardt.getText().isEmpty()) {
+//            JOptionPane.showMessageDialog(null, "Ingrese un ID");
+//        } else {
+//
+//            String IDA = eliminardt.getText();
+//            Detalle_factura Abuscar = new Detalle_factura(IDA, 0, null,0.0,null);
+//            ObjectSet result = basep.get(Abuscar);
+//
+//            if (Ainterfaz.validar (basep, IDA) == 0) {
+//                JOptionPane.showMessageDialog(null, "No existe un  Registro con el codigo diguitado ");
+//
+//            } else {
+//                Ticket AsignaturaElim = (Ticket) result.next();
+//                basep.delete(AsignaturaElim);
+//                JOptionPane.showMessageDialog(null, "Registro eliminado");
+//            }
+//
+//        }
+//
+//        
+//        eliminardt.setText("");
+//    }
 
-            String IDA = eliminardt.getText();
-            Detalle_factura Abuscar = new Detalle_factura(IDA, 0, null,0.0,null);
-            ObjectSet result = basep.get(Abuscar);
-
-            if (Ainterfaz.validar (basep, IDA) == 0) {
-                JOptionPane.showMessageDialog(null, "No existe un  Registro con el codigo diguitado ");
-
-            } else {
-                Ticket AsignaturaElim = (Ticket) result.next();
-                basep.delete(AsignaturaElim);
-                JOptionPane.showMessageDialog(null, "Registro eliminado");
-            }
-
-        }
-
-        
-        eliminardt.setText("");
-    }
-    
-    
-    
     
     public static void Cerrar_BD(ObjectContainer basep) {
 
@@ -160,20 +160,23 @@ public class DetalleFactura_ConsultarEliminar extends javax.swing.JFrame {
                 {null, null, null, null, null}
             },
             new String [] {
-                "CÓDIGO", "NUMERO DE TICKETS", "CÓDIGO TICKET", "SUBTOTAL", "CODIGO FACTURA"
+                "CÓDIGO", "NUMERO DE TICKETS", "CÓDIGO TICKET", "SUBTOTAL", "CODIGO_ENC_FACTURA"
             }
         ));
+        tablatec.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablatecMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tablatec);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 690, 240));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, 700, 90));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 714, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 774, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -186,16 +189,43 @@ public class DetalleFactura_ConsultarEliminar extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       ObjectContainer BaseD = Db4o.openFile(Tecnico_crud.direccionBD);
-        detallefact(BaseD);
+       ObjectContainer BaseD = Db4o.openFile(INICIO.direccionBD);
+        Filtro(BaseD);
         Cerrar_BD(BaseD);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        ObjectContainer BaseD = Db4o.openFile(Tecnico_crud.direccionBD);
-        eliminardt(BaseD);
-        Cerrar_BD(BaseD);
+     String codigo_DF = eliminardt.getText();
+        
+                // Abre la base de datos
+                ObjectContainer baseDeDatos = Db4o.openFile(INICIO.direccionBD);
+        
+                try {
+                        // Busca el DETALE F a eliminar
+                        Detalle_factura cliente = new Detalle_factura(codigo_DF, 0, 0,null,null);
+                        ObjectSet cassResult = baseDeDatos.get(cliente);
+            
+                        if (cassResult.size() == 0) {
+                                JOptionPane.showMessageDialog(null, "El Detalle de factura no existe");
+                            } else {
+                                // Elimina el Mantenimiento encontrado
+                                baseDeDatos.delete(cassResult.get(0));
+                                JOptionPane.showMessageDialog(null, "El Detalle de factura se ha eliminado correctamente");
+                
+                                // Actualiza la tabla después de eliminar el Detalle de factura
+                                Filtro(baseDeDatos);
+                            }
+                    } finally {
+                        // Cierra la base de datos
+            
+                        baseDeDatos.close();
+                    } 
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void tablatecMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablatecMouseClicked
+         int i = tablatec.getSelectedRow();
+                eliminardt.setText(tablatec.getValueAt(i, 0).toString());
+    }//GEN-LAST:event_tablatecMouseClicked
 
     /**
      * @param args the command line arguments

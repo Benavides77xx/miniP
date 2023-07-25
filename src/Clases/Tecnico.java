@@ -18,22 +18,15 @@ public class Tecnico extends Persona {
     private int a_experiencia_tec;
     private String referencias_tec;
 
+    public Tecnico(String id_tecnico, String nivel_estudio_tec, int a_experiencia_tec, String referencias_tec, String cedula_per, String nombre_per, String Apellido, int edad_per, String genero, String celular_per, Date fecha_nac, String correo, String codigo_tipo_sangre, String codigo_pais) {
+        super(cedula_per, nombre_per, Apellido, edad_per, genero, celular_per, fecha_nac, correo, codigo_tipo_sangre, codigo_pais);
+        this.id_tecnico = id_tecnico;
+        this.nivel_estudio_tec = nivel_estudio_tec;
+        this.a_experiencia_tec = a_experiencia_tec;
+        this.referencias_tec = referencias_tec;
+    }
+
     public Tecnico() {
-    }
-
-    public Tecnico(String id_tecnico, String nivel_estudio_tec, int a_experiencia_tec, String referencias_tec) {
-        this.id_tecnico = id_tecnico;
-        this.nivel_estudio_tec = nivel_estudio_tec;
-        this.a_experiencia_tec = a_experiencia_tec;
-        this.referencias_tec = referencias_tec;
-    }
-
-    public Tecnico(String id_tecnico, String nivel_estudio_tec, int a_experiencia_tec, String referencias_tec, String cedula, String nombre, String apellido, int edad, char genero, String celular, Date fecha_nacimiento, String correo, String codigo_tipo_sangre, String codigo_pais) {
-        super(cedula, nombre, apellido, edad, genero, celular, fecha_nacimiento, correo, codigo_tipo_sangre, codigo_pais);
-        this.id_tecnico = id_tecnico;
-        this.nivel_estudio_tec = nivel_estudio_tec;
-        this.a_experiencia_tec = a_experiencia_tec;
-        this.referencias_tec = referencias_tec;
     }
 
     public String getId_tecnico() {
@@ -73,8 +66,6 @@ public class Tecnico extends Persona {
         return "Tecnico{" + "id_tecnico=" + id_tecnico + ", nivel_estudio_tec=" + nivel_estudio_tec + ", a_experiencia_tec=" + a_experiencia_tec + ", referencias_tec=" + referencias_tec + '}';
     }
 
-   
-
-    
+  
     
 }

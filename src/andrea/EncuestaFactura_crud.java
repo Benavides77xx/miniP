@@ -58,7 +58,7 @@ public class EncuestaFactura_crud extends javax.swing.JFrame {
     }
 
     public static int comprobarCliente(ObjectContainer basep, String id_cliente) {
-        ObjectSet result = basep.get(new Cliente(id_cliente,null,null,null, null, null,0,'\0',null,null,null,null,null));
+        ObjectSet result = basep.get(new Cliente(id_cliente,null,null,null, null, null,0,null,null,null,null,null,null));
         return result.size();
     }
 
@@ -155,7 +155,7 @@ public class EncuestaFactura_crud extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void registrareActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrareActionPerformed
-        ObjectContainer BaseD = Db4o.openFile(Tecnico_crud.direccionBD);
+        ObjectContainer BaseD = Db4o.openFile(INICIO.direccionBD);
         crearEF(BaseD);
         Cerrar_BD(BaseD);
     }//GEN-LAST:event_registrareActionPerformed
