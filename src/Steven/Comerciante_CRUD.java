@@ -191,9 +191,9 @@ public class Comerciante_CRUD extends javax.swing.JFrame {
             error = true;
             JOptionPane.showMessageDialog(this, "Ya existe un comerciante con este codigo", "ERROR", JOptionPane.ERROR_MESSAGE);
         } else if (comprobarPersona(basep, cedula_per) == 0) {
-        error = true;
-        JOptionPane.showMessageDialog(null, "No existe ninguna persona registrado con este codigo", "Error (Reglas de integridad)", JOptionPane.ERROR_MESSAGE);
-        }  
+            error = true;
+            JOptionPane.showMessageDialog(null, "No existe ninguna persona registrado con este codigo", "Error (Reglas de integridad)", JOptionPane.ERROR_MESSAGE);
+        }
 
         if (!error) {
             Comerciante crearC = new Comerciante(id_comerciante, años_exp, num_ventas, cedula_per);
@@ -214,7 +214,6 @@ public class Comerciante_CRUD extends javax.swing.JFrame {
         ObjectSet result = basep.get(new Persona(cedula_persona, null, null, 0, '\0', null, null, null, null, null));
         return result.size();
     }
-
 
     public static void Cerrar_BD(ObjectContainer basep) {
         basep.close();

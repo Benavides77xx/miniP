@@ -5,7 +5,9 @@
  */
 package Steven;
 
+import Clases.Guardia;
 import ClasesSteven.Area;
+import ClasesSteven.Puesto;
 import com.db4o.Db4o;
 import com.db4o.ObjectContainer;
 import com.db4o.ObjectSet;
@@ -251,11 +253,14 @@ public class Area_CRUD extends javax.swing.JFrame {
         if (comprobarArea(basep, cod_area) != 0) {
             error = true;
             JOptionPane.showMessageDialog(this, "Ya existe una area con este codigo", "ERROR", JOptionPane.ERROR_MESSAGE);
-        } //else if (comprobarGuardia(basep, id_guardia) == 0) {
-        //error = true;
-        //JOptionPane.showMessageDialog(null, "No existe ningun guardia registrado con este codigo", "Error (Reglas de integridad)", JOptionPane.ERROR_MESSAGE);
-        //}  comprobarPuesto
-        
+        } else if (comprobarGuardia(basep, id_guardia) == 0) {
+            error = true;
+            JOptionPane.showMessageDialog(null, "No existe ningun guardia registrado con este codigo", "Error (Reglas de integridad)", JOptionPane.ERROR_MESSAGE);
+        } else if (comprobarPuesto(basep, cod_puesto) == 0) {
+            error = true;
+            JOptionPane.showMessageDialog(null, "No existe ningun puesto registrado con este codigo", "Error (Reglas de integridad)", JOptionPane.ERROR_MESSAGE);
+        }
+
         if (!error) {
             Area crearA = new Area(cod_area, nombre, tamaño, capacidad, disponibilidad, descripcion, id_guardia, cod_puesto);
             basep.set(crearA);
@@ -271,14 +276,15 @@ public class Area_CRUD extends javax.swing.JFrame {
         return result.size();
     }
 
-//    public static int comprobarGuardia(ObjectContainer basep, String id_guardia) {
-//        ObjectSet result = basep.get(new Guardia(id_guardia, null, null,null));
-//        return result.size();
-//    }
-    //    public static int comprobarPuesto(ObjectContainer basep, String id_guardia) {
-//        ObjectSet result = basep.get(new Guardia(id_guardia, null, null,null));
-//        return result.size();
-//    }
+    public static int comprobarGuardia(ObjectContainer basep, String id_guardia) {
+        ObjectSet result = basep.get(new Guardia(id_guardia, 0, false, null));
+        return result.size();
+    }
+
+        public static int comprobarPuesto(ObjectContainer basep, String cod_puesto) {
+        ObjectSet result = basep.get(new Puesto(cod_puesto, null, null, null, null, null));
+        return result.size();
+    }
     public static void Cerrar_BD(ObjectContainer basep) {
         basep.close();
     }

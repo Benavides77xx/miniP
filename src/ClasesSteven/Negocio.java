@@ -10,10 +10,14 @@ package ClasesSteven;
  * @author Steven Zhicay
  */
 public class Negocio {
+
     private String cod_negocio;
     private String tipo_negocio;
     private String descripcion;
     private String id_comerciante;
+
+    public Negocio() {
+    }
 
     public Negocio(String cod_negocio, String tipo_negocio, String descripcion, String id_comerciante) {
         this.cod_negocio = cod_negocio;
@@ -58,5 +62,5 @@ public class Negocio {
     public String toString() {
         return "Negocio{" + "cod_negocio=" + cod_negocio + ", tipo_negocio=" + tipo_negocio + ", descripcion=" + descripcion + ", id_comerciante=" + id_comerciante + '}';
     }
-    
+
 }

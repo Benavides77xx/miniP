@@ -64,7 +64,7 @@ public class Puesto_CRUD extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Registro Area");
+        jLabel1.setText("Registro Puesto");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(3, 20, 760, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -153,7 +153,7 @@ public class Puesto_CRUD extends javax.swing.JFrame {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         ObjectContainer BaseD = Db4o.openFile(INICIO.direccionBD);
-        crearArea(BaseD);
+        crearPuesto(BaseD);
         Cerrar_BD(BaseD);
     }//GEN-LAST:event_btnGuardarActionPerformed
 
@@ -214,7 +214,7 @@ public class Puesto_CRUD extends javax.swing.JFrame {
 
     }
 
-    public void crearArea(ObjectContainer basep) {
+    public void crearPuesto(ObjectContainer basep) {
 
         boolean error = false;
         if (comprobarPuesto(basep, cod_puesto) != 0) {

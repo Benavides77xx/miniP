@@ -18,6 +18,9 @@ public class Control_guardia {
     private String id_guardia;
     private String cod_area;
 
+    public Control_guardia() {
+    }
+
     public Control_guardia(String cod_control_guardia, Date fecha, String observaciones, String id_guardia, String cod_area) {
         this.cod_control_guardia = cod_control_guardia;
         this.fecha = fecha;

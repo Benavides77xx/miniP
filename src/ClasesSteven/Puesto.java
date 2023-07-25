@@ -10,12 +10,16 @@ package ClasesSteven;
  * @author Steven Zhicay
  */
 public class Puesto {
+
     private String cod_puesto;
     private String nombre;
     private String descripcion;
     private String tamaño;
     private String horario_laboral;
     private String id_comerciante;
+
+    public Puesto() {
+    }
 
     public Puesto(String cod_puesto, String nombre, String descripcion, String tamaño, String horario_laboral, String id_comerciante) {
         this.cod_puesto = cod_puesto;
@@ -78,5 +82,5 @@ public class Puesto {
     public String toString() {
         return "Puesto{" + "cod_puesto=" + cod_puesto + ", nombre=" + nombre + ", descripcion=" + descripcion + ", tama\u00f1o=" + tamaño + ", horario_laboral=" + horario_laboral + ", id_comerciante=" + id_comerciante + '}';
     }
-    
+
 }
