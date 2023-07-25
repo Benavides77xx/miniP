@@ -7,14 +7,14 @@ package andrea;
 
 /**
  *
- * @author jose
+ * @author Asus
  */
-public class andrea extends javax.swing.JFrame {
+public class EncuestaFactura_ConsultarEliminar extends javax.swing.JFrame {
 
     /**
-     * Creates new form andrea
+     * Creates new form buscar_eliminar_encuesta
      */
-    public andrea() {
+    public EncuestaFactura_ConsultarEliminar() {
         initComponents();
     }
 
@@ -60,20 +60,21 @@ public class andrea extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(andrea.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EncuestaFactura_ConsultarEliminar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(andrea.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EncuestaFactura_ConsultarEliminar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(andrea.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EncuestaFactura_ConsultarEliminar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(andrea.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EncuestaFactura_ConsultarEliminar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new andrea().setVisible(true);
+                new EncuestaFactura_ConsultarEliminar().setVisible(true);
             }
         });
     }

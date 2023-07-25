@@ -51,7 +51,7 @@ public class Juego_crud extends javax.swing.JFrame {
         boolean error = false;
         if (comprobarJuego(basep, codigo_juego) != 0) {
             error = true;
-            JOptionPane.showMessageDialog(this, "YYa existe un juego con este codigo", "ERROR", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Ya existe un juego con este codigo", "ERROR", JOptionPane.ERROR_MESSAGE);
         } else if (comprobarDueño(basep, id_dueño) == 0) {
             error = true;
             JOptionPane.showMessageDialog(null, "No existe ningun dueño registrado con este codigo", "Error (Reglas de integridad)", JOptionPane.ERROR_MESSAGE);
