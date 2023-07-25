@@ -268,7 +268,7 @@ public class Consultar_Eliminar_Cliente extends javax.swing.JFrame {
 
     private void eliminar_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminar_buttonActionPerformed
 //        String codigo_cliente = txtCodigo.getText();
-//
+//GHG
 //        // Abre la base de datos
 //        ObjectContainer baseDeDatos = Db4o.openFile(INICIO.direccionBD);
 //
