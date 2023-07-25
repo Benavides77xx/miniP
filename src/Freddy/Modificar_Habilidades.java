@@ -274,13 +274,13 @@ public class Modificar_Habilidades extends javax.swing.JFrame {
     }//GEN-LAST:event_cod_habilidadesActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        ObjectContainer BaseD = Db4o.openFile(Crear_Taquillero.direccionBD);
+        ObjectContainer BaseD = Db4o.openFile(jose.INICIO.direccionBD);
         buscar(BaseD);
         Cerrar_BD(BaseD);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void ModificarjbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarjbActionPerformed
-        ObjectContainer BaseD = Db4o.openFile(Crear_Taquillero.direccionBD);
+        ObjectContainer BaseD = Db4o.openFile(jose.INICIO.direccionBD);
         Modificar_pintura(BaseD);
         Cerrar_BD(BaseD);
         cod_habilidades.setEditable(true);

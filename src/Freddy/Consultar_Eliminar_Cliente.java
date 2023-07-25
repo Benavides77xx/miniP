@@ -35,14 +35,14 @@ public class Consultar_Eliminar_Cliente extends javax.swing.JFrame {
         } else {
 
             if (jCBfiltro.getSelectedIndex() == 1) {
-                Cliente Abuscar = new Cliente(null, null, null, null, null, null, 0, '\0', null, null, null, null, null);
+                Cliente Abuscar = new Cliente(null, null, null, null, null, null, 0,null, null, null, null, null, null);
                 ObjectSet result = basep.get(Abuscar);
                 mostrarDatos(result);
 
             } else {
                 if (jCBfiltro.getSelectedIndex() == 2) {
                     String jTFid = JOptionPane.showInputDialog("Ingrese el ID a consultar");
-                    Cliente Abuscar = new Cliente(jTFid, null, null, null, null, null, 0, '\0', null, null, null, null, null);
+                    Cliente Abuscar = new Cliente(jTFid, null, null, null, null, null, 0, null, null, null, null, null, null);
                     ObjectSet result = basep.get(Abuscar);
                     mostrarDatos(result);
 
@@ -130,7 +130,7 @@ public class Consultar_Eliminar_Cliente extends javax.swing.JFrame {
         });
 
         jCBfiltro.setFont(new java.awt.Font("Arial", 2, 12)); // NOI18N
-        jCBfiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una opción", "Ver todos", "ID Taquillero", " ", " " }));
+        jCBfiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una opción", "Ver todos", "ID Cliente", " ", " ", " " }));
         jCBfiltro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCBfiltroActionPerformed(evt);
@@ -170,7 +170,7 @@ public class Consultar_Eliminar_Cliente extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID Cliente", "Cedula", "Nombre", "Apellido", "Edad", "Genero", "Celular", "Fecha Nacimiento", "Correo", "Cod_Tipo Sangre", "Pais", "Codigo_habilidad"
+                "ID Cliente", "Cedula", "Nombre", "Apellido", "Edad", "Genero", "Celular", "Fecha Nacimiento", "Correo", "Cod_Tipo Sangre", "Cod_Pais", "Codigo_habilidad"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -215,7 +215,7 @@ public class Consultar_Eliminar_Cliente extends javax.swing.JFrame {
                 .addGap(0, 153, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 870, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 886, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -257,7 +257,7 @@ public class Consultar_Eliminar_Cliente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buscar_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscar_buttonActionPerformed
-        ObjectContainer BaseD = Db4o.openFile(Crear_Taquillero.direccionBD);
+        ObjectContainer BaseD = Db4o.openFile(jose.INICIO.direccionBD);
         Filtro(BaseD);
         Cerrar_BD(BaseD);
     }//GEN-LAST:event_buscar_buttonActionPerformed

@@ -11,6 +11,7 @@ import Clases.Persona;
 import Clases.Tipo_sangre;
 import java.util.Date;
 import com.db4o.*;
+import com.db4o.query.Query;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -25,9 +26,6 @@ import jose.INICIO;
  * @author Lenovo
  */
 public class Crear_Dueño extends javax.swing.JFrame {
-    
-    
-
 
     /**
      * Creates new form Crear_Dueño
@@ -40,7 +38,7 @@ public class Crear_Dueño extends javax.swing.JFrame {
     String nombre_per_taq = "";
     String apellido_per_taq = "";
     int edad_per_taq = 0;
-    char genero_per_taq;
+    String genero_per_taq;
     String celular_per_taq = "";
     Date fechanac_per_taq;
     String correo_per_taq = "";
@@ -67,7 +65,7 @@ public class Crear_Dueño extends javax.swing.JFrame {
         habilidades_financieras_txt.setText("");
 
     }
-    
+
     public void asignarVariables(ObjectContainer BaseD) {
         Cedula_per_due = Ced_Taquillero.getText();
         nombre_per_taq = nom_taquillero.getText();
@@ -76,7 +74,7 @@ public class Crear_Dueño extends javax.swing.JFrame {
         String edadStr = edad_taquillero.getText();
         edad_per_taq = !edadStr.isEmpty() ? Integer.parseInt(edadStr) : 0;
 
-        // genero_per_taq;
+        genero_per_taq = (String) Genero_combobox.getSelectedItem();
         celular_per_taq = cel_taquillero.getText();
         fechanac_per_taq = fechaNa.getDate();
         correo_per_taq = Correo_taquillero.getText();
@@ -85,47 +83,44 @@ public class Crear_Dueño extends javax.swing.JFrame {
         codigo_dueño = id_dueño.getText();
         historia_propiedadtxt = historiall_propiedad_txt.getText();
         anios_experiencia = !años_experiencia.getText().isEmpty() ? Integer.parseInt(años_experiencia.getText()) : 0;
-        habilidade_financieras = habilidades_financieras_txt.getText();   
+        habilidade_financieras = habilidades_financieras_txt.getText();
     }
-    
-    public void crearUsuario(ObjectContainer BaseD) {
-        
-                      boolean error=false;
-            if (comprobarCedula(BaseD, Cedula_per_due) != 0) {
-                error = true;
-                JOptionPane.showMessageDialog(this, "Ya existe un usuario con esta cedula registrada","ERROR",0);     
-            } else {
-                Ced_Taquillero.setText("");
-            }       
-            if (comprobarID(BaseD,codigo_dueño) != 0) {
-                error = true;
-                JOptionPane.showMessageDialog(this, "Ya existe un Dueño con este ID registrado","ERROR",0);
-            } else{
-                id_dueño.setText("");
-            }       
 
-            if (comprobarTS(BaseD,codigo_tipo_sangre) == 0 ) {
-                error = true;
-                JOptionPane.showMessageDialog(null, "No existe ningun tipo de sangre con este codigo");
-            }
-            if (comprobarPais(BaseD,codigo_pais_per_due) == 0 ) {
-                error = true;
-                JOptionPane.showMessageDialog(null, "No existe ningun Pais con este codigo");
-            }
-            
-            if (!error) {
-               Dueño miUsuario = new Dueño(codigo_dueño, historia_propiedadtxt, anios_experiencia, habilidade_financieras, Cedula_per_due, 
-                    nombre_per_taq, apellido_per_taq, edad_per_taq, genero_per_taq, celular_per_taq, fechanac_per_taq, 
-                       correo_per_taq, codigo_tipo_sangre, codigo_pais_per_due);
-                BaseD.set(miUsuario);
-                JOptionPane.showMessageDialog(null, "Cliente registrado correctamente");
-                LimpiarCampos();
-        
-        
-        
-        
-        
-            } 
+    public void crearUsuario(ObjectContainer BaseD) {
+        asignarVariables(BaseD);
+
+        boolean error = false;
+        if (comprobarCedula(BaseD, Cedula_per_due)) {
+            error = true;
+            JOptionPane.showMessageDialog(this, "Ya existe un usuario con esta cédula registrada", "ERROR", JOptionPane.ERROR_MESSAGE);
+        } else {
+            Ced_Taquillero.setText("");
+        }
+        if (comprobarID(BaseD, codigo_dueño)) {
+            error = true;
+            JOptionPane.showMessageDialog(this, "Ya existe un Dueño con este ID registrado", "ERROR", JOptionPane.ERROR_MESSAGE);
+        } else {
+            id_dueño.setText("");
+        }
+
+       if (comprobarTS(BaseD, codigo_tipo_sangre) == 0) {
+            error = true;
+            JOptionPane.showMessageDialog(null, "No existe ningun tipo de sangre con este codigo");
+        }
+        if (comprobarPais(BaseD, codigo_pais_per_due) == 0) {
+            error = true;
+            JOptionPane.showMessageDialog(null, "No existe ningun Pais con este codigo");
+        }
+        if (!error) {
+            Dueño miUsuario = new Dueño(codigo_dueño, historia_propiedadtxt, anios_experiencia, habilidade_financieras, Cedula_per_due,
+                    nombre_per_taq, apellido_per_taq, edad_per_taq, genero_per_taq, celular_per_taq, fechanac_per_taq,
+                    correo_per_taq, codigo_tipo_sangre, codigo_pais_per_due);
+            BaseD.store(miUsuario);
+            JOptionPane.showMessageDialog(null, "Cliente registrado correctamente");
+            ObjectSet result = BaseD.queryByExample(new Dueño());
+            mostrarDatos(result);
+            LimpiarCampos();
+        }
     }
 //        asignarVariables(BaseD);
 //
@@ -144,27 +139,34 @@ public class Crear_Dueño extends javax.swing.JFrame {
 //        }
 //    }
 
-     public static int comprobarCedula(ObjectContainer base, String cedula_per) {
-            Persona buscarCedula = new Persona(cedula_per, null, null,0,'\0',null,null,null,null,null);
-            ObjectSet result = base.get(buscarCedula);
-            return result.size();
+    public static boolean comprobarCedula(ObjectContainer BaseD, String Cedula_per_due) {
+        Query query = BaseD.query();
+        query.constrain(Persona.class);
+        query.descend("cedula_per").constrain(Cedula_per_due).equal();
+        ObjectSet result = query.execute();
+        return !result.isEmpty();
     }
-    public static int comprobarID(ObjectContainer base, String id_dueño) {
-            Dueño buscarID = new Dueño(id_dueño,null,0,null,null, null, null,0,'\0',null,null,null,null,null);
-            ObjectSet result = base.get(buscarID);
-            return result.size();
+
+    public static boolean comprobarID(ObjectContainer BaseD, String codigo_dueño) {
+        Query query = BaseD.query();
+        query.constrain(Dueño.class);
+        query.descend("id_dueño").constrain(codigo_dueño).equal();
+        ObjectSet result = query.execute();
+        return !result.isEmpty();
     }
-          
+
     public static int comprobarTS(ObjectContainer basep, String codigo_tipo_sangre) {
 
-            ObjectSet result = basep.get(new Tipo_sangre(codigo_tipo_sangre,null,0));          
-            return result.size();
+        ObjectSet result = basep.get(new Tipo_sangre(codigo_tipo_sangre, null, 0));
+        return result.size();
     }
-        public static int comprobarPais(ObjectContainer basep, String codigo_pais_per_taq) {
 
-            ObjectSet result = basep.get(new Pais(codigo_pais_per_taq,null,0));          
-            return result.size();
+    public static int comprobarPais(ObjectContainer basep, String codigo_pais_per_taq) {
+
+        ObjectSet result = basep.get(new Pais(codigo_pais_per_taq, null, 0));
+        return result.size();
     }
+
     public void mostrarDatos(ObjectSet result) {
         DefaultTableModel model = (DefaultTableModel) jtableregistro.getModel();
         model.setRowCount(0); // Limpiar la tabla
@@ -188,8 +190,7 @@ public class Crear_Dueño extends javax.swing.JFrame {
                     mitaquillero.getCodigo_pais(),
                     mitaquillero.getHistorial_propiedad(),
                     mitaquillero.getAños_experiencia(),
-                    mitaquillero.getHabilidades_finacieras(),
-                    };
+                    mitaquillero.getHabilidades_finacieras(),};
                 model.addRow(fila);
             }
         }
@@ -241,10 +242,11 @@ public class Crear_Dueño extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         tipo_sangre_txt = new javax.swing.JTextField();
         pais_txt = new javax.swing.JTextField();
+        Genero_combobox = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Taquillero");
+        jLabel1.setText("Dueño");
 
         jLabel2.setText("Cedula");
 
@@ -279,7 +281,7 @@ public class Crear_Dueño extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID Dueño", "Cedula", "Nombre", "Apellido", "Edad", "Genero", "Celular", "Fecha Nacimiento", "Correo", "Tipo Sangre", "Pais", "Historia Propiedad", "Años Experiencia", "Habilidades financieras"
+                "ID Dueño", "Cedula", "Nombre", "Apellido", "Edad", "Genero", "Celular", "Fecha Nacimiento", "Correo", "Codigo Tipo Sangre", "Codigo Pais", "Historia Propiedad", "Años Experiencia", "Habilidades financieras"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -298,6 +300,8 @@ public class Crear_Dueño extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
+
+        Genero_combobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una opcion", "Masculino", "Femenino" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -323,7 +327,7 @@ public class Crear_Dueño extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(tipo_sangre_txt)
+                                            .addComponent(tipo_sangre_txt, javax.swing.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE)
                                             .addComponent(pais_txt))
                                         .addGap(184, 184, 184)
                                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -352,7 +356,10 @@ public class Crear_Dueño extends javax.swing.JFrame {
                                 .addGap(105, 105, 105)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(nom_taquillero)
-                                    .addComponent(Ced_Taquillero))))
+                                    .addComponent(Ced_Taquillero)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(Genero_combobox, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE)))))
                         .addGap(65, 65, 65)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel15)
@@ -373,10 +380,10 @@ public class Crear_Dueño extends javax.swing.JFrame {
                                         .addComponent(años_experiencia, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
                                         .addComponent(historiall_propiedad_txt))
                                     .addContainerGap()))))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 881, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 917, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -409,8 +416,10 @@ public class Crear_Dueño extends javax.swing.JFrame {
                     .addComponent(edad_taquillero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(habilidades_financieras_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jLabel6)
-                .addGap(19, 19, 19)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(Genero_combobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(14, 14, 14)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(cel_taquillero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -434,7 +443,7 @@ public class Crear_Dueño extends javax.swing.JFrame {
                     .addComponent(fechaNa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -454,7 +463,7 @@ public class Crear_Dueño extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        ObjectContainer BaseD = Db4o.openFile(INICIO.direccionBD);
+        ObjectContainer BaseD = Db4o.openFile(jose.INICIO.direccionBD);
         crearUsuario(BaseD);
         Cerrar_BD(BaseD);
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -497,6 +506,7 @@ public class Crear_Dueño extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Ced_Taquillero;
     private javax.swing.JTextField Correo_taquillero;
+    private javax.swing.JComboBox<String> Genero_combobox;
     private javax.swing.JTextField ape_tequillero;
     private javax.swing.JTextField años_experiencia;
     private javax.swing.JTextField cel_taquillero;

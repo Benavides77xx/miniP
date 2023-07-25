@@ -54,14 +54,14 @@ public class Modificar_Taquillero extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Ingrese un ID");
         } else {
 
-            if (EAux.verificar(basep, IDAux) == 0) {
+            if (!EAux.comprobarID(basep, IDAux)) {
 
-                JOptionPane.showMessageDialog(null, "La pintura no existe en la base de datos");
+                JOptionPane.showMessageDialog(null, "el Taquillero no existe en la base de datos");
                 LimpiarCampos();
 
             } else {
 
-                Taquillero Ebuscar = new Taquillero(IDAux, null, null, 0, null, null, null, null, null, 0, '\0', null, null, null, null, null);
+                Taquillero Ebuscar = new Taquillero(IDAux, null, null, 0, null, null, null, null, null, 0, null, null, null, null, null, null);
 
                 ObjectSet result = basep.get(Ebuscar);
                 for (int i = 0; i < result.size(); i++) {
@@ -133,7 +133,7 @@ public class Modificar_Taquillero extends javax.swing.JFrame {
 
     public void Modificar_pintura(ObjectContainer basep) {
 
-        Taquillero Emodi = new Taquillero(id_taquillero.getText(), null, null, 0, null, null, Ced_Taquillero.getText(), null, null, 0, '\0', null, null, null, null, null);
+        Taquillero Emodi = new Taquillero(id_taquillero.getText(), null, null, 0, null, null, Ced_Taquillero.getText(), null, null, 0, null, null, null, null, null, null);
         ObjectSet result = basep.get(Emodi);
         Taquillero Emodificar = (Taquillero) result.next();
         Emodificar.setNombre_per(nom_taquillero.getText());
@@ -149,7 +149,7 @@ public class Modificar_Taquillero extends javax.swing.JFrame {
         Emodificar.setCodigo_pais(pais_txt.getText());
         ;
         basep.set(Emodificar);
-        JOptionPane.showMessageDialog(null, "La pintura fue modificado exitosamente");
+        JOptionPane.showMessageDialog(null, "El Taquillero fue modificado exitosamente");
 
         mostrarDatos(result);
         LimpiarCampos();
@@ -518,14 +518,14 @@ public class Modificar_Taquillero extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ModificarjbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarjbActionPerformed
-        ObjectContainer BaseD = Db4o.openFile(Crear_Taquillero.direccionBD);
+        ObjectContainer BaseD = Db4o.openFile(jose.INICIO.direccionBD);
         Modificar_pintura(BaseD);
         Cerrar_BD(BaseD);
         id_taquillero.setEditable(true);
     }//GEN-LAST:event_ModificarjbActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        ObjectContainer BaseD = Db4o.openFile(Crear_Taquillero.direccionBD);
+        ObjectContainer BaseD = Db4o.openFile(jose.INICIO.direccionBD);
         buscar(BaseD);
         Cerrar_BD(BaseD);
     }//GEN-LAST:event_jButton2ActionPerformed

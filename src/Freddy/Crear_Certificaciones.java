@@ -23,7 +23,7 @@ public class Crear_Certificaciones extends javax.swing.JFrame {
     public Crear_Certificaciones() {
         initComponents();
     }
-     public static String direccionBD = ("C:\\Users\\Lenovo\\Desktop\\MiniProyecto\\miniproyecto.yap");
+    
     
     String cod_cer = "";
     String certifi = "";
@@ -224,7 +224,7 @@ public class Crear_Certificaciones extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        ObjectContainer BaseD = Db4o.openFile(direccionBD);
+        ObjectContainer BaseD = Db4o.openFile(jose.INICIO.direccionBD);
         crearcertificacion(BaseD);
         Cerrar_BD(BaseD);
     }//GEN-LAST:event_jButton1ActionPerformed

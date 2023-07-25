@@ -29,7 +29,7 @@ public class Modificar_Dueño extends javax.swing.JFrame {
     String nombre_per_taq = "";
     String apellido_per_taq = "";
     int edad_per_taq = 0;
-    char genero_per_taq;
+    String genero_per_taq;
     String celular_per_taq = "";
     Date fechanac_per_taq;
     String correo_per_taq = "";
@@ -53,14 +53,14 @@ public class Modificar_Dueño extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Ingrese un ID");
         } else {
 
-            if (EAux.comprobarID(basep, IDAux) == 0) {
+            if (!EAux.comprobarID(basep, IDAux)) {
 
                 JOptionPane.showMessageDialog(null, "El dueño no existe en la base de datos");
                 LimpiarCampos();
 
             } else {
 
-                Dueño Ebuscar = new Dueño(IDAux, null, 0, null, null, null, null, 0, '\0', null, null, null, null, null);
+                Dueño Ebuscar = new Dueño(IDAux, null, 0, null, null, null, null, 0,null, null, null, null, null, null);
 
                 ObjectSet result = basep.get(Ebuscar);
                 for (int i = 0; i < result.size(); i++) {
@@ -132,7 +132,7 @@ public class Modificar_Dueño extends javax.swing.JFrame {
 
     public void Modificar_pintura(ObjectContainer basep) {
 
-        Dueño Emodi = new Dueño(id_dueño.getText(), null, 0, null, Ced_Taquillero.getText(), null, null, 0, '\0', null, null, null, null, null);
+        Dueño Emodi = new Dueño(id_dueño.getText(), null, 0, null, Ced_Taquillero.getText(), null, null, 0, null, null, null, null, null, null);
         ObjectSet result = basep.get(Emodi);
         Dueño Emodificar = (Dueño) result.next();
         Emodificar.setNombre_per(nom_taquillero.getText());
@@ -451,13 +451,13 @@ public class Modificar_Dueño extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        ObjectContainer BaseD = Db4o.openFile(Crear_Taquillero.direccionBD);
+        ObjectContainer BaseD = Db4o.openFile(jose.INICIO.direccionBD);
         buscar(BaseD);
         Cerrar_BD(BaseD);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void ModificarjbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarjbActionPerformed
-        ObjectContainer BaseD = Db4o.openFile(Crear_Taquillero.direccionBD);
+        ObjectContainer BaseD = Db4o.openFile(jose.INICIO.direccionBD);
         Modificar_pintura(BaseD);
         Cerrar_BD(BaseD);
         id_dueño.setEditable(true);

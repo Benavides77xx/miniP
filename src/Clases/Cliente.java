@@ -17,7 +17,7 @@ public class Cliente extends Persona {
     private String codigo_Habilidad;
     private String Intereses_personales;
 
-    public Cliente(String id_cliente, String codigo_Habilidad, String Intereses_personales, String cedula_per, String nombre_per, String Apellido, int edad_per, char genero, String celular_per, Date fecha_nac, String correo, String codigo_tipo_sangre, String codigo_pais) {
+    public Cliente(String id_cliente, String codigo_Habilidad, String Intereses_personales, String cedula_per, String nombre_per, String Apellido, int edad_per, String genero, String celular_per, Date fecha_nac, String correo, String codigo_tipo_sangre, String codigo_pais) {
         super(cedula_per, nombre_per, Apellido, edad_per, genero, celular_per, fecha_nac, correo, codigo_tipo_sangre, codigo_pais);
         this.id_cliente = id_cliente;
         this.codigo_Habilidad = codigo_Habilidad;

@@ -17,14 +17,14 @@ public class Persona {
     private String nombre_per;
     private String Apellido;
     private int edad_per;
-    private char genero;
+    private String genero;
     private String celular_per;
     private Date fecha_nac;
     private String correo;
     private String codigo_tipo_sangre;
     private String codigo_pais;
 
-    public Persona(String cedula_per, String nombre_per, String Apellido, int edad_per, char genero, String celular_per, Date fecha_nac, String correo, String codigo_tipo_sangre, String codigo_pais) {
+    public Persona(String cedula_per, String nombre_per, String Apellido, int edad_per, String genero, String celular_per, Date fecha_nac, String correo, String codigo_tipo_sangre, String codigo_pais) {
         this.cedula_per = cedula_per;
         this.nombre_per = nombre_per;
         this.Apellido = Apellido;
@@ -72,11 +72,11 @@ public class Persona {
         this.edad_per = edad_per;
     }
 
-    public char getGenero() {
+    public String getGenero() {
         return genero;
     }
 
-    public void setGenero(char genero) {
+    public void setGenero(String genero) {
         this.genero = genero;
     }
 

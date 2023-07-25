@@ -18,7 +18,7 @@ public class Guardia extends Persona {
     private boolean disponibilidad;
     private String cod_especialidad;
 
-    public Guardia(String id_guardia, int años_expreriencia, boolean disponibilidad, String cod_especialidad, String cedula_per, String nombre_per, String Apellido, int edad_per, char genero, String celular_per, Date fecha_nac, String correo, String codigo_tipo_sangre, String codigo_pais) {
+    public Guardia(String id_guardia, int años_expreriencia, boolean disponibilidad, String cod_especialidad, String cedula_per, String nombre_per, String Apellido, int edad_per, String genero, String celular_per, Date fecha_nac, String correo, String codigo_tipo_sangre, String codigo_pais) {
         super(cedula_per, nombre_per, Apellido, edad_per, genero, celular_per, fecha_nac, correo, codigo_tipo_sangre, codigo_pais);
         this.id_guardia = id_guardia;
         this.años_expreriencia = años_expreriencia;

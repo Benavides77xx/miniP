@@ -5,10 +5,15 @@
  */
 package Freddy;
 
+import Clases.Certificaciones;
+import Clases.Habilidades;
+import Clases.Pais;
 import Clases.Persona;
 import Clases.Taquillero;
+import Clases.Tipo_sangre;
 import java.util.Date;
 import com.db4o.*;
+import com.db4o.query.Query;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -75,6 +80,7 @@ public class Crear_Taquillero extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         tipo_sangre_txt = new javax.swing.JTextField();
         pais_txt = new javax.swing.JTextField();
+        Genero_combobox = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -102,7 +108,7 @@ public class Crear_Taquillero extends javax.swing.JFrame {
 
         jLabel12.setText("ID Taquillero");
 
-        jLabel13.setText("Certificaciones");
+        jLabel13.setText("*Cod Certificaciones");
 
         jLabel14.setText("Fecha Contratacion");
 
@@ -163,6 +169,8 @@ public class Crear_Taquillero extends javax.swing.JFrame {
 
         pais_txt.setBackground(new java.awt.Color(255, 255, 255));
 
+        Genero_combobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una opcion", "Masculino", "Femenino" }));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -175,19 +183,19 @@ public class Crear_Taquillero extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addGap(111, 111, 111)
-                                .addComponent(Ced_Taquillero, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE))
+                                .addComponent(Ced_Taquillero, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addGap(105, 105, 105)
-                                .addComponent(nom_taquillero, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE))
+                                .addComponent(nom_taquillero, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addGap(98, 98, 98)
-                                .addComponent(ape_tequillero, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE))
+                                .addComponent(ape_tequillero, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel5)
                                 .addGap(122, 122, 122)
-                                .addComponent(edad_taquillero, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE))
+                                .addComponent(edad_taquillero, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel6)
                                 .addGap(0, 0, Short.MAX_VALUE)))
@@ -198,19 +206,19 @@ public class Crear_Taquillero extends javax.swing.JFrame {
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel16)
                                         .addGap(80, 80, 80)
-                                        .addComponent(sal_taquillero, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE))
+                                        .addComponent(sal_taquillero, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel15)
                                         .addGap(32, 32, 32)
-                                        .addComponent(estatu_empleo_taquillero, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE))
+                                        .addComponent(estatu_empleo_taquillero, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel13)
                                         .addGap(34, 34, 34)
-                                        .addComponent(Cerficacion_taquillero, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE))
+                                        .addComponent(Cerficacion_taquillero, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel12)
                                         .addGap(50, 50, 50)
-                                        .addComponent(id_taquillero, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)))
+                                        .addComponent(id_taquillero, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)))
                                 .addGap(171, 171, 171))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel14)
@@ -218,10 +226,6 @@ public class Crear_Taquillero extends javax.swing.JFrame {
                                 .addComponent(fechaCo, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jLabel17)
-                                .addGap(18, 18, 18))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel7)
@@ -237,14 +241,23 @@ public class Crear_Taquillero extends javax.swing.JFrame {
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGap(49, 49, 49)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(fechaNa, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
-                                            .addComponent(Correo_taquillero)
-                                            .addComponent(cel_taquillero)
-                                            .addComponent(tipo_sangre_txt)
-                                            .addComponent(pais_txt))
-                                        .addGap(150, 150, 150)
-                                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))))
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addComponent(Genero_combobox, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(0, 0, Short.MAX_VALUE))
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(fechaNa, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
+                                                    .addComponent(Correo_taquillero)
+                                                    .addComponent(cel_taquillero)
+                                                    .addComponent(tipo_sangre_txt)
+                                                    .addComponent(pais_txt))
+                                                .addGap(150, 150, 150)
+                                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jLabel17)
+                                .addGap(40, 40, 40)))
                         .addComponent(recom_taquillero, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
                         .addGap(167, 167, 167))))
             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -285,8 +298,10 @@ public class Crear_Taquillero extends javax.swing.JFrame {
                             .addComponent(sal_taquillero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
-                            .addComponent(fechaCo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(fechaCo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(Genero_combobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel6))))
                     .addComponent(jLabel14))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -338,7 +353,7 @@ public class Crear_Taquillero extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        ObjectContainer BaseD = Db4o.openFile(direccionBD);
+        ObjectContainer BaseD = Db4o.openFile(jose.INICIO.direccionBD);
         crearUsuario(BaseD);
 
         Cerrar_BD(BaseD);
@@ -348,20 +363,18 @@ public class Crear_Taquillero extends javax.swing.JFrame {
     String nombre_per_taq = "";
     String apellido_per_taq = "";
     int edad_per_taq = 0;
-    char genero_per_taq;
+    String genero_per_taq;
     String celular_per_taq = "";
     Date fechanac_per_taq;
     String correo_per_taq = "";
     String tiposangre_per_taq = "";
     String codigo_pais_per_taq = "";
     String idtaquillero = "";
-    String certificaciones = "";
+    String codigo_certificaciones = "";
     String estatus_empleo = "";
     double salario = 0.0;
     Date fecha_contratacion;
     String recomendaciones = "";
-
-    public static String direccionBD = ("C:\\Users\\Lenovo\\Desktop\\MiniProyecto\\miniproyecto.yap");
 
     public void LimpiarCampos() {
 
@@ -388,14 +401,14 @@ public class Crear_Taquillero extends javax.swing.JFrame {
         String edadStr = edad_taquillero.getText();
         edad_per_taq = !edadStr.isEmpty() ? Integer.parseInt(edadStr) : 0;
 
-        // genero_per_taq;
+        genero_per_taq = (String) Genero_combobox.getSelectedItem();
         celular_per_taq = cel_taquillero.getText();
         fechanac_per_taq = fechaNa.getDate();
         correo_per_taq = Correo_taquillero.getText();
         tiposangre_per_taq = tipo_sangre_txt.getText();
         codigo_pais_per_taq = pais_txt.getText();
         idtaquillero = id_taquillero.getText();
-        certificaciones = Cerficacion_taquillero.getText();
+        codigo_certificaciones = Cerficacion_taquillero.getText();
         estatus_empleo = estatu_empleo_taquillero.getText();
 
         String salarioStr = sal_taquillero.getText();
@@ -407,40 +420,79 @@ public class Crear_Taquillero extends javax.swing.JFrame {
 
     public void crearUsuario(ObjectContainer BaseD) {
         asignarVariables(BaseD);
+
         boolean error = false;
-        if (verificarced(BaseD, Cedula_per_taq) != 0) {
+        if (comprobarCedula(BaseD, Cedula_per_taq)) {
             error = true;
-            JOptionPane.showMessageDialog(null, "La cedula ya existe", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Ya existe un Taquillero con esta cédula registrada", "ERROR", JOptionPane.ERROR_MESSAGE);
+        } else {
+            Ced_Taquillero.setText("");
+        }
+        if (comprobarID(BaseD, idtaquillero)) {
+            error = true;
+            JOptionPane.showMessageDialog(this, "Ya existe un Taquillero con este ID registrado", "ERROR", JOptionPane.ERROR_MESSAGE);
+        } else {
+            id_taquillero.setText("");
+        }
+        
+        if (comprobarCertificacion(BaseD, codigo_certificaciones) == 0) {
+            error = true;
+            JOptionPane.showMessageDialog(null, "No existe ninguna Certificacion con este codigo");
+        }else{
+            Cerficacion_taquillero.setText("");
         }
 
-        if (verificar(BaseD, idtaquillero) == 0) {
+        if (comprobarTS(BaseD, tiposangre_per_taq) == 0) {
             error = true;
-            JOptionPane.showMessageDialog(null, "El Taquillero ya existe", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "No existe ningun tipo de sangre con este codigo");
         }
-
+        if (comprobarPais(BaseD, codigo_pais_per_taq) == 0) {
+            error = true;
+            JOptionPane.showMessageDialog(null, "No existe ningun Pais con este codigo");
+        }
         if (!error) {
-            Taquillero miUsuario = new Taquillero(idtaquillero, certificaciones, estatus_empleo, salario, fecha_contratacion, recomendaciones, Cedula_per_taq, nombre_per_taq, apellido_per_taq, edad_per_taq, genero_per_taq, celular_per_taq, fechanac_per_taq, correo_per_taq, tiposangre_per_taq, codigo_pais_per_taq);
+            Taquillero miUsuario = new Taquillero(idtaquillero, codigo_certificaciones, estatus_empleo, salario, fecha_contratacion, recomendaciones, Cedula_per_taq, nombre_per_taq, apellido_per_taq, edad_per_taq, genero_per_taq, celular_per_taq, fechanac_per_taq, correo_per_taq, tiposangre_per_taq, codigo_pais_per_taq);
 
-            BaseD.set(miUsuario);
-            JOptionPane.showMessageDialog(null, "Usuario Creado");
-
+            BaseD.store(miUsuario);
+            JOptionPane.showMessageDialog(null, "Taquillero registrado correctamente");
             ObjectSet result = BaseD.queryByExample(new Taquillero());
             mostrarDatos(result);
             LimpiarCampos();
         }
-
     }
 
-    public static int verificar(ObjectContainer BaseD, String idtaquillero) {
-        Taquillero buscarUsuario = new Taquillero(idtaquillero, null, null, 0, null, null, null, null, null, 0, '\0', null, null, null, null, null);
-        ObjectSet resul = BaseD.queryByExample(buscarUsuario);
-        return resul.size();
+    public static boolean comprobarCedula(ObjectContainer BaseD, String Cedula_per_due) {
+        Query query = BaseD.query();
+        query.constrain(Persona.class);
+        query.descend("cedula_per").constrain(Cedula_per_due).equal();
+        ObjectSet result = query.execute();
+        return !result.isEmpty();
     }
 
-    public static int verificarced(ObjectContainer BaseD, String Cedula_per_taq) {
-        Persona buscarUsuario1 = new Persona(Cedula_per_taq, null, null, 0, '\0', null, null, null, null, null);
-        ObjectSet resul = BaseD.queryByExample(buscarUsuario1);
-        return resul.size();
+    public static boolean comprobarID(ObjectContainer BaseD, String id_taquillero) {
+        Query query = BaseD.query();
+        query.constrain(Taquillero.class);
+        query.descend("id_taquillero").constrain(id_taquillero).equal();
+        ObjectSet result = query.execute();
+        return !result.isEmpty();
+    }
+    
+     public static int comprobarCertificacion(ObjectContainer basep, String codigo_certificaciones) {
+
+        ObjectSet result = basep.get(new Certificaciones(codigo_certificaciones, null, null));
+        return result.size();
+    }
+
+    public static int comprobarTS(ObjectContainer basep, String codigo_tipo_sangre) {
+
+        ObjectSet result = basep.get(new Tipo_sangre(codigo_tipo_sangre, null, 0));
+        return result.size();
+    }
+
+    public static int comprobarPais(ObjectContainer basep, String codigo_pais_per_taq) {
+
+        ObjectSet result = basep.get(new Pais(codigo_pais_per_taq, null, 0));
+        return result.size();
     }
 
     public void mostrarDatos(ObjectSet result) {
@@ -519,6 +571,7 @@ public class Crear_Taquillero extends javax.swing.JFrame {
     private javax.swing.JTextField Ced_Taquillero;
     private javax.swing.JTextField Cerficacion_taquillero;
     private javax.swing.JTextField Correo_taquillero;
+    private javax.swing.JComboBox<String> Genero_combobox;
     private javax.swing.JTextField ape_tequillero;
     private javax.swing.JTextField cel_taquillero;
     private javax.swing.JTextField edad_taquillero;

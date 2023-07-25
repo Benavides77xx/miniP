@@ -14,31 +14,33 @@ import java.util.Date;
 public class Taquillero extends Persona {
 
     private String id_taquillero;
-    private String certificaciones;
+    private String cod_certificaciones;
     private String estatus_empleo;
     private double salario;
     private Date fecha_contratacion;
     private String recomendaciones;
 
-    public Taquillero(String id_taquillero, String certificaciones, String estatus_empleo, double salario, Date fecha_contratacion, String recomendaciones, String cedula_per, String nombre_per, String Apellido, int edad_per, char genero, String celular_per, Date fecha_nac, String correo, String codigo_tipo_sangre, String codigo_pais) {
+    public Taquillero(String id_taquillero, String cod_certificaciones, String estatus_empleo, double salario, Date fecha_contratacion, String recomendaciones, String cedula_per, String nombre_per, String Apellido, int edad_per, String genero, String celular_per, Date fecha_nac, String correo, String codigo_tipo_sangre, String codigo_pais) {
         super(cedula_per, nombre_per, Apellido, edad_per, genero, celular_per, fecha_nac, correo, codigo_tipo_sangre, codigo_pais);
         this.id_taquillero = id_taquillero;
-        this.certificaciones = certificaciones;
+        this.cod_certificaciones = cod_certificaciones;
         this.estatus_empleo = estatus_empleo;
         this.salario = salario;
         this.fecha_contratacion = fecha_contratacion;
         this.recomendaciones = recomendaciones;
     }
 
-    public Taquillero(String id_taquillero, String certificaciones, String estatus_empleo, double salario, Date fecha_contratacion, String recomendaciones) {
+    public Taquillero(String id_taquillero, String cod_certificaciones, String estatus_empleo, double salario, Date fecha_contratacion, String recomendaciones) {
         this.id_taquillero = id_taquillero;
-        this.certificaciones = certificaciones;
+        this.cod_certificaciones = cod_certificaciones;
         this.estatus_empleo = estatus_empleo;
         this.salario = salario;
         this.fecha_contratacion = fecha_contratacion;
         this.recomendaciones = recomendaciones;
     }
 
+   
+  
     public Taquillero() {
     }
 
@@ -53,11 +55,11 @@ public class Taquillero extends Persona {
     }
 
     public String getCertificaciones() {
-        return certificaciones;
+        return cod_certificaciones;
     }
 
     public void setCertificaciones(String certificaciones) {
-        this.certificaciones = certificaciones;
+        this.cod_certificaciones = certificaciones;
     }
 
     public String getEstatus_empleo() {
@@ -94,7 +96,7 @@ public class Taquillero extends Persona {
 
     @Override
     public String toString() {
-        return "Taquillero{" + "id_taquillero=" + id_taquillero + ", certificaciones=" + certificaciones + ", estatus_empleo=" + estatus_empleo + ", salario=" + salario + ", fecha_contratacion=" + fecha_contratacion + ", recomendaciones=" + recomendaciones + '}';
+        return "Taquillero{" + "id_taquillero=" + id_taquillero + ", certificaciones=" + cod_certificaciones + ", estatus_empleo=" + estatus_empleo + ", salario=" + salario + ", fecha_contratacion=" + fecha_contratacion + ", recomendaciones=" + recomendaciones + '}';
     }
     
     

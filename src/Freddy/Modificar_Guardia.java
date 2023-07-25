@@ -29,7 +29,7 @@ public class Modificar_Guardia extends javax.swing.JFrame {
     String nombre_per_taq = "";
     String apellido_per_taq = "";
     int edad_per_taq = 0;
-    char genero_per_taq;
+    String genero_per_taq;
     String celular_per_taq = "";
     Date fechanac_per_taq;
     String correo_per_taq = "";
@@ -53,14 +53,14 @@ public class Modificar_Guardia extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Ingrese un ID");
         } else {
 
-            if (EAux.verificar(basep, IDAux) == 0) {
+            if (!EAux.comprobarID(basep, IDAux)) {
 
                 JOptionPane.showMessageDialog(null, "El guardia no existe en la base de datos");
                 LimpiarCampos();
 
             } else {
 
-                Guardia Ebuscar = new Guardia(IDAux, 0, false, null, null, null, null, 0, '\0', null, null, null, null, null);
+                Guardia Ebuscar = new Guardia(IDAux, 0, false, null, null, null, null, 0, null, null, null, null, null, null);
 
                 ObjectSet result = basep.get(Ebuscar);
                 for (int i = 0; i < result.size(); i++) {
@@ -129,7 +129,7 @@ public class Modificar_Guardia extends javax.swing.JFrame {
 
     public void Modificar_pintura(ObjectContainer basep) {
 
-        Guardia Emodi = new Guardia(id_guardia.getText(), 0, false, null, null, null, null, 0, '\0', null, null, null, null, null);
+        Guardia Emodi = new Guardia(id_guardia.getText(), 0, false, null, null, null, null, 0,null, null, null, null, null, null);
         ObjectSet result = basep.get(Emodi);
         Guardia Emodificar = (Guardia) result.next();
         Emodificar.setNombre_per(nom_taquillero.getText());
@@ -442,13 +442,13 @@ public class Modificar_Guardia extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        ObjectContainer BaseD = Db4o.openFile(Crear_Taquillero.direccionBD);
+        ObjectContainer BaseD = Db4o.openFile(jose.INICIO.direccionBD);
         buscar(BaseD);
         Cerrar_BD(BaseD);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void ModificarjbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarjbActionPerformed
-        ObjectContainer BaseD = Db4o.openFile(Crear_Taquillero.direccionBD);
+        ObjectContainer BaseD = Db4o.openFile(jose.INICIO.direccionBD);
         Modificar_pintura(BaseD);
         Cerrar_BD(BaseD);
         id_guardia.setEditable(true);

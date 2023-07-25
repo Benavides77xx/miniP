@@ -31,14 +31,14 @@ public class Consultar_Eliminar_Dueño extends javax.swing.JFrame {
         } else {
 
             if (jCBfiltro.getSelectedIndex() == 1) {
-                Dueño Abuscar = new Dueño(null, null, 0, null, null, null, null, 0, '\0', null, null, null, null, null);
+                Dueño Abuscar = new Dueño(null, null, 0, null, null, null, null, 0, null, null, null, null, null, null);
                 ObjectSet result = basep.get(Abuscar);
                 mostrarDatos(result);
 
             } else {
                 if (jCBfiltro.getSelectedIndex() == 2) {
                     String jTFid = JOptionPane.showInputDialog("Ingrese el ID a consultar");
-                    Dueño Abuscar = new Dueño(jTFid, null, 0, null, null, null, null, 0, '\0', null, null, null, null, null);
+                    Dueño Abuscar = new Dueño(jTFid, null, 0, null, null, null, null, 0,null, null, null, null, null, null);
                     ObjectSet result = basep.get(Abuscar);
                     mostrarDatos(result);
 
@@ -86,10 +86,10 @@ public class Consultar_Eliminar_Dueño extends javax.swing.JFrame {
         } else {
 
             String IDA = jTFid.getText();
-            Dueño Abuscar = new Dueño(IDA, null, 0, null, null, null, null, 0, '\0', null, null, null, null, null);
+            Dueño Abuscar = new Dueño(IDA, null, 0, null, null, null, null, 0, null, null, null, null, null, null);
             ObjectSet result = basep.get(Abuscar);
 
-            if (Ainterfaz.verificar(basep, IDA) == 0) {
+            if (!Ainterfaz.comprobarID(basep, IDA)) {
                 JOptionPane.showMessageDialog(null, "La Pintura no existe en la base de datos");
 
             } else {
@@ -286,7 +286,7 @@ public class Consultar_Eliminar_Dueño extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buscar_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscar_buttonActionPerformed
-        ObjectContainer BaseD = Db4o.openFile(Crear_Taquillero.direccionBD);
+        ObjectContainer BaseD = Db4o.openFile(jose.INICIO.direccionBD);
         Filtro(BaseD);
         Cerrar_BD(BaseD);
     }//GEN-LAST:event_buscar_buttonActionPerformed
@@ -296,7 +296,7 @@ public class Consultar_Eliminar_Dueño extends javax.swing.JFrame {
     }//GEN-LAST:event_jCBfiltroActionPerformed
 
     private void eliminar_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminar_buttonActionPerformed
-        ObjectContainer BaseD = Db4o.openFile(Crear_Taquillero.direccionBD);
+        ObjectContainer BaseD = Db4o.openFile(jose.INICIO.direccionBD);
         Eliminar_pintura(BaseD);
         Cerrar_BD(BaseD);
     }//GEN-LAST:event_eliminar_buttonActionPerformed

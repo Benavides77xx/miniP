@@ -18,7 +18,7 @@ public class Dueño extends Persona {
     private int Años_experiencia;
     private String Habilidades_finacieras;
 
-    public Dueño(String id_dueño, String Historial_propiedad, int Años_experiencia, String Habilidades_finacieras, String cedula_per, String nombre_per, String Apellido, int edad_per, char genero, String celular_per, Date fecha_nac, String correo, String codigo_tipo_sangre, String codigo_pais) {
+    public Dueño(String id_dueño, String Historial_propiedad, int Años_experiencia, String Habilidades_finacieras, String cedula_per, String nombre_per, String Apellido, int edad_per, String genero, String celular_per, Date fecha_nac, String correo, String codigo_tipo_sangre, String codigo_pais) {
         super(cedula_per, nombre_per, Apellido, edad_per, genero, celular_per, fecha_nac, correo, codigo_tipo_sangre, codigo_pais);
         this.id_dueño = id_dueño;
         this.Historial_propiedad = Historial_propiedad;

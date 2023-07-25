@@ -31,14 +31,14 @@ public class Consultar_Eliminar_Guardia extends javax.swing.JFrame {
         } else {
 
             if (jCBfiltro.getSelectedIndex() == 1) {
-                Guardia Abuscar = new Guardia(null, 0, false, null, null, null, null, 0, '\0', null, null, null, null, null);
+                Guardia Abuscar = new Guardia(null, 0, false, null, null, null, null, 0, null, null, null, null, null, null);
                 ObjectSet result = basep.get(Abuscar);
                 mostrarDatos(result);
 
             } else {
                 if (jCBfiltro.getSelectedIndex() == 2) {
                     String jTFid = JOptionPane.showInputDialog("Ingrese el ID a consultar");
-                    Guardia Abuscar = new Guardia(jTFid, 0, false, null, null, null, null, 0, '\0', null, null, null, null, null);
+                    Guardia Abuscar = new Guardia(jTFid, 0, false, null, null, null, null, 0, null, null, null, null, null, null);
                     ObjectSet result = basep.get(Abuscar);
                     mostrarDatos(result);
 
@@ -81,16 +81,16 @@ public class Consultar_Eliminar_Guardia extends javax.swing.JFrame {
     }
 
     public void Eliminar_pintura(ObjectContainer basep) {
-        Crear_Taquillero Ainterfaz = new Crear_Taquillero();
+        Crear_Guardia Ainterfaz = new Crear_Guardia();
         if (jTFid.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Ingrese un ID");
         } else {
 
             String IDA = jTFid.getText();
-            Guardia Abuscar = new Guardia(IDA, 0, false, null, null, null, null, 0, '\0', null, null, null, null, null);
+            Guardia Abuscar = new Guardia(IDA, 0, false, null, null, null, null, 0, null, null, null, null, null, null);
             ObjectSet result = basep.get(Abuscar);
 
-            if (Ainterfaz.verificar(basep, IDA) == 0) {
+            if (Ainterfaz.comprobarID(basep, IDA)) {
                 JOptionPane.showMessageDialog(null, "El guardia no existe en la base de datos");
 
             } else {
@@ -285,7 +285,7 @@ public class Consultar_Eliminar_Guardia extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buscar_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscar_buttonActionPerformed
-        ObjectContainer BaseD = Db4o.openFile(Crear_Taquillero.direccionBD);
+        ObjectContainer BaseD = Db4o.openFile(jose.INICIO.direccionBD);
         Filtro(BaseD);
         Cerrar_BD(BaseD);
     }//GEN-LAST:event_buscar_buttonActionPerformed
@@ -295,7 +295,7 @@ public class Consultar_Eliminar_Guardia extends javax.swing.JFrame {
     }//GEN-LAST:event_jCBfiltroActionPerformed
 
     private void eliminar_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminar_buttonActionPerformed
-        ObjectContainer BaseD = Db4o.openFile(Crear_Taquillero.direccionBD);
+        ObjectContainer BaseD = Db4o.openFile(jose.INICIO.direccionBD);
         Eliminar_pintura(BaseD);
         Cerrar_BD(BaseD);
     }//GEN-LAST:event_eliminar_buttonActionPerformed

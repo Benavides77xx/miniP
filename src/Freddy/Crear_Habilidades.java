@@ -26,7 +26,7 @@ public class Crear_Habilidades extends javax.swing.JFrame {
     String cod_hab = "";
     String habili = "";
     String desc = "";
-    public static String direccionBD = ("C:\\Users\\Lenovo\\Desktop\\MiniProyecto\\miniproyecto.yap");
+    
 
     public void LimpiarCampos() {
 
@@ -230,7 +230,7 @@ public class Crear_Habilidades extends javax.swing.JFrame {
     }//GEN-LAST:event_cod_habilidadesActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        ObjectContainer BaseD = Db4o.openFile(direccionBD);
+        ObjectContainer BaseD = Db4o.openFile(jose.INICIO.direccionBD);
         crearHabilidad(BaseD);
 
         Cerrar_BD(BaseD);
