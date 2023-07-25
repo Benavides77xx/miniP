@@ -10,7 +10,7 @@ import Freddy.*;
   import com.db4o.ObjectContainer;
 public class INICIO extends javax.swing.JFrame {
 
-  public static String direccionBD = ("C:\\Users\\jose\\Documents\\Ruta de prueba mini\\Prueba.yap");//RUTA DE LA BASE DE DATOS
+  public static String direccionBD = ("C:\\Users\\jose\\Documents\\NetBeansProjects\\PRUEBA\\Prueba.yap");//RUTA DE LA BASE DE DATOS
 
     public INICIO() {
         initComponents();

@@ -8,6 +8,7 @@ package Freddy;
 import Clases.Cliente;
 import Clases.Habilidades;
 import Clases.Persona;
+import Clases.Tipo_sangre;
 import java.util.Date;
 import com.db4o.*;
 import java.text.SimpleDateFormat;
@@ -17,6 +18,7 @@ import java.time.format.DateTimeParseException;
 import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 import javax.swing.table.DefaultTableModel;
+import jose.INICIO;
 
 /**
  *
@@ -28,7 +30,7 @@ public class Crear_Cliente extends javax.swing.JFrame {
      * Creates new form Crear_Cliente
      */
     
-    public static String direccionBD = ("C:\\Users\\Lenovo\\Desktop\\MiniProyecto\\miniproyecto.yap");
+   
     public Crear_Cliente() {
         initComponents();
     }
@@ -41,7 +43,7 @@ public class Crear_Cliente extends javax.swing.JFrame {
     String celular_per_taq = "";
     Date fechanac_per_taq;
     String correo_per_taq = "";
-    String tiposangre_per_taq = "";
+    String codigo_tipo_sangre = "";
     String codigo_pais_per_taq = "";
     String id_cliente_per = "";
     String codigo_habilidad = "";
@@ -76,7 +78,7 @@ public class Crear_Cliente extends javax.swing.JFrame {
         celular_per_taq = cel_taquillero.getText();
         fechanac_per_taq = fechaNa.getDate();
         correo_per_taq = Correo_taquillero.getText();
-        tiposangre_per_taq = tipo_sangre_txt.getText();
+        codigo_tipo_sangre = tipo_sangre_txt.getText();
         codigo_pais_per_taq = pais_txt.getText();
         codigo_pais_per_taq = pais_txt.getText();
         id_cliente_per = id_cliente.getText();
@@ -103,9 +105,14 @@ public class Crear_Cliente extends javax.swing.JFrame {
                 error = true;
                 JOptionPane.showMessageDialog(null, "No existe ninguna Habilidad con este codigo");
             }
+            if (comprobarTS(BaseD,codigo_tipo_sangre) == 0 ) {
+                error = true;
+                JOptionPane.showMessageDialog(null, "No existe ningun tipo de sangre con este codigo");
+            }
+            
             if (!error) {
                 Cliente miUsuario = new Cliente(id_cliente_per, codigo_habilidad, inter_per, Cedula_per_taq, nombre_per_taq, apellido_per_taq, edad_per_taq, genero_per_taq, celular_per_taq, 
-                        fechanac_per_taq, correo_per_taq, tiposangre_per_taq, codigo_pais_per_taq);
+                        fechanac_per_taq, correo_per_taq, codigo_tipo_sangre, codigo_pais_per_taq);
                 BaseD.set(miUsuario);
                 JOptionPane.showMessageDialog(null, "Cliente registrado correctamente");
                 LimpiarCampos();
@@ -125,6 +132,11 @@ public class Crear_Cliente extends javax.swing.JFrame {
     public static int comprobarHabilidad(ObjectContainer basep, String codigo_habilidad) {
 
             ObjectSet result = basep.get(new Habilidades(codigo_habilidad,null,null));          
+            return result.size();
+    }
+    public static int comprobarTS(ObjectContainer basep, String codigo_tipo_sangre) {
+
+            ObjectSet result = basep.get(new Tipo_sangre(codigo_tipo_sangre,null,0));          
             return result.size();
     }
 
@@ -223,7 +235,7 @@ public class Crear_Cliente extends javax.swing.JFrame {
 
         jLabel9.setText("Correo");
 
-        jLabel10.setText("Tipo Sangre");
+        jLabel10.setText("*Cod_Tipo Sangre");
 
         jLabel11.setText("Pais");
 
@@ -398,9 +410,8 @@ public class Crear_Cliente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        ObjectContainer BaseD = Db4o.openFile(direccionBD);
+        ObjectContainer BaseD = Db4o.openFile(INICIO.direccionBD);
         crearCliente(BaseD);
-
         Cerrar_BD(BaseD);
     }//GEN-LAST:event_jButton1ActionPerformed
 
