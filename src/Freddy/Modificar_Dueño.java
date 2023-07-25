@@ -45,7 +45,7 @@ public class Modificar_Dueño extends javax.swing.JFrame {
         String IDAux;
         IDAux = id_dueño.getText();
 
-        Crear_Cliente EAux = new Crear_Cliente();
+        Crear_Dueño EAux = new Crear_Dueño();
 
         if (id_dueño.getText().isEmpty()) {
 

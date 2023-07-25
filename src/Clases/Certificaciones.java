@@ -12,12 +12,12 @@ package Clases;
 public class Certificaciones {
     
     private String cod_certificaciones;
-    private String certifiacion;
+    private String certificacion;
     private String descripcion;
 
-    public Certificaciones(String cod_certificaciones, String certifiacion, String descripcion) {
+    public Certificaciones(String cod_certificaciones, String certificacion, String descripcion) {
         this.cod_certificaciones = cod_certificaciones;
-        this.certifiacion = certifiacion;
+        this.certificacion = certificacion;
         this.descripcion = descripcion;
     }
 
@@ -33,11 +33,11 @@ public class Certificaciones {
     }
 
     public String getCertifiacion() {
-        return certifiacion;
+        return certificacion;
     }
 
     public void setCertifiacion(String certifiacion) {
-        this.certifiacion = certifiacion;
+        this.certificacion = certifiacion;
     }
 
     public String getDescripcion() {
@@ -50,7 +50,7 @@ public class Certificaciones {
 
     @Override
     public String toString() {
-        return "Certificaciones{" + "cod_certificaciones=" + cod_certificaciones + ", certifiacion=" + certifiacion + ", descripcion=" + descripcion + '}';
+        return "Certificaciones{" + "cod_certificaciones=" + cod_certificaciones + ", certifiacion=" + certificacion + ", descripcion=" + descripcion + '}';
     }
 
     

@@ -6,8 +6,8 @@
 package Freddy;
 
 import Clases.Certificaciones;
-import Clases.Habilidades;
 import com.db4o.*;
+
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -15,20 +15,64 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Lenovo
  */
-public class Crear_Certificaciones extends javax.swing.JFrame {
+public class Modificiar_Certificaciones extends javax.swing.JFrame {
 
     /**
-     * Creates new form Crear_Certificaciones
+     * Creates new form Modificiar_Certificaciones
      */
-    public Crear_Certificaciones() {
+    public Modificiar_Certificaciones() {
         initComponents();
     }
-     public static String direccionBD = ("C:\\Users\\Lenovo\\Desktop\\MiniProyecto\\miniproyecto.yap");
-    
+
     String cod_cer = "";
     String certifi = "";
     String desc = "";
-    
+
+    public void buscar(ObjectContainer basep) {//cargardatos
+
+        Modificarjb.setEnabled(false);
+        String IDAux;
+        IDAux = cod_certificaciones.getText();
+
+        Crear_Certificaciones EAux = new Crear_Certificaciones();
+
+        if (cod_certificaciones.getText().isEmpty()) {
+
+            JOptionPane.showMessageDialog(null, "Ingrese un ID");
+        } else {
+
+            if (EAux.verificar(basep, IDAux) == 0) {
+
+                JOptionPane.showMessageDialog(null, "La pintura no existe en la base de datos");
+                LimpiarCampos();
+
+            } else {
+
+                Certificaciones Ebuscar = new Certificaciones(IDAux, null, null);
+                ObjectSet result = basep.get(Ebuscar);
+                for (int i = 0; i < result.size(); i++) {
+
+                    Certificaciones miE = new Certificaciones();
+
+                    miE = (Certificaciones) result.get(i);
+
+                    cod_certificaciones.setText(miE.getCod_certificaciones());
+                    certificacion_txt.setText(miE.getCertifiacion());
+                    descripcion_txt.setText(miE.getDescripcion());
+
+                    Modificarjb.setEnabled(true);
+                    //Hacer editable los campos de texto
+                    mostrarDatos(result);
+                    HabilitarCampos_deTexto();
+                    cod_certificaciones.setEditable(false);
+
+                }
+
+            }
+
+        }
+    }
+
     public void LimpiarCampos() {
 
         cod_certificaciones.setText("");
@@ -37,35 +81,10 @@ public class Crear_Certificaciones extends javax.swing.JFrame {
 
     }
 
-    public void asignarVariables(ObjectContainer BaseD) {
+    public void HabilitarCampos_deTexto() {
+        certificacion_txt.setEditable(true);
+        descripcion_txt.setEditable(true);
 
-        cod_cer = cod_certificaciones.getText();
-        certifi = certificacion_txt.getText();
-        desc = descripcion_txt.getText();
-
-    }
-    
-    public void crearcertificacion(ObjectContainer BaseD) {
-        asignarVariables(BaseD);
-
-        if (verificar(BaseD, cod_cer) == 0) {
-            Certificaciones miUsuario = new Certificaciones(cod_cer, certifi, desc);
-
-            BaseD.set(miUsuario);
-            JOptionPane.showMessageDialog(null, "Certificacion Creada");
-
-            ObjectSet result = BaseD.queryByExample(new Certificaciones());
-            mostrarDatos(result);
-            LimpiarCampos();
-        } else {
-            JOptionPane.showMessageDialog(null, "La Certificacion ya existe", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-    }
-
-    public static int verificar(ObjectContainer BaseD, String cod_cer) {
-        Certificaciones buscarUsuario = new Certificaciones(cod_cer, null, null);
-        ObjectSet resul = BaseD.queryByExample(buscarUsuario);
-        return resul.size();
     }
 
     public void mostrarDatos(ObjectSet result) {
@@ -85,6 +104,22 @@ public class Crear_Certificaciones extends javax.swing.JFrame {
                 model.addRow(fila);
             }
         }
+    }
+
+    public void Modificar_pintura(ObjectContainer basep) {
+
+        Certificaciones Emodi = new Certificaciones(cod_certificaciones.getText(), null, null);
+        ObjectSet result = basep.get(Emodi);
+
+        Certificaciones Emodificar = (Certificaciones) result.next();
+        Emodificar.setCertifiacion(certificacion_txt.getText());
+        Emodificar.setDescripcion(descripcion_txt.getText());
+        ;
+        basep.set(Emodificar);
+        JOptionPane.showMessageDialog(null, "La pintura fue modificado exitosamente");
+
+        mostrarDatos(result);
+        LimpiarCampos();
     }
 
     public static void Cerrar_BD(ObjectContainer basep) {
@@ -109,9 +144,10 @@ public class Crear_Certificaciones extends javax.swing.JFrame {
         cod_certificaciones = new javax.swing.JTextField();
         certificacion_txt = new javax.swing.JTextField();
         descripcion_txt = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jtableregistro = new javax.swing.JTable();
+        jButton4 = new javax.swing.JButton();
+        Modificarjb = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -122,13 +158,6 @@ public class Crear_Certificaciones extends javax.swing.JFrame {
         jLabel3.setText("Certificacion");
 
         jLabel4.setText("Descripcion");
-
-        jButton1.setText("INGRESAR");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
 
         jtableregistro.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -148,10 +177,28 @@ public class Crear_Certificaciones extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(jtableregistro);
 
+        jButton4.setText("BUSCAR");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        Modificarjb.setText("Guardar");
+        Modificarjb.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ModificarjbActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 16, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 819, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(14, 14, 14))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -171,15 +218,13 @@ public class Crear_Certificaciones extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addGap(82, 82, 82)
-                                .addComponent(cod_certificaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(cod_certificaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton4))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(293, 293, 293)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(372, 372, 372)
+                        .addComponent(Modificarjb, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 16, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 819, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(14, 14, 14))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -189,8 +234,9 @@ public class Crear_Certificaciones extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(cod_certificaciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(22, 22, 22)
+                    .addComponent(cod_certificaciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton4))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(certificacion_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -198,9 +244,9 @@ public class Crear_Certificaciones extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(descripcion_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
+                .addComponent(Modificarjb, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(37, Short.MAX_VALUE))
         );
@@ -223,11 +269,18 @@ public class Crear_Certificaciones extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        ObjectContainer BaseD = Db4o.openFile(direccionBD);
-        crearcertificacion(BaseD);
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        ObjectContainer BaseD = Db4o.openFile(Crear_Taquillero.direccionBD);
+        buscar(BaseD);
         Cerrar_BD(BaseD);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void ModificarjbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarjbActionPerformed
+        ObjectContainer BaseD = Db4o.openFile(Crear_Taquillero.direccionBD);
+        Modificar_pintura(BaseD);
+        Cerrar_BD(BaseD);
+        cod_certificaciones.setEditable(true);
+    }//GEN-LAST:event_ModificarjbActionPerformed
 
     /**
      * @param args the command line arguments
@@ -246,29 +299,30 @@ public class Crear_Certificaciones extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Crear_Certificaciones.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Modificiar_Certificaciones.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Crear_Certificaciones.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Modificiar_Certificaciones.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Crear_Certificaciones.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Modificiar_Certificaciones.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Crear_Certificaciones.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Modificiar_Certificaciones.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Crear_Certificaciones().setVisible(true);
+                new Modificiar_Certificaciones().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Modificarjb;
     private javax.swing.JTextField certificacion_txt;
     private javax.swing.JTextField cod_certificaciones;
     private javax.swing.JTextField descripcion_txt;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -46,7 +46,7 @@ public class Modificar_Guardia extends javax.swing.JFrame {
         String IDAux;
         IDAux = id_guardia.getText();
 
-        Crear_Taquillero EAux = new Crear_Taquillero();
+        Crear_Guardia EAux = new Crear_Guardia();
 
         if (id_guardia.getText().isEmpty()) {
 
