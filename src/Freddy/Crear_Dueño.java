@@ -42,7 +42,7 @@ public class Crear_Dueño extends javax.swing.JFrame {
     Date fechanac_per_taq;
     String correo_per_taq = "";
     String codigo_tipo_sangre = "";
-    String codigo_pais_per_taq = "";
+    String codigo_pais_per_due = "";
     String codigo_dueño = "";
     String historia_propiedadtxt = "";
     int anios_experiencia;
@@ -77,8 +77,8 @@ public class Crear_Dueño extends javax.swing.JFrame {
         celular_per_taq = cel_taquillero.getText();
         fechanac_per_taq = fechaNa.getDate();
         correo_per_taq = Correo_taquillero.getText();
-        tiposangre_per_taq = tipo_sangre_txt.getText();
-        codigo_pais_per_taq = pais_txt.getText();
+        codigo_tipo_sangre = tipo_sangre_txt.getText();
+        codigo_pais_per_due = pais_txt.getText();
         codigo_dueño = id_dueño.getText();
         historia_propiedadtxt = historiall_propiedad_txt.getText();
         anios_experiencia = !años_experiencia.getText().isEmpty() ? Integer.parseInt(años_experiencia.getText()) : 0;
@@ -90,7 +90,8 @@ public class Crear_Dueño extends javax.swing.JFrame {
         asignarVariables(BaseD);
 
         if (verificar(BaseD, codigo_dueño) == 0) {
-            Dueño miUsuario = new Dueño(codigo_dueño, historia_propiedadtxt, anios_experiencia, habilidade_financieras, Cedula_per_taq, nombre_per_taq, apellido_per_taq, edad_per_taq, genero_per_taq, celular_per_taq, fechanac_per_taq, correo_per_taq, tiposangre_per_taq, codigo_pais_per_taq);
+            Dueño miUsuario = new Dueño(codigo_dueño, historia_propiedadtxt, anios_experiencia, habilidade_financieras, Cedula_per_taq, 
+                    nombre_per_taq, apellido_per_taq, edad_per_taq, genero_per_taq, celular_per_taq, fechanac_per_taq, correo_per_taq, codigo_tipo_sangre, codigo_pais_per_due);
 
             BaseD.set(miUsuario);
             JOptionPane.showMessageDialog(null, "Usuario Creado");
