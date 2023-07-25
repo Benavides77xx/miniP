@@ -236,7 +236,7 @@
                     <Column editable="true" title="Celular" type="java.lang.Object"/>
                     <Column editable="true" title="Fecha Nacimiento" type="java.lang.Object"/>
                     <Column editable="true" title="Correo" type="java.lang.Object"/>
-                    <Column editable="true" title="Tipo Sangre" type="java.lang.Object"/>
+                    <Column editable="true" title="Cod_Tipo Sangre" type="java.lang.Object"/>
                     <Column editable="true" title="Pais" type="java.lang.Object"/>
                     <Column editable="true" title="Codigo_habilidad" type="java.lang.Object"/>
                   </Table>

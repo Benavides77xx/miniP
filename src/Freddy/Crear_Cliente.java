@@ -238,11 +238,11 @@ public class Crear_Cliente extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID Cliente", "Cedula", "Nombre", "Apellido", "Edad", "Genero", "Celular", "Fecha Nacimiento", "Correo", "Tipo Sangre", "Pais", "Habilidades", "Intereses Personales"
+                "ID Cliente", "Cedula", "Nombre", "Apellido", "Edad", "Genero", "Celular", "Fecha Nacimiento", "Correo", "cod_Tipo Sangre", "Pais", "Codigo_habilidad"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, true, true, true, true, true, true, true, true
+                false, false, false, false, false, true, true, true, true, true, true, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {

@@ -75,8 +75,8 @@ public class Consultar_Eliminar_Cliente extends javax.swing.JFrame {
                     mitaquillero.getCorreo(),
                     mitaquillero.getCodigo_tipo_sangre(),
                     mitaquillero.getCodigo_pais(),
-                    mitaquillero.getCodigo_Habilidad(),
-                    mitaquillero.getIntereses_personales(),};
+                    mitaquillero.getCodigo_Habilidad()
+                    ,};
                 model.addRow(fila);
             }
         }
@@ -170,7 +170,7 @@ public class Consultar_Eliminar_Cliente extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID Cliente", "Cedula", "Nombre", "Apellido", "Edad", "Genero", "Celular", "Fecha Nacimiento", "Correo", "Tipo Sangre", "Pais", "Codigo_habilidad"
+                "ID Cliente", "Cedula", "Nombre", "Apellido", "Edad", "Genero", "Celular", "Fecha Nacimiento", "Correo", "Cod_Tipo Sangre", "Pais", "Codigo_habilidad"
             }
         ) {
             boolean[] canEdit = new boolean [] {
