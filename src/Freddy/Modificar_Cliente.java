@@ -84,6 +84,7 @@ public class Modificar_Cliente extends javax.swing.JFrame {
                     //Hacer editable los campos de texto
                     mostrarDatos(result);
                     HabilitarCampos_deTexto();
+                    pais_txt.setEditable(false);
                     tipo_sangre_txt.setEditable(false);
                     habilidades_cli.setEditable(false);
                     id_cliente.setEditable(false);
@@ -134,9 +135,8 @@ public class Modificar_Cliente extends javax.swing.JFrame {
         Emodificar.setCelular_per(cel_taquillero.getText());
         Emodificar.setCorreo(Correo_taquillero.getText());
         Emodificar.setIntereses_personales(intereses_per_cli.getText());
-        Emodificar.setCodigo_pais(pais_txt.getText());
         basep.set(Emodificar);
-        JOptionPane.showMessageDialog(null, "La pintura fue modificado exitosamente");
+        JOptionPane.showMessageDialog(null, "El cliente fue modificado exitosamente");
 
         mostrarDatos(result);
         LimpiarCampos();

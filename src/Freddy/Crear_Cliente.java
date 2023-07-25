@@ -7,6 +7,7 @@ package Freddy;
 
 import Clases.Cliente;
 import Clases.Habilidades;
+import Clases.Pais;
 import Clases.Persona;
 import Clases.Tipo_sangre;
 import java.util.Date;
@@ -109,6 +110,10 @@ public class Crear_Cliente extends javax.swing.JFrame {
                 error = true;
                 JOptionPane.showMessageDialog(null, "No existe ningun tipo de sangre con este codigo");
             }
+            if (comprobarPais(BaseD,codigo_pais_per_taq) == 0 ) {
+                error = true;
+                JOptionPane.showMessageDialog(null, "No existe ningun Pais con este codigo");
+            }
             
             if (!error) {
                 Cliente miUsuario = new Cliente(id_cliente_per, codigo_habilidad, inter_per, Cedula_per_taq, nombre_per_taq, apellido_per_taq, edad_per_taq, genero_per_taq, celular_per_taq, 
@@ -137,6 +142,11 @@ public class Crear_Cliente extends javax.swing.JFrame {
     public static int comprobarTS(ObjectContainer basep, String codigo_tipo_sangre) {
 
             ObjectSet result = basep.get(new Tipo_sangre(codigo_tipo_sangre,null,0));          
+            return result.size();
+    }
+        public static int comprobarPais(ObjectContainer basep, String codigo_pais_per_taq) {
+
+            ObjectSet result = basep.get(new Pais(codigo_pais_per_taq,null,0));          
             return result.size();
     }
 

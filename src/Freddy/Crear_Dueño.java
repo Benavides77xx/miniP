@@ -15,6 +15,7 @@ import java.time.format.DateTimeParseException;
 import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 import javax.swing.table.DefaultTableModel;
+import jose.INICIO;
 
 /**
  *
@@ -22,7 +23,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Crear_Dueño extends javax.swing.JFrame {
     
-    public static String direccionBD = ("C:\\Users\\Lenovo\\Desktop\\MiniProyecto\\miniproyecto.yap");
+    
 
 
     /**
@@ -40,7 +41,7 @@ public class Crear_Dueño extends javax.swing.JFrame {
     String celular_per_taq = "";
     Date fechanac_per_taq;
     String correo_per_taq = "";
-    String tiposangre_per_taq = "";
+    String codigo_tipo_sangre = "";
     String codigo_pais_per_taq = "";
     String codigo_dueño = "";
     String historia_propiedadtxt = "";
@@ -207,7 +208,7 @@ public class Crear_Dueño extends javax.swing.JFrame {
 
         jLabel10.setText("Tipo Sangre");
 
-        jLabel11.setText("Pais");
+        jLabel11.setText("*cod_Pais");
 
         jLabel12.setText("ID Dueño");
 
@@ -397,9 +398,8 @@ public class Crear_Dueño extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        ObjectContainer BaseD = Db4o.openFile(direccionBD);
+        ObjectContainer BaseD = Db4o.openFile(INICIO.direccionBD);
         crearUsuario(BaseD);
-
         Cerrar_BD(BaseD);
     }//GEN-LAST:event_jButton1ActionPerformed
 
