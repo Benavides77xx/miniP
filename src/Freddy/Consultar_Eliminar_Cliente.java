@@ -6,12 +6,14 @@
 package Freddy;
 
 import Clases.Cliente;
+import static Freddy.Crear_Cliente.comprobarID;
 
 import com.db4o.*;
 
 import com.db4o.ObjectSet;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import jose.INICIO;
 
 /**
  *
@@ -73,36 +75,11 @@ public class Consultar_Eliminar_Cliente extends javax.swing.JFrame {
                     mitaquillero.getCorreo(),
                     mitaquillero.getCodigo_tipo_sangre(),
                     mitaquillero.getCodigo_pais(),
-                    mitaquillero.getHabilidades(),
+                    mitaquillero.getCodigo_Habilidad(),
                     mitaquillero.getIntereses_personales(),};
                 model.addRow(fila);
             }
         }
-    }
-
-    public void Eliminar_pintura(ObjectContainer basep) {
-        Crear_Cliente Ainterfaz = new Crear_Cliente();
-        if (jTFid.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Ingrese un ID");
-        } else {
-
-            String IDA = jTFid.getText();
-            Cliente Abuscar = new Cliente(IDA, null, null, null, null, null, 0, '\0', null, null, null, null, null);
-            ObjectSet result = basep.get(Abuscar);
-
-            if (Ainterfaz.verificar(basep, IDA) == 0) {
-                JOptionPane.showMessageDialog(null, "El Cliente no existe en la base de datos");
-
-            } else {
-                Cliente AsignaturaElim = (Cliente) result.next();
-                basep.delete(AsignaturaElim);
-                JOptionPane.showMessageDialog(null, "El Cliente fue anulada exitosamente");
-            }
-
-        }
-
-        //Borrar el campo de texto
-        jTFid.setText("");
     }
 
     public static void Cerrar_BD(ObjectContainer basep) {
@@ -127,7 +104,7 @@ public class Consultar_Eliminar_Cliente extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jTFid = new javax.swing.JTextField();
+        txtCodigo = new javax.swing.JTextField();
         eliminar_button = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -139,12 +116,10 @@ public class Consultar_Eliminar_Cliente extends javax.swing.JFrame {
 
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));
         jLabel1.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Seleccione un campo para buscar al Cliente");
 
         jLabel2.setBackground(new java.awt.Color(0, 0, 0));
         jLabel2.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Filtro");
 
         buscar_button.setText("BUSCAR");
@@ -164,20 +139,17 @@ public class Consultar_Eliminar_Cliente extends javax.swing.JFrame {
 
         jLabel3.setBackground(new java.awt.Color(0, 0, 0));
         jLabel3.setFont(new java.awt.Font("DialogInput", 1, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Consultar y Eliminar Cliente");
 
         jLabel4.setBackground(new java.awt.Color(0, 0, 0));
         jLabel4.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Ingrese el ID del Taquillero a eliminar");
 
         jLabel5.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("ID:");
         jLabel5.setToolTipText("ID asignatura");
 
-        jTFid.setToolTipText("Ingresar el ID  de la asignatura a eliminar");
+        txtCodigo.setToolTipText("Ingresar el ID  de la asignatura a eliminar");
 
         eliminar_button.setText("ELIMINAR");
         eliminar_button.addActionListener(new java.awt.event.ActionListener() {
@@ -198,11 +170,11 @@ public class Consultar_Eliminar_Cliente extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID Taquillero", "Cedula", "Nombre", "Apellido", "Edad", "Genero", "Celular", "Fecha Nacimiento", "Correo", "Tipo Sangre", "Pais", "Cerficaciones", "Estatus Empleo", "Salario", "Fecha Contratacion", "Recomendaciones"
+                "ID Cliente", "Cedula", "Nombre", "Apellido", "Edad", "Genero", "Celular", "Fecha Nacimiento", "Correo", "Tipo Sangre", "Pais", "Codigo_habilidad"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, true, true, true, true, true, true, true, true, true, true, true
+                false, false, false, false, false, true, true, true, true, true, true, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -233,18 +205,18 @@ public class Consultar_Eliminar_Cliente extends javax.swing.JFrame {
                             .addGap(194, 194, 194)
                             .addComponent(jLabel5)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jTFid, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(eliminar_button))
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(167, 167, 167)
                             .addComponent(jLabel3))))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 153, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2)
-                .addContainerGap())
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 870, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -263,10 +235,10 @@ public class Consultar_Eliminar_Cliente extends javax.swing.JFrame {
                     .addComponent(buscar_button)
                     .addComponent(jLabel2)
                     .addComponent(jLabel5)
-                    .addComponent(jTFid, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(eliminar_button))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 286, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 311, Short.MAX_VALUE)
                 .addGap(37, 37, 37))
         );
 
@@ -295,9 +267,39 @@ public class Consultar_Eliminar_Cliente extends javax.swing.JFrame {
     }//GEN-LAST:event_jCBfiltroActionPerformed
 
     private void eliminar_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminar_buttonActionPerformed
-        ObjectContainer BaseD = Db4o.openFile(Crear_Taquillero.direccionBD);
-        Eliminar_pintura(BaseD);
-        Cerrar_BD(BaseD);
+//        String codigo_cliente = txtCodigo.getText();
+//
+//        // Abre la base de datos
+//        ObjectContainer baseDeDatos = Db4o.openFile(INICIO.direccionBD);
+//
+//        try {
+//            // Verifica si existen FACTURAS ASOCIADAS A ESTE CLIENTE
+//            Mantenimiento cass = new Mantenimiento(null, null, null, null,codigo_juego );
+//            ObjectSet result = baseDeDatos.get(cass);
+//            if (result.size() > 0) {
+//                JOptionPane.showMessageDialog(this, "No se puede eliminar el Juego porque tiene Mantenimientos asociados","ERROR",0);
+//                return;
+//            }
+//
+//            // Busca el Juego a eliminar
+//            Juego revisar = new Juego(codigo_juego, null,null,null, 0, 0, null);
+//            ObjectSet cassResult = baseDeDatos.get(revisar);
+//
+//            if (cassResult.size() == 0) {
+//                JOptionPane.showMessageDialog(null, "El Juego no existe");
+//            } else {
+//                // Elimina el cassete encontrado
+//                baseDeDatos.delete(cassResult.get(0));
+//                JOptionPane.showMessageDialog(null, "El Juego se ha eliminado correctamente");
+//
+//                // Actualiza la tabla después de eliminar el Juego
+//                Filtro(baseDeDatos);
+//            }
+//        } finally {
+//            // Cierra la base de datos
+//
+//            baseDeDatos.close();
+//        }
     }//GEN-LAST:event_eliminar_buttonActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -351,7 +353,7 @@ public class Consultar_Eliminar_Cliente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTFid;
     private javax.swing.JTable jtableregistro;
+    private javax.swing.JTextField txtCodigo;
     // End of variables declaration//GEN-END:variables
 }

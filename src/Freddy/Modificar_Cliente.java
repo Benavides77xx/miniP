@@ -35,7 +35,7 @@ public class Modificar_Cliente extends javax.swing.JFrame {
     String tiposangre_per_taq = "";
     String codigo_pais_per_taq = "";
     String id_cliente_per = "";
-    String habilidades_cli_per = "";
+    String codigo_habilidad = "";
     String inter_per = "";
 
     public void buscar(ObjectContainer basep) {//cargardatos
@@ -51,9 +51,9 @@ public class Modificar_Cliente extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Ingrese un ID");
         } else {
 
-            if (EAux.verificar(basep, IDAux) == 0) {
+            if (EAux.comprobarID(basep, IDAux) == 0) {
 
-                JOptionPane.showMessageDialog(null, "La pintura no existe en la base de datos");
+                JOptionPane.showMessageDialog(null, "El cliente no existe en la base de datos");
                 LimpiarCampos();
 
             } else {
@@ -77,13 +77,14 @@ public class Modificar_Cliente extends javax.swing.JFrame {
                     tipo_sangre_txt.setText(miE.getCodigo_tipo_sangre());
                     pais_txt.setText(miE.getCodigo_pais());
                     id_cliente.setText(miE.getId_cliente());
-                    habilidades_cli.setText(miE.getHabilidades());
+                    habilidades_cli.setText(miE.getCodigo_Habilidad());
                     intereses_per_cli.setText(miE.getIntereses_personales());
 
                     Modificarjb.setEnabled(true);
                     //Hacer editable los campos de texto
                     mostrarDatos(result);
                     HabilitarCampos_deTexto();
+                    habilidades_cli.setEditable(false);
                     id_cliente.setEditable(false);
                     Ced_Taquillero.setEditable(false);
 
@@ -131,7 +132,6 @@ public class Modificar_Cliente extends javax.swing.JFrame {
         Emodificar.setEdad_per(Integer.parseInt(edad_taquillero.getText()));
         Emodificar.setCelular_per(cel_taquillero.getText());
         Emodificar.setCorreo(Correo_taquillero.getText());
-        Emodificar.setHabilidades(habilidades_cli.getText());
         Emodificar.setIntereses_personales(intereses_per_cli.getText());
         Emodificar.setCodigo_tipo_sangre(tipo_sangre_txt.getText());
         Emodificar.setCodigo_pais(pais_txt.getText());
@@ -164,7 +164,7 @@ public class Modificar_Cliente extends javax.swing.JFrame {
                     mitaquillero.getCorreo(),
                     mitaquillero.getCodigo_tipo_sangre(),
                     mitaquillero.getCodigo_pais(),
-                    mitaquillero.getHabilidades(),
+                    mitaquillero.getCodigo_Habilidad(),
                     mitaquillero.getIntereses_personales(),};
                 model.addRow(fila);
             }
@@ -243,27 +243,9 @@ public class Modificar_Cliente extends javax.swing.JFrame {
 
         jLabel12.setText("ID Cliente");
 
-        jLabel13.setText("Habilidades");
+        jLabel13.setText("*Codigo Habilidad");
 
         jLabel15.setText("Intereses Personales");
-
-        Ced_Taquillero.setBackground(new java.awt.Color(255, 255, 255));
-
-        nom_taquillero.setBackground(new java.awt.Color(255, 255, 255));
-
-        ape_tequillero.setBackground(new java.awt.Color(255, 255, 255));
-
-        edad_taquillero.setBackground(new java.awt.Color(255, 255, 255));
-
-        cel_taquillero.setBackground(new java.awt.Color(255, 255, 255));
-
-        Correo_taquillero.setBackground(new java.awt.Color(255, 255, 255));
-
-        id_cliente.setBackground(new java.awt.Color(255, 255, 255));
-
-        habilidades_cli.setBackground(new java.awt.Color(255, 255, 255));
-
-        intereses_per_cli.setBackground(new java.awt.Color(255, 255, 255));
 
         jtableregistro.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -282,10 +264,6 @@ public class Modificar_Cliente extends javax.swing.JFrame {
             }
         });
         jScrollPane2.setViewportView(jtableregistro);
-
-        tipo_sangre_txt.setBackground(new java.awt.Color(255, 255, 255));
-
-        pais_txt.setBackground(new java.awt.Color(255, 255, 255));
 
         jButton2.setText("BUSCAR");
         jButton2.addActionListener(new java.awt.event.ActionListener() {

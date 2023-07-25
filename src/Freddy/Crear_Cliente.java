@@ -6,6 +6,8 @@
 package Freddy;
 
 import Clases.Cliente;
+import Clases.Habilidades;
+import Clases.Persona;
 import java.util.Date;
 import com.db4o.*;
 import java.text.SimpleDateFormat;
@@ -42,7 +44,7 @@ public class Crear_Cliente extends javax.swing.JFrame {
     String tiposangre_per_taq = "";
     String codigo_pais_per_taq = "";
     String id_cliente_per = "";
-    String habilidades_cli_per = "";
+    String codigo_habilidad = "";
     String inter_per = "";
 
     public void LimpiarCampos() {
@@ -57,7 +59,7 @@ public class Crear_Cliente extends javax.swing.JFrame {
         pais_txt.setText("");
         pais_txt.setText("");
         id_cliente.setText("");
-        habilidades_cli.setText("");
+        txthabilidad.setText("");
         intereses_per_cli.setText("");
 
     }
@@ -78,33 +80,55 @@ public class Crear_Cliente extends javax.swing.JFrame {
         codigo_pais_per_taq = pais_txt.getText();
         codigo_pais_per_taq = pais_txt.getText();
         id_cliente_per = id_cliente.getText();
-        habilidades_cli_per = habilidades_cli.getText();
+        codigo_habilidad = txthabilidad.getText();
         inter_per = intereses_per_cli.getText();
 
     }
 
     public void crearCliente(ObjectContainer BaseD) {
-        asignarVariables(BaseD);
-
-        if (verificar(BaseD, id_cliente_per) == 0) {
-            Cliente miUsuario = new Cliente(id_cliente_per, habilidades_cli_per, inter_per, Cedula_per_taq, nombre_per_taq, apellido_per_taq, edad_per_taq, genero_per_taq, celular_per_taq, fechanac_per_taq, correo_per_taq, tiposangre_per_taq, codigo_pais_per_taq);
-
-            BaseD.set(miUsuario);
-            JOptionPane.showMessageDialog(null, "Usuario Creado");
-
-            ObjectSet result = BaseD.queryByExample(new Cliente());
-            mostrarDatos(result);
-            LimpiarCampos();
-        } else {
-            JOptionPane.showMessageDialog(null, "El usuario ya existe", "Error", JOptionPane.ERROR_MESSAGE);
+               boolean error=false;
+            if (comprobarCedula(BaseD, Cedula_per_taq) != 0) {
+                error = true;
+                JOptionPane.showMessageDialog(this, "Ya existe un usuario con esta cedula registrada","ERROR",0);     
+            } else {
+                Ced_Taquillero.setText("");
+            }       
+            if (comprobarID(BaseD,id_cliente_per) != 0) {
+                error = true;
+                JOptionPane.showMessageDialog(this, "Ya existe un Cliente con este ID registrado","ERROR",0);
+            } else{
+                id_cliente.setText("");
+            }       
+            if (comprobarHabilidad(BaseD,codigo_habilidad) == 0 ) {
+                error = true;
+                JOptionPane.showMessageDialog(null, "No existe ninguna Habilidad con este codigo");
+            }
+            if (!error) {
+                Cliente miUsuario = new Cliente(id_cliente_per, codigo_habilidad, inter_per, Cedula_per_taq, nombre_per_taq, apellido_per_taq, edad_per_taq, genero_per_taq, celular_per_taq, 
+                        fechanac_per_taq, correo_per_taq, tiposangre_per_taq, codigo_pais_per_taq);
+                BaseD.set(miUsuario);
+                JOptionPane.showMessageDialog(null, "Cliente registrado correctamente");
+                LimpiarCampos();
         }
     }
-
-    public static int verificar(ObjectContainer BaseD, String id_cliente_per) {
-        Cliente buscarUsuario = new Cliente(id_cliente_per, null, null, null, null, null, 0, '\0', null, null, null, null, null);
-        ObjectSet resul = BaseD.queryByExample(buscarUsuario);
-        return resul.size();
+     public static int comprobarCedula(ObjectContainer base, String cedula_per) {
+            Persona buscarCedula = new Persona(cedula_per, null, null,0,'\0',null,null,null,null,null);
+            ObjectSet result = base.get(buscarCedula);
+            return result.size();
     }
+    public static int comprobarID(ObjectContainer base, String id_cliente_per) {
+            Cliente buscarID = new Cliente(id_cliente_per,null,null,null, null, null,0,'\0',null,null,null,null,null);
+            ObjectSet result = base.get(buscarID);
+            return result.size();
+    }
+          
+    public static int comprobarHabilidad(ObjectContainer basep, String codigo_habilidad) {
+
+            ObjectSet result = basep.get(new Habilidades(codigo_habilidad,null,null));          
+            return result.size();
+    }
+
+
 
     public void mostrarDatos(ObjectSet result) {
         DefaultTableModel model = (DefaultTableModel) jtableregistro.getModel();
@@ -127,7 +151,7 @@ public class Crear_Cliente extends javax.swing.JFrame {
                     mitaquillero.getCorreo(),
                     mitaquillero.getCodigo_tipo_sangre(),
                     mitaquillero.getCodigo_pais(),
-                    mitaquillero.getHabilidades(),
+                    mitaquillero.getCodigo_Habilidad(),
                     mitaquillero.getIntereses_personales(),};
                 model.addRow(fila);
             }
@@ -171,7 +195,7 @@ public class Crear_Cliente extends javax.swing.JFrame {
         Correo_taquillero = new javax.swing.JTextField();
         fechaNa = new com.toedter.calendar.JDateChooser();
         id_cliente = new javax.swing.JTextField();
-        habilidades_cli = new javax.swing.JTextField();
+        txthabilidad = new javax.swing.JTextField();
         intereses_per_cli = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         jtableregistro = new javax.swing.JTable();
@@ -183,7 +207,7 @@ public class Crear_Cliente extends javax.swing.JFrame {
 
         jLabel1.setText("Cliente");
 
-        jLabel2.setText("Cedula");
+        jLabel2.setText("*Cedula");
 
         jLabel3.setText("Nombre");
 
@@ -205,27 +229,9 @@ public class Crear_Cliente extends javax.swing.JFrame {
 
         jLabel12.setText("ID Cliente");
 
-        jLabel13.setText("Habilidades");
+        jLabel13.setText("*Codigo_Habilidad");
 
         jLabel15.setText("Intereses Personales");
-
-        Ced_Taquillero.setBackground(new java.awt.Color(255, 255, 255));
-
-        nom_taquillero.setBackground(new java.awt.Color(255, 255, 255));
-
-        ape_tequillero.setBackground(new java.awt.Color(255, 255, 255));
-
-        edad_taquillero.setBackground(new java.awt.Color(255, 255, 255));
-
-        cel_taquillero.setBackground(new java.awt.Color(255, 255, 255));
-
-        Correo_taquillero.setBackground(new java.awt.Color(255, 255, 255));
-
-        id_cliente.setBackground(new java.awt.Color(255, 255, 255));
-
-        habilidades_cli.setBackground(new java.awt.Color(255, 255, 255));
-
-        intereses_per_cli.setBackground(new java.awt.Color(255, 255, 255));
 
         jtableregistro.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -252,10 +258,6 @@ public class Crear_Cliente extends javax.swing.JFrame {
             }
         });
 
-        tipo_sangre_txt.setBackground(new java.awt.Color(255, 255, 255));
-
-        pais_txt.setBackground(new java.awt.Color(255, 255, 255));
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -274,11 +276,11 @@ public class Crear_Cliente extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addGap(239, 239, 239)
                                 .addComponent(jLabel1)
-                                .addContainerGap(457, Short.MAX_VALUE))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(49, 49, 49)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(fechaNa, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
+                                    .addComponent(fechaNa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(Correo_taquillero)
                                     .addComponent(cel_taquillero)
                                     .addComponent(tipo_sangre_txt)
@@ -291,19 +293,19 @@ public class Crear_Cliente extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addGap(111, 111, 111)
-                                .addComponent(Ced_Taquillero, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE))
+                                .addComponent(Ced_Taquillero))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addGap(105, 105, 105)
-                                .addComponent(nom_taquillero, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE))
+                                .addComponent(nom_taquillero))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addGap(98, 98, 98)
-                                .addComponent(ape_tequillero, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE))
+                                .addComponent(ape_tequillero))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel5)
                                 .addGap(122, 122, 122)
-                                .addComponent(edad_taquillero, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE))
+                                .addComponent(edad_taquillero))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel6)
                                 .addGap(0, 0, Short.MAX_VALUE)))
@@ -315,9 +317,9 @@ public class Crear_Cliente extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(intereses_per_cli, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
-                            .addComponent(habilidades_cli)
+                            .addComponent(txthabilidad)
                             .addComponent(id_cliente))
-                        .addContainerGap(148, Short.MAX_VALUE))))
+                        .addContainerGap())))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 849, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -339,7 +341,7 @@ public class Crear_Cliente extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(jLabel13)
                     .addComponent(nom_taquillero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(habilidades_cli, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txthabilidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -444,7 +446,6 @@ public class Crear_Cliente extends javax.swing.JFrame {
     private javax.swing.JTextField cel_taquillero;
     private javax.swing.JTextField edad_taquillero;
     private com.toedter.calendar.JDateChooser fechaNa;
-    private javax.swing.JTextField habilidades_cli;
     private javax.swing.JTextField id_cliente;
     private javax.swing.JTextField intereses_per_cli;
     private javax.swing.JButton jButton1;
@@ -468,5 +469,6 @@ public class Crear_Cliente extends javax.swing.JFrame {
     private javax.swing.JTextField nom_taquillero;
     private javax.swing.JTextField pais_txt;
     private javax.swing.JTextField tipo_sangre_txt;
+    private javax.swing.JTextField txthabilidad;
     // End of variables declaration//GEN-END:variables
 }
