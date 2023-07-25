@@ -80,7 +80,7 @@ public class Consultar_Eliminar_Dueño extends javax.swing.JFrame {
     }
 
     public void Eliminar_pintura(ObjectContainer basep) {
-        Crear_Dueño  Ainterfaz = new Crear_Dueño();
+        Crear_Taquillero Ainterfaz = new Crear_Taquillero();
         if (jTFid.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Ingrese un ID");
         } else {

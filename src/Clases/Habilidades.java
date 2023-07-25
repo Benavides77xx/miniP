@@ -10,7 +10,6 @@ package Clases;
  * @author Lenovo
  */
 public class Habilidades {
-    
     private String cod_habilidades;
     private String habilidad;
     private String descripcion;
@@ -52,9 +51,5 @@ public class Habilidades {
     public String toString() {
         return "Habilidades{" + "cod_habilidades=" + cod_habilidades + ", habilidad=" + habilidad + ", descripcion=" + descripcion + '}';
     }
-    
-    
-    
-    
     
 }

@@ -10,7 +10,7 @@ package Clases;
  * @author Lenovo
  */
 public class Certificaciones {
-
+    
     private String cod_certificaciones;
     private String certifiacion;
     private String descripcion;
@@ -53,4 +53,5 @@ public class Certificaciones {
         return "Certificaciones{" + "cod_certificaciones=" + cod_certificaciones + ", certifiacion=" + certifiacion + ", descripcion=" + descripcion + '}';
     }
 
+    
 }
