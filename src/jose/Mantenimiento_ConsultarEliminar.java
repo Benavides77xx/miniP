@@ -182,47 +182,38 @@ public class Mantenimiento_ConsultarEliminar extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3MouseClicked
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        //
-        //        String codigo_cassete = txtCodigo.getText();
-        //
-        //        // Abre la base de datos
-        //        ObjectContainer baseDeDatos = Db4o.openFile(Inicio.direccionBD);
-        //
-        //        try {
-            //            // Verifica si existen Alquileres asociados a este cassetes
-            //            Aquiler cass = new Aquiler(null, null, codigo_cassete, null, null, 0, 0);
-            //            ObjectSet result = baseDeDatos.get(cass);
-            //            if (result.size() > 0) {
-                //                JOptionPane.showMessageDialog(this, "No se puede eliminar el cassete porque tiene alquileres asociados","ERROR",0);
-                //                return;
-                //            }
-            //
-            //            // Busca el cassete a eliminar
-            //            Cassete cliente = new Cassete(codigo_cassete, null, 0, null, 0);
-            //            ObjectSet cassResult = baseDeDatos.get(cliente);
-            //
-            //            if (cassResult.size() == 0) {
-                //                JOptionPane.showMessageDialog(null, "El cassete no existe");
-                //            } else {
-                //                // Elimina el cassete encontrado
-                //                baseDeDatos.delete(cassResult.get(0));
-                //                JOptionPane.showMessageDialog(null, "El cassete se ha eliminado correctamente");
-                //
-                //                // Actualiza la tabla después de eliminar el cliente
-                //                Filtro(baseDeDatos);
-                //            }
-            //        } finally {
-            //            // Cierra la base de datos
-            //
-            //            baseDeDatos.close();
-            //        }
-        //
-        //        // TODO add your handling code here:
+        
+                String codigo_mantenimiento = txtCodigo.getText();
+        
+                // Abre la base de datos
+                ObjectContainer baseDeDatos = Db4o.openFile(INICIO.direccionBD);
+        
+                try {
+                        // Busca el mantenimiento a eliminar
+                        Mantenimiento cliente = new Mantenimiento(codigo_mantenimiento, null, null, null, null);
+                        ObjectSet cassResult = baseDeDatos.get(cliente);
+            
+                        if (cassResult.size() == 0) {
+                                JOptionPane.showMessageDialog(null, "El Mantenimiento no existe");
+                            } else {
+                                // Elimina el Mantenimiento encontrado
+                                baseDeDatos.delete(cassResult.get(0));
+                                JOptionPane.showMessageDialog(null, "El Mantenimiento se ha eliminado correctamente");
+                
+                                // Actualiza la tabla después de eliminar el cliente
+                                Filtro(baseDeDatos);
+                            }
+                    } finally {
+                        // Cierra la base de datos
+            
+                        baseDeDatos.close();
+                    }  
+                // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void tablaConsultarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaConsultarMouseClicked
-        //        int i = tablaConsultar.getSelectedRow();
-        //        txtCodigo.setText(tablaConsultar.getValueAt(i, 0).toString());
+                int i = tablaConsultar.getSelectedRow();
+                txtCodigo.setText(tablaConsultar.getValueAt(i, 0).toString());
     }//GEN-LAST:event_tablaConsultarMouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
