@@ -264,7 +264,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel10">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Tipo Sangre"/>
+            <Property name="text" type="java.lang.String" value="*cod_Tipo Sangre"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel11">

@@ -6,6 +6,9 @@
 package Freddy;
 
 import Clases.Dueño;
+import Clases.Pais;
+import Clases.Persona;
+import Clases.Tipo_sangre;
 import java.util.Date;
 import com.db4o.*;
 import java.text.SimpleDateFormat;
@@ -33,7 +36,7 @@ public class Crear_Dueño extends javax.swing.JFrame {
         initComponents();
     }
 
-    String Cedula_per_taq = "";
+    String Cedula_per_due = "";
     String nombre_per_taq = "";
     String apellido_per_taq = "";
     int edad_per_taq = 0;
@@ -66,7 +69,7 @@ public class Crear_Dueño extends javax.swing.JFrame {
     }
     
     public void asignarVariables(ObjectContainer BaseD) {
-        Cedula_per_taq = Ced_Taquillero.getText();
+        Cedula_per_due = Ced_Taquillero.getText();
         nombre_per_taq = nom_taquillero.getText();
         apellido_per_taq = ape_tequillero.getText();
 
@@ -82,34 +85,86 @@ public class Crear_Dueño extends javax.swing.JFrame {
         codigo_dueño = id_dueño.getText();
         historia_propiedadtxt = historiall_propiedad_txt.getText();
         anios_experiencia = !años_experiencia.getText().isEmpty() ? Integer.parseInt(años_experiencia.getText()) : 0;
-        habilidade_financieras = habilidades_financieras_txt.getText();
-       
+        habilidade_financieras = habilidades_financieras_txt.getText();   
     }
     
     public void crearUsuario(ObjectContainer BaseD) {
-        asignarVariables(BaseD);
+        
+                      boolean error=false;
+            if (comprobarCedula(BaseD, Cedula_per_due) != 0) {
+                error = true;
+                JOptionPane.showMessageDialog(this, "Ya existe un usuario con esta cedula registrada","ERROR",0);     
+            } else {
+                Ced_Taquillero.setText("");
+            }       
+            if (comprobarID(BaseD,codigo_dueño) != 0) {
+                error = true;
+                JOptionPane.showMessageDialog(this, "Ya existe un Dueño con este ID registrado","ERROR",0);
+            } else{
+                id_dueño.setText("");
+            }       
 
-        if (verificar(BaseD, codigo_dueño) == 0) {
-            Dueño miUsuario = new Dueño(codigo_dueño, historia_propiedadtxt, anios_experiencia, habilidade_financieras, Cedula_per_taq, 
-                    nombre_per_taq, apellido_per_taq, edad_per_taq, genero_per_taq, celular_per_taq, fechanac_per_taq, correo_per_taq, codigo_tipo_sangre, codigo_pais_per_due);
-
-            BaseD.set(miUsuario);
-            JOptionPane.showMessageDialog(null, "Usuario Creado");
-
-            ObjectSet result = BaseD.queryByExample(new Dueño());
-            mostrarDatos(result);
-            LimpiarCampos();
-        } else {
-            JOptionPane.showMessageDialog(null, "El usuario ya existe", "Error", JOptionPane.ERROR_MESSAGE);
-        }
+            if (comprobarTS(BaseD,codigo_tipo_sangre) == 0 ) {
+                error = true;
+                JOptionPane.showMessageDialog(null, "No existe ningun tipo de sangre con este codigo");
+            }
+            if (comprobarPais(BaseD,codigo_pais_per_due) == 0 ) {
+                error = true;
+                JOptionPane.showMessageDialog(null, "No existe ningun Pais con este codigo");
+            }
+            
+            if (!error) {
+               Dueño miUsuario = new Dueño(codigo_dueño, historia_propiedadtxt, anios_experiencia, habilidade_financieras, Cedula_per_due, 
+                    nombre_per_taq, apellido_per_taq, edad_per_taq, genero_per_taq, celular_per_taq, fechanac_per_taq, 
+                       correo_per_taq, codigo_tipo_sangre, codigo_pais_per_due);
+                BaseD.set(miUsuario);
+                JOptionPane.showMessageDialog(null, "Cliente registrado correctamente");
+                LimpiarCampos();
+        
+        
+        
+        
+        
+            } 
     }
+//        asignarVariables(BaseD);
+//
+//        if (verificar(BaseD, codigo_dueño) == 0) {
+//            Dueño miUsuario = new Dueño(codigo_dueño, historia_propiedadtxt, anios_experiencia, habilidade_financieras, Cedula_per_taq, 
+//                    nombre_per_taq, apellido_per_taq, edad_per_taq, genero_per_taq, celular_per_taq, fechanac_per_taq, correo_per_taq, codigo_tipo_sangre, codigo_pais_per_due);
+//
+//            BaseD.set(miUsuario);
+//            JOptionPane.showMessageDialog(null, "Usuario Creado");
+//
+//            ObjectSet result = BaseD.queryByExample(new Dueño());
+//            mostrarDatos(result);
+//            LimpiarCampos();
+//        } else {
+//            JOptionPane.showMessageDialog(null, "El usuario ya existe", "Error", JOptionPane.ERROR_MESSAGE);
+//        }
+//    }
 
-    public static int verificar(ObjectContainer BaseD, String codigo_dueño) {
-        Dueño buscarUsuario = new Dueño(codigo_dueño, null, 0, null, null, null, null, 0, '\0', null, null, null, null, null);
-        ObjectSet resul = BaseD.queryByExample(buscarUsuario);
-        return resul.size();
+     public static int comprobarCedula(ObjectContainer base, String cedula_per) {
+            Persona buscarCedula = new Persona(cedula_per, null, null,0,'\0',null,null,null,null,null);
+            ObjectSet result = base.get(buscarCedula);
+            return result.size();
     }
+    public static int comprobarID(ObjectContainer base, String id_dueño) {
+            Dueño buscarID = new Dueño(id_dueño,null,0,null,null, null, null,0,'\0',null,null,null,null,null);
+            ObjectSet result = base.get(buscarID);
+            return result.size();
+    }
+          
+    public static int comprobarTS(ObjectContainer basep, String codigo_tipo_sangre) {
 
+            ObjectSet result = basep.get(new Tipo_sangre(codigo_tipo_sangre,null,0));          
+            return result.size();
+    }
+        public static int comprobarPais(ObjectContainer basep, String codigo_pais_per_taq) {
+
+            ObjectSet result = basep.get(new Pais(codigo_pais_per_taq,null,0));          
+            return result.size();
+    }
     public void mostrarDatos(ObjectSet result) {
         DefaultTableModel model = (DefaultTableModel) jtableregistro.getModel();
         model.setRowCount(0); // Limpiar la tabla
@@ -207,7 +262,7 @@ public class Crear_Dueño extends javax.swing.JFrame {
 
         jLabel9.setText("Correo");
 
-        jLabel10.setText("Tipo Sangre");
+        jLabel10.setText("*cod_Tipo Sangre");
 
         jLabel11.setText("*cod_Pais");
 

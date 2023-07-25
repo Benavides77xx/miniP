@@ -6,6 +6,7 @@
 package Freddy;
 
 import Clases.Dueño;
+import static Freddy.Crear_Dueño.comprobarID;
 import com.db4o.*;
 import java.util.Date;
 import javax.swing.JOptionPane;
@@ -52,9 +53,9 @@ public class Modificar_Dueño extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Ingrese un ID");
         } else {
 
-            if (EAux.verificar(basep, IDAux) == 0) {
+            if (EAux.comprobarID(basep, IDAux) == 0) {
 
-                JOptionPane.showMessageDialog(null, "La pintura no existe en la base de datos");
+                JOptionPane.showMessageDialog(null, "El dueño no existe en la base de datos");
                 LimpiarCampos();
 
             } else {

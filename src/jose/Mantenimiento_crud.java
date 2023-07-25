@@ -7,6 +7,7 @@ package jose;
 
 import Clases.Juego;
 import Clases.Mantenimiento;
+import Clases.Tecnico;
 import com.db4o.Db4o;
 import com.db4o.ObjectContainer;
 import com.db4o.ObjectSet;
@@ -45,10 +46,10 @@ public class Mantenimiento_crud extends javax.swing.JFrame {
             } else {
                 txtcodman.setText("");
             }       
-//            if (comprobarTecnico(basep,id_tecnico) == 0) {
-//                error = true;
-//                JOptionPane.showMessageDialog(null, "No existe ningun tecnico con este codigo registrado");
-//            }       
+            if (comprobarTecnico(basep,id_tecnico) == 0) {
+                error = true;
+                JOptionPane.showMessageDialog(null, "No existe ningun tecnico con este codigo registrado");
+            }       
             if (comprobarJuego(basep,codigo_juego) == 0 ) {
                 error = true;
                 JOptionPane.showMessageDialog(null, "No existe ningun juego con este codigo registrado");
@@ -66,11 +67,11 @@ public class Mantenimiento_crud extends javax.swing.JFrame {
             ObjectSet result = base.get(buscarM);
             return result.size();
     }
-//    public static int comprobarTecnico(ObjectContainer basep, String id_tecnico) {
-//
-//            ObjectSet result = basep.get(new Tecnico(codigo_cassete, null, 0, null, 0));
-//            return result.size();
-//    }        
+    public static int comprobarTecnico(ObjectContainer basep, String id_tecnico) {
+
+            ObjectSet result = basep.get(new Tecnico(id_tecnico, null, 0, null));
+            return result.size();
+    }        
     public static int comprobarJuego(ObjectContainer basep, String codigo_juego) {
 
             ObjectSet result = basep.get(new Juego(codigo_juego,  null, null, null, 0,0,null));          
