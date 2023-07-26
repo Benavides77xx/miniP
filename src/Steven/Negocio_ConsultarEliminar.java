@@ -36,14 +36,14 @@ public class Negocio_ConsultarEliminar extends javax.swing.JFrame {
         } else {
 
             if (BuscarOpcion.getSelectedIndex() == 1) {
-                Negocio buscar = new Negocio(null, null, null, null);
+                Negocio buscar = new Negocio(null, null, null);
                 ObjectSet result = basep.get(buscar);
                 MostrarDatos(result);
 
             } else {
                 if (BuscarOpcion.getSelectedIndex() == 2) {
                     String codigo_negocio = JOptionPane.showInputDialog("INGRESE EL CODIGO A CONSULTAR");
-                    Negocio buscar = new Negocio(codigo_negocio, null, null, null);
+                    Negocio buscar = new Negocio(codigo_negocio, null, null);
                     ObjectSet result = basep.get(buscar);
                     MostrarDatos(result);
                 }
@@ -55,7 +55,7 @@ public class Negocio_ConsultarEliminar extends javax.swing.JFrame {
 
     public void MostrarDatos(ObjectSet result) {
 
-        String matrizes[][] = new String[result.size()][4];
+        String matrizes[][] = new String[result.size()][3];
 
         if (result.size() == 0) {
             JOptionPane.showMessageDialog(null, "El Negocio no existe");
@@ -67,10 +67,10 @@ public class Negocio_ConsultarEliminar extends javax.swing.JFrame {
                 matrizes[i][0] = miObjeto.getCod_negocio();
                 matrizes[i][1] = miObjeto.getTipo_negocio();
                 matrizes[i][2] = miObjeto.getDescripcion();
-                matrizes[i][3] = miObjeto.getId_comerciante();
+                
 
                 tablaConsultar.setModel(new javax.swing.table.DefaultTableModel(matrizes, new String[]{"*Cod_Negocio", "Tipo Negocio",
-                    "Descrición", "Id_Comerciante"}));
+                    "Descrición"}));
             }
         }
     }
@@ -201,7 +201,7 @@ public class Negocio_ConsultarEliminar extends javax.swing.JFrame {
             
 
             // Busca el Negocio a eliminar
-            Negocio revisar = new Negocio(codigo_negocio, null, null, null);
+            Negocio revisar = new Negocio(codigo_negocio, null, null);
             ObjectSet cassResult = baseDeDatos.get(revisar);
 
             if (cassResult.size() == 0) {

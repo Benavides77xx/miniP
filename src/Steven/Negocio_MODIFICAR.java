@@ -47,8 +47,6 @@ public class Negocio_MODIFICAR extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtdescripcion = new javax.swing.JTextArea();
-        jLabel7 = new javax.swing.JLabel();
-        txtIdComerciante = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -57,7 +55,7 @@ public class Negocio_MODIFICAR extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Modificar Especialidad");
+        jLabel1.setText("Modificar Negocio");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 20, 760, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -115,18 +113,6 @@ public class Negocio_MODIFICAR extends javax.swing.JFrame {
 
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 220, 190, -1));
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel7.setText("*Id comerciante:");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 320, -1, -1));
-
-        txtIdComerciante.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        txtIdComerciante.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtIdComercianteActionPerformed(evt);
-            }
-        });
-        jPanel1.add(txtIdComerciante, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 340, 190, 30));
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -153,10 +139,6 @@ public class Negocio_MODIFICAR extends javax.swing.JFrame {
         Cerrar_BD(BaseD);
         txtcodC.setEditable(true);
     }//GEN-LAST:event_btnmodificarActionPerformed
-
-    private void txtIdComercianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdComercianteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtIdComercianteActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         INICIO ini = new INICIO();
@@ -203,7 +185,7 @@ public class Negocio_MODIFICAR extends javax.swing.JFrame {
         txtcodC.setText("");
         txtdescripcion.setText("");
         txtTipoNegocio.setText("");
-        txtIdComerciante.setText("");
+        
 
     }
 
@@ -211,7 +193,7 @@ public class Negocio_MODIFICAR extends javax.swing.JFrame {
         
         txtdescripcion.setEditable(true);
         txtTipoNegocio.setEditable(true);
-        txtIdComerciante.setEditable(true);
+        
     }
 
     public void buscar(ObjectContainer basep) {//cargardatos
@@ -234,7 +216,7 @@ public class Negocio_MODIFICAR extends javax.swing.JFrame {
 
             } else {
 
-                Negocio Ebuscar = new Negocio(codC, null, null, null);
+                Negocio Ebuscar = new Negocio(codC, null, null);
 
                 ObjectSet result = basep.get(Ebuscar);
                 for (int i = 0; i < result.size(); i++) {
@@ -245,7 +227,7 @@ public class Negocio_MODIFICAR extends javax.swing.JFrame {
                     txtcodC.setText(miE.getCod_negocio());
                     txtTipoNegocio.setText(miE.getTipo_negocio());
                     txtdescripcion.setText(miE.getDescripcion());
-                    txtIdComerciante.setText(miE.getId_comerciante());
+                    
 
                     btnmodificar.setEnabled(true);
                     //Hacer editable los campos de texto
@@ -261,13 +243,13 @@ public class Negocio_MODIFICAR extends javax.swing.JFrame {
 
     public void Modificar_Negocio(ObjectContainer basep) {
 
-        Negocio Emodi = new Negocio(txtcodC.getText(), null, null, null);
+        Negocio Emodi = new Negocio(txtcodC.getText(), null, null);
         ObjectSet result = basep.get(Emodi);
 
         Negocio Emodificar = (Negocio) result.next();
         Emodificar.setTipo_negocio(txtTipoNegocio.getText());
         Emodificar.setDescripcion(txtdescripcion.getText());
-        Emodificar.setId_comerciante(txtIdComerciante.getText());
+        
 
         basep.set(Emodificar);
         JOptionPane.showMessageDialog(null, "El negocio fue modificado exitosamente");
@@ -288,11 +270,9 @@ public class Negocio_MODIFICAR extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField txtIdComerciante;
     private javax.swing.JTextField txtTipoNegocio;
     private javax.swing.JTextField txtcodC;
     private javax.swing.JTextArea txtdescripcion;

@@ -28,7 +28,8 @@ public class Comerciante_CRUD extends javax.swing.JFrame {
 
     String id_comerciante;
     int años_exp;
-    int num_ventas;    
+    int num_ventas; 
+    String cod_negocio;
     String Cedula_per = "";
     String nombre_per = "";
     String apellido_per = "";
@@ -84,6 +85,8 @@ public class Comerciante_CRUD extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         txtEdad = new javax.swing.JSpinner();
+        txtcodigoNegocio = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -239,6 +242,13 @@ public class Comerciante_CRUD extends javax.swing.JFrame {
         txtEdad.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel1.add(txtEdad, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 310, 190, 30));
 
+        txtcodigoNegocio.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel1.add(txtcodigoNegocio, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 130, 190, 30));
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel4.setText("*Codigo Negocio:");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 110, -1, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -342,7 +352,7 @@ public class Comerciante_CRUD extends javax.swing.JFrame {
         id_comerciante = txtcodigo.getText();
         años_exp = (Integer) txtAños_exp.getValue();
         num_ventas = (Integer) txtNumVentas.getValue();
-
+        cod_negocio = txtcodigoNegocio.getText();
     }
 
     public void LimpiarCampos() {
@@ -381,8 +391,7 @@ public class Comerciante_CRUD extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "No existe ningun Pais con este codigo");
         }
         if (!error) {
-            Comerciante crearC = new Comerciante(id_comerciante, años_exp, num_ventas, Cedula_per, nombre_per
-                    , apellido_per, edad_per, genero_per, celular_per, fechanac_per, correo_per, tiposangre_per, codigo_pais_per);
+            Comerciante crearC = new Comerciante(id_comerciante, años_exp, num_ventas, cod_negocio, Cedula_per, nombre_per, apellido_per, edad_per, genero_per, celular_per, fechanac_per, correo_per, tiposangre_per, codigo_pais_per);
             basep.set(crearC);
             JOptionPane.showMessageDialog(null, "Comerciante registrado");
             LimpiarCampos();
@@ -392,7 +401,7 @@ public class Comerciante_CRUD extends javax.swing.JFrame {
 
 
     public static int comprobarComerciante(ObjectContainer basep, String id_comerciante) {
-        Comerciante buscarC = new Comerciante(id_comerciante, 0, 0, null, null, null, 0, null, null, null, null, null, null);
+        Comerciante buscarC = new Comerciante(id_comerciante, 0, 0, null, null, null, null, 0, null, null, null, null, null, null);
         ObjectSet result = basep.get(buscarC);
         return result.size();
     }
@@ -436,6 +445,7 @@ public class Comerciante_CRUD extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -451,5 +461,6 @@ public class Comerciante_CRUD extends javax.swing.JFrame {
     private javax.swing.JTextField txtTipoPais;
     private javax.swing.JTextField txtTipoSangre;
     private javax.swing.JTextField txtcodigo;
+    private javax.swing.JTextField txtcodigoNegocio;
     // End of variables declaration//GEN-END:variables
 }

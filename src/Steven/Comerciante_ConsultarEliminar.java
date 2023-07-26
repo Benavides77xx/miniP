@@ -38,14 +38,14 @@ public class Comerciante_ConsultarEliminar extends javax.swing.JFrame {
         } else {
 
             if (BuscarOpcion.getSelectedIndex() == 1) {
-                Comerciante buscar = new Comerciante(null, 0, 0, null, null, null, 0, null, null, null, null, null, null);
+                Comerciante buscar = new Comerciante(null, 0, 0, null, null, null, null, 0, null, null, null, null, null, null);
                 ObjectSet result = basep.get(buscar);
                 MostrarDatos(result);
 
             } else {
                 if (BuscarOpcion.getSelectedIndex() == 2) {
                     String codigo_comerciante = JOptionPane.showInputDialog("INGRESE EL CODIGO A CONSULTAR");
-                    Comerciante buscar = new Comerciante(codigo_comerciante, 0, 0, null, null, null, 0, null, null, null, null, null, null);
+                    Comerciante buscar = new Comerciante(codigo_comerciante, 0, 0, null, null, null, null, 0, null, null, null, null, null, null);
                     ObjectSet result = basep.get(buscar);
                     MostrarDatos(result);
                 }
@@ -215,13 +215,7 @@ public class Comerciante_ConsultarEliminar extends javax.swing.JFrame {
         ObjectContainer baseDeDatos = Db4o.openFile(INICIO.direccionBD);
 
         try {
-            // Verifica si existen Negocios asociados a este juego
-            Negocio cass = new Negocio(null, null, null, codigo_comerciante);
-            ObjectSet result = baseDeDatos.get(cass);
-            if (result.size() > 0) {
-                JOptionPane.showMessageDialog(this, "No se puede eliminar el Comerciante porque tiene Negocios asociados", "ERROR", 0);
-                return;
-            }
+            
             // Verifica si existen Puestos asociados a este juego
             Puesto cas = new Puesto(null, null, null, null, null, codigo_comerciante);
             ObjectSet resulta = baseDeDatos.get(cas);
@@ -230,7 +224,7 @@ public class Comerciante_ConsultarEliminar extends javax.swing.JFrame {
                 return;
             }
             // Busca el Comerciante a eliminar
-            Comerciante revisar = new Comerciante(codigo_comerciante, 0, 0, null, null, null, 0, null, null, null, null, null, null);
+            Comerciante revisar = new Comerciante(codigo_comerciante, 0, 0, null, null, null, null, 0, null, null, null, null, null, null);
             ObjectSet cassResult = baseDeDatos.get(revisar);
 
             if (cassResult.size() == 0) {

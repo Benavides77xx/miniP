@@ -41,10 +41,8 @@ public class Negocio_CRUD extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         txtTipoNegocio = new javax.swing.JTextField();
         txtcodigo = new javax.swing.JTextField();
-        txtIdComerciante = new javax.swing.JTextField();
         btnGuardar = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -69,23 +67,11 @@ public class Negocio_CRUD extends javax.swing.JFrame {
         jLabel3.setText("Tipo negocio:");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 150, -1, -1));
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel7.setText("*Id comerciante:");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 330, -1, -1));
-
         txtTipoNegocio.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel1.add(txtTipoNegocio, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 170, 200, 30));
 
         txtcodigo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel1.add(txtcodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 110, 200, 30));
-
-        txtIdComerciante.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        txtIdComerciante.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtIdComercianteActionPerformed(evt);
-            }
-        });
-        jPanel1.add(txtIdComerciante, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 350, 190, 30));
 
         btnGuardar.setBackground(new java.awt.Color(255, 102, 51));
         btnGuardar.setText("Guardar");
@@ -131,10 +117,6 @@ public class Negocio_CRUD extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtIdComercianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdComercianteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtIdComercianteActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         ObjectContainer BaseD = Db4o.openFile(INICIO.direccionBD);
@@ -187,7 +169,7 @@ public class Negocio_CRUD extends javax.swing.JFrame {
         cod_negocio = txtcodigo.getText();
         descripcion = txtdescripcion.getText();
         tipo_negocio = txtTipoNegocio.getText();
-        id_comerciante = txtIdComerciante.getText();
+        
 
     }
 
@@ -195,7 +177,7 @@ public class Negocio_CRUD extends javax.swing.JFrame {
         txtcodigo.setText("");
         txtdescripcion.setText("");
         txtTipoNegocio.setText("");
-        txtIdComerciante.setText("");
+        
 
     }
 
@@ -209,9 +191,9 @@ public class Negocio_CRUD extends javax.swing.JFrame {
             error = true;
             JOptionPane.showMessageDialog(null, "No existe ningun comerciante registrado con este codigo", "Error (Reglas de integridad)", JOptionPane.ERROR_MESSAGE);
         }
-
+        
         if (!error) {
-            Negocio crearE = new Negocio(cod_negocio, tipo_negocio, descripcion, id_comerciante);
+            Negocio crearE = new Negocio(cod_negocio, tipo_negocio, descripcion);
             basep.set(crearE);
             JOptionPane.showMessageDialog(null, "Negocio registrado");
             LimpiarCampos();
@@ -220,16 +202,16 @@ public class Negocio_CRUD extends javax.swing.JFrame {
     }
 
     public static int comprobarNegocio(ObjectContainer basep, String cod_negocio) {
-        Negocio buscarE = new Negocio(cod_negocio, null, null, null);
+        Negocio buscarE = new Negocio(cod_negocio, null, null);
         ObjectSet result = basep.get(buscarE);
         return result.size();
     }
 
     public static int comprobarComerciante(ObjectContainer basep, String id_comerciante) {
-        ObjectSet result = basep.get(new Comerciante(id_comerciante, 0, 0, null, null, null, 0, null, null, null, null, null, null));
+        ObjectSet result = basep.get(new Comerciante(id_comerciante, 0, 0, null, null, null, null, 0, null, null, null, null, null, null));
         return result.size();
     }
-
+    
     public static void Cerrar_BD(ObjectContainer basep) {
         basep.close();
     }
@@ -239,11 +221,9 @@ public class Negocio_CRUD extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField txtIdComerciante;
     private javax.swing.JTextField txtTipoNegocio;
     private javax.swing.JTextField txtcodigo;
     private javax.swing.JTextArea txtdescripcion;

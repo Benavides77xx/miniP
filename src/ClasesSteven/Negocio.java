@@ -14,16 +14,14 @@ public class Negocio {
     private String cod_negocio;
     private String tipo_negocio;
     private String descripcion;
-    private String id_comerciante;
 
     public Negocio() {
     }
 
-    public Negocio(String cod_negocio, String tipo_negocio, String descripcion, String id_comerciante) {
+    public Negocio(String cod_negocio, String tipo_negocio, String descripcion) {
         this.cod_negocio = cod_negocio;
         this.tipo_negocio = tipo_negocio;
         this.descripcion = descripcion;
-        this.id_comerciante = id_comerciante;
     }
 
     public String getCod_negocio() {
@@ -50,17 +48,9 @@ public class Negocio {
         this.descripcion = descripcion;
     }
 
-    public String getId_comerciante() {
-        return id_comerciante;
-    }
-
-    public void setId_comerciante(String id_comerciante) {
-        this.id_comerciante = id_comerciante;
-    }
-
     @Override
     public String toString() {
-        return "Negocio{" + "cod_negocio=" + cod_negocio + ", tipo_negocio=" + tipo_negocio + ", descripcion=" + descripcion + ", id_comerciante=" + id_comerciante + '}';
+        return "Negocio{" + "cod_negocio=" + cod_negocio + ", tipo_negocio=" + tipo_negocio + ", descripcion=" + descripcion + '}';
     }
 
 }

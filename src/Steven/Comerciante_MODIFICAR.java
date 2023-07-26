@@ -66,6 +66,8 @@ public class Comerciante_MODIFICAR extends javax.swing.JFrame {
         txtTipoPais = new javax.swing.JTextField();
         txtCedulaPersona = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
+        txtCodNegocio = new javax.swing.JTextField();
+        jLabel18 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -115,18 +117,18 @@ public class Comerciante_MODIFICAR extends javax.swing.JFrame {
         jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 550, 130, 40));
 
         txtNumVentas.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.add(txtNumVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 370, 190, 30));
+        jPanel1.add(txtNumVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 390, 190, 30));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel8.setText("Número de ventas:");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 350, -1, -1));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 370, -1, -1));
 
         txtAños_exp.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.add(txtAños_exp, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 310, 190, 30));
+        jPanel1.add(txtAños_exp, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 330, 190, 30));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel3.setText("Años de Experiencia:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 290, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 310, -1, -1));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel10.setText("Nombre:");
@@ -231,6 +233,18 @@ public class Comerciante_MODIFICAR extends javax.swing.JFrame {
         jLabel9.setText("*Cedula de persona:");
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, -1, -1));
 
+        txtCodNegocio.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtCodNegocio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCodNegocioActionPerformed(evt);
+            }
+        });
+        jPanel1.add(txtCodNegocio, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 270, 190, 30));
+
+        jLabel18.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel18.setText("Cod Negocio:");
+        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 250, -1, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -291,6 +305,10 @@ public class Comerciante_MODIFICAR extends javax.swing.JFrame {
         ini.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void txtCodNegocioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodNegocioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCodNegocioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -375,7 +393,7 @@ public class Comerciante_MODIFICAR extends javax.swing.JFrame {
 
             } else {
 
-                Comerciante Ebuscar = new Comerciante(codC, 0, 0, null, null, null, 0, null, null, null, null, null, null);
+                Comerciante Ebuscar = new Comerciante(codC, 0, 0, null, null, null, null, 0, null, null, null, null, null, null);
 
                 ObjectSet result = basep.get(Ebuscar);
                 for (int i = 0; i < result.size(); i++) {
@@ -413,7 +431,7 @@ public class Comerciante_MODIFICAR extends javax.swing.JFrame {
 
     public void Modificar_Comerciante(ObjectContainer basep) {
 
-        Comerciante Emodi = new Comerciante(txtcodC.getText(), 0, 0, null, null, null, 0, null, null, null, null, null, null);
+        Comerciante Emodi = new Comerciante(txtcodC.getText(), 0, 0, null, null, null, null, 0, null, null, null, null, null, null);
         ObjectSet result = basep.get(Emodi);
 
         Comerciante Emodificar = (Comerciante) result.next();
@@ -425,7 +443,8 @@ public class Comerciante_MODIFICAR extends javax.swing.JFrame {
         Emodificar.setFecha_nac(fechaNa.getDate());
         Emodificar.setCorreo(txtCorreo.getText());
         Emodificar.setCodigo_tipo_sangre(txtTipoSangre.getText());
-        Emodificar.setCodigo_pais(txtTipoPais.getText());       
+        Emodificar.setCodigo_pais(txtTipoPais.getText());
+        Emodificar.setCod_negocio(txtCodNegocio.getText());     
         Emodificar.setAños_exp(Integer.parseInt((String) txtAños_exp.getValue()));
         Emodificar.setNum_ventas(Integer.parseInt((String) txtNumVentas.getValue()));
         
@@ -456,6 +475,7 @@ public class Comerciante_MODIFICAR extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel7;
@@ -466,6 +486,7 @@ public class Comerciante_MODIFICAR extends javax.swing.JFrame {
     private javax.swing.JSpinner txtAños_exp;
     private javax.swing.JTextField txtCedulaPersona;
     private javax.swing.JTextField txtCelular;
+    private javax.swing.JTextField txtCodNegocio;
     private javax.swing.JTextField txtCorreo;
     private javax.swing.JSpinner txtEdad;
     private javax.swing.JTextField txtNombre;
