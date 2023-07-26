@@ -115,8 +115,8 @@ public class tipoSangre_crud extends javax.swing.JFrame {
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 300, -1, -1));
 
         jLabel4.setText("%");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 240, 20, 20));
-        jPanel1.add(txtpor, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 240, 40, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 240, 20, 20));
+        jPanel1.add(txtpor, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 240, 60, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
