@@ -163,7 +163,7 @@ public class INICIO extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem3);
 
-        jMenu15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/habilidad.png"))); // NOI18N
+        jMenu15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/desarrollo-de-habilidades.png"))); // NOI18N
         jMenu15.setText("Habilidades del cliente");
 
         jMenuItem44.setText("Crear");
