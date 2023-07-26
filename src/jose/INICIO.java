@@ -1057,6 +1057,7 @@ public class INICIO extends javax.swing.JFrame {
          this.dispose();
         Modificar_Habilidades mostrar = new Modificar_Habilidades();
         mostrar.setVisible(true); 
+        
     }//GEN-LAST:event_jMenuItem46ActionPerformed
 
     private void jMenuItem47ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem47ActionPerformed
