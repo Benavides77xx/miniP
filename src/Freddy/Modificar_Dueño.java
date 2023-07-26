@@ -79,13 +79,14 @@ public class Modificar_Dueño extends javax.swing.JFrame {
                     tipo_sangre_txt.setText(miE.getCodigo_tipo_sangre());
                     pais_txt.setText(miE.getCodigo_pais());
                     id_dueño.setText(miE.getId_dueño());
+                    Genero_combobox.setSelectedItem(miE.getGenero());
                     historiall_propiedad_txt.setText(miE.getHistorial_propiedad());
                     años_experiencia.setText(String.valueOf(miE.getAños_experiencia()));
                     habilidades_financieras_txt.setText(miE.getHabilidades_finacieras());
 
                     Modificarjb.setEnabled(true);
                     //Hacer editable los campos de texto
-                    mostrarDatos(result);
+                    
                     HabilitarCampos_deTexto();
                     id_dueño.setEditable(false);
                     Ced_Taquillero.setEditable(false);
@@ -140,6 +141,7 @@ public class Modificar_Dueño extends javax.swing.JFrame {
         Emodificar.setEdad_per(Integer.parseInt(edad_taquillero.getText()));
         Emodificar.setCelular_per(cel_taquillero.getText());
         Emodificar.setCorreo(Correo_taquillero.getText());
+        Emodificar.setGenero((String) Genero_combobox.getSelectedItem());
         Emodificar.setHistorial_propiedad(historiall_propiedad_txt.getText());
         Emodificar.setAños_experiencia(Integer.parseInt(años_experiencia.getText()));
         Emodificar.setHabilidades_finacieras(habilidades_financieras_txt.getText());
@@ -150,39 +152,11 @@ public class Modificar_Dueño extends javax.swing.JFrame {
         basep.set(Emodificar);
         JOptionPane.showMessageDialog(null, "La pintura fue modificado exitosamente");
 
-        mostrarDatos(result);
+        
         LimpiarCampos();
     }
 
-    public void mostrarDatos(ObjectSet result) {
-        DefaultTableModel model = (DefaultTableModel) jtableregistro.getModel();
-        model.setRowCount(0); // Limpiar la tabla
-
-        if (result.size() == 0) {
-            JOptionPane.showMessageDialog(null, "El usuario no existe");
-        } else {
-            while (result.hasNext()) {
-                Dueño mitaquillero = (Dueño) result.next();
-                Object[] fila = {
-                    mitaquillero.getId_dueño(),
-                    mitaquillero.getCedula_per(),
-                    mitaquillero.getNombre_per(),
-                    mitaquillero.getApellido(),
-                    mitaquillero.getEdad_per(),
-                    mitaquillero.getGenero(),
-                    mitaquillero.getCelular_per(),
-                    String.valueOf(mitaquillero.getFecha_nac()),
-                    mitaquillero.getCorreo(),
-                    mitaquillero.getCodigo_tipo_sangre(),
-                    mitaquillero.getCodigo_pais(),
-                    mitaquillero.getHistorial_propiedad(),
-                    mitaquillero.getAños_experiencia(),
-                    mitaquillero.getHabilidades_finacieras(),};
-
-                model.addRow(fila);
-            }
-        }
-    }
+    
 
     public static void Cerrar_BD(ObjectContainer basep) {
 
@@ -225,12 +199,12 @@ public class Modificar_Dueño extends javax.swing.JFrame {
         historiall_propiedad_txt = new javax.swing.JTextField();
         años_experiencia = new javax.swing.JTextField();
         habilidades_financieras_txt = new javax.swing.JTextField();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jtableregistro = new javax.swing.JTable();
         tipo_sangre_txt = new javax.swing.JTextField();
         pais_txt = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         Modificarjb = new javax.swing.JButton();
+        Genero_combobox = new javax.swing.JComboBox<>();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -264,24 +238,6 @@ public class Modificar_Dueño extends javax.swing.JFrame {
 
         jLabel16.setText("Habilidades finacieras");
 
-        jtableregistro.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "ID Dueño", "Cedula", "Nombre", "Apellido", "Edad", "Genero", "Celular", "Fecha Nacimiento", "Correo", "Tipo Sangre", "Pais", "Historia Propiedad", "Años Experiencia", "Habilidades financieras"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, true, true, true, true, true, true, true, true, true
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane2.setViewportView(jtableregistro);
-
         jButton2.setText("BUSCAR");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -293,6 +249,15 @@ public class Modificar_Dueño extends javax.swing.JFrame {
         Modificarjb.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ModificarjbActionPerformed(evt);
+            }
+        });
+
+        Genero_combobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una opcion", "Masculino", "Femenino" }));
+
+        jButton3.setText("REGRESAR");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
             }
         });
 
@@ -322,9 +287,11 @@ public class Modificar_Dueño extends javax.swing.JFrame {
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(tipo_sangre_txt)
                                             .addComponent(pais_txt))
-                                        .addGap(211, 211, 211)
+                                        .addGap(143, 143, 143)
                                         .addComponent(Modificarjb, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(183, 183, 183))
+                                        .addGap(39, 39, 39)
+                                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(59, 59, 59))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                             .addComponent(cel_taquillero, javax.swing.GroupLayout.Alignment.LEADING)
@@ -349,7 +316,10 @@ public class Modificar_Dueño extends javax.swing.JFrame {
                                 .addGap(105, 105, 105)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(nom_taquillero)
-                                    .addComponent(Ced_Taquillero))))
+                                    .addComponent(Ced_Taquillero)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(Genero_combobox, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 64, Short.MAX_VALUE)))))
                         .addGap(65, 65, 65)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel15)
@@ -365,10 +335,6 @@ public class Modificar_Dueño extends javax.swing.JFrame {
                                 .addComponent(jButton2))
                             .addComponent(años_experiencia, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(habilidades_financieras_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 881, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -402,8 +368,10 @@ public class Modificar_Dueño extends javax.swing.JFrame {
                     .addComponent(edad_taquillero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(habilidades_financieras_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jLabel6)
-                .addGap(19, 19, 19)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(Genero_combobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(14, 14, 14)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(cel_taquillero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -416,22 +384,17 @@ public class Modificar_Dueño extends javax.swing.JFrame {
                             .addComponent(jLabel9)
                             .addComponent(Correo_taquillero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel10)
-                                    .addComponent(tipo_sangre_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(Modificarjb, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(4, 4, 4)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel10)
+                            .addComponent(tipo_sangre_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(15, 15, 15)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel11)
-                            .addComponent(pais_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(pais_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Modificarjb, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(fechaNa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(107, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -462,6 +425,12 @@ public class Modificar_Dueño extends javax.swing.JFrame {
         Cerrar_BD(BaseD);
         id_dueño.setEditable(true);
     }//GEN-LAST:event_ModificarjbActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        this.dispose();
+        jose.INICIO mostrar = new jose.INICIO();
+        mostrar.setVisible(true);
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -501,6 +470,7 @@ public class Modificar_Dueño extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Ced_Taquillero;
     private javax.swing.JTextField Correo_taquillero;
+    private javax.swing.JComboBox<String> Genero_combobox;
     private javax.swing.JButton Modificarjb;
     private javax.swing.JTextField ape_tequillero;
     private javax.swing.JTextField años_experiencia;
@@ -511,6 +481,7 @@ public class Modificar_Dueño extends javax.swing.JFrame {
     private javax.swing.JTextField historiall_propiedad_txt;
     private javax.swing.JTextField id_dueño;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -527,8 +498,6 @@ public class Modificar_Dueño extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jtableregistro;
     private javax.swing.JTextField nom_taquillero;
     private javax.swing.JTextField pais_txt;
     private javax.swing.JTextField tipo_sangre_txt;
