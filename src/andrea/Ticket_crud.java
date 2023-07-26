@@ -81,7 +81,7 @@ public class Ticket_crud extends javax.swing.JFrame {
     }        
     public static int comprobarTaquillero(ObjectContainer basep, String id_taquillero) {
 
-            ObjectSet result = basep.get(new Taquillero(id_taquillero,null, null, 0, null, null, null, null, null, 0, '\0', null, null, null, null, null));          
+            ObjectSet result = basep.get(new Taquillero(id_taquillero,null, null, 0, null, null, null, null, null, 0, null, null, null, null, null, null));          
             return result.size();
     }
 

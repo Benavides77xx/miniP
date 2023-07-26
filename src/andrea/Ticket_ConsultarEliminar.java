@@ -5,13 +5,16 @@
  */
 package andrea;
 
-import andrea.Ticket;
-import clases.Tecnico;
+import Clases.Detalle_factura;
+import andrea.Ticket_crud;
+import Clases.Ticket;
+import Clases.Tecnico;
 import com.db4o.Db4o;
 import com.db4o.ObjectContainer;
 import com.db4o.ObjectSet;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import jose.INICIO;
 
 /**
  *
@@ -26,7 +29,7 @@ public class Ticket_ConsultarEliminar extends javax.swing.JFrame {
         initComponents();
     }
 
-    public void tickets (ObjectContainer basep) {
+    public void Filtro (ObjectContainer basep) {
         
      if (eleccion.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(null, "Seleccione una de las opciones");
@@ -39,8 +42,8 @@ public class Ticket_ConsultarEliminar extends javax.swing.JFrame {
 
             } else {
                 if (eleccion.getSelectedIndex() == 1) {
-                    String opc = JOptionPane.showInputDialog("Ingrese el codigo a consultar");
-                    Ticket buscartcc = new Ticket(opc,0,null,null,null);
+                    String Cod_tick = JOptionPane.showInputDialog("Ingrese el codigo a consultar");
+                    Ticket buscartcc = new Ticket(Cod_tick,0,null,null,null);
                     ObjectSet result = basep.get(buscartcc);
                     mostrarDatos(result);
 
@@ -64,7 +67,7 @@ public class Ticket_ConsultarEliminar extends javax.swing.JFrame {
                     mitick.getCodigo_ticket(),
                     mitick.getPrecio_ticket(),
                     mitick.getRestrccion(),
-                    mitick.getTipo_ticket(),
+                    mitick.getCodigo_tipo_ticket(),
                     mitick.getId_taquillero(),
                     };
                 
@@ -73,31 +76,31 @@ public class Ticket_ConsultarEliminar extends javax.swing.JFrame {
         }
     }
     
-    public void Eliminartc(ObjectContainer basep) {
-        
-        Tecnico_crud Ainterfaz = new Tecnico_crud();
-        if (eliminarcod.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Ingrese el código");
-        } else {
-
-            String IDA = eliminarcod.getText();
-            Ticket Abuscar = new Ticket(IDA,0, null, null, null);
-            ObjectSet result = basep.get(Abuscar);
-
-            if (Ainterfaz.validar(basep, IDA) == 0) {
-                JOptionPane.showMessageDialog(null, "No existen registro con el  id especificado ");
-
-            } else {
-                Ticket AsignaturaElim = (Ticket) result.next();
-                basep.delete(AsignaturaElim);
-                JOptionPane.showMessageDialog(null, "Registro eleiminado");
-            }
-
-        }
-
-        
-        eliminarcod.setText("");
-    }
+//    public void Eliminartc(ObjectContainer basep) {
+//        
+//        Tecnico_crud Ainterfaz = new Tecnico_crud();
+//        if (eliminarcod.getText().isEmpty()) {
+//            JOptionPane.showMessageDialog(null, "Ingrese el código");
+//        } else {
+//
+//            String IDA = eliminarcod.getText();
+//            Ticket Abuscar = new Ticket(IDA,0, null, null, null);
+//            ObjectSet result = basep.get(Abuscar);
+//
+//            if (Ainterfaz.comprobarTicket(basep, IDA) == 0) {
+//                JOptionPane.showMessageDialog(null, "No existen registro con el  id especificado ");
+//
+//            } else {
+//                Ticket AsignaturaElim = (Ticket) result.next();
+//                basep.delete(AsignaturaElim);
+//                JOptionPane.showMessageDialog(null, "Registro eleiminado");
+//            }
+//
+//        }
+//
+//        
+//        eliminarcod.setText("");
+//    }
     public static void Cerrar_BD(ObjectContainer basep) {
 
         basep.close();
@@ -173,7 +176,7 @@ public class Ticket_ConsultarEliminar extends javax.swing.JFrame {
                 {null, null, null, null, null}
             },
             new String [] {
-                "CÓDIGO", "PRECIO", "RESTRICCION", "TIPO JUEGO ", "ID TAQUILLERO"
+                "CÓDIGO", "PRECIO", "RESTRICCION", "COD_TIPO_TICKET", "ID TAQUILLERO"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -184,9 +187,14 @@ public class Ticket_ConsultarEliminar extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tablatec.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablatecMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tablatec);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 730, 190));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 730, 100));
 
         jButton1.setText("REGRESAR");
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 30, -1, -1));
@@ -212,16 +220,51 @@ public class Ticket_ConsultarEliminar extends javax.swing.JFrame {
     }//GEN-LAST:event_eliminarcodActionPerformed
 
     private void buscarbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarbtnActionPerformed
-     ObjectContainer BaseD = Db4o.openFile(Tecnico_crud.direccionBD);
-     tickets(BaseD);
+     ObjectContainer BaseD = Db4o.openFile(INICIO.direccionBD);
+     Filtro(BaseD);
      Cerrar_BD(BaseD); 
     }//GEN-LAST:event_buscarbtnActionPerformed
 
     private void eliminarbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarbtnActionPerformed
-        ObjectContainer BaseD = Db4o.openFile(Tecnico_crud.direccionBD);
-        Eliminartc(BaseD);
-        Cerrar_BD(BaseD);
+   String codigo_ticket = eliminarcod.getText();
+
+        // Abre la base de datos
+        ObjectContainer baseDeDatos = Db4o.openFile(INICIO.direccionBD);
+
+        try {
+            // Verifica si existen Detalles de facturas asociados a este ticket
+            Detalle_factura cass = new Detalle_factura(null, 0, 0, codigo_ticket,null );
+            ObjectSet result = baseDeDatos.get(cass);
+            if (result.size() > 0) {
+                JOptionPane.showMessageDialog(this, "No se puede eliminar el Ticket porque tiene Detalles de facturas asociados","ERROR",0);
+                return;
+            }
+
+            // Busca el Ticket
+            Ticket revisar = new Ticket(codigo_ticket,  0, null, null,null);
+            ObjectSet cassResult = baseDeDatos.get(revisar);
+
+            if (cassResult.size() == 0) {
+                JOptionPane.showMessageDialog(null, "El Ticket no existe");
+            } else {
+                // Elimina el cassete encontrado
+                baseDeDatos.delete(cassResult.get(0));
+                JOptionPane.showMessageDialog(null, "El Ticket se ha eliminado correctamente");
+
+                // Actualiza la tabla después de eliminar el Juego
+                Filtro(baseDeDatos);
+            }
+        } finally {
+            // Cierra la base de datos
+
+            baseDeDatos.close();
+        }
     }//GEN-LAST:event_eliminarbtnActionPerformed
+
+    private void tablatecMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablatecMouseClicked
+                 int i = tablatec.getSelectedRow();
+                eliminarcod.setText(tablatec.getValueAt(i, 0).toString());
+    }//GEN-LAST:event_tablatecMouseClicked
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

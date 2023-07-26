@@ -189,7 +189,7 @@ public class tipoSangre_ConsultarEliminar extends javax.swing.JFrame {
 
         try {
             // Verifica si existen Personas asociados a este Tipo de sangre
-            Persona verifica = new Persona(null, null,null, 0,'\0',null,null,null,codigo_tipo_sangre, null);
+            Persona verifica = new Persona(null, null,null, 0,null,null,null,null,codigo_tipo_sangre, null);
             ObjectSet result = baseDeDatos.get(verifica);
             if (result.size() > 0) {
                 JOptionPane.showMessageDialog(this, "No se puede eliminar el Tipo de sangre porque tiene Personas asociadas","ERROR",0);

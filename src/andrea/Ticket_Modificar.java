@@ -8,7 +8,7 @@ package andrea;
 import com.db4o.ObjectContainer;
 import com.db4o.ObjectSet;
 import javax.swing.JOptionPane;
-import andrea.Ticket;
+import Clases.Ticket;
 import com.db4o.Db4o;
 
 /**

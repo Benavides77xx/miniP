@@ -32,8 +32,6 @@ public class Tecnico_crud extends javax.swing.JFrame {
         nomtecnico = new javax.swing.JTextField();
         apetecnico = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        f = new javax.swing.JRadioButton();
-        m = new javax.swing.JRadioButton();
         jLabel7 = new javax.swing.JLabel();
         celulartec = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
@@ -52,6 +50,7 @@ public class Tecnico_crud extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         edadtecnico = new javax.swing.JSpinner();
         exp = new javax.swing.JSpinner();
+        Genero_combobox = new javax.swing.JComboBox<>();
 
         jLabel10.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 14)); // NOI18N
         jLabel10.setText("CORREO ELECTRONICO :");
@@ -101,18 +100,6 @@ public class Tecnico_crud extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 14)); // NOI18N
         jLabel6.setText("EDAD : ");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, -1, -1));
-
-        f.setBackground(new java.awt.Color(188, 206, 223));
-        generos.add(f);
-        f.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 10)); // NOI18N
-        f.setText("FEMENINO");
-        jPanel1.add(f, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 280, -1, -1));
-
-        m.setBackground(new java.awt.Color(188, 206, 223));
-        generos.add(m);
-        m.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 10)); // NOI18N
-        m.setText("MASCULINO");
-        jPanel1.add(m, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 280, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 14)); // NOI18N
         jLabel7.setText("GÉNERO  : ");
@@ -171,6 +158,9 @@ public class Tecnico_crud extends javax.swing.JFrame {
         jPanel1.add(edadtecnico, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 240, 70, -1));
         jPanel1.add(exp, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 320, 40, -1));
 
+        Genero_combobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una opcion", "Masculino", "Femenino" }));
+        jPanel1.add(Genero_combobox, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 270, -1, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -210,7 +200,7 @@ public class Tecnico_crud extends javax.swing.JFrame {
     String nombre="";
     String apellido="";
     int edad=0;
-    Character genero;
+    String genero;
     String celular="";
     Date fecha_nacimiento;
     String correo="";
@@ -246,8 +236,7 @@ public class Tecnico_crud extends javax.swing.JFrame {
         nombre= nomtecnico.getText();
         apellido= apetecnico.getText();
         edad= (Integer)edadtecnico.getValue();
-        String genero = " ";
-        genero = Genero(genero);
+        genero = (String) Genero_combobox.getSelectedItem();
         celular = celulartec.getText();
         fecha_nacimiento = nacimientotec.getDate();
         correo = correotecnico.getText();
@@ -295,12 +284,12 @@ public class Tecnico_crud extends javax.swing.JFrame {
     }
     
      public static int comprobarCedula(ObjectContainer base, String cedula) {
-            Persona buscarCedula = new Persona(cedula, null, null,0,'\0',null,null,null,null,null);
+            Persona buscarCedula = new Persona(cedula, null, null,0,null,null,null,null,null,null);
             ObjectSet result = base.get(buscarCedula);
             return result.size();
     }
     public static int comprobarID(ObjectContainer base, String id_tecnico) {
-            Tecnico buscarID = new Tecnico(id_tecnico,null,0,null, null, null, null,0,'\0',null,null,null,null,null);
+            Tecnico buscarID = new Tecnico(id_tecnico,null,0,null, null, null, null,0,null,null,null,null,null,null);
             ObjectSet result = base.get(buscarID);
             return result.size();
     }
@@ -325,15 +314,7 @@ public class Tecnico_crud extends javax.swing.JFrame {
     
     
     
-    public String Genero(String sexo) {
-       String genero = "";
-        if (f.isSelected()) {
-            genero = "FEMENINO";
-        } else if (m.isSelected()) {
-            genero = "MASCULINO";
-        }
-        return genero;
-    }
+
   
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -372,6 +353,7 @@ public class Tecnico_crud extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> Genero_combobox;
     private javax.swing.JTextField apetecnico;
     private javax.swing.JTextField cedtecnico;
     private javax.swing.JTextField celulartec;
@@ -379,7 +361,6 @@ public class Tecnico_crud extends javax.swing.JFrame {
     private javax.swing.JSpinner edadtecnico;
     private javax.swing.JTextField estudiotec;
     private javax.swing.JSpinner exp;
-    private javax.swing.JRadioButton f;
     private javax.swing.ButtonGroup generos;
     private javax.swing.JTextField idtecnico;
     private javax.swing.JButton jButton1;
@@ -399,7 +380,6 @@ public class Tecnico_crud extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JRadioButton m;
     private com.toedter.calendar.JDateChooser nacimientotec;
     private javax.swing.JTextField nomtecnico;
     private javax.swing.JTextField paistec;

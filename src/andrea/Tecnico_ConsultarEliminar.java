@@ -1,11 +1,13 @@
 
 package andrea;
 
+import Clases.Mantenimiento;
 import com.db4o.*;
 import Clases.Tecnico;
 import com.db4o.ObjectSet;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import jose.INICIO;
 public class Tecnico_ConsultarEliminar extends javax.swing.JFrame {
 
     
@@ -14,21 +16,21 @@ public class Tecnico_ConsultarEliminar extends javax.swing.JFrame {
         this.setSize(1200,500);
     }
     
-    public void tecnicos(ObjectContainer basep) {
+    public void Filtro(ObjectContainer basep) {
         
      if (eleccion.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(null, "Seleccione una de las opciones");
         } else {
 
             if (eleccion.getSelectedIndex() == 2) {
-                Tecnico bus_tec = new Tecnico(null,null,0,null,null,null,null,0,'\u0000',null,null,null,null,null);
+                Tecnico bus_tec = new Tecnico(null,null,0,null,null,null,null,0,null,null,null,null,null,null);
                 ObjectSet result = basep.get(bus_tec);
                 mostrarDatos(result);
 
             } else {
                 if (eleccion.getSelectedIndex() == 1) {
                     String opc = JOptionPane.showInputDialog("Ingrese el ID a consultar");
-                    Tecnico buscart = new Tecnico(opc,null,0,null,null,null,null,0,'\u0000',null,null,null,null,null);
+                    Tecnico buscart = new Tecnico(opc,null,0,null,null,null,null,0,null,null,null,null,null,null);
                     ObjectSet result = basep.get(buscart);
                     mostrarDatos(result);
 
@@ -49,13 +51,13 @@ public class Tecnico_ConsultarEliminar extends javax.swing.JFrame {
                 Tecnico mitecnico = (Tecnico) result.next();
                 Object[] fila = {
                     mitecnico.getId_tecnico(),
-                    mitecnico.getCedula(),
-                    mitecnico.getNombre(),
+                    mitecnico.getCedula_per(),
+                    mitecnico.getNombre_per(),
                     mitecnico.getApellido(),
-                    mitecnico.getEdad(),
+                    mitecnico.getEdad_per(),
                     mitecnico.getGenero(),
-                    mitecnico.getCelular(),
-                    String.valueOf(mitecnico.getFecha_nacimiento()),
+                    mitecnico.getCelular_per(),
+                    String.valueOf(mitecnico.getFecha_nac()),
                     mitecnico.getCorreo(),
                     mitecnico.getCodigo_tipo_sangre(),
                     mitecnico.getCodigo_pais(),
@@ -67,29 +69,29 @@ public class Tecnico_ConsultarEliminar extends javax.swing.JFrame {
             }
         }
     }
-     
-     public void EliminarTecnicos(ObjectContainer basep) {
-        Tecnico_crud Ainterfaz = new Tecnico_crud();
-        if (eliminarid.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Ingrese el ID del Tecnico ");
-        } else {
-
-            String idelim = eliminarid.getText();
-            Tecnico Abuscar = new Tecnico(idelim,null,0,null,null,null,null,0,'\u0000',null,null,null,null,null);
-            ObjectSet result = basep.get(Abuscar);
-
-            if (Ainterfaz.validar(basep,idelim) == 0) {
-                JOptionPane.showMessageDialog(null, " No exite ningun registro");
-
-            } else {
-                Tecnico elimtec = (Tecnico) result.next();
-                basep.delete(elimtec);
-                JOptionPane.showMessageDialog(null, " Se elimino este registro");
-            }
-
-        }
-        eliminarid.setText("");
-    }
+//     
+//     public void EliminarTecnicos(ObjectContainer basep) {
+//        Tecnico_crud Ainterfaz = new Tecnico_crud();
+//        if (eliminarid.getText().isEmpty()) {
+//            JOptionPane.showMessageDialog(null, "Ingrese el ID del Tecnico ");
+//        } else {
+//
+//            String idelim = eliminarid.getText();
+//            Tecnico Abuscar = new Tecnico(idelim,null,0,null,null,null,null,0,'\u0000',null,null,null,null,null);
+//            ObjectSet result = basep.get(Abuscar);
+//
+//            if (Ainterfaz.validar(basep,idelim) == 0) {
+//                JOptionPane.showMessageDialog(null, " No exite ningun registro");
+//
+//            } else {
+//                Tecnico elimtec = (Tecnico) result.next();
+//                basep.delete(elimtec);
+//                JOptionPane.showMessageDialog(null, " Se elimino este registro");
+//            }
+//
+//        }
+//        eliminarid.setText("");
+//    }
      public static void Cerrar_BD(ObjectContainer basep) {
 
         basep.close();
@@ -138,7 +140,7 @@ public class Tecnico_ConsultarEliminar extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "CEDULA", "NOMBRE", "APELLIDO", "EDAD", "GENERO", "CELULAR", "FECHA DE NACIMIENTO", "E -MAIL", "TIPO DE SANGRE", "PAIS", "NIVEL DE ESTUDIO", "EXPERIENCIA", "REFERENCIAS"
+                "ID", "CEDULA", "NOMBRE", "APELLIDO", "EDAD", "GENERO", "CELULAR", "FECHA DE NACIMIENTO", "E -MAIL", "Cod_tipoSan", "Cod_pais", "NIVEL DE ESTUDIO", "EXPERIENCIA", "REFERENCIAS"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -147,6 +149,11 @@ public class Tecnico_ConsultarEliminar extends javax.swing.JFrame {
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        tablatec.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablatecMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(tablatec);
@@ -194,16 +201,52 @@ public class Tecnico_ConsultarEliminar extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buscActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscActionPerformed
-     ObjectContainer BaseD = Db4o.openFile(Tecnico_crud.direccionBD);
-     tecnicos(BaseD);
+     ObjectContainer BaseD = Db4o.openFile(INICIO.direccionBD);
+     Filtro(BaseD);
      Cerrar_BD(BaseD);        
     }//GEN-LAST:event_buscActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        ObjectContainer BaseD = Db4o.openFile(Tecnico_crud.direccionBD);
-        EliminarTecnicos(BaseD);
-        Cerrar_BD(BaseD);
+     
+        String id_tecnico = eliminarid.getText();
+
+        // Abre la base de datos
+        ObjectContainer baseDeDatos = Db4o.openFile(INICIO.direccionBD);
+
+        try {
+            // Verifica si existen Mantenimientos asociados a este tecnico
+            Mantenimiento cass = new Mantenimiento(null, null,null, id_tecnico,null );
+            ObjectSet result = baseDeDatos.get(cass);
+            if (result.size() > 0) {
+                JOptionPane.showMessageDialog(this, "No se puede eliminar Tecnico ya que tiene Mantenimientos asociados","ERROR",0);
+                return;
+            }
+
+            // Busca el Tecnico
+            Tecnico revisar = new Tecnico(id_tecnico,null,0,null, null, null, null,0,null,null,null,null,null,null);
+            ObjectSet cassResult = baseDeDatos.get(revisar);
+
+            if (cassResult.size() == 0) {
+                JOptionPane.showMessageDialog(null, "El Tecnico no existe");
+            } else {
+                // Elimina el cassete encontrado
+                baseDeDatos.delete(cassResult.get(0));
+                JOptionPane.showMessageDialog(null, "El Tecnico se ha eliminado correctamente");
+
+                // Actualiza la tabla después de eliminar el Juego
+                Filtro(baseDeDatos);
+            }
+        } finally {
+            // Cierra la base de datos
+
+            baseDeDatos.close();
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void tablatecMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablatecMouseClicked
+              int i = tablatec.getSelectedRow();
+                eliminarid.setText(tablatec.getValueAt(i, 0).toString());
+    }//GEN-LAST:event_tablatecMouseClicked
 
     /**
      * @param args the command line arguments

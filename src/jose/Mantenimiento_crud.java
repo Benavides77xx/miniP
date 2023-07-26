@@ -69,7 +69,7 @@ public class Mantenimiento_crud extends javax.swing.JFrame {
     }
     public static int comprobarTecnico(ObjectContainer basep, String id_tecnico) {
 
-            ObjectSet result = basep.get(new Tecnico(id_tecnico, null, 0, null));
+            ObjectSet result = basep.get(new Tecnico(id_tecnico, null, 0, null,null, null, null,0,null,null,null,null,null,null));
             return result.size();
     }        
     public static int comprobarJuego(ObjectContainer basep, String codigo_juego) {

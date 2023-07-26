@@ -191,7 +191,7 @@ public class Pais_ConsultarEliminar extends javax.swing.JFrame {
 
         try {
             // Verifica si existen Personas asociados a este Pais
-            Persona verifica = new Persona(null, null,null, 0,'\0',null,null,null,null, codigo_pais);
+            Persona verifica = new Persona(null, null,null, 0,null,null,null,null,null, codigo_pais);
             ObjectSet result = baseDeDatos.get(verifica);
             if (result.size() > 0) {
                 JOptionPane.showMessageDialog(this, "No se puede eliminar el Pais porque tiene Personas asociadas","ERROR",0);
