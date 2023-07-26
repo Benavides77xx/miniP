@@ -197,6 +197,11 @@ public class Ticket_ConsultarEliminar extends javax.swing.JFrame {
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 730, 100));
 
         jButton1.setText("REGRESAR");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 30, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -265,6 +270,12 @@ public class Ticket_ConsultarEliminar extends javax.swing.JFrame {
                  int i = tablatec.getSelectedRow();
                 eliminarcod.setText(tablatec.getValueAt(i, 0).toString());
     }//GEN-LAST:event_tablatecMouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.dispose();
+        INICIO mostrar = new INICIO();
+        mostrar.setVisible(true);         // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

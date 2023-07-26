@@ -12,6 +12,7 @@ import com.db4o.*;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import jose.INICIO;
 
 /**
  *
@@ -108,9 +109,9 @@ public class modificar_tec extends javax.swing.JFrame {
                     nomtecnico.setText(tec.getNombre_per());
                     apetecnico.setText(tec.getApellido());
                     edadtecnico.setValue(tec.getEdad_per());
-                    genero.setText
-                    celulartec.setText(tec.getCelular());
-                    nacimientotec.setDate(tec.getFecha_nacimiento());
+                    Genero_combobox.setToolTipText(tec.getGenero());
+                    celulartec.setText(tec.getCelular_per());
+                    nacimientotec.setDate(tec.getFecha_nac());
                     correotecnico.setText(tec.getCorreo());
                     sangretec.setText(tec.getCodigo_tipo_sangre());
                     paistec.setText(tec.getCodigo_pais());
@@ -121,6 +122,8 @@ public class modificar_tec extends javax.swing.JFrame {
 
                     modtecnico.setEnabled(true);
                     habilitarcampos();
+                    sangretec.setEditable(false);
+                    paistec.setEditable(false);
                     idtecnico.setEditable(false);
                     cedtecnico.setEditable(false);
 
@@ -136,8 +139,7 @@ public class modificar_tec extends javax.swing.JFrame {
     nomtecnico.setEditable(true);
     apetecnico.setEditable(true);
     edadtecnico.setEnabled(true);
-    m.setEnabled(true);
-    f.setEnabled(true);
+    Genero_combobox.setEditable(true);
     celulartec.setEditable(true);
     nacimientotec.setEnabled(true);
     correotecnico.setEditable(true);
@@ -150,17 +152,15 @@ public class modificar_tec extends javax.swing.JFrame {
     }
     public void modificartecnico (ObjectContainer basep) {
 
-        Tecnico modificartec = new Tecnico(id_tecnico,null,0,null,cedula,null,null,0,'\u0000',null,null,null,null,null);
+        Tecnico modificartec = new Tecnico(id_tecnico,null,0,null,cedula,null,null,0,null,null,null,null,null,null);
        ObjectSet result = basep.get(modificartec);
         
         Tecnico modificart = (Tecnico) result.next();
-        modificart.setNombre(nomtecnico.getText());
+        modificart.setNombre_per(nomtecnico.getText());
         modificart.setApellido(apetecnico.getText());
-        modificart.setEdad((int) edadtecnico.getValue());
-        modificart.setCelular(celulartec.getText());
+        modificart.setEdad_per((int) edadtecnico.getValue());
+        modificart.setCelular_per(celulartec.getText());
         modificart.setCorreo(correotecnico.getText());
-        modificart.setCodigo_tipo_sangre(sangretec.getText());
-        modificart.setCodigo_pais(paistec.getText());
         modificart.setNivel_estudio_tec(estudiotec.getText());
         modificart.setA_experiencia_tec((int)exp.getValue());
         modificart.setReferencias_tec(ref.getText());
@@ -212,6 +212,7 @@ public class modificar_tec extends javax.swing.JFrame {
         modtecnico = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         Genero_combobox = new javax.swing.JComboBox<>();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -259,11 +260,11 @@ public class modificar_tec extends javax.swing.JFrame {
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 160, -1, -1));
 
         jLabel9.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 12)); // NOI18N
-        jLabel9.setText("TIPO DE SANGRE : ");
+        jLabel9.setText("Cod_TIPO DE SANGRE : ");
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 250, -1, -1));
 
         jLabel10.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 12)); // NOI18N
-        jLabel10.setText("PAIS :");
+        jLabel10.setText("Cod_PAIS :");
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 290, -1, -1));
 
         jLabel11.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 12)); // NOI18N
@@ -319,6 +320,14 @@ public class modificar_tec extends javax.swing.JFrame {
         Genero_combobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una opcion", "Masculino", "Femenino" }));
         jPanel1.add(Genero_combobox, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 340, -1, -1));
 
+        jButton2.setText("Regresar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 500, -1, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -336,17 +345,23 @@ public class modificar_tec extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void modtecnicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modtecnicoActionPerformed
-        ObjectContainer BaseD = Db4o.openFile(Tecnico_vent.direccionBD);
+        ObjectContainer BaseD = Db4o.openFile(jose.INICIO.direccionBD);
         modificartecnico(BaseD);
         Cerrar_BD(BaseD);
         idtecnico.setEditable(true);
     }//GEN-LAST:event_modtecnicoActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        ObjectContainer BaseD = Db4o.openFile(Tecnico_vent.direccionBD);
+        ObjectContainer BaseD = Db4o.openFile(jose.INICIO.direccionBD);
         buscar(BaseD);
         Cerrar_BD(BaseD);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        this.dispose();
+        INICIO mostrar = new INICIO();
+        mostrar.setVisible(true);         // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -397,6 +412,7 @@ public class modificar_tec extends javax.swing.JFrame {
     private javax.swing.ButtonGroup generosrb;
     private javax.swing.JTextField idtecnico;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

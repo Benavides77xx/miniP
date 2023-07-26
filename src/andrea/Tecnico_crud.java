@@ -52,6 +52,7 @@ public class Tecnico_crud extends javax.swing.JFrame {
         edadtecnico = new javax.swing.JSpinner();
         exp = new javax.swing.JSpinner();
         Genero_combobox = new javax.swing.JComboBox<>();
+        jButton2 = new javax.swing.JButton();
 
         jLabel10.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 14)); // NOI18N
         jLabel10.setText("CORREO ELECTRONICO :");
@@ -162,6 +163,14 @@ public class Tecnico_crud extends javax.swing.JFrame {
         Genero_combobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una opcion", "Masculino", "Femenino" }));
         jPanel1.add(Genero_combobox, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 270, -1, -1));
 
+        jButton2.setText("Regresar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 50, -1, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -196,6 +205,12 @@ public class Tecnico_crud extends javax.swing.JFrame {
         
      
     }//GEN-LAST:event_jButton1MouseClicked
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        this.dispose();
+        INICIO mostrar = new INICIO();
+        mostrar.setVisible(true);         // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
     String id_tecnico="";
     String cedula="";
     String nombre="";
@@ -370,6 +385,7 @@ public class Tecnico_crud extends javax.swing.JFrame {
     private javax.swing.ButtonGroup generos;
     private javax.swing.JTextField idtecnico;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

@@ -10,6 +10,7 @@ import com.db4o.ObjectSet;
 import javax.swing.JOptionPane;
 import Clases.Ticket;
 import com.db4o.Db4o;
+import jose.INICIO;
 
 /**
  *
@@ -130,6 +131,11 @@ public class modif_tick extends javax.swing.JFrame {
         jPanel1.add(modbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 360, -1, -1));
 
         jButton2.setText("REGRESAR");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 360, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -230,6 +236,12 @@ public class modif_tick extends javax.swing.JFrame {
         baseDeDatos.close();
         }
     }//GEN-LAST:event_modbtnActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        this.dispose();
+        INICIO mostrar = new INICIO();
+        mostrar.setVisible(true);         // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

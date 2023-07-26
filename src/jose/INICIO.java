@@ -6,6 +6,7 @@
 package jose;
 
 import Freddy.*;
+import andrea.*;
   import com.db4o.Db4o;
   import com.db4o.ObjectContainer;
 public class INICIO extends javax.swing.JFrame {
@@ -45,6 +46,9 @@ public class INICIO extends javax.swing.JFrame {
         jMenu16 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
+        jMenuItem29 = new javax.swing.JMenuItem();
+        jMenuItem30 = new javax.swing.JMenuItem();
+        jMenuItem31 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenuItem18 = new javax.swing.JMenuItem();
         jMenuItem20 = new javax.swing.JMenuItem();
@@ -79,10 +83,22 @@ public class INICIO extends javax.swing.JFrame {
         jMenu24 = new javax.swing.JMenu();
         jMenu10 = new javax.swing.JMenu();
         jMenu12 = new javax.swing.JMenu();
+        jMenuItem32 = new javax.swing.JMenuItem();
+        jMenuItem33 = new javax.swing.JMenuItem();
+        jMenuItem34 = new javax.swing.JMenuItem();
         jMenu13 = new javax.swing.JMenu();
+        jMenuItem35 = new javax.swing.JMenuItem();
+        jMenuItem36 = new javax.swing.JMenuItem();
+        jMenuItem37 = new javax.swing.JMenuItem();
         jMenu14 = new javax.swing.JMenu();
         jMenu22 = new javax.swing.JMenu();
+        jMenuItem38 = new javax.swing.JMenuItem();
+        jMenuItem39 = new javax.swing.JMenuItem();
+        jMenuItem40 = new javax.swing.JMenuItem();
         jMenu23 = new javax.swing.JMenu();
+        jMenuItem41 = new javax.swing.JMenuItem();
+        jMenuItem42 = new javax.swing.JMenuItem();
+        jMenuItem43 = new javax.swing.JMenuItem();
 
         jCheckBoxMenuItem1.setSelected(true);
         jCheckBoxMenuItem1.setText("jCheckBoxMenuItem1");
@@ -176,6 +192,7 @@ public class INICIO extends javax.swing.JFrame {
         });
         jMenu3.add(jMenuItem24);
 
+        jMenu16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/licencias.png"))); // NOI18N
         jMenu16.setText("Certificacion");
 
         jMenuItem1.setText("Crear");
@@ -192,6 +209,31 @@ public class INICIO extends javax.swing.JFrame {
 
         jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/soporte-tecnico.png"))); // NOI18N
         jMenu4.setText("Tecnico");
+
+        jMenuItem29.setText("Crear");
+        jMenuItem29.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem29ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem29);
+
+        jMenuItem30.setText("Consultar y Eliminar");
+        jMenuItem30.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem30ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem30);
+
+        jMenuItem31.setText("Modificar");
+        jMenuItem31.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem31ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem31);
+
         Personas.add(jMenu4);
 
         jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/dueno-del-producto.png"))); // NOI18N
@@ -266,9 +308,11 @@ public class INICIO extends javax.swing.JFrame {
         });
         jMenu6.add(jMenuItem22);
 
+        jMenu17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/habilidad.png"))); // NOI18N
         jMenu17.setText("Especialidad");
         jMenu6.add(jMenu17);
 
+        jMenu19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/guardia-de-seguridad.png"))); // NOI18N
         jMenu19.setText("Control del guardia");
         jMenu6.add(jMenu19);
 
@@ -396,9 +440,11 @@ public class INICIO extends javax.swing.JFrame {
 
         jMenu2.add(jMenu9);
 
+        jMenu11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/cabina.png"))); // NOI18N
         jMenu11.setText("Puesto");
         jMenu2.add(jMenu11);
 
+        jMenu24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/area.png"))); // NOI18N
         jMenu24.setText("Area");
         jMenu2.add(jMenu24);
 
@@ -407,10 +453,62 @@ public class INICIO extends javax.swing.JFrame {
         jMenu10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/boleto (1).png"))); // NOI18N
         jMenu10.setText("Entradas");
 
+        jMenu12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/boleto (2).png"))); // NOI18N
         jMenu12.setText("Ticket");
+
+        jMenuItem32.setText("Crear");
+        jMenuItem32.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem32ActionPerformed(evt);
+            }
+        });
+        jMenu12.add(jMenuItem32);
+
+        jMenuItem33.setText("Consultar y Eliminar");
+        jMenuItem33.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem33ActionPerformed(evt);
+            }
+        });
+        jMenu12.add(jMenuItem33);
+
+        jMenuItem34.setText("Modificar");
+        jMenuItem34.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem34ActionPerformed(evt);
+            }
+        });
+        jMenu12.add(jMenuItem34);
+
         jMenu10.add(jMenu12);
 
+        jMenu13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/factura.png"))); // NOI18N
         jMenu13.setText("Tipo Ticket");
+
+        jMenuItem35.setText("Crear");
+        jMenuItem35.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem35ActionPerformed(evt);
+            }
+        });
+        jMenu13.add(jMenuItem35);
+
+        jMenuItem36.setText("Consultar y Eliminar");
+        jMenuItem36.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem36ActionPerformed(evt);
+            }
+        });
+        jMenu13.add(jMenuItem36);
+
+        jMenuItem37.setText("Modificar");
+        jMenuItem37.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem37ActionPerformed(evt);
+            }
+        });
+        jMenu13.add(jMenuItem37);
+
         jMenu10.add(jMenu13);
 
         jMenuBar1.add(jMenu10);
@@ -418,10 +516,62 @@ public class INICIO extends javax.swing.JFrame {
         jMenu14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/maquina-de-facturacion (1).png"))); // NOI18N
         jMenu14.setText("Facturacion");
 
+        jMenu22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/facturas.png"))); // NOI18N
         jMenu22.setText("Encuesta Factura");
+
+        jMenuItem38.setText("Crear");
+        jMenuItem38.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem38ActionPerformed(evt);
+            }
+        });
+        jMenu22.add(jMenuItem38);
+
+        jMenuItem39.setText("Consultar y Eliminar");
+        jMenuItem39.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem39ActionPerformed(evt);
+            }
+        });
+        jMenu22.add(jMenuItem39);
+
+        jMenuItem40.setText("Modificar");
+        jMenuItem40.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem40ActionPerformed(evt);
+            }
+        });
+        jMenu22.add(jMenuItem40);
+
         jMenu14.add(jMenu22);
 
+        jMenu23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/cuenta (1).png"))); // NOI18N
         jMenu23.setText("Detalle Factura");
+
+        jMenuItem41.setText("Crear");
+        jMenuItem41.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem41ActionPerformed(evt);
+            }
+        });
+        jMenu23.add(jMenuItem41);
+
+        jMenuItem42.setText("Consultar y Eliminar");
+        jMenuItem42.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem42ActionPerformed(evt);
+            }
+        });
+        jMenu23.add(jMenuItem42);
+
+        jMenuItem43.setText("Modificar");
+        jMenuItem43.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem43ActionPerformed(evt);
+            }
+        });
+        jMenu23.add(jMenuItem43);
+
         jMenu14.add(jMenu23);
 
         jMenuBar1.add(jMenu14);
@@ -594,6 +744,96 @@ public class INICIO extends javax.swing.JFrame {
         mostrar.setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem28ActionPerformed
 
+    private void jMenuItem29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem29ActionPerformed
+         this.dispose();
+        Tecnico_crud mostrar = new Tecnico_crud();
+        mostrar.setVisible(true);  
+    }//GEN-LAST:event_jMenuItem29ActionPerformed
+
+    private void jMenuItem30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem30ActionPerformed
+        this.dispose();
+        Tecnico_ConsultarEliminar mostrar = new Tecnico_ConsultarEliminar();
+        mostrar.setVisible(true); 
+    }//GEN-LAST:event_jMenuItem30ActionPerformed
+
+    private void jMenuItem31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem31ActionPerformed
+        this.dispose();
+        modificar_tec mostrar = new modificar_tec();
+        mostrar.setVisible(true); 
+    }//GEN-LAST:event_jMenuItem31ActionPerformed
+
+    private void jMenuItem32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem32ActionPerformed
+        this.dispose();
+        Ticket_crud mostrar = new Ticket_crud();
+        mostrar.setVisible(true); 
+    }//GEN-LAST:event_jMenuItem32ActionPerformed
+
+    private void jMenuItem33ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem33ActionPerformed
+       this.dispose();
+        Ticket_ConsultarEliminar mostrar = new Ticket_ConsultarEliminar();
+        mostrar.setVisible(true); 
+    }//GEN-LAST:event_jMenuItem33ActionPerformed
+
+    private void jMenuItem34ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem34ActionPerformed
+        this.dispose();
+        modif_tick mostrar = new modif_tick();
+        mostrar.setVisible(true); 
+    }//GEN-LAST:event_jMenuItem34ActionPerformed
+
+    private void jMenuItem35ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem35ActionPerformed
+        this.dispose();
+        TipoTicket_crud mostrar = new TipoTicket_crud();
+        mostrar.setVisible(true); 
+    }//GEN-LAST:event_jMenuItem35ActionPerformed
+
+    private void jMenuItem36ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem36ActionPerformed
+        this.dispose();
+        TipoTicket_ConsultarEliminar mostrar = new TipoTicket_ConsultarEliminar();
+        mostrar.setVisible(true); 
+    }//GEN-LAST:event_jMenuItem36ActionPerformed
+
+    private void jMenuItem37ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem37ActionPerformed
+        this.dispose();
+        modificar_tipotick mostrar = new modificar_tipotick();
+        mostrar.setVisible(true); 
+    }//GEN-LAST:event_jMenuItem37ActionPerformed
+
+    private void jMenuItem38ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem38ActionPerformed
+        this.dispose();
+        EncuestaFactura_crud mostrar = new EncuestaFactura_crud();
+        mostrar.setVisible(true); 
+    }//GEN-LAST:event_jMenuItem38ActionPerformed
+
+    private void jMenuItem39ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem39ActionPerformed
+        this.dispose();
+        EncuestaFactura_ConsultarEliminar mostrar = new EncuestaFactura_ConsultarEliminar();
+        mostrar.setVisible(true); 
+    }//GEN-LAST:event_jMenuItem39ActionPerformed
+
+    private void jMenuItem40ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem40ActionPerformed
+        this.dispose();
+        modificar_encuesta mostrar = new modificar_encuesta();
+        mostrar.setVisible(true); 
+    }//GEN-LAST:event_jMenuItem40ActionPerformed
+
+    private void jMenuItem41ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem41ActionPerformed
+        this.dispose();
+        DetalleFactura_crud mostrar = new DetalleFactura_crud();
+        mostrar.setVisible(true); 
+    }//GEN-LAST:event_jMenuItem41ActionPerformed
+
+    private void jMenuItem42ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem42ActionPerformed
+        this.dispose();
+        DetalleFactura_ConsultarEliminar mostrar = new DetalleFactura_ConsultarEliminar();
+        mostrar.setVisible(true); 
+    }//GEN-LAST:event_jMenuItem42ActionPerformed
+
+    private void jMenuItem43ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem43ActionPerformed
+        this.dispose();
+        modificar_detallef mostrar = new modificar_detallef();
+        mostrar.setVisible(true); 
+    }//GEN-LAST:event_jMenuItem43ActionPerformed
+
      /**
      * @param args the command line arguments
      */
@@ -679,8 +919,23 @@ public class INICIO extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem26;
     private javax.swing.JMenuItem jMenuItem27;
     private javax.swing.JMenuItem jMenuItem28;
+    private javax.swing.JMenuItem jMenuItem29;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem30;
+    private javax.swing.JMenuItem jMenuItem31;
+    private javax.swing.JMenuItem jMenuItem32;
+    private javax.swing.JMenuItem jMenuItem33;
+    private javax.swing.JMenuItem jMenuItem34;
+    private javax.swing.JMenuItem jMenuItem35;
+    private javax.swing.JMenuItem jMenuItem36;
+    private javax.swing.JMenuItem jMenuItem37;
+    private javax.swing.JMenuItem jMenuItem38;
+    private javax.swing.JMenuItem jMenuItem39;
     private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem40;
+    private javax.swing.JMenuItem jMenuItem41;
+    private javax.swing.JMenuItem jMenuItem42;
+    private javax.swing.JMenuItem jMenuItem43;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;

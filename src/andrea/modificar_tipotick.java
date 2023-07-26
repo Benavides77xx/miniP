@@ -5,9 +5,12 @@
  */
 package andrea;
 
+
+import Clases.Tipo_ticket;
 import com.db4o.*;
 import andrea.TipoTicket_crud;
 import javax.swing.JOptionPane;
+import jose.INICIO;
 /**
  *
  * @author Asus
@@ -51,28 +54,28 @@ public class modificar_tipotick extends javax.swing.JFrame {
         String IDAux;
         IDAux = codigott1.getText();
 
-        Tecnico_vent EAux = new Tecnico_vent();
+        TipoTicket_crud EAux = new TipoTicket_crud();
 
         if (codigott1.getText().isEmpty()) {
 
             JOptionPane.showMessageDialog(null, "Ingrese el codigo ");
         } else {
 
-            if (EAux.validar(based, IDAux) == 0) {
+            if (EAux.comprobarTipoTicket(based, IDAux) == 0) {
 
                 JOptionPane.showMessageDialog(null, "No existe ningunregistro con este codigo ");
                 limpiar();
 
             } else {
 
-                tipoticket Ebuscar = new tipoticket(IDAux, null,0);
+                Tipo_ticket Ebuscar = new Tipo_ticket(IDAux, null,0);
 
                 ObjectSet result = based.get(Ebuscar);
                 for (int i = 0; i < result.size(); i++) {
                     
-                    tipoticket miE = new tipoticket();
+                    Tipo_ticket miE = new Tipo_ticket();
                     
-                    miE = (tipoticket) result.get(i); 
+                    miE = (Tipo_ticket) result.get(i); 
                     
                     codigott1.setText(miE.getCodigo_tipo_ticket());
                     tipot1.setText(miE.getTipo_ticket());
@@ -92,10 +95,10 @@ public class modificar_tipotick extends javax.swing.JFrame {
      public void modificar_tipot(ObjectContainer based) {
 
         
-        tipoticket Emodi = new tipoticket(codigott1.getText(), null,0 );
+        Tipo_ticket Emodi = new Tipo_ticket(codigott1.getText(), null,0 );
         ObjectSet result = based.get(Emodi);
         
-        tipoticket Emodificar = (tipoticket) result.next();
+        Tipo_ticket Emodificar = (Tipo_ticket) result.next();
         
         Emodificar.setTipo_ticket(tipot1.getText());
         Emodificar.setCapacidad(Integer.parseInt(capacidadtt1.getText()));
@@ -166,6 +169,11 @@ public class modificar_tipotick extends javax.swing.JFrame {
         jPanel1.add(modificartt, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 250, -1, -1));
 
         jButton3.setText("REGRESAR ");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 250, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -187,17 +195,23 @@ public class modificar_tipotick extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void modificarttActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarttActionPerformed
-        ObjectContainer BaseD = Db4o.openFile(Tecnico_vent.direccionBD);
+        ObjectContainer BaseD = Db4o.openFile(jose.INICIO.direccionBD);
         modificar_tipot(BaseD);
         Cerrar_BD(BaseD);
         codigott1.setEditable(true);
     }//GEN-LAST:event_modificarttActionPerformed
 
     private void buscarttActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarttActionPerformed
-        ObjectContainer BaseD = Db4o.openFile(Tecnico_vent.direccionBD);
+        ObjectContainer BaseD = Db4o.openFile(jose.INICIO.direccionBD);
         buscar(BaseD);
         Cerrar_BD(BaseD);         
     }//GEN-LAST:event_buscarttActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        this.dispose();
+        INICIO mostrar = new INICIO();
+        mostrar.setVisible(true);         // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments

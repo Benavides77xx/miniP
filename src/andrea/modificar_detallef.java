@@ -5,11 +5,13 @@
  */
 package andrea;
 
+
 import Clases.Detalle_factura;
 import com.db4o.Db4o;
 import com.db4o.ObjectContainer;
 import com.db4o.ObjectSet;
 import javax.swing.JOptionPane;
+import jose.INICIO;
 
 /**
  *
@@ -61,21 +63,21 @@ public class modificar_detallef extends javax.swing.JFrame {
         String auxtick;
         auxtick = codigodt.getText();
 
-        DetalleFactura_crud auxtn = new DetalleFactura_crud();
+        Ticket_crud auxtn = new Ticket_crud();
 
         if (codigodt.getText().isEmpty()) {
 
             JOptionPane.showMessageDialog(null, "Ingrese el codigo ");
         } else {
 
-            if (auxtn.comprobarDT(BaseD,auxtick) == 0) {
+            if (auxtn.comprobarTipoTicket(BaseD,auxtick) == 0) {
 
                 JOptionPane.showMessageDialog(null, "No existe un registro con este código ");
                 limpiar();
 
             } else {
 
-                Detalle_factura buscartc = new Detalle_factura(auxtick, 0,0, null,null);
+                Detalle_factura buscartc = new Detalle_factura(auxtick,0,0,null,null);
 
                 ObjectSet result = BaseD.get(buscartc);
                 for (int i = 0; i < result.size(); i++) {
@@ -105,7 +107,7 @@ public class modificar_detallef extends javax.swing.JFrame {
     
    
     public static int validar(ObjectContainer BaseD, String cod_det_fac) {
-        Detalle_factura buscartic = new Detalle_factura (cod_det_fac, 0,0,null,null);
+        Detalle_factura buscartic = new Detalle_factura (cod_det_fac,0,0,null,null);
         ObjectSet result = BaseD.get(buscartic);
         return result.size();
     }
@@ -194,6 +196,11 @@ public class modificar_detallef extends javax.swing.JFrame {
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 90, -1, -1));
 
         jButton3.setText("REGRESAR ");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 380, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -226,7 +233,7 @@ public class modificar_detallef extends javax.swing.JFrame {
         String auxtick;
         auxtick = codigodt.getText();
 
-        Detalle_fa auxtn = new Detalle_factura();
+        DetalleFactura_crud auxtn = new DetalleFactura_crud();
 
         if (codigodt.getText().isEmpty()) {
 
@@ -240,20 +247,20 @@ public class modificar_detallef extends javax.swing.JFrame {
 
             } else {
 
-                Detalle_factura buscartc = new Detalle_factura(auxtick ,0,0, null,null);
+                Detalle_factura buscartc = new Detalle_factura(auxtick, 0,0,null,null);
 
                 ObjectSet result = baseDeDatos.get(buscartc);
                 for (int i = 0; i < result.size(); i++) {
 
-                    detallefactura tick = new detallefactura();
+                    Detalle_factura tick = new Detalle_factura();
 
-                    tick = (detallefactura) result.get(i);
+                    tick = (Detalle_factura) result.get(i);
 
                     codigodt.setText(tick.getCod_det_fact());
-                    numerodt.setText(String.valueOf(tick.getCan_ticket()));
+                    numerodt.setText(String.valueOf(tick.getCantidad_ticket()));
                     codigo2dt.setText(tick.getCodigo_ticket());
                     subtdt.setText(String.valueOf(tick.getSub_total()));
-                    codigo3dt.setText(tick.getCodigo_fact());
+                    codigo3dt.setText(tick.getCodigo_enc_fact());
 
                     modbtn.setEnabled(true); 
                     HabilitarCampos_deTexto();
@@ -273,15 +280,15 @@ public class modificar_detallef extends javax.swing.JFrame {
 
     private void modbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modbtnActionPerformed
         
-        ObjectContainer baseDeDatos = Db4o.openFile(Tecnico_vent.direccionBD);
+        ObjectContainer baseDeDatos = Db4o.openFile(jose.INICIO.direccionBD);
         try{
             
-        detallefactura modif_tick = new detallefactura(codigodt.getText(),0,null,0.0,null);
+        Detalle_factura modif_tick = new Detalle_factura(codigodt.getText(),0,0,null,null);
         ObjectSet result = baseDeDatos.get(modif_tick);
         
-        detallefactura tickm = (detallefactura) result.next();
+        Detalle_factura tickm = (Detalle_factura) result.next();
         tickm.setSub_total(Double.parseDouble(subtdt.getText()));
-        tickm.setCan_ticket(Integer.parseInt(numerodt.getText()));
+        tickm.setCantidad_ticket(Integer.parseInt(numerodt.getText()));
         
         
         ;
@@ -294,6 +301,12 @@ public class modificar_detallef extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_modbtnActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        this.dispose();
+        INICIO mostrar = new INICIO();
+        mostrar.setVisible(true);         // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments

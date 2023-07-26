@@ -233,7 +233,9 @@ public class Juego_ConsultarEliminar extends javax.swing.JFrame {
     }//GEN-LAST:event_tablaConsultarMouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
+        INICIO mostrar = new INICIO();
+        mostrar.setVisible(true); 
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
