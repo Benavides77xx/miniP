@@ -112,6 +112,11 @@ public class Especialidad_CRUD extends javax.swing.JFrame {
         jButton2.setBackground(new java.awt.Color(255, 102, 51));
         jButton2.setText("Regresar");
         jButton2.setBorderPainted(false);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 470, 290, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -138,6 +143,12 @@ public class Especialidad_CRUD extends javax.swing.JFrame {
     private void txtIdGuardiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdGuardiaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIdGuardiaActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        INICIO ini = new INICIO();
+        ini.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

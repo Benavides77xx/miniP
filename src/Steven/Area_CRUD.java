@@ -125,6 +125,11 @@ public class Area_CRUD extends javax.swing.JFrame {
         jButton2.setBackground(new java.awt.Color(255, 102, 51));
         jButton2.setText("Regresar");
         jButton2.setBorderPainted(false);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 470, 290, 30));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -187,6 +192,12 @@ public class Area_CRUD extends javax.swing.JFrame {
     private void txtCod_puestoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCod_puestoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCod_puestoActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        INICIO ini = new INICIO();
+        ini.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

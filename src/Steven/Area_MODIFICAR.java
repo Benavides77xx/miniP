@@ -122,6 +122,11 @@ public class Area_MODIFICAR extends javax.swing.JFrame {
         jButton3.setText("Regresar");
         jButton3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jButton3.setContentAreaFilled(false);
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 550, 130, 40));
 
         txtnombre.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -221,6 +226,12 @@ public class Area_MODIFICAR extends javax.swing.JFrame {
     private void txtCod_puestoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCod_puestoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCod_puestoActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        INICIO ini = new INICIO();
+        ini.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
