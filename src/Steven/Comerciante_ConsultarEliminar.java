@@ -56,16 +56,13 @@ public class Comerciante_ConsultarEliminar extends javax.swing.JFrame {
     }
 
     public void MostrarDatos(ObjectSet result) {
-
-        String matrizes[][] = new String[result.size()][7];
+        String matrizes[][] = new String[result.size()][13];
 
         if (result.size() == 0) {
-            JOptionPane.showMessageDialog(null, "El Area no existe");
+            JOptionPane.showMessageDialog(null, "El Comerciante no existe");
         } else {
             for (int i = 0; i < result.size(); i++) {
-                Comerciante miObjeto = new Comerciante();
-
-                miObjeto = (Comerciante) result.get(i);
+                Comerciante miObjeto = (Comerciante) result.get(i);
                 matrizes[i][0] = miObjeto.getId_comerciante();
                 matrizes[i][1] = String.valueOf(miObjeto.getAños_exp());
                 matrizes[i][2] = String.valueOf(miObjeto.getNum_ventas());
@@ -79,10 +76,10 @@ public class Comerciante_ConsultarEliminar extends javax.swing.JFrame {
                 matrizes[i][10] = miObjeto.getCorreo();
                 matrizes[i][11] = miObjeto.getCodigo_tipo_sangre();
                 matrizes[i][12] = miObjeto.getCodigo_pais();
-
-                tablaConsultar.setModel(new javax.swing.table.DefaultTableModel(matrizes, new String[]{"*Id_Comerciante", "Años de experiencia",
-                    "Numero de ventas", "Cedula", "Nombre", "Apellido", "Edad", "Genero", "Celular", "Fecha Nacimiento", "Correo", "Cod TipoSangre", "Cod Pais"}));
             }
+
+            tablaConsultar.setModel(new javax.swing.table.DefaultTableModel(matrizes, new String[]{"*Id_Comerciante", "Años de experiencia",
+                "Numero de ventas", "Cedula", "Nombre", "Apellido", "Edad", "Genero", "Celular", "Fecha Nacimiento", "Correo", "Cod TipoSangre", "Cod Pais"}));
         }
     }
 
@@ -101,9 +98,9 @@ public class Comerciante_ConsultarEliminar extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         txtCodigo = new javax.swing.JTextField();
         btnEliminar = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tablaConsultar = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tablaConsultar = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -150,16 +147,6 @@ public class Comerciante_ConsultarEliminar extends javax.swing.JFrame {
         });
         jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 130, 40, 30));
 
-        tablaConsultar.getTableHeader().setReorderingAllowed(false);
-        tablaConsultar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tablaConsultarMouseClicked(evt);
-            }
-        });
-        jScrollPane1.setViewportView(tablaConsultar);
-
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 240, 700, 140));
-
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Regresar.png"))); // NOI18N
         jButton1.setText("Regresar");
         jButton1.setContentAreaFilled(false);
@@ -169,6 +156,21 @@ public class Comerciante_ConsultarEliminar extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 420, -1, -1));
+
+        tablaConsultar.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(tablaConsultar);
+
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 870, 170));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -245,11 +247,6 @@ public class Comerciante_ConsultarEliminar extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnEliminarActionPerformed
 
-    private void tablaConsultarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaConsultarMouseClicked
-        int i = tablaConsultar.getSelectedRow();
-        txtCodigo.setText(tablaConsultar.getValueAt(i, 0).toString());
-    }//GEN-LAST:event_tablaConsultarMouseClicked
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         INICIO ini = new INICIO();
         ini.setVisible(true);
@@ -299,7 +296,7 @@ public class Comerciante_ConsultarEliminar extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tablaConsultar;
     private javax.swing.JTextField txtCodigo;
     // End of variables declaration//GEN-END:variables

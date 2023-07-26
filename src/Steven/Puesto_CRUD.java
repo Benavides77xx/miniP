@@ -226,11 +226,11 @@ public class Puesto_CRUD extends javax.swing.JFrame {
     }
 
     public void crearPuesto(ObjectContainer basep) {
-
+        asignarVariables(basep);
         boolean error = false;
         if (comprobarPuesto(basep, cod_puesto) != 0) {
             error = true;
-            JOptionPane.showMessageDialog(this, "Ya existe una area con este codigo", "ERROR", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Ya existe una Puesto con este codigo", "ERROR", JOptionPane.ERROR_MESSAGE);
         } else if (comprobarComerciante(basep, id_comerciante) == 0) {
         error = true;
         JOptionPane.showMessageDialog(null, "No existe ningun comerciante registrado con este codigo", "Error (Reglas de integridad)", JOptionPane.ERROR_MESSAGE);

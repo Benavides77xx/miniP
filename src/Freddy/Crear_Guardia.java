@@ -97,7 +97,7 @@ public class Crear_Guardia extends javax.swing.JFrame {
         } else {
             Ced_Taquillero.setText("");
         }
-        if (comprobarID(BaseD, id_guardia_per)) {
+        if (!comprobarID(BaseD, id_guardia_per)) {
             error = true;
             JOptionPane.showMessageDialog(this, "Ya existe un Guardia con este ID registrado", "ERROR", JOptionPane.ERROR_MESSAGE);
         } else {

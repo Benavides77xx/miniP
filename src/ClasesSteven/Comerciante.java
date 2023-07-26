@@ -17,9 +17,9 @@ public class Comerciante extends Persona {
     private String id_comerciante;
     private int años_exp;
     private int num_ventas;
-    
 
     public Comerciante() {
+        super();
     }
 
     public Comerciante(String id_comerciante, int años_exp, int num_ventas, String cedula_per, String nombre_per, String Apellido, int edad_per, String genero, String celular_per, Date fecha_nac, String correo, String codigo_tipo_sangre, String codigo_pais) {
@@ -29,7 +29,7 @@ public class Comerciante extends Persona {
         this.num_ventas = num_ventas;
     }
 
-  
+    
 
     public String getId_comerciante() {
         return id_comerciante;
@@ -59,7 +59,5 @@ public class Comerciante extends Persona {
     public String toString() {
         return "Comerciante{" + "id_comerciante=" + id_comerciante + ", a\u00f1os_exp=" + años_exp + ", num_ventas=" + num_ventas + '}';
     }
-
- 
 
 }

@@ -200,7 +200,7 @@ public class Negocio_CRUD extends javax.swing.JFrame {
     }
 
     public void crearNegocio(ObjectContainer basep) {
-
+        asignarVariables(basep);
         boolean error = false;
         if (comprobarNegocio(basep, cod_negocio) != 0) {
             error = true;

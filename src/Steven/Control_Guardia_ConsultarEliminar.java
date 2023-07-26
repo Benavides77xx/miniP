@@ -56,7 +56,7 @@ public class Control_Guardia_ConsultarEliminar extends javax.swing.JFrame {
 
     public void MostrarDatos(ObjectSet result) {
 
-        String matrizes[][] = new String[result.size()][7];
+        String matrizes[][] = new String[result.size()][5];
 
         if (result.size() == 0) {
             JOptionPane.showMessageDialog(null, "El Control de guadia no existe");

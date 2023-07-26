@@ -274,7 +274,7 @@ public class Tecnico_crud extends javax.swing.JFrame {
             } else {
                 cedtecnico.setText("");
             }       
-            if (comprobarID(BaseD,id_tecnico)) {
+            if (!comprobarID(BaseD,id_tecnico)) {
                 error = true;
                 JOptionPane.showMessageDialog(this, "Ya existe un Tecnico con este ID registrado","ERROR",0);
             } else{

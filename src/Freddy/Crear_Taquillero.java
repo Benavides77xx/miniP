@@ -467,7 +467,7 @@ public class Crear_Taquillero extends javax.swing.JFrame {
         } else {
             Ced_Taquillero.setText("");
         }
-        if (comprobarID(BaseD, idtaquillero)) {
+        if (!comprobarID(BaseD, idtaquillero)) {
             error = true;
             JOptionPane.showMessageDialog(this, "Ya existe un Taquillero con este ID registrado", "ERROR", JOptionPane.ERROR_MESSAGE);
         } else {

@@ -5,9 +5,13 @@
  */
 package Steven;
 
+import Clases.Pais;
 import Clases.Persona;
+import Clases.Tipo_sangre;
 import ClasesSteven.Comerciante;
 import static Freddy.Crear_Guardia.comprobarCedula;
+import static andrea.Tecnico_crud.comprobarPais;
+import static andrea.Tecnico_crud.comprobarTS;
 import com.db4o.Db4o;
 import com.db4o.ObjectContainer;
 import com.db4o.ObjectSet;
@@ -24,8 +28,7 @@ public class Comerciante_CRUD extends javax.swing.JFrame {
 
     String id_comerciante;
     int años_exp;
-    int num_ventas;
-    String cedula_per;
+    int num_ventas;    
     String Cedula_per = "";
     String nombre_per = "";
     String apellido_per = "";
@@ -326,7 +329,7 @@ public class Comerciante_CRUD extends javax.swing.JFrame {
     }
 
     public void asignarVariables(ObjectContainer basep) {
-        cedula_per = txtCedulaPersona.getText();
+        Cedula_per = txtCedulaPersona.getText();
         nombre_per = txtNombre.getText();
         apellido_per = txtApellido.getText();
         edad_per = (Integer) txtEdad.getValue();
@@ -360,20 +363,28 @@ public class Comerciante_CRUD extends javax.swing.JFrame {
     }
 
     public void crearComerciante(ObjectContainer basep) {
-
+        asignarVariables(basep);
         boolean error = false;
         if (comprobarComerciante(basep, id_comerciante) != 0) {
             error = true;
             JOptionPane.showMessageDialog(this, "Ya existe un comerciante con este codigo", "ERROR", JOptionPane.ERROR_MESSAGE);
-        } else if (comprobarCedula(basep, cedula_per)) {
+        } else if (comprobarCedula(basep, Cedula_per)) {
             error = true;
             JOptionPane.showMessageDialog(this, "Ya existe un comerciante con esta cédula registrada", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
-
+        if (comprobarTS(basep, tiposangre_per) == 0) {
+            error = true;
+            JOptionPane.showMessageDialog(null, "No existe ningun tipo de sangre con este codigo");
+        }
+        if (comprobarPais(basep, codigo_pais_per) == 0) {
+            error = true;
+            JOptionPane.showMessageDialog(null, "No existe ningun Pais con este codigo");
+        }
         if (!error) {
-            Comerciante crearC = new Comerciante(id_comerciante, años_exp, num_ventas, cedula_per, nombre_per, apellido_per, edad_per, genero_per, celular_per, fechanac_per, correo_per, codigo_pais_per, codigo_pais_per);
+            Comerciante crearC = new Comerciante(id_comerciante, años_exp, num_ventas, Cedula_per, nombre_per
+                    , apellido_per, edad_per, genero_per, celular_per, fechanac_per, correo_per, tiposangre_per, codigo_pais_per);
             basep.set(crearC);
-            JOptionPane.showMessageDialog(null, "Area registrada");
+            JOptionPane.showMessageDialog(null, "Comerciante registrado");
             LimpiarCampos();
         }
 
@@ -385,12 +396,24 @@ public class Comerciante_CRUD extends javax.swing.JFrame {
         return result.size();
     }
 
+    public static int comprobarTS(ObjectContainer basep, String codigo_tipo_sangre) {
+
+        ObjectSet result = basep.get(new Tipo_sangre(codigo_tipo_sangre, null, 0));
+        return result.size();
+    }
+
     public static boolean comprobarCedula(ObjectContainer BaseD, String Cedula_per_due) {
         Query query = BaseD.query();
         query.constrain(Persona.class);
         query.descend("cedula_per").constrain(Cedula_per_due).equal();
         ObjectSet result = query.execute();
         return !result.isEmpty();
+    }
+
+    public static int comprobarPais(ObjectContainer basep, String codigo_pais_per_taq) {
+
+        ObjectSet result = basep.get(new Pais(codigo_pais_per_taq, null, 0));
+        return result.size();
     }
 
     public static void Cerrar_BD(ObjectContainer basep) {

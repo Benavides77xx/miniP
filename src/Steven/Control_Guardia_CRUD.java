@@ -221,7 +221,7 @@ public class Control_Guardia_CRUD extends javax.swing.JFrame {
     }
 
     public void crearControl(ObjectContainer basep) {
-
+        asignarVariables(basep);
         boolean error = false;
         if (comprobarControl(basep, cod_control_gua) != 0) {
             error = true;
@@ -236,7 +236,7 @@ public class Control_Guardia_CRUD extends javax.swing.JFrame {
         if (!error) {
             Control_guardia crearC = new Control_guardia(cod_control_gua, fecha, descripcion, id_guardia, cod_area);
             basep.set(crearC);
-            JOptionPane.showMessageDialog(null, "Negocio registrado");
+            JOptionPane.showMessageDialog(null, "Control registrado");
             LimpiarCampos();
         }
 

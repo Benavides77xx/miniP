@@ -259,7 +259,7 @@ public class Area_CRUD extends javax.swing.JFrame {
     }
 
     public void crearArea(ObjectContainer basep) {
-
+        asignarVariables(basep);
         boolean error = false;
         if (comprobarArea(basep, cod_area) != 0) {
             error = true;

@@ -94,7 +94,7 @@ public class Crear_Cliente extends javax.swing.JFrame {
         } else {
             Ced_Taquillero.setText("");
         }
-        if (comprobarID(BaseD, id_cliente_per)) {
+        if (!comprobarID(BaseD, id_cliente_per)) {
             error = true;
             JOptionPane.showMessageDialog(this, "Ya existe un Cliente con este ID registrado", "ERROR", 0);
         } else {

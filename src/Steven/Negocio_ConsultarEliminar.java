@@ -55,7 +55,7 @@ public class Negocio_ConsultarEliminar extends javax.swing.JFrame {
 
     public void MostrarDatos(ObjectSet result) {
 
-        String matrizes[][] = new String[result.size()][7];
+        String matrizes[][] = new String[result.size()][4];
 
         if (result.size() == 0) {
             JOptionPane.showMessageDialog(null, "El Negocio no existe");
