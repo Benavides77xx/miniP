@@ -5,6 +5,7 @@
  */
 package Steven;
 
+import Clases.Guardia;
 import ClasesSteven.Especialidad;
 import com.db4o.Db4o;
 import com.db4o.ObjectContainer;
@@ -36,14 +37,14 @@ public class Especialidad_ConsultarEliminar extends javax.swing.JFrame {
         } else {
 
             if (BuscarOpcion.getSelectedIndex() == 1) {
-                Especialidad buscar = new Especialidad(null, null, null, null);
+                Especialidad buscar = new Especialidad(null, null, null);
                 ObjectSet result = basep.get(buscar);
                 MostrarDatos(result);
 
             } else {
                 if (BuscarOpcion.getSelectedIndex() == 2) {
                     String codigo_especialidad = JOptionPane.showInputDialog("INGRESE EL CODIGO A CONSULTAR");
-                    Especialidad buscar = new Especialidad(codigo_especialidad, null, null, null);
+                    Especialidad buscar = new Especialidad(codigo_especialidad, null, null);
                     ObjectSet result = basep.get(buscar);
                     MostrarDatos(result);
                 }
@@ -55,7 +56,7 @@ public class Especialidad_ConsultarEliminar extends javax.swing.JFrame {
 
     public void MostrarDatos(ObjectSet result) {
 
-        String matrizes[][] = new String[result.size()][4];
+        String matrizes[][] = new String[result.size()][3];
 
         if (result.size() == 0) {
             JOptionPane.showMessageDialog(null, "La Especialidad no existe");
@@ -67,7 +68,7 @@ public class Especialidad_ConsultarEliminar extends javax.swing.JFrame {
                 matrizes[i][0] = miObjeto.getCod_especialidad();
                 matrizes[i][1] = miObjeto.getNombre_esp();
                 matrizes[i][2] = miObjeto.getDescripcion();
-                matrizes[i][3] = miObjeto.getId_guardia();
+               
 
                 tablaConsultar.setModel(new javax.swing.table.DefaultTableModel(matrizes, new String[]{"*Cod_Especialidad", "NOmbre",
                     "Descrición", "Id_Guardia"}));
@@ -206,9 +207,16 @@ public class Especialidad_ConsultarEliminar extends javax.swing.JFrame {
         ObjectContainer baseDeDatos = Db4o.openFile(INICIO.direccionBD);
 
         try {
+            
+              Guardia cass2 = new Guardia(null, 0, false, null, null, null, null, 0, null, null, null, null, null, null );
+            ObjectSet result2 = baseDeDatos.get(cass2);
+            if (result2.size() > 0) {
+                JOptionPane.showMessageDialog(this, "No se puede eliminar el guardia, ya que existen Especialidades asociadas","ERROR",0);
+                return;
+            }
 
             // Busca el Especialidad a eliminar
-            Especialidad revisar = new Especialidad(codigo_especialidad, null, null, null);
+            Especialidad revisar = new Especialidad(codigo_especialidad, null, null);
             ObjectSet cassResult = baseDeDatos.get(revisar);
 
             if (cassResult.size() == 0) {

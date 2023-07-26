@@ -72,5 +72,6 @@ public class Guardia extends Persona {
     public String toString() {
         return "Guardia{" + "id_guardia=" + id_guardia + ", a\u00f1os_expreriencia=" + años_expreriencia + ", disponibilidad=" + disponibilidad + ", cod_especialidad=" + cod_especialidad + '}';
     }
+ 
 
 }
