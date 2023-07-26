@@ -94,7 +94,6 @@ public class Especialidad_ConsultarEliminar extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaConsultar = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -160,14 +159,6 @@ public class Especialidad_ConsultarEliminar extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 420, -1, -1));
-
-        jButton2.setText("Reporte");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 170, -1, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -249,12 +240,6 @@ public class Especialidad_ConsultarEliminar extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        Reporte_Grafico repor = new Reporte_Grafico();
-        repor.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -295,7 +280,6 @@ public class Especialidad_ConsultarEliminar extends javax.swing.JFrame {
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

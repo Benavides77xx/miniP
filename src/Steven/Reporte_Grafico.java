@@ -5,34 +5,60 @@
  */
 package Steven;
 
+import Clases.Encuesta_factura;
+import ClasesSteven.Area;
+import ClasesSteven.Comerciante;
+import ClasesSteven.Negocio;
+import ClasesSteven.Puesto;
+import com.db4o.Db4o;
+import com.db4o.ObjectContainer;
+import com.db4o.ObjectSet;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import jose.INICIO;
 import org.jfree.data.general.DefaultPieDataset;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
+import Clases.Juego;
 /**
  *
  * @author Steven Zhicay
  */
 public class Reporte_Grafico extends javax.swing.JFrame {
-
-    int dul = 20;
-    int car = 20;
-    int lac = 20;
-    int hid = 20;
-    int fru = 20;
+    
+    
+    
+   
 
     public Reporte_Grafico() {
         initComponents();
-        DefaultPieDataset datos = new DefaultPieDataset();
-        datos.setValue("Dulces y grasas", dul);
-        datos.setValue("Carne, huevos y pescado", car);
-        datos.setValue("Lacteos y frutos secos", lac);
-        datos.setValue("Hidratos de carbono", hid);
-        datos.setValue("Frutas y vegetales", fru);
+        setLocationRelativeTo(null);
+        ObjectContainer BaseD = Db4o.openFile(INICIO.direccionBD);  
+        //Areas
+        Area GAREA = new Area(null, null, null, 0, false, null, null, null);
+        ObjectSet result = BaseD.get(GAREA);
+        //Comerciantes
+        Comerciante GComer = new Comerciante(null, 0, 0, null);
+        ObjectSet resultCo = BaseD.get(GComer);
+        //Negocios
+        Negocio GNego = new Negocio(null, null, null);
+        ObjectSet resultNe = BaseD.get(GNego);
+        //Puesto
+        Puesto GPue = new Puesto(null, null, null, null, null, null);
+        ObjectSet resultPue = BaseD.get(GPue);
+        //Juegos
+        Juego GJue = new Juego(null, null, null, null, 0, 0, null);
+        ObjectSet resultJue = BaseD.get(GJue);
         
-        JFreeChart grafico_circular = ChartFactory.createPieChart("Piramide Alimenticia", datos, true, true, false);
+        DefaultPieDataset datos = new DefaultPieDataset();
+        datos.setValue("Areas", result.size());
+        datos.setValue("Comerciantes", resultCo.size());
+        datos.setValue("Negocios", resultNe.size());
+        datos.setValue("Puestos", resultPue.size());
+        datos.setValue("Juegos", resultJue.size());
+        
+        JFreeChart grafico_circular = ChartFactory.createPieChart("Reporte del parque", datos, true, true, false);
         ChartPanel panel = new ChartPanel(grafico_circular);
         panel.setMouseWheelEnabled(true);
         panel.setPreferredSize(new Dimension(543, 446));
@@ -42,8 +68,11 @@ public class Reporte_Grafico extends javax.swing.JFrame {
         
         pack();
         repaint();
+        Cerrar_BD(BaseD);
     }
-
+    public void Cerrar_BD(ObjectContainer BaseD) {
+        BaseD.close();
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -54,8 +83,11 @@ public class Reporte_Grafico extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel1.setBackground(new java.awt.Color(102, 102, 102));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -68,19 +100,44 @@ public class Reporte_Grafico extends javax.swing.JFrame {
             .addGap(0, 446, Short.MAX_VALUE)
         );
 
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Regresar.png"))); // NOI18N
+        jButton3.setText("Regresar");
+        jButton3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButton3.setContentAreaFilled(false);
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(222, 222, 222)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                .addComponent(jButton3)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        
+        INICIO ini = new INICIO();
+        ini.setVisible(true);
+        dispose();
+        
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -118,6 +175,7 @@ public class Reporte_Grafico extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton3;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

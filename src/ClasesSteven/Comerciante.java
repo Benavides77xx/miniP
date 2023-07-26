@@ -23,6 +23,13 @@ public class Comerciante extends Persona {
         super();
     }
 
+    public Comerciante(String id_comerciante, int años_exp, int num_ventas, String cod_negocio) {
+        this.id_comerciante = id_comerciante;
+        this.años_exp = años_exp;
+        this.num_ventas = num_ventas;
+        this.cod_negocio = cod_negocio;
+    }
+    
     public Comerciante(String id_comerciante, int años_exp, int num_ventas, String cod_negocio, String cedula_per, String nombre_per, String Apellido, int edad_per, String genero, String celular_per, Date fecha_nac, String correo, String codigo_tipo_sangre, String codigo_pais) {
         super(cedula_per, nombre_per, Apellido, edad_per, genero, celular_per, fecha_nac, correo, codigo_tipo_sangre, codigo_pais);
         this.id_comerciante = id_comerciante;

@@ -24,12 +24,13 @@ import Steven.Negocio_MODIFICAR;
 import Steven.Puesto_CRUD;
 import Steven.Puesto_ConsultarEliminar;
 import Steven.Puesto_MODIFICAR;
+import Steven.Reporte_Grafico;
 import andrea.*;
   import com.db4o.Db4o;
   import com.db4o.ObjectContainer;
 public class INICIO extends javax.swing.JFrame {
 
-  public static String direccionBD = ("C:\\Users\\jose\\Documents\\BaseMini\\BaseFinal.yap");//RUTA DE LA BASE DE DATOS
+  public static String direccionBD = ("C:\\Users\\Steven Zhicay\\Documents\\Base MINI PRO\\BaseFinal.yap");//RUTA DE LA BASE DE DATOS
 
     public INICIO() {
         initComponents();
@@ -139,6 +140,8 @@ public class INICIO extends javax.swing.JFrame {
         jMenuItem41 = new javax.swing.JMenuItem();
         jMenuItem42 = new javax.swing.JMenuItem();
         jMenuItem43 = new javax.swing.JMenuItem();
+        jMenu25 = new javax.swing.JMenu();
+        jMenuItem66 = new javax.swing.JMenuItem();
 
         jCheckBoxMenuItem1.setSelected(true);
         jCheckBoxMenuItem1.setText("jCheckBoxMenuItem1");
@@ -799,6 +802,20 @@ public class INICIO extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu14);
 
+        jMenu25.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Reporte Gr.png"))); // NOI18N
+        jMenu25.setText("Reporte Grafico");
+
+        jMenuItem66.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Gra pastel.png"))); // NOI18N
+        jMenuItem66.setText("Reporte del parque");
+        jMenuItem66.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem66ActionPerformed(evt);
+            }
+        });
+        jMenu25.add(jMenuItem66);
+
+        jMenuBar1.add(jMenu25);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -1197,6 +1214,12 @@ public class INICIO extends javax.swing.JFrame {
                 // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem65ActionPerformed
 
+    private void jMenuItem66ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem66ActionPerformed
+        Reporte_Grafico repo = new Reporte_Grafico();
+        repo.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jMenuItem66ActionPerformed
+
      /**
      * @param args the command line arguments
      */
@@ -1253,6 +1276,7 @@ public class INICIO extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu22;
     private javax.swing.JMenu jMenu23;
     private javax.swing.JMenu jMenu24;
+    private javax.swing.JMenu jMenu25;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
@@ -1323,6 +1347,7 @@ public class INICIO extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem63;
     private javax.swing.JMenuItem jMenuItem64;
     private javax.swing.JMenuItem jMenuItem65;
+    private javax.swing.JMenuItem jMenuItem66;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
