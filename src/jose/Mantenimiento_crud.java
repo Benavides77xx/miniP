@@ -39,6 +39,8 @@ public class Mantenimiento_crud extends javax.swing.JFrame {
         txtcodju.setText("");      
     }
         public void crearMantenimiento(ObjectContainer basep) {
+            
+            asignarVariables(basep);
             boolean error=false;
             if (comprobarMantenimiento(basep, codigo_mantenimiento) != 0) {
                 error = true;
@@ -142,15 +144,17 @@ public class Mantenimiento_crud extends javax.swing.JFrame {
         jPanel1.add(txtcodju, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 250, 190, 30));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Guardar.png"))); // NOI18N
+        jButton1.setText("Guardar");
         jButton1.setContentAreaFilled(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 330, -1, -1));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 330, -1, -1));
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Regresar.png"))); // NOI18N
+        jButton2.setText("Regresar");
         jButton2.setContentAreaFilled(false);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

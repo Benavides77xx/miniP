@@ -34,6 +34,8 @@ public class EncuestaFactura_crud extends javax.swing.JFrame {
     
     public void crearEF(ObjectContainer BaseD) {
         
+        asignarVariables(BaseD);
+        
          boolean error = false;
         if (comprobarEF(BaseD, Codigo_enc_fact) != 0) {
             error = true;

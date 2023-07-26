@@ -47,7 +47,8 @@ public class Juego_crud extends javax.swing.JFrame {
     }
     
     public void crearJuego(ObjectContainer basep){
-
+        
+        asignarVariables(basep);
         boolean error = false;
         if (comprobarJuego(basep, codigo_juego) != 0) {
             error = true;

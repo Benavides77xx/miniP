@@ -50,6 +50,8 @@ public class DetalleFactura_crud extends javax.swing.JFrame {
     
     public void crearDT(ObjectContainer BaseD) {
         
+        asignarVariables(BaseD);
+        
          boolean error = false;
         if (comprobarDT(BaseD, cod_det_fact) != 0) {
             error = true;

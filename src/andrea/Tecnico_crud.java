@@ -266,6 +266,7 @@ public class Tecnico_crud extends javax.swing.JFrame {
     }   
     
     public void creartecnico(ObjectContainer BaseD){
+        asignarVariables(BaseD);
         
            boolean error=false;
             if (comprobarCedula(BaseD, cedula)) {

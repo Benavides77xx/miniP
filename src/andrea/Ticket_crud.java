@@ -45,6 +45,7 @@ public class Ticket_crud extends javax.swing.JFrame {
      taquilleroid.setText("");
     }
     public void crearticket(ObjectContainer BaseD) {
+        asignarVariables(BaseD);
               boolean error=false;
             if (comprobarTicket(BaseD, codigo_ticket) != 0) {
                 error = true;
