@@ -50,7 +50,7 @@ public class Especialidad_MODIFICAR extends javax.swing.JFrame {
         txtnombre = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        txtIdGuardia1 = new javax.swing.JTextField();
+        txtIdGuardia = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -107,6 +107,11 @@ public class Especialidad_MODIFICAR extends javax.swing.JFrame {
         jButton3.setText("Regresar");
         jButton3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jButton3.setContentAreaFilled(false);
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 550, 130, 40));
 
         txtdescripcion.setColumns(20);
@@ -131,13 +136,13 @@ public class Especialidad_MODIFICAR extends javax.swing.JFrame {
         jLabel7.setText("*Id_guardia");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 440, -1, -1));
 
-        txtIdGuardia1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        txtIdGuardia1.addActionListener(new java.awt.event.ActionListener() {
+        txtIdGuardia.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtIdGuardia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtIdGuardia1ActionPerformed(evt);
+                txtIdGuardiaActionPerformed(evt);
             }
         });
-        jPanel1.add(txtIdGuardia1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 460, 190, 30));
+        jPanel1.add(txtIdGuardia, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 460, 190, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -166,9 +171,15 @@ public class Especialidad_MODIFICAR extends javax.swing.JFrame {
         txtcodC.setEditable(true);
     }//GEN-LAST:event_btnmodificarActionPerformed
 
-    private void txtIdGuardia1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdGuardia1ActionPerformed
+    private void txtIdGuardiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdGuardiaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtIdGuardia1ActionPerformed
+    }//GEN-LAST:event_txtIdGuardiaActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        INICIO ini = new INICIO();
+        ini.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -321,7 +332,6 @@ public class Especialidad_MODIFICAR extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jtable;
     private javax.swing.JTextField txtIdGuardia;
-    private javax.swing.JTextField txtIdGuardia1;
     private javax.swing.JTextField txtcodC;
     private javax.swing.JTextArea txtdescripcion;
     private javax.swing.JTextField txtnombre;

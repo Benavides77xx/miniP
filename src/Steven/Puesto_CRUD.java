@@ -113,6 +113,11 @@ public class Puesto_CRUD extends javax.swing.JFrame {
         jButton2.setBackground(new java.awt.Color(255, 102, 51));
         jButton2.setText("Regresar");
         jButton2.setBorderPainted(false);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 470, 290, 30));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -156,6 +161,12 @@ public class Puesto_CRUD extends javax.swing.JFrame {
         crearPuesto(BaseD);
         Cerrar_BD(BaseD);
     }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        INICIO ini = new INICIO();
+        ini.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
