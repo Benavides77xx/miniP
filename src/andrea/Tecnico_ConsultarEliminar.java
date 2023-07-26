@@ -106,7 +106,6 @@ public class Tecnico_ConsultarEliminar extends javax.swing.JFrame {
         busc = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablatec = new javax.swing.JTable();
-        jButton3 = new javax.swing.JButton();
         eleccion = new javax.swing.JComboBox<>();
         eliminarid = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -159,15 +158,10 @@ public class Tecnico_ConsultarEliminar extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tablatec);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 1170, 90));
-
-        jButton3.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 12)); // NOI18N
-        jButton3.setText("REGRESAR");
-        jButton3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 40, 90, 20));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 1170, 130));
 
         eleccion.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 10)); // NOI18N
-        eleccion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCION", "ID TAQUILLERO", "VER TODOS LOS REGISTROS" }));
+        eleccion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCION", "ID TECNICO", "VER TODOS LOS REGISTROS" }));
         eleccion.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
         jPanel1.add(eleccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, 170, 30));
         jPanel1.add(eliminarid, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 80, 210, -1));
@@ -305,7 +299,6 @@ public class Tecnico_ConsultarEliminar extends javax.swing.JFrame {
     private javax.swing.JTextField eliminarid;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

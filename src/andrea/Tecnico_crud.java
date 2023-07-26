@@ -158,7 +158,7 @@ public class Tecnico_crud extends javax.swing.JFrame {
         });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 410, 120, 30));
         jPanel1.add(edadtecnico, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 240, 70, -1));
-        jPanel1.add(exp, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 320, 40, -1));
+        jPanel1.add(exp, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 320, 60, -1));
 
         Genero_combobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una opcion", "Masculino", "Femenino" }));
         jPanel1.add(Genero_combobox, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 270, -1, -1));

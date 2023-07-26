@@ -134,7 +134,7 @@ public class Ticket_ConsultarEliminar extends javax.swing.JFrame {
         jLabel1.setToolTipText("");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 80, 340, 20));
 
-        eleccion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIÓN", "CÓDIGO TICKET", "VER TODOS" }));
+        eleccion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIÓN", "Codigo_ticket", "VER TODOS" }));
         jPanel1.add(eleccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 210, -1));
 
         eliminarcod.addActionListener(new java.awt.event.ActionListener() {

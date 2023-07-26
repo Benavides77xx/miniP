@@ -306,7 +306,9 @@ public class Consultar_Eliminar_Taquillero extends javax.swing.JFrame {
     }//GEN-LAST:event_eliminar_buttonActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
+        this.dispose();
+        jose.INICIO mostrar = new jose.INICIO();
+        mostrar.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

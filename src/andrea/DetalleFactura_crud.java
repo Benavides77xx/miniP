@@ -125,16 +125,16 @@ public class DetalleFactura_crud extends javax.swing.JFrame {
         jPanel1.add(subdt, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 14)); // NOI18N
-        jLabel4.setText("CÓDIGO  FACTURA : ");
+        jLabel4.setText("CÓDIGO  ENC FACTURA : ");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 14)); // NOI18N
         jLabel5.setText("CÓDIGO Det : ");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, -1, -1));
-        jPanel1.add(codigodt, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 100, 160, 30));
-        jPanel1.add(codigo2dt, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 250, 160, 30));
-        jPanel1.add(subtdt, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 200, 160, 30));
-        jPanel1.add(codigo3dt, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 290, 160, 30));
+        jPanel1.add(codigodt, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 90, 160, 30));
+        jPanel1.add(codigo2dt, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 250, 160, 30));
+        jPanel1.add(subtdt, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 200, 160, 30));
+        jPanel1.add(codigo3dt, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 290, 160, 30));
 
         btnguardar.setText("GUARDAR");
         btnguardar.addActionListener(new java.awt.event.ActionListener() {
@@ -151,7 +151,7 @@ public class DetalleFactura_crud extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 360, -1, -1));
-        jPanel1.add(numerodt, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 150, 160, 30));
+        jPanel1.add(numerodt, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 150, 160, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

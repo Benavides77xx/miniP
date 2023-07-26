@@ -132,7 +132,7 @@ public class Puesto_CRUD extends javax.swing.JFrame {
         jPanel1.add(txtTamaño, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 100, 200, 30));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel6.setText("Tamaño:");
+        jLabel6.setText("Horario laboral");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 140, -1, -1));
 
         cbxHorario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Matutino", "Vespertino", "Nocturno" }));
