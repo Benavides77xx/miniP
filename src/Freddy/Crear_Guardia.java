@@ -42,6 +42,7 @@ public class Crear_Guardia extends javax.swing.JFrame {
     int años_expreriencia_guar;
     boolean disponibilidad_guar;
     String especialidad_guar = "";
+    
 
     public void LimpiarCampos() {
 
@@ -75,7 +76,7 @@ public class Crear_Guardia extends javax.swing.JFrame {
         tiposangre_per_taq = tipo_sangre_txt.getText();
         id_guardia_per = id_guardia.getText();
         disponibilidad_guar = chxSi.isSelected();
-
+        codigo_pais_per_taq = pais_txt.getText();
         // Corregir la asignación de años_expreriencia_guar
         String añosExperienciaStr = años_experienca.getText();
         años_expreriencia_guar = !añosExperienciaStr.isEmpty() ? Integer.parseInt(añosExperienciaStr) : 0;
@@ -133,7 +134,7 @@ public class Crear_Guardia extends javax.swing.JFrame {
     public static boolean comprobarID(ObjectContainer BaseD, String id_guardia_per) {
         Query query = BaseD.query();
         query.constrain(Guardia.class);
-        query.descend("id_dueño").constrain(id_guardia_per).equal();
+        query.descend("id_Guardia").constrain(id_guardia_per).equal();
         ObjectSet result = query.execute();
         return !result.isEmpty();
     }
