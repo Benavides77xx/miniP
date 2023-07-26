@@ -265,12 +265,12 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel10">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Tipo Sangre"/>
+            <Property name="text" type="java.lang.String" value="cod Tipo Sangre"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel11">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Pais"/>
+            <Property name="text" type="java.lang.String" value="cod Pais"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel12">
@@ -300,6 +300,9 @@
         <Component class="javax.swing.JTextField" name="ape_tequillero">
         </Component>
         <Component class="javax.swing.JTextField" name="edad_taquillero">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="edad_taquilleroActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="cel_taquillero">
         </Component>

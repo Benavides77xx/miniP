@@ -5,6 +5,7 @@
  */
 package Steven;
 
+import ClasesSteven.Comerciante;
 import ClasesSteven.Negocio;
 import com.db4o.Db4o;
 import com.db4o.ObjectContainer;
@@ -198,7 +199,13 @@ public class Negocio_ConsultarEliminar extends javax.swing.JFrame {
 
         try {
             
-            
+            //verifica si tiene comerciantes asociados     
+              Comerciante cass2 = new Comerciante(null, 0, 0, codigo_negocio, null, null, null,0,null,null,null,null,null,null );
+            ObjectSet result2 = baseDeDatos.get(cass2);
+            if (result2.size() > 0) {
+                JOptionPane.showMessageDialog(this, "No se puede eliminar el negocio ya que tiene comerciantes asociados","ERROR",0);
+                return;
+            }
 
             // Busca el Negocio a eliminar
             Negocio revisar = new Negocio(codigo_negocio, null, null);

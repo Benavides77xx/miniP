@@ -92,6 +92,9 @@ public class Modificar_Taquillero extends javax.swing.JFrame {
                     //Hacer editable los campos de texto
                     
                     HabilitarCampos_deTexto();
+                    
+                    pais_txt.setEditable(false);
+                    tipo_sangre_txt.setEditable(false);
                     id_taquillero.setEditable(false);
                     Ced_Taquillero.setEditable(false);
 
@@ -234,9 +237,9 @@ public class Modificar_Taquillero extends javax.swing.JFrame {
 
         jLabel9.setText("Correo");
 
-        jLabel10.setText("Cod Tipo Sangre");
+        jLabel10.setText("cod Cod Tipo Sangre");
 
-        jLabel11.setText("Pais");
+        jLabel11.setText("cod Pais");
 
         jLabel12.setText("ID Taquillero");
 
@@ -330,7 +333,7 @@ public class Modificar_Taquillero extends javax.swing.JFrame {
                                         .addComponent(jLabel17)
                                         .addGap(18, 18, 18)
                                         .addComponent(recom_taquillero, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addContainerGap(62, Short.MAX_VALUE))))
+                                .addContainerGap())))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel7)
@@ -349,7 +352,7 @@ public class Modificar_Taquillero extends javax.swing.JFrame {
                                         .addComponent(fechaNa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                     .addGap(480, 480, 480))
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                    .addGap(0, 0, Short.MAX_VALUE)
+                                    .addGap(0, 50, Short.MAX_VALUE)
                                     .addComponent(Modificarjb, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(30, 30, 30)
                                     .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)

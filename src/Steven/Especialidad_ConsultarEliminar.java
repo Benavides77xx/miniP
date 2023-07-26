@@ -71,7 +71,7 @@ public class Especialidad_ConsultarEliminar extends javax.swing.JFrame {
                
 
                 tablaConsultar.setModel(new javax.swing.table.DefaultTableModel(matrizes, new String[]{"*Cod_Especialidad", "NOmbre",
-                    "Descrición", "Id_Guardia"}));
+                    "Descrición"}));
             }
         }
     }
@@ -208,10 +208,10 @@ public class Especialidad_ConsultarEliminar extends javax.swing.JFrame {
 
         try {
             
-              Guardia cass2 = new Guardia(null, 0, false, null, null, null, null, 0, null, null, null, null, null, null );
+              Guardia cass2 = new Guardia(null, 0, false, codigo_especialidad, null, null, null, 0, null, null, null, null, null, null );
             ObjectSet result2 = baseDeDatos.get(cass2);
             if (result2.size() > 0) {
-                JOptionPane.showMessageDialog(this, "No se puede eliminar el guardia, ya que existen Especialidades asociadas","ERROR",0);
+                JOptionPane.showMessageDialog(this, "No se puede eliminar la especialidad, ya que existen guardias asociados","ERROR",0);
                 return;
             }
 

@@ -88,6 +88,8 @@ public class Modificar_Dueño extends javax.swing.JFrame {
                     //Hacer editable los campos de texto
                     
                     HabilitarCampos_deTexto();
+                    tipo_sangre_txt.setEditable(false);
+                    pais_txt.setEditable(false);
                     id_dueño.setEditable(false);
                     Ced_Taquillero.setEditable(false);
 
@@ -229,9 +231,9 @@ public class Modificar_Dueño extends javax.swing.JFrame {
 
         jLabel9.setText("Correo");
 
-        jLabel10.setText("Tipo Sangre");
+        jLabel10.setText("cod Tipo Sangre");
 
-        jLabel11.setText("Pais");
+        jLabel11.setText("cod Pais");
 
         jLabel12.setText("ID Dueño");
 
@@ -240,6 +242,12 @@ public class Modificar_Dueño extends javax.swing.JFrame {
         jLabel15.setText("Años Experiencia");
 
         jLabel16.setText("Habilidades finacieras");
+
+        edad_taquillero.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                edad_taquilleroActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("BUSCAR");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -434,6 +442,10 @@ public class Modificar_Dueño extends javax.swing.JFrame {
         jose.INICIO mostrar = new jose.INICIO();
         mostrar.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void edad_taquilleroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edad_taquilleroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_edad_taquilleroActionPerformed
 
     /**
      * @param args the command line arguments

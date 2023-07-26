@@ -183,23 +183,31 @@ public class Negocio_CRUD extends javax.swing.JFrame {
 
     public void crearNegocio(ObjectContainer basep) {
         asignarVariables(basep);
-        boolean error = false;
-        if (comprobarNegocio(basep, cod_negocio) != 0) {
-            error = true;
-            JOptionPane.showMessageDialog(this, "Ya existe un negocio con este codigo", "ERROR", JOptionPane.ERROR_MESSAGE);
-        } else if (comprobarComerciante(basep, id_comerciante) == 0) {
-            error = true;
-            JOptionPane.showMessageDialog(null, "No existe ningun comerciante registrado con este codigo", "Error (Reglas de integridad)", JOptionPane.ERROR_MESSAGE);
-        }
         
-        if (!error) {
+        if (comprobarNegocio(basep, cod_negocio) == 0) {
             Negocio crearE = new Negocio(cod_negocio, tipo_negocio, descripcion);
             basep.set(crearE);
             JOptionPane.showMessageDialog(null, "Negocio registrado");
             LimpiarCampos();
+           
+        }
+        else {
+             JOptionPane.showMessageDialog(this, "Ya existe un negocio con este codigo", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
 
+
     }
+    //          asignarVariables(basep);
+//        
+//            if (comprobarTS(basep, codigo_tipo_sangre) == 0) {
+//                Tipo_sangre Tpnuevo = new Tipo_sangre(codigo_tipo_sangre, tipo_sangre, porcentaje_personas);
+//                basep.set(Tpnuevo);
+//                JOptionPane.showMessageDialog(null, "Tipo sangre registrado correctamente");
+//                LimpiarCampos();
+//            } else {
+//                JOptionPane.showMessageDialog(this, "Este tipo de sangre con este codigo ya existe", "ERROR", 0);
+//            }
+//    }    
 
     public static int comprobarNegocio(ObjectContainer basep, String cod_negocio) {
         Negocio buscarE = new Negocio(cod_negocio, null, null);
@@ -207,10 +215,7 @@ public class Negocio_CRUD extends javax.swing.JFrame {
         return result.size();
     }
 
-    public static int comprobarComerciante(ObjectContainer basep, String id_comerciante) {
-        ObjectSet result = basep.get(new Comerciante(id_comerciante, 0, 0, null, null, null, null, 0, null, null, null, null, null, null));
-        return result.size();
-    }
+
     
     public static void Cerrar_BD(ObjectContainer basep) {
         basep.close();
