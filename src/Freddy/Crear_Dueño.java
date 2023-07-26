@@ -96,7 +96,7 @@ public class Crear_Dueño extends javax.swing.JFrame {
         } else {
             Ced_Taquillero.setText("");
         }
-        if (!comprobarID(BaseD, codigo_dueño)) {
+        if (comprobarID(BaseD, codigo_dueño)) {
             error = true;
             JOptionPane.showMessageDialog(this, "Ya existe un Dueño con este ID registrado", "ERROR", JOptionPane.ERROR_MESSAGE);
         } else {

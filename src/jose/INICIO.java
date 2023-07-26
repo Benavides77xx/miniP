@@ -66,6 +66,8 @@ public class INICIO extends javax.swing.JFrame {
         jMenuItem24 = new javax.swing.JMenuItem();
         jMenu16 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem64 = new javax.swing.JMenuItem();
+        jMenuItem65 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem29 = new javax.swing.JMenuItem();
         jMenuItem30 = new javax.swing.JMenuItem();
@@ -266,6 +268,22 @@ public class INICIO extends javax.swing.JFrame {
             }
         });
         jMenu16.add(jMenuItem1);
+
+        jMenuItem64.setText("Consultar y eliminar");
+        jMenuItem64.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem64ActionPerformed(evt);
+            }
+        });
+        jMenu16.add(jMenuItem64);
+
+        jMenuItem65.setText("Modificar");
+        jMenuItem65.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem65ActionPerformed(evt);
+            }
+        });
+        jMenu16.add(jMenuItem65);
 
         jMenu3.add(jMenu16);
 
@@ -816,7 +834,10 @@ public class INICIO extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        // TODO add your handling code here:
+      this.dispose();
+        Crear_Certificaciones mostrar = new Crear_Certificaciones();
+        mostrar.setVisible(true);          
+        
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
@@ -1162,6 +1183,20 @@ public class INICIO extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jMenuItem63ActionPerformed
 
+    private void jMenuItem64ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem64ActionPerformed
+   this.dispose();
+        Consultar_Eliminar_Certificaciones mostrar = new Consultar_Eliminar_Certificaciones();
+        mostrar.setVisible(true);          
+                // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem64ActionPerformed
+
+    private void jMenuItem65ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem65ActionPerformed
+   this.dispose();
+        Modificiar_Certificaciones mostrar = new Modificiar_Certificaciones();
+        mostrar.setVisible(true);          
+                // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem65ActionPerformed
+
      /**
      * @param args the command line arguments
      */
@@ -1286,6 +1321,8 @@ public class INICIO extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem61;
     private javax.swing.JMenuItem jMenuItem62;
     private javax.swing.JMenuItem jMenuItem63;
+    private javax.swing.JMenuItem jMenuItem64;
+    private javax.swing.JMenuItem jMenuItem65;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;

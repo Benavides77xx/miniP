@@ -86,104 +86,67 @@ public class Crear_Taquillero extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(204, 204, 255));
 
         jLabel1.setFont(new java.awt.Font("DialogInput", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Taquillero");
 
         jLabel2.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Cedula");
 
         jLabel3.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Nombre");
 
         jLabel4.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Apellidos");
 
         jLabel5.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Edad");
 
         jLabel6.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Genero");
 
         jLabel7.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Celular");
 
         jLabel8.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("Fecha Nacimiento");
 
         jLabel9.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setText("Correo");
 
         jLabel10.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel10.setText("Tipo Sangre");
+        jLabel10.setText("Cod Tipo Sangre");
 
         jLabel11.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
         jLabel11.setText("Pais");
 
         jLabel12.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(0, 0, 0));
         jLabel12.setText("ID Taquillero");
 
         jLabel13.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(0, 0, 0));
         jLabel13.setText("*Cod Certificaciones");
 
         jLabel14.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(0, 0, 0));
         jLabel14.setText("Fecha Contratacion");
 
         jLabel15.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(0, 0, 0));
         jLabel15.setText("Estatus Empleo");
 
         jLabel16.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
-        jLabel16.setForeground(new java.awt.Color(0, 0, 0));
         jLabel16.setText("Salario");
 
         jLabel17.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
-        jLabel17.setForeground(new java.awt.Color(0, 0, 0));
         jLabel17.setText("Recomendaciones");
 
-        Ced_Taquillero.setBackground(new java.awt.Color(255, 255, 255));
-
-        nom_taquillero.setBackground(new java.awt.Color(255, 255, 255));
         nom_taquillero.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nom_taquilleroActionPerformed(evt);
             }
         });
 
-        ape_tequillero.setBackground(new java.awt.Color(255, 255, 255));
-
-        edad_taquillero.setBackground(new java.awt.Color(255, 255, 255));
-
-        cel_taquillero.setBackground(new java.awt.Color(255, 255, 255));
-
-        Correo_taquillero.setBackground(new java.awt.Color(255, 255, 255));
         Correo_taquillero.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Correo_taquilleroActionPerformed(evt);
             }
         });
-
-        id_taquillero.setBackground(new java.awt.Color(255, 255, 255));
-
-        Cerficacion_taquillero.setBackground(new java.awt.Color(255, 255, 255));
-
-        estatu_empleo_taquillero.setBackground(new java.awt.Color(255, 255, 255));
-
-        sal_taquillero.setBackground(new java.awt.Color(255, 255, 255));
-
-        recom_taquillero.setBackground(new java.awt.Color(255, 255, 255));
 
         jButton1.setText("INGRESAR");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -191,10 +154,6 @@ public class Crear_Taquillero extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-
-        tipo_sangre_txt.setBackground(new java.awt.Color(255, 255, 255));
-
-        pais_txt.setBackground(new java.awt.Color(255, 255, 255));
 
         Genero_combobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una opcion", "Masculino", "Femenino" }));
 
@@ -271,10 +230,10 @@ public class Crear_Taquillero extends javax.swing.JFrame {
                                 .addComponent(fechaNa, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(Genero_combobox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(Ced_Taquillero, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(Ced_Taquillero, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
                                 .addComponent(nom_taquillero, javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(ape_tequillero, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(edad_taquillero, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)))
+                                .addComponent(edad_taquillero, javax.swing.GroupLayout.Alignment.TRAILING)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -467,7 +426,7 @@ public class Crear_Taquillero extends javax.swing.JFrame {
         } else {
             Ced_Taquillero.setText("");
         }
-        if (!comprobarID(BaseD, idtaquillero)) {
+        if (comprobarID(BaseD, idtaquillero)) {
             error = true;
             JOptionPane.showMessageDialog(this, "Ya existe un Taquillero con este ID registrado", "ERROR", JOptionPane.ERROR_MESSAGE);
         } else {

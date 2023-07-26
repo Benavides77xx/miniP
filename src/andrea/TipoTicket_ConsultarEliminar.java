@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package andrea;
+import Clases.Ticket;
 import Clases.Tipo_ticket;
 import com.db4o.*;
 import javax.swing.JOptionPane;
@@ -216,6 +217,17 @@ public class TipoTicket_ConsultarEliminar extends javax.swing.JFrame {
                 ObjectContainer baseDeDatos = Db4o.openFile(INICIO.direccionBD);
         
                 try {
+                    
+                     // Verifica si existen tickets asociados a este tipo de ticket
+                   Ticket cass = new Ticket(null, 0, null, codigo_tt,null );
+                ObjectSet result = baseDeDatos.get(cass);
+                 if (result.size() > 0) {
+                JOptionPane.showMessageDialog(this, "No se puede eliminar el tipo tikcet por que existen tickets asociados","ERROR",0);
+                  return;
+                   }
+                    
+                    
+                    
                         // Busca el Tipo ticket a eliminar
                         Tipo_ticket cliente = new Tipo_ticket(codigo_tt, null, 0);
                         ObjectSet cassResult = baseDeDatos.get(cliente);

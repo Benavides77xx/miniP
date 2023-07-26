@@ -65,7 +65,7 @@ public class Ticket_crud extends javax.swing.JFrame {
             if (!error) {
                 Ticket miticket = new Ticket(codigo_ticket,precio_ticket,restrccion, codigo_tipo_ticket,id_taquillero);
                 BaseD.set(miticket);
-                JOptionPane.showMessageDialog(null, "Mantenimiento registrado correctamente");
+                JOptionPane.showMessageDialog(null, "Ticket registrado correctamente");
                 limpiar();
         }  
     }

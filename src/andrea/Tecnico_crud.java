@@ -275,7 +275,7 @@ public class Tecnico_crud extends javax.swing.JFrame {
             } else {
                 cedtecnico.setText("");
             }       
-            if (!comprobarID(BaseD,id_tecnico)) {
+            if (comprobarID(BaseD,id_tecnico)) {
                 error = true;
                 JOptionPane.showMessageDialog(this, "Ya existe un Tecnico con este ID registrado","ERROR",0);
             } else{
@@ -294,7 +294,7 @@ public class Tecnico_crud extends javax.swing.JFrame {
                 Tecnico Tpnuevo = new Tecnico (id_tecnico,nivel_estudio_tec,a_experiencia_tec,referencias_tec,cedula,nombre,
                         apellido,edad,genero,celular,fecha_nacimiento,correo,codigo_tipo_sangre,codigo_pais);
                 BaseD.set(Tpnuevo);
-                JOptionPane.showMessageDialog(null, "Cliente registrado correctamente");
+                JOptionPane.showMessageDialog(null, "Tecnico registrado correctamente");
                 limpiar();
         }
         

@@ -94,7 +94,7 @@ public class Crear_Cliente extends javax.swing.JFrame {
         } else {
             Ced_Taquillero.setText("");
         }
-        if (!comprobarID(BaseD, id_cliente_per)) {
+        if (comprobarID(BaseD, id_cliente_per)) {
             error = true;
             JOptionPane.showMessageDialog(this, "Ya existe un Cliente con este ID registrado", "ERROR", 0);
         } else {
@@ -206,63 +206,48 @@ public class Crear_Cliente extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(153, 153, 255));
-        jPanel1.setForeground(new java.awt.Color(0, 0, 0));
 
         jLabel1.setFont(new java.awt.Font("DialogInput", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("CLIENTE");
 
         jLabel2.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("*Cedula");
 
         jLabel3.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Nombre");
 
         jLabel4.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Apellidos");
 
         jLabel5.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Edad");
 
         jLabel6.setFont(new java.awt.Font("DialogInput", 1, 12)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Genero");
 
         jLabel7.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Celular");
 
         jLabel8.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("Fecha Nacimiento");
 
         jLabel9.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setText("Correo");
 
         jLabel10.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
         jLabel10.setText("*Cod_Tipo Sangre");
 
         jLabel11.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel11.setText("Pais");
+        jLabel11.setText("Cod_Pais");
 
         jLabel12.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(0, 0, 0));
         jLabel12.setText("ID Cliente");
 
         jLabel13.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(0, 0, 0));
         jLabel13.setText("*Codigo_Habilidad");
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setFont(new java.awt.Font("DialogInput", 1, 18)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(0, 0, 0));
         jButton1.setText("INGRESAR");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
