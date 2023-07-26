@@ -5,6 +5,7 @@
  */
 package Freddy;
 
+import Clases.Cliente;
 import Clases.Habilidades;
 import com.db4o.*;
 import javax.swing.JOptionPane;
@@ -68,30 +69,7 @@ public class Consultar_Eliminar_Habilidades extends javax.swing.JFrame {
         }
     }
 
-    public void Eliminar_habilidades(ObjectContainer basep) {
-        Crear_Habilidades Ainterfaz = new Crear_Habilidades();
-        if (jTFid.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Ingrese un ID");
-        } else {
-
-            String IDA = jTFid.getText();
-            Habilidades Abuscar = new Habilidades(IDA, null, null);
-            ObjectSet result = basep.get(Abuscar);
-
-            if (Ainterfaz.verificar(basep, IDA) == 0) {
-                JOptionPane.showMessageDialog(null, "El Cliente no existe en la base de datos");
-
-            } else {
-                Habilidades AsignaturaElim = (Habilidades) result.next();
-                basep.delete(AsignaturaElim);
-                JOptionPane.showMessageDialog(null, "El Cliente fue anulada exitosamente");
-            }
-
-        }
-
-        //Borrar el campo de texto
-        jTFid.setText("");
-    }
+ 
 
     public static void Cerrar_BD(ObjectContainer basep) {
 
@@ -127,12 +105,10 @@ public class Consultar_Eliminar_Habilidades extends javax.swing.JFrame {
 
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));
         jLabel1.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Seleccione un campo para buscar al Habilidades");
 
         jLabel2.setBackground(new java.awt.Color(0, 0, 0));
         jLabel2.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Filtro");
 
         buscar_button.setText("BUSCAR");
@@ -152,16 +128,13 @@ public class Consultar_Eliminar_Habilidades extends javax.swing.JFrame {
 
         jLabel3.setBackground(new java.awt.Color(0, 0, 0));
         jLabel3.setFont(new java.awt.Font("DialogInput", 1, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Consultar y Eliminar Habilidades");
 
         jLabel4.setBackground(new java.awt.Color(0, 0, 0));
         jLabel4.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Ingrese el ID del Habilidades a eliminar");
 
         jLabel5.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("ID:");
         jLabel5.setToolTipText("ID asignatura");
 
@@ -197,6 +170,11 @@ public class Consultar_Eliminar_Habilidades extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jtableregistro.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtableregistroMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(jtableregistro);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -222,7 +200,7 @@ public class Consultar_Eliminar_Habilidades extends javax.swing.JFrame {
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(167, 167, 167)
                         .addComponent(jLabel3)))
-                .addGap(0, 85, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -284,14 +262,49 @@ public class Consultar_Eliminar_Habilidades extends javax.swing.JFrame {
     }//GEN-LAST:event_jCBfiltroActionPerformed
 
     private void eliminar_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminar_buttonActionPerformed
-        ObjectContainer BaseD = Db4o.openFile(jose.INICIO.direccionBD);
-        Eliminar_habilidades(BaseD);
-        Cerrar_BD(BaseD);
+       String codigo_habilidad = jTFid.getText();
+
+        // Abre la base de datos
+        ObjectContainer baseDeDatos = Db4o.openFile(jose.INICIO.direccionBD);
+
+        try {
+            // Verifica si existen Clientes asociados a esta habilidad
+            Cliente cass = new Cliente(null, codigo_habilidad,null,null, null, null,0,null,null,null,null,null,null );
+            ObjectSet result = baseDeDatos.get(cass);
+            if (result.size() > 0) {
+                JOptionPane.showMessageDialog(this, "No se puede eliminar la habilidad ya que existen clientes asociados","ERROR",0);
+                return;
+            }
+
+            // Busca la habilidad a eliminar
+            Habilidades revisar = new Habilidades(codigo_habilidad,null,null);
+            ObjectSet cassResult = baseDeDatos.get(revisar);
+
+            if (cassResult.size() == 0) {
+                JOptionPane.showMessageDialog(null, "La habilidad no existe");
+            } else {
+                // Elimina Habilidad encontrado
+                baseDeDatos.delete(cassResult.get(0));
+                JOptionPane.showMessageDialog(null, "La habilidad se ha eliminado correctamente");
+
+                // Actualiza la tabla después de eliminar el Juego
+                Filtro(baseDeDatos);
+            }
+        } finally {
+            // Cierra la base de datos
+
+            baseDeDatos.close();
+        }
     }//GEN-LAST:event_eliminar_buttonActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jtableregistroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtableregistroMouseClicked
+                  int i = jtableregistro.getSelectedRow();
+                jTFid.setText(jtableregistro.getValueAt(i, 0).toString());
+    }//GEN-LAST:event_jtableregistroMouseClicked
 
     /**
      * @param args the command line arguments

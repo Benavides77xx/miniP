@@ -5,7 +5,7 @@
  */
 package andrea;
 
-
+import Clases.Detalle_factura;
 import com.db4o.Db4o;
 import com.db4o.ObjectContainer;
 import com.db4o.ObjectSet;
@@ -15,12 +15,12 @@ import javax.swing.JOptionPane;
  *
  * @author Asus
  */
-public class DetalleFactura_modificar extends javax.swing.JFrame {
+public class modificar_detallef extends javax.swing.JFrame {
 
     /**
      * Creates new form modificar_detallef
      */
-    public DetalleFactura_modificar() {
+    public modificar_detallef() {
         initComponents();
     }
 
@@ -61,21 +61,21 @@ public class DetalleFactura_modificar extends javax.swing.JFrame {
         String auxtick;
         auxtick = codigodt.getText();
 
-        Ticket_crud auxtn = new Ticket_crud();
+        DetalleFactura_crud auxtn = new DetalleFactura_crud();
 
         if (codigodt.getText().isEmpty()) {
 
             JOptionPane.showMessageDialog(null, "Ingrese el codigo ");
         } else {
 
-            if (auxtn.validar(BaseD,auxtick) == 0) {
+            if (auxtn.comprobarDT(BaseD,auxtick) == 0) {
 
                 JOptionPane.showMessageDialog(null, "No existe un registro con este código ");
                 limpiar();
 
             } else {
 
-                Detalle_factura buscartc = new Detalle_factura(auxtick, 0, null, 0.0, null);
+                Detalle_factura buscartc = new Detalle_factura(auxtick, 0,0, null,null);
 
                 ObjectSet result = BaseD.get(buscartc);
                 for (int i = 0; i < result.size(); i++) {
@@ -85,10 +85,10 @@ public class DetalleFactura_modificar extends javax.swing.JFrame {
                     tick = (Detalle_factura) result.get(i);
 
                     codigodt.setText(tick.getCod_det_fact());
-                    numerodt.setText(String.valueOf(tick.getCan_ticket()));
+                    numerodt.setText(String.valueOf(tick.getCantidad_ticket()));
                     codigo2dt.setText(tick.getCodigo_ticket());
                     subtdt.setText(String.valueOf(tick.getSub_total()));
-                    codigo3dt.setText(tick.getCodigo_fact());
+                    codigo3dt.setText(tick.getCodigo_enc_fact());
 
                     modbtn.setEnabled(true); 
                     HabilitarCampos_deTexto();
@@ -103,24 +103,9 @@ public class DetalleFactura_modificar extends javax.swing.JFrame {
         }
     }
     
-    public void modificar_tick(ObjectContainer BaseD) {
-
-        Detalle_factura modif_tick = new Detalle_factura(cod_det_fact,0,null,0.0,null);
-        ObjectSet result = BaseD.get(modif_tick);
-        Detalle_factura tickm = (Detalle_factura) result.next();
-        
-        
-        tickm.setSub_total(Double.parseDouble(subtdt.getText()));
-        tickm.setCan_ticket(Integer.parseInt(numerodt.getText()));
-        
-        
-        ;
-        BaseD.set(tickm);
-        JOptionPane.showMessageDialog(null, "Se modifico este registro");
-        limpiar();
-    }
+   
     public static int validar(ObjectContainer BaseD, String cod_det_fac) {
-        Detalle_factura buscartic = new Detalle_factura (cod_det_fac,0, null, 0.0,null);
+        Detalle_factura buscartic = new Detalle_factura (cod_det_fac, 0,0,null,null);
         ObjectSet result = BaseD.get(buscartic);
         return result.size();
     }
@@ -234,16 +219,80 @@ public class DetalleFactura_modificar extends javax.swing.JFrame {
     }//GEN-LAST:event_codigo2dtActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        ObjectContainer BaseD = Db4o.openFile(Tecnico_crud.direccionBD);
-        buscar(BaseD);
-        Cerrar_BD(BaseD);
+       
+       ObjectContainer baseDeDatos = Db4o.openFile(jose.INICIO.direccionBD);
+       try{
+        modbtn.setEnabled(false);
+        String auxtick;
+        auxtick = codigodt.getText();
+
+        Detalle_fa auxtn = new Detalle_factura();
+
+        if (codigodt.getText().isEmpty()) {
+
+            JOptionPane.showMessageDialog(null, "Ingrese el codigo ");
+        } else {
+
+            if (auxtn.comprobarDT(baseDeDatos,auxtick) == 0) {
+
+                JOptionPane.showMessageDialog(null, "No existe un registro con este código ");
+                limpiar();
+
+            } else {
+
+                Detalle_factura buscartc = new Detalle_factura(auxtick ,0,0, null,null);
+
+                ObjectSet result = baseDeDatos.get(buscartc);
+                for (int i = 0; i < result.size(); i++) {
+
+                    detallefactura tick = new detallefactura();
+
+                    tick = (detallefactura) result.get(i);
+
+                    codigodt.setText(tick.getCod_det_fact());
+                    numerodt.setText(String.valueOf(tick.getCan_ticket()));
+                    codigo2dt.setText(tick.getCodigo_ticket());
+                    subtdt.setText(String.valueOf(tick.getSub_total()));
+                    codigo3dt.setText(tick.getCodigo_fact());
+
+                    modbtn.setEnabled(true); 
+                    HabilitarCampos_deTexto();
+                    codigodt.setEditable(false);
+                    codigo2dt.setEditable(false);
+                    codigo3dt.setEditable(false);
+
+                }
+
+            }
+
+        }
+       }finally{
+           baseDeDatos.close();
+       }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void modbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modbtnActionPerformed
-        ObjectContainer BaseD = Db4o.openFile(Tecnico_crud.direccionBD);
-        modificar_tick(BaseD);
-        Cerrar_BD(BaseD);
-        codigodt.setEditable(true);
+        
+        ObjectContainer baseDeDatos = Db4o.openFile(Tecnico_vent.direccionBD);
+        try{
+            
+        detallefactura modif_tick = new detallefactura(codigodt.getText(),0,null,0.0,null);
+        ObjectSet result = baseDeDatos.get(modif_tick);
+        
+        detallefactura tickm = (detallefactura) result.next();
+        tickm.setSub_total(Double.parseDouble(subtdt.getText()));
+        tickm.setCan_ticket(Integer.parseInt(numerodt.getText()));
+        
+        
+        ;
+        baseDeDatos.set(tickm);
+        JOptionPane.showMessageDialog(null, "Se modifico este registro");
+        limpiar();
+        }finally{
+        
+        baseDeDatos.close();
+        }
+        
     }//GEN-LAST:event_modbtnActionPerformed
 
     /**
@@ -263,21 +312,20 @@ public class DetalleFactura_modificar extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DetalleFactura_modificar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(modificar_detallef.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DetalleFactura_modificar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(modificar_detallef.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DetalleFactura_modificar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(modificar_detallef.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DetalleFactura_modificar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(modificar_detallef.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new DetalleFactura_modificar().setVisible(true);
+                new modificar_detallef().setVisible(true);
             }
         });
     }

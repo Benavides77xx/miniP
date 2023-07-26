@@ -6,6 +6,9 @@
 package Freddy;
 
 import Clases.Guardia;
+import ClasesSteven.Area;
+import ClasesSteven.Control_guardia;
+import ClasesSteven.Especialidad;
 import com.db4o.*;
 
 import javax.swing.JOptionPane;
@@ -80,30 +83,7 @@ public class Consultar_Eliminar_Guardia extends javax.swing.JFrame {
         }
     }
 
-    public void Eliminar_pintura(ObjectContainer basep) {
-        Crear_Guardia Ainterfaz = new Crear_Guardia();
-        if (jTFid.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Ingrese un ID");
-        } else {
 
-            String IDA = jTFid.getText();
-            Guardia Abuscar = new Guardia(IDA, 0, false, null, null, null, null, 0, null, null, null, null, null, null);
-            ObjectSet result = basep.get(Abuscar);
-
-            if (Ainterfaz.comprobarID(basep, IDA)) {
-                JOptionPane.showMessageDialog(null, "El guardia no existe en la base de datos");
-
-            } else {
-                Guardia AsignaturaElim = (Guardia) result.next();
-                basep.delete(AsignaturaElim);
-                JOptionPane.showMessageDialog(null, "El guardia fue anulado exitosamente");
-            }
-
-        }
-
-        //Borrar el campo de texto
-        jTFid.setText("");
-    }
 
     public static void Cerrar_BD(ObjectContainer basep) {
 
@@ -139,12 +119,10 @@ public class Consultar_Eliminar_Guardia extends javax.swing.JFrame {
 
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));
         jLabel1.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Seleccione un campo para buscar al Guardia");
 
         jLabel2.setBackground(new java.awt.Color(0, 0, 0));
         jLabel2.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Filtro");
 
         buscar_button.setText("BUSCAR");
@@ -164,16 +142,13 @@ public class Consultar_Eliminar_Guardia extends javax.swing.JFrame {
 
         jLabel3.setBackground(new java.awt.Color(0, 0, 0));
         jLabel3.setFont(new java.awt.Font("DialogInput", 1, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Consultar y Eliminar Guardia");
 
         jLabel4.setBackground(new java.awt.Color(0, 0, 0));
         jLabel4.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Ingrese el ID del Guardia a eliminar");
 
         jLabel5.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("ID:");
         jLabel5.setToolTipText("ID asignatura");
 
@@ -207,6 +182,11 @@ public class Consultar_Eliminar_Guardia extends javax.swing.JFrame {
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        jtableregistro.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtableregistroMouseClicked(evt);
             }
         });
         jScrollPane2.setViewportView(jtableregistro);
@@ -266,8 +246,8 @@ public class Consultar_Eliminar_Guardia extends javax.swing.JFrame {
                     .addComponent(jTFid, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(eliminar_button))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(72, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -295,14 +275,70 @@ public class Consultar_Eliminar_Guardia extends javax.swing.JFrame {
     }//GEN-LAST:event_jCBfiltroActionPerformed
 
     private void eliminar_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminar_buttonActionPerformed
-        ObjectContainer BaseD = Db4o.openFile(jose.INICIO.direccionBD);
-        Eliminar_pintura(BaseD);
-        Cerrar_BD(BaseD);
+    String id_guardia = jTFid.getText();
+
+        // Abre la base de datos
+        ObjectContainer baseDeDatos = Db4o.openFile(jose.INICIO.direccionBD);
+
+        try {
+            // Verifica si existen control de guardia asociado a este guardia
+            Control_guardia cass1 = new Control_guardia(null,null,null,id_guardia,null );
+            ObjectSet result1 = baseDeDatos.get(cass1);
+            if (result1.size() > 0) {
+                JOptionPane.showMessageDialog(this, "No se puede eliminar el guardia ya que esta asociado a un control de guardia","ERROR",0);
+                return;
+            }
+            
+            //verifica si existen Especialidades asociadas a este guardia
+            Especialidad cass2 = new Especialidad(null,null,null,id_guardia );
+            ObjectSet result2 = baseDeDatos.get(cass2);
+            if (result2.size() > 0) {
+                JOptionPane.showMessageDialog(this, "No se puede eliminar el guardia, ya que existen Especialidades asociadas","ERROR",0);
+                return;
+            }
+            
+            
+            //verifica si existen areas asociados a este guardia
+            Area cass3 = new Area(null,null,null,0,false,null,id_guardia,null );
+            ObjectSet result3 = baseDeDatos.get(cass3);
+            if (result3.size() > 0) {
+                JOptionPane.showMessageDialog(this, "No se puede eliminar el guardia ya que tiene relacion con Areas","ERROR",0);
+                return;
+            }
+
+            // Busca  guardia a eliminar
+            Guardia revisar = new Guardia(id_guardia,0,false,null, null, null, null,0,null,null,null,null,null,null);
+            ObjectSet cassResult = baseDeDatos.get(revisar);
+
+            if (cassResult.size() == 0) {
+                JOptionPane.showMessageDialog(null, "El guardia no existe");
+            } else {
+                // Elimina Habilidad encontrado
+                baseDeDatos.delete(cassResult.get(0));
+                JOptionPane.showMessageDialog(null, "Guardia eliminado correctamente");
+
+                // Actualiza la tabla después de eliminar el Juego
+                Filtro(baseDeDatos);
+            }
+        } finally {
+            // Cierra la base de datos
+
+            baseDeDatos.close();
+        }
+        
+        
+        
+        
     }//GEN-LAST:event_eliminar_buttonActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jtableregistroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtableregistroMouseClicked
+                      int i = jtableregistro.getSelectedRow();
+                jTFid.setText(jtableregistro.getValueAt(i, 0).toString());
+    }//GEN-LAST:event_jtableregistroMouseClicked
 
     /**
      * @param args the command line arguments

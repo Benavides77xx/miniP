@@ -15,12 +15,12 @@ import com.db4o.Db4o;
  *
  * @author Asus
  */
-public class Ticket_Modificar extends javax.swing.JFrame {
+public class modif_tick extends javax.swing.JFrame {
 
     /**
      * Creates new form modif_tick
      */
-    public Ticket_Modificar() {
+    public modif_tick() {
         initComponents();
     }
     
@@ -49,72 +49,10 @@ public class Ticket_Modificar extends javax.swing.JFrame {
         
         preciot.setEditable(true);
         rest.setEditable(true);
-        tipot.setEditable(true);
+       
 
     }
     
-    public void buscar(ObjectContainer BaseD) {
-
-        modbtn.setEnabled(false);
-        String auxtick;
-        auxtick = codigot.getText();
-
-        Ticket_crud auxtn = new Ticket_crud();
-
-        if (codigot.getText().isEmpty()) {
-
-            JOptionPane.showMessageDialog(null, "Ingrese el ID del ticket");
-        } else {
-
-            if (auxtn.validar(BaseD,auxtick) == 0) {
-
-                JOptionPane.showMessageDialog(null, "No existe un registro con este código ");
-                limpiar();
-
-            } else {
-
-                Ticket buscartc = new Ticket(auxtick, 0, null, null, null);
-
-                ObjectSet result = BaseD.get(buscartc);
-                for (int i = 0; i < result.size(); i++) {
-
-                    Ticket tick = new Ticket();
-
-                    tick = (Ticket) result.get(i);
-
-                    codigot.setText(tick.getCodigo_ticket());
-                    preciot.setText(String.valueOf(tick.getPrecio_ticket()));
-                    rest.setText(tick.getRestrccion());
-                    tipot.setText(tick.getTipo_ticket());
-                    taquilleroid.setText(tick.getId_taquillero());
-
-                    modbtn.setEnabled(true); 
-                    HabilitarCampos_deTexto();
-                    codigot.setEditable(false);
-                    taquilleroid.setEditable(false);
-
-                }
-
-            }
-
-        }
-    }
-    public void modificar_tick(ObjectContainer BaseD) {
-
-        Ticket modif_tick = new Ticket (codigo_ticket,0,null,null,null);
-        ObjectSet result = BaseD.get(modif_tick);
-        Ticket tickm = (Ticket) result.next();
-        
-        
-        tickm.setPrecio_ticket(Double.parseDouble(preciot.getText()));
-        tickm.setRestrccion(rest.getText());
-        tickm.setTipo_ticket(tipot.getText());
-        
-        ;
-        BaseD.set(tickm);
-        JOptionPane.showMessageDialog(null, "Se modifico este registro");
-        limpiar();
-    }
     public static int validar(ObjectContainer BaseD, String codigo_ticket) {
         Ticket buscartic = new Ticket(codigo_ticket,0.0, null, null,null);
         ObjectSet result = BaseD.get(buscartic);
@@ -213,16 +151,84 @@ public class Ticket_Modificar extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buscbtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscbtActionPerformed
-        ObjectContainer BaseD = Db4o.openFile(Tecnico_crud.direccionBD);
-        buscar(BaseD);
-        Cerrar_BD(BaseD);        
+        ObjectContainer baseDeDatos = Db4o.openFile(jose.INICIO.direccionBD);
+       try{
+       modbtn.setEnabled(false);
+        String auxtick;
+        auxtick = codigot.getText();
+
+        Ticket_crud auxtn = new Ticket_crud();
+
+        if (codigot.getText().isEmpty()) {
+
+            JOptionPane.showMessageDialog(null, "Ingrese el ID del ticket");
+        } else {
+
+            if (auxtn.comprobarTicket(baseDeDatos,auxtick) == 0) {
+
+                JOptionPane.showMessageDialog(null, "No existe un registro con este código ");
+                limpiar();
+
+            } else {
+
+                Ticket buscartc = new Ticket(auxtick, 0, null, null, null);
+
+                ObjectSet result = baseDeDatos.get(buscartc);
+                for (int i = 0; i < result.size(); i++) {
+
+                    Ticket tick = new Ticket();
+
+                    tick = (Ticket) result.get(i);
+
+                    codigot.setText(tick.getCodigo_ticket());
+                    preciot.setText(String.valueOf(tick.getPrecio_ticket()));
+                    rest.setText(tick.getRestrccion());
+                    tipot.setText(tick.getCodigo_tipo_ticket());
+                    taquilleroid.setText(tick.getId_taquillero());
+
+                    modbtn.setEnabled(true); 
+                    HabilitarCampos_deTexto();
+                    codigot.setEditable(false);
+                    taquilleroid.setEditable(false);
+                    tipot.setEditable(false);
+
+                }
+
+            }
+
+        }
+       
+       
+       }finally{
+       baseDeDatos.close();
+       }      
     }//GEN-LAST:event_buscbtActionPerformed
 
     private void modbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modbtnActionPerformed
-        ObjectContainer BaseD = Db4o.openFile(Tecnico_crud.direccionBD);
-        modificar_tick(BaseD);
-        Cerrar_BD(BaseD);
-        codigot.setEditable(true);
+        
+        ObjectContainer baseDeDatos = Db4o.openFile(jose.INICIO.direccionBD);
+        try{
+            
+        Ticket modif_tick = new Ticket (codigot.getText(),0,null,null,null);
+        ObjectSet result = baseDeDatos.get(modif_tick);
+        Ticket tickm = (Ticket) result.next();
+        
+        
+        tickm.setPrecio_ticket(Double.parseDouble(preciot.getText()));
+        tickm.setRestrccion(rest.getText());
+        
+        
+        
+        
+        baseDeDatos.set(tickm);
+        JOptionPane.showMessageDialog(null, "Se modifico este registro");
+        limpiar();
+        
+        
+        }finally{
+            
+        baseDeDatos.close();
+        }
     }//GEN-LAST:event_modbtnActionPerformed
 
     /**
@@ -242,21 +248,20 @@ public class Ticket_Modificar extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Ticket_Modificar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(modif_tick.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Ticket_Modificar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(modif_tick.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Ticket_Modificar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(modif_tick.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Ticket_Modificar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(modif_tick.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Ticket_Modificar().setVisible(true);
+                new modif_tick().setVisible(true);
             }
         });
     }

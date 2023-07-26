@@ -4,7 +4,9 @@
  * and open the template in the editor.
  */
 package andrea;
-import clases.Tecnico;
+
+import andrea.Tecnico_crud;
+import Clases.Tecnico;
 import com.db4o.ObjectContainer;
 import com.db4o.*;
 import java.util.Date;
@@ -15,14 +17,14 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Asus
  */
-public class Tecnico_Modificar extends javax.swing.JFrame {
+public class modificar_tec extends javax.swing.JFrame {
 
     String id_tecnico="";
     String cedula="";
     String nombre="";
     String apellido="";
     int edad=0;
-    Character genero;
+    String genero;
     String celular="";
     Date fecha_nacimiento;
     String correo="";
@@ -32,18 +34,10 @@ public class Tecnico_Modificar extends javax.swing.JFrame {
     int a_experiencia_tec=0;
     String referencias_tec="";
     
-    public Tecnico_Modificar() {
+    public modificar_tec() {
         initComponents();
     }
-    public String Genero(String sexo) {
-       String genero = "";
-        if (f.isSelected()) {
-            genero = "FEMENINO";
-        } else if (m.isSelected()) {
-            genero = "MASCULINO";
-        }
-        return genero;
-    }
+
 
     public void limpiar(){
          
@@ -70,8 +64,7 @@ public class Tecnico_Modificar extends javax.swing.JFrame {
         nombre= nomtecnico.getText();
         apellido= apetecnico.getText();
         edad= (Integer)edadtecnico.getValue();
-        String genero = " ";
-        genero = Genero(genero);
+        genero= (String) Genero_combobox.getSelectedItem();
         celular = celulartec.getText();
         fecha_nacimiento = nacimientotec.getDate();
         correo = correotecnico.getText();
@@ -95,14 +88,14 @@ public class Tecnico_Modificar extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Diguite el ID del Tecnico");
         } else {
 
-            if (auxtec.validar(basep,auxid) == 0) {
+            if (auxtec.comprobarID(basep,auxid) ) {
 
                 JOptionPane.showMessageDialog(null, "Este tecnico no se encuentra registrado en la base ");
                 limpiar();
 
             } else {
 
-                Tecnico buscartec = new Tecnico (auxid,null,0,null,null,null,null,0,'\u0000',null,null,null,null,null);
+                Tecnico buscartec = new Tecnico (auxid,null,0,null,null,null,null,0,null,null,null,null,null,null);
 
                 ObjectSet result = basep.get(buscartec);
                 for (int i = 0; i < result.size(); i++) {
@@ -111,12 +104,11 @@ public class Tecnico_Modificar extends javax.swing.JFrame {
 
                     tec = (Tecnico) result.get(i);
 
-                    cedtecnico.setText(tec.getCedula());
-                    nomtecnico.setText(tec.getNombre());
+                    cedtecnico.setText(tec.getCedula_per());
+                    nomtecnico.setText(tec.getNombre_per());
                     apetecnico.setText(tec.getApellido());
-                    edadtecnico.setValue(tec.getEdad());
-                    m.setSelected(tec.getGenero()== 'M');
-                    f.setSelected(tec.getGenero()== 'F');
+                    edadtecnico.setValue(tec.getEdad_per());
+                    genero.setText
                     celulartec.setText(tec.getCelular());
                     nacimientotec.setDate(tec.getFecha_nacimiento());
                     correotecnico.setText(tec.getCorreo());
@@ -210,8 +202,6 @@ public class Tecnico_Modificar extends javax.swing.JFrame {
         nacimientotec = new com.toedter.calendar.JDateChooser();
         jSeparator2 = new javax.swing.JSeparator();
         edadtecnico = new javax.swing.JSpinner();
-        f = new javax.swing.JRadioButton();
-        m = new javax.swing.JRadioButton();
         celulartec = new javax.swing.JTextField();
         ref = new javax.swing.JTextField();
         correotecnico = new javax.swing.JTextField();
@@ -221,6 +211,7 @@ public class Tecnico_Modificar extends javax.swing.JFrame {
         exp = new javax.swing.JSpinner();
         modtecnico = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        Genero_combobox = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -298,18 +289,6 @@ public class Tecnico_Modificar extends javax.swing.JFrame {
         jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
         jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 150, 10, 260));
         jPanel1.add(edadtecnico, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 290, 50, -1));
-
-        f.setBackground(new java.awt.Color(207, 223, 236));
-        generosrb.add(f);
-        f.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 10)); // NOI18N
-        f.setText("FEMENINO");
-        jPanel1.add(f, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 340, -1, -1));
-
-        m.setBackground(new java.awt.Color(207, 223, 236));
-        generosrb.add(m);
-        m.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 10)); // NOI18N
-        m.setText("MASCULINO");
-        jPanel1.add(m, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 340, -1, -1));
         jPanel1.add(celulartec, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 390, 180, -1));
         jPanel1.add(ref, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 440, 540, -1));
         jPanel1.add(correotecnico, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 200, 180, -1));
@@ -337,6 +316,9 @@ public class Tecnico_Modificar extends javax.swing.JFrame {
         });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 100, -1, -1));
 
+        Genero_combobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una opcion", "Masculino", "Femenino" }));
+        jPanel1.add(Genero_combobox, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 340, -1, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -354,14 +336,14 @@ public class Tecnico_Modificar extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void modtecnicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modtecnicoActionPerformed
-        ObjectContainer BaseD = Db4o.openFile(Tecnico_crud.direccionBD);
+        ObjectContainer BaseD = Db4o.openFile(Tecnico_vent.direccionBD);
         modificartecnico(BaseD);
         Cerrar_BD(BaseD);
         idtecnico.setEditable(true);
     }//GEN-LAST:event_modtecnicoActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        ObjectContainer BaseD = Db4o.openFile(Tecnico_crud.direccionBD);
+        ObjectContainer BaseD = Db4o.openFile(Tecnico_vent.direccionBD);
         buscar(BaseD);
         Cerrar_BD(BaseD);
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -383,28 +365,27 @@ public class Tecnico_Modificar extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Tecnico_Modificar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(modificar_tec.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Tecnico_Modificar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(modificar_tec.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Tecnico_Modificar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(modificar_tec.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Tecnico_Modificar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(modificar_tec.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Tecnico_Modificar().setVisible(true);
+                new modificar_tec().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> Genero_combobox;
     private javax.swing.JTextField apetecnico;
     private javax.swing.JTextField cedtecnico;
     private javax.swing.JTextField celulartec;
@@ -413,7 +394,6 @@ public class Tecnico_Modificar extends javax.swing.JFrame {
     private javax.swing.JLabel edcnico;
     private javax.swing.JTextField estudiotec;
     private javax.swing.JSpinner exp;
-    private javax.swing.JRadioButton f;
     private javax.swing.ButtonGroup generosrb;
     private javax.swing.JTextField idtecnico;
     private javax.swing.JButton jButton1;
@@ -433,7 +413,6 @@ public class Tecnico_Modificar extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JRadioButton m;
     private javax.swing.JButton modtecnico;
     private com.toedter.calendar.JDateChooser nacimientotec;
     private javax.swing.JTextField nomtecnico;

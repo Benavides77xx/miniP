@@ -5,6 +5,8 @@
  */
 package Freddy;
 
+
+import Clases.Encuesta_factura;
 import Clases.Cliente;
 import static Freddy.Crear_Cliente.comprobarID;
 
@@ -181,6 +183,11 @@ public class Consultar_Eliminar_Cliente extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jtableregistro.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtableregistroMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(jtableregistro);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -212,7 +219,7 @@ public class Consultar_Eliminar_Cliente extends javax.swing.JFrame {
                             .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(167, 167, 167)
                             .addComponent(jLabel3))))
-                .addGap(0, 153, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 886, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -267,44 +274,49 @@ public class Consultar_Eliminar_Cliente extends javax.swing.JFrame {
     }//GEN-LAST:event_jCBfiltroActionPerformed
 
     private void eliminar_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminar_buttonActionPerformed
-//        String codigo_cliente = txtCodigo.getText();
-//GHG
-//        // Abre la base de datos
-//        ObjectContainer baseDeDatos = Db4o.openFile(INICIO.direccionBD);
-//
-//        try {
-//            // Verifica si existen FACTURAS ASOCIADAS A ESTE CLIENTE
-//            Mantenimiento cass = new Mantenimiento(null, null, null, null,codigo_juego );
-//            ObjectSet result = baseDeDatos.get(cass);
-//            if (result.size() > 0) {
-//                JOptionPane.showMessageDialog(this, "No se puede eliminar el Juego porque tiene Mantenimientos asociados","ERROR",0);
-//                return;
-//            }
-//
-//            // Busca el Juego a eliminar
-//            Juego revisar = new Juego(codigo_juego, null,null,null, 0, 0, null);
-//            ObjectSet cassResult = baseDeDatos.get(revisar);
-//
-//            if (cassResult.size() == 0) {
-//                JOptionPane.showMessageDialog(null, "El Juego no existe");
-//            } else {
-//                // Elimina el cassete encontrado
-//                baseDeDatos.delete(cassResult.get(0));
-//                JOptionPane.showMessageDialog(null, "El Juego se ha eliminado correctamente");
-//
-//                // Actualiza la tabla después de eliminar el Juego
-//                Filtro(baseDeDatos);
-//            }
-//        } finally {
-//            // Cierra la base de datos
-//
-//            baseDeDatos.close();
-//        }
+        String id_cliente = txtCodigo.getText();
+
+        // Abre la base de datos
+        ObjectContainer baseDeDatos = Db4o.openFile(INICIO.direccionBD);
+
+        try {
+            // Verifica si existen ENCUESTA DE FACTURAS ASOCIADAS A ESTE CLIENTE
+            Encuesta_factura cass = new Encuesta_factura(null, null, 0 , id_cliente );
+            ObjectSet result = baseDeDatos.get(cass);
+            if (result.size() > 0) {
+                JOptionPane.showMessageDialog(this, "No se puede eliminar el cliente ya que tiene facturas asociadas","ERROR",0);
+                return;
+            }
+
+            // Busca el Cliente a eliminar
+            Cliente revisar = new Cliente(id_cliente, null,null,null, null, null,0,null,null,null,null,null,null);
+            ObjectSet cassResult = baseDeDatos.get(revisar);
+
+            if (cassResult.size() == 0) {
+                JOptionPane.showMessageDialog(null, "El Cliente no existe");
+            } else {
+                // Elimina el cassete encontrado
+                baseDeDatos.delete(cassResult.get(0));
+                JOptionPane.showMessageDialog(null, "El Cliente se ha eliminado correctamente");
+
+                // Actualiza la tabla después de eliminar el Juego
+                Filtro(baseDeDatos);
+            }
+        } finally {
+            // Cierra la base de datos
+
+            baseDeDatos.close();
+        }
     }//GEN-LAST:event_eliminar_buttonActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jtableregistroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtableregistroMouseClicked
+                    int i = jtableregistro.getSelectedRow();
+                txtCodigo.setText(jtableregistro.getValueAt(i, 0).toString());
+    }//GEN-LAST:event_jtableregistroMouseClicked
 
     /**
      * @param args the command line arguments

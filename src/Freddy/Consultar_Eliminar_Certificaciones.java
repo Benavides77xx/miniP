@@ -7,7 +7,7 @@ package Freddy;
 
 
 import Clases.Certificaciones;
-
+import Clases.Taquillero;
 import com.db4o.*;
 import com.db4o.ObjectSet;
 import javax.swing.JOptionPane;
@@ -70,31 +70,7 @@ public class Consultar_Eliminar_Certificaciones extends javax.swing.JFrame {
             }
         }
     }
-    
-    public void Eliminar_habilidades(ObjectContainer basep) {
-        Crear_Certificaciones Ainterfaz = new Crear_Certificaciones();
-        if (jTFid.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Ingrese un ID");
-        } else {
 
-            String IDA = jTFid.getText();
-            Certificaciones Abuscar = new Certificaciones(IDA, null, null);
-            ObjectSet result = basep.get(Abuscar);
-
-            if (Ainterfaz.verificar(basep, IDA) == 0) {
-                JOptionPane.showMessageDialog(null, "El Cliente no existe en la base de datos");
-
-            } else {
-                Certificaciones AsignaturaElim = (Certificaciones) result.next();
-                basep.delete(AsignaturaElim);
-                JOptionPane.showMessageDialog(null, "El Cliente fue anulada exitosamente");
-            }
-
-        }
-
-        //Borrar el campo de texto
-        jTFid.setText("");
-    }
 
 
     public static void Cerrar_BD(ObjectContainer basep) {
@@ -131,12 +107,10 @@ public class Consultar_Eliminar_Certificaciones extends javax.swing.JFrame {
 
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));
         jLabel1.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Seleccione un campo para buscar al Certificaciones");
 
         jLabel2.setBackground(new java.awt.Color(0, 0, 0));
         jLabel2.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Filtro");
 
         buscar_button.setText("BUSCAR");
@@ -156,16 +130,13 @@ public class Consultar_Eliminar_Certificaciones extends javax.swing.JFrame {
 
         jLabel3.setBackground(new java.awt.Color(0, 0, 0));
         jLabel3.setFont(new java.awt.Font("DialogInput", 1, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Consultar y Eliminar Certificaciones");
 
         jLabel4.setBackground(new java.awt.Color(0, 0, 0));
         jLabel4.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Ingrese el ID del Certificaciones a eliminar");
 
         jLabel5.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("ID:");
         jLabel5.setToolTipText("ID asignatura");
 
@@ -199,6 +170,11 @@ public class Consultar_Eliminar_Certificaciones extends javax.swing.JFrame {
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        jtableregistro.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtableregistroMouseClicked(evt);
             }
         });
         jScrollPane2.setViewportView(jtableregistro);
@@ -289,14 +265,49 @@ public class Consultar_Eliminar_Certificaciones extends javax.swing.JFrame {
     }//GEN-LAST:event_jCBfiltroActionPerformed
 
     private void eliminar_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminar_buttonActionPerformed
-        ObjectContainer BaseD = Db4o.openFile(jose.INICIO.direccionBD);
-        Eliminar_habilidades(BaseD);
-        Cerrar_BD(BaseD);
+      String codigo_certificaciones = jTFid.getText();
+
+        // Abre la base de datos
+        ObjectContainer baseDeDatos = Db4o.openFile(jose.INICIO.direccionBD);
+
+        try {
+            // Verifica si existen Taquilleros asociados a esta certificacion
+            Taquillero cass = new Taquillero(null,codigo_certificaciones, null, 0, null, null, null, null, null, 0, null, null, null, null, null, null );
+            ObjectSet result = baseDeDatos.get(cass);
+            if (result.size() > 0) {
+                JOptionPane.showMessageDialog(this, "No se puede eliminar la certificacion, ya que existen Taquilleros asociadas","ERROR",0);
+                return;
+            }
+
+            // Busca La certificacion
+            Certificaciones revisar = new Certificaciones(codigo_certificaciones, null,null);
+            ObjectSet cassResult = baseDeDatos.get(revisar);
+
+            if (cassResult.size() == 0) {
+                JOptionPane.showMessageDialog(null, "La certificacion no existe");
+            } else {
+                // Elimina el cassete encontrado
+                baseDeDatos.delete(cassResult.get(0));
+                JOptionPane.showMessageDialog(null, "La certificacion se ha eliminado correctamente");
+
+                // Actualiza la tabla después de eliminar el Juego
+                Filtro(baseDeDatos);
+            }
+        } finally {
+            // Cierra la base de datos
+
+            baseDeDatos.close();
+        }
     }//GEN-LAST:event_eliminar_buttonActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jtableregistroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtableregistroMouseClicked
+                    int i = jtableregistro.getSelectedRow();
+                jTFid.setText(jtableregistro.getValueAt(i, 0).toString());
+    }//GEN-LAST:event_jtableregistroMouseClicked
 
     /**
      * @param args the command line arguments

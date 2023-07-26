@@ -66,6 +66,7 @@ public class Tecnico extends Persona {
         return "Tecnico{" + "id_tecnico=" + id_tecnico + ", nivel_estudio_tec=" + nivel_estudio_tec + ", a_experiencia_tec=" + a_experiencia_tec + ", referencias_tec=" + referencias_tec + '}';
     }
 
+ 
   
     
 }

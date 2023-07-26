@@ -8,6 +8,7 @@ import com.db4o.*;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import Clases.Tecnico;
+import com.db4o.query.Query;
 import jose.INICIO;
 
 public class Tecnico_crud extends javax.swing.JFrame { 
@@ -252,13 +253,13 @@ public class Tecnico_crud extends javax.swing.JFrame {
     public void creartecnico(ObjectContainer BaseD){
         
            boolean error=false;
-            if (comprobarCedula(BaseD, cedula) != 0) {
+            if (comprobarCedula(BaseD, cedula)) {
                 error = true;
                 JOptionPane.showMessageDialog(this, "Ya existe un usuario con esta cedula registrada","ERROR",0);     
             } else {
                 cedtecnico.setText("");
             }       
-            if (comprobarID(BaseD,id_tecnico) != 0) {
+            if (comprobarID(BaseD,id_tecnico)) {
                 error = true;
                 JOptionPane.showMessageDialog(this, "Ya existe un Tecnico con este ID registrado","ERROR",0);
             } else{
@@ -283,15 +284,20 @@ public class Tecnico_crud extends javax.swing.JFrame {
         
     }
     
-     public static int comprobarCedula(ObjectContainer base, String cedula) {
-            Persona buscarCedula = new Persona(cedula, null, null,0,null,null,null,null,null,null);
-            ObjectSet result = base.get(buscarCedula);
-            return result.size();
+    public static boolean comprobarCedula(ObjectContainer BaseD, String cedula) {
+        Query query = BaseD.query();
+        query.constrain(Persona.class);
+        query.descend("cedula_per").constrain(cedula).equal();
+        ObjectSet result = query.execute();
+        return !result.isEmpty();
     }
-    public static int comprobarID(ObjectContainer base, String id_tecnico) {
-            Tecnico buscarID = new Tecnico(id_tecnico,null,0,null, null, null, null,0,null,null,null,null,null,null);
-            ObjectSet result = base.get(buscarID);
-            return result.size();
+
+    public static boolean comprobarID(ObjectContainer BaseD, String id_tecnico) {
+        Query query = BaseD.query();
+        query.constrain(Tecnico.class);
+        query.descend("id_dueño").constrain(id_tecnico).equal();
+        ObjectSet result = query.execute();
+        return !result.isEmpty();
     }
           
     public static int comprobarTS(ObjectContainer basep, String codigo_tipo_sangre) {
