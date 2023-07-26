@@ -153,7 +153,7 @@ public class Consultar_Eliminar_Dueño extends javax.swing.JFrame {
         });
 
         jCBfiltro.setFont(new java.awt.Font("Arial", 2, 12)); // NOI18N
-        jCBfiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una opción", "Ver todos", "ID Cliente", " ", " " }));
+        jCBfiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una opción", "Ver todos", "ID Dueño", " ", " " }));
         jCBfiltro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCBfiltroActionPerformed(evt);

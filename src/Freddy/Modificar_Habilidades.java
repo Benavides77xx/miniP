@@ -22,8 +22,8 @@ public class Modificar_Habilidades extends javax.swing.JFrame {
     public Modificar_Habilidades() {
         initComponents();
     }
-    
-     String cod_hab = "";
+
+    String cod_hab = "";
     String habili = "";
     String desc = "";
 
@@ -61,7 +61,7 @@ public class Modificar_Habilidades extends javax.swing.JFrame {
 
                     Modificarjb.setEnabled(true);
                     //Hacer editable los campos de texto
-                    mostrarDatos(result);
+
                     HabilitarCampos_deTexto();
                     cod_habilidades.setEditable(false);
 
@@ -98,27 +98,7 @@ public class Modificar_Habilidades extends javax.swing.JFrame {
         basep.set(Emodificar);
         JOptionPane.showMessageDialog(null, "La pintura fue modificado exitosamente");
 
-        mostrarDatos(result);
         LimpiarCampos();
-    }
-
-    public void mostrarDatos(ObjectSet result) {
-        DefaultTableModel model = (DefaultTableModel) jtableregistro.getModel();
-        model.setRowCount(0); // Limpiar la tabla
-
-        if (result.size() == 0) {
-            JOptionPane.showMessageDialog(null, "El usuario no existe");
-        } else {
-            while (result.hasNext()) {
-                Habilidades miHabilidades = (Habilidades) result.next();
-                Object[] fila = {
-                    miHabilidades.getCod_habilidades(),
-                    miHabilidades.getHabilidad(),
-                    miHabilidades.getDescripcion(),};
-
-                model.addRow(fila);
-            }
-        }
     }
 
     public static void Cerrar_BD(ObjectContainer basep) {
@@ -143,10 +123,9 @@ public class Modificar_Habilidades extends javax.swing.JFrame {
         cod_habilidades = new javax.swing.JTextField();
         habilidad_txt = new javax.swing.JTextField();
         descripcion_txt = new javax.swing.JTextField();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jtableregistro = new javax.swing.JTable();
         jButton3 = new javax.swing.JButton();
         Modificarjb = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -164,24 +143,6 @@ public class Modificar_Habilidades extends javax.swing.JFrame {
             }
         });
 
-        jtableregistro.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Codigo Habilidades", "Habilidad", "Descripcion"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane2.setViewportView(jtableregistro);
-
         jButton3.setText("BUSCAR");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -193,6 +154,13 @@ public class Modificar_Habilidades extends javax.swing.JFrame {
         Modificarjb.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ModificarjbActionPerformed(evt);
+            }
+        });
+
+        jButton4.setText("REGRESAR");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
             }
         });
 
@@ -215,16 +183,17 @@ public class Modificar_Habilidades extends javax.swing.JFrame {
                         .addGap(30, 30, 30)
                         .addComponent(jButton3)))
                 .addGap(161, 161, 161))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 837, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(38, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Modificarjb, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addGap(384, 384, 384))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(317, 317, 317)
+                        .addComponent(Modificarjb, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(92, 92, 92)
+                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(226, 226, 226))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -245,10 +214,10 @@ public class Modificar_Habilidades extends javax.swing.JFrame {
                     .addComponent(Descripcion)
                     .addComponent(descripcion_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
-                .addComponent(Modificarjb, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Modificarjb, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(210, 210, 210))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -285,6 +254,12 @@ public class Modificar_Habilidades extends javax.swing.JFrame {
         Cerrar_BD(BaseD);
         cod_habilidades.setEditable(true);
     }//GEN-LAST:event_ModificarjbActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        this.dispose();
+        jose.INICIO mostrar = new jose.INICIO();
+        mostrar.setVisible(true);
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -328,11 +303,10 @@ public class Modificar_Habilidades extends javax.swing.JFrame {
     private javax.swing.JTextField descripcion_txt;
     private javax.swing.JTextField habilidad_txt;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jtableregistro;
     // End of variables declaration//GEN-END:variables
 }

@@ -79,13 +79,14 @@ public class Modificar_Guardia extends javax.swing.JFrame {
                     tipo_sangre_txt.setText(miE.getCodigo_tipo_sangre());
                     pais_txt.setText(miE.getCodigo_pais());
                     id_guardia.setText(miE.getId_guardia());
+                    Genero_combobox.setSelectedItem(miE.getGenero());
                     años_experienca.setText(String.valueOf(miE.getAños_expreriencia()));
                     disponibilidad_guardia.setText(String.valueOf(miE.isDisponibilidad()));
                     especialidad_guardia.setText(miE.getCod_especialidad());
 
                     Modificarjb.setEnabled(true);
                     //Hacer editable los campos de texto
-                    mostrarDatos(result);
+                  
                     HabilitarCampos_deTexto();
                     id_guardia.setEditable(false);
                     Ced_Taquillero.setEditable(false);
@@ -140,13 +141,14 @@ public class Modificar_Guardia extends javax.swing.JFrame {
         Emodificar.setAños_expreriencia(Integer.parseInt(años_experienca.getText()));
         Emodificar.setDisponibilidad(Boolean.parseBoolean(disponibilidad_guardia.getText()));
         Emodificar.setCod_especialidad(especialidad_guardia.getText());
+        Emodificar.setGenero((String) Genero_combobox.getSelectedItem());
         Emodificar.setCodigo_tipo_sangre(tipo_sangre_txt.getText());
         Emodificar.setCodigo_pais(pais_txt.getText());
         ;
         basep.set(Emodificar);
         JOptionPane.showMessageDialog(null, "La pintura fue modificado exitosamente");
 
-        mostrarDatos(result);
+        
         LimpiarCampos();
     }
 
@@ -155,35 +157,7 @@ public class Modificar_Guardia extends javax.swing.JFrame {
         basep.close();
     }
 
-    public void mostrarDatos(ObjectSet result) {
-        DefaultTableModel model = (DefaultTableModel) jtableregistro.getModel();
-        model.setRowCount(0); // Limpiar la tabla
-
-        if (result.size() == 0) {
-            JOptionPane.showMessageDialog(null, "El usuario no existe");
-        } else {
-            while (result.hasNext()) {
-                Guardia mitaquillero = (Guardia) result.next();
-                Object[] fila = {
-                    mitaquillero.getId_guardia(),
-                    mitaquillero.getCedula_per(),
-                    mitaquillero.getNombre_per(),
-                    mitaquillero.getApellido(),
-                    mitaquillero.getEdad_per(),
-                    mitaquillero.getGenero(),
-                    mitaquillero.getCelular_per(),
-                    String.valueOf(mitaquillero.getFecha_nac()),
-                    mitaquillero.getCorreo(),
-                    mitaquillero.getCodigo_tipo_sangre(),
-                    mitaquillero.getCodigo_pais(),
-                    mitaquillero.getAños_expreriencia(),
-                    mitaquillero.isDisponibilidad(),
-                    mitaquillero.getCod_especialidad()
-                };
-                model.addRow(fila);
-            }
-        }
-    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -219,18 +193,19 @@ public class Modificar_Guardia extends javax.swing.JFrame {
         id_guardia = new javax.swing.JTextField();
         años_experienca = new javax.swing.JTextField();
         disponibilidad_guardia = new javax.swing.JTextField();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jtableregistro = new javax.swing.JTable();
         tipo_sangre_txt = new javax.swing.JTextField();
         pais_txt = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
         especialidad_guardia = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         Modificarjb = new javax.swing.JButton();
+        Genero_combobox = new javax.swing.JComboBox<>();
+        Genero_combobox1 = new javax.swing.JComboBox<>();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Cliente");
+        jLabel1.setText("Guardia");
 
         jLabel2.setText("Cedula");
 
@@ -258,24 +233,6 @@ public class Modificar_Guardia extends javax.swing.JFrame {
 
         jLabel15.setText("Disponibilidad");
 
-        jtableregistro.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "ID Cliente", "Cedula", "Nombre", "Apellido", "Edad", "Genero", "Celular", "Fecha Nacimiento", "Correo", "Tipo Sangre", "Pais", "Habilidades", "Intereses Personales"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, true, true, true, true, true, true, true, true
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane2.setViewportView(jtableregistro);
-
         jLabel16.setText("Especialidad");
 
         jButton2.setText("BUSCAR");
@@ -289,6 +246,17 @@ public class Modificar_Guardia extends javax.swing.JFrame {
         Modificarjb.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ModificarjbActionPerformed(evt);
+            }
+        });
+
+        Genero_combobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una opcion", "Masculino", "Femenino" }));
+
+        Genero_combobox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una opcion", "Masculino", "Femenino" }));
+
+        jButton3.setText("REGRESAR");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
             }
         });
 
@@ -306,22 +274,16 @@ public class Modificar_Guardia extends javax.swing.JFrame {
                             .addComponent(jLabel10)
                             .addComponent(jLabel11)
                             .addComponent(jLabel8))
+                        .addGap(49, 49, 49)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGap(239, 239, 239)
-                                .addComponent(jLabel1)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(49, 49, 49)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(fechaNa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(Correo_taquillero)
-                                    .addComponent(cel_taquillero)
-                                    .addComponent(tipo_sangre_txt)
-                                    .addComponent(pais_txt))
-                                .addGap(197, 197, 197)
-                                .addComponent(Modificarjb)
-                                .addGap(218, 218, 218))))
+                            .addComponent(fechaNa, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)
+                            .addComponent(Correo_taquillero)
+                            .addComponent(cel_taquillero)
+                            .addComponent(tipo_sangre_txt)
+                            .addComponent(pais_txt))
+                        .addGap(279, 279, 279)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(59, 59, 59))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -337,18 +299,25 @@ public class Modificar_Guardia extends javax.swing.JFrame {
                                 .addGap(98, 98, 98)
                                 .addComponent(ape_tequillero))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addGap(122, 122, 122)
-                                .addComponent(edad_taquillero))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addGap(0, 0, Short.MAX_VALUE)))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel6))
+                                .addGap(109, 109, 109)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(edad_taquillero)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(Genero_combobox, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(Genero_combobox1, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(0, 0, Short.MAX_VALUE)))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel13)
                             .addComponent(jLabel12)
-                            .addComponent(jLabel15)
-                            .addComponent(jLabel16))
+                            .addComponent(jLabel16)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(Modificarjb)
+                                .addComponent(jLabel15)))
                         .addGap(35, 35, 35)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(años_experienca, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -359,10 +328,10 @@ public class Modificar_Guardia extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButton2)))
                         .addContainerGap())))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(85, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 849, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(17, 17, 17))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(447, 447, 447)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -396,8 +365,10 @@ public class Modificar_Guardia extends javax.swing.JFrame {
                     .addComponent(jLabel16)
                     .addComponent(especialidad_guardia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jLabel6)
-                .addGap(19, 19, 19)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(Genero_combobox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(14, 14, 14)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -414,14 +385,17 @@ public class Modificar_Guardia extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
                     .addComponent(tipo_sangre_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Modificarjb, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Modificarjb, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
                     .addComponent(pais_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
-                .addGap(12, 12, 12))
+                .addGap(12, 171, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Genero_combobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -453,6 +427,12 @@ public class Modificar_Guardia extends javax.swing.JFrame {
         Cerrar_BD(BaseD);
         id_guardia.setEditable(true);
     }//GEN-LAST:event_ModificarjbActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        this.dispose();
+        jose.INICIO mostrar = new jose.INICIO();
+        mostrar.setVisible(true);
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -492,6 +472,8 @@ public class Modificar_Guardia extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Ced_Taquillero;
     private javax.swing.JTextField Correo_taquillero;
+    private javax.swing.JComboBox<String> Genero_combobox;
+    private javax.swing.JComboBox<String> Genero_combobox1;
     private javax.swing.JButton Modificarjb;
     private javax.swing.JTextField ape_tequillero;
     private javax.swing.JTextField años_experienca;
@@ -502,6 +484,7 @@ public class Modificar_Guardia extends javax.swing.JFrame {
     private com.toedter.calendar.JDateChooser fechaNa;
     private javax.swing.JTextField id_guardia;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -518,8 +501,6 @@ public class Modificar_Guardia extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jtableregistro;
     private javax.swing.JTextField nom_taquillero;
     private javax.swing.JTextField pais_txt;
     private javax.swing.JTextField tipo_sangre_txt;
