@@ -216,8 +216,9 @@ public class Consultar_Eliminar_Cliente extends javax.swing.JFrame {
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(eliminar_button))
                         .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(31, 31, 31)
                             .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(167, 167, 167)
+                            .addGap(136, 136, 136)
                             .addComponent(jLabel3))))
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -310,7 +311,9 @@ public class Consultar_Eliminar_Cliente extends javax.swing.JFrame {
     }//GEN-LAST:event_eliminar_buttonActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
+        INICIO ini = new INICIO();
+        ini.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jtableregistroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtableregistroMouseClicked

@@ -59,7 +59,7 @@ public class Pais_ConsultarEliminar extends javax.swing.JFrame {
                 Mostrar= (Pais) result.get(i);
                 matrizesBuscar[i][0] = Mostrar.getCodigo_pais();
                 matrizesBuscar[i][1] = Mostrar.getNombre_pais();
-                matrizesBuscar[i][3] = String.valueOf(Mostrar.getPoblacion());
+                matrizesBuscar[i][2] = String.valueOf(Mostrar.getPoblacion());
 
                 tablaConsultar.setModel(new javax.swing.table.DefaultTableModel(matrizesBuscar, new String[]{"*Codigo_Pais", "Nombre_Pais",
                     "Numero_poblacion"}));

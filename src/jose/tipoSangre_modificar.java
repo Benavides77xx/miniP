@@ -39,7 +39,7 @@ public class tipoSangre_modificar extends javax.swing.JFrame {
      
     public void buscar(ObjectContainer basep) {//cargardatos
 
-        btnmodificar.setEnabled(false);
+        btnmodificar.setEnabled(true);
         String IDAux;
         IDAux = txtcod.getText();
 
@@ -66,12 +66,12 @@ public class tipoSangre_modificar extends javax.swing.JFrame {
                     
                     miE = (Tipo_sangre) result.get(i);
                     txtcod.setText(miE.getCodigo_tipo_sangre());
-                    txtnombre.setText(miE.getTipo_sangre());
-                    txtpor.setValue(String.valueOf(miE.getPorcentaje_personas()));
+                    txtnombre.setText(miE.getTipo_sangre());                    
+                    txtpor.setValue(miE.getPorcentaje_personas());
 
                     btnmodificar.setEnabled(true);
                     //Hacer editable los campos de texto
-                    mostrarDatos(result);
+                    
                     HabilitarCampos_deTexto();
                     txtcod.setEditable(false);
                 }
@@ -86,34 +86,14 @@ public class tipoSangre_modificar extends javax.swing.JFrame {
         ObjectSet result = basep.get(Emodi);
         
         Tipo_sangre Emodificar = (Tipo_sangre) result.next();
-        Emodificar.setTipo_sangre(txtnombre.getText());
-        Emodificar.setPorcentaje_personas(Integer.parseInt(txtpor.getValue().toString()));
-
+        Emodificar.setTipo_sangre(txtnombre.getText());        
+        Emodificar.setPorcentaje_personas((int)txtpor.getValue());
         basep.set(Emodificar);
-        JOptionPane.showMessageDialog(null, "El Tipo de sangre fue modificado exitosamente");
-        mostrarDatos(result);
+        JOptionPane.showMessageDialog(null, "El Tipo de sangre fue modificado exitosamente");        
         LimpiarCampos();
     }    
     
-    public void mostrarDatos(ObjectSet result) {
-        DefaultTableModel model = (DefaultTableModel) jtable.getModel();
-        model.setRowCount(0); // Limpiar la tabla
-
-        if (result.size() == 0) {
-            JOptionPane.showMessageDialog(null, "El tipo de sangre no existe");
-        } else {
-            while (result.hasNext()) {
-                Tipo_sangre MostrarDatos = (Tipo_sangre) result.next();
-                Object[] fila = {
-                    
-                    MostrarDatos.getCodigo_tipo_sangre(),
-                    MostrarDatos.getTipo_sangre(),
-                    MostrarDatos.getPorcentaje_personas(),};
-
-                     model.addRow(fila);
-            }
-        }
-    }    
+    
     
     public static void Cerrar_BD(ObjectContainer basep) {
 
@@ -133,8 +113,6 @@ public class tipoSangre_modificar extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         txtcod = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jtable = new javax.swing.JTable();
         btnmodificar = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
@@ -166,21 +144,6 @@ public class tipoSangre_modificar extends javax.swing.JFrame {
         });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 80, 40, -1));
 
-        jtable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, "", null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
-            },
-            new String [] {
-                "*Codigo_Tipo_Sangre", "Nombre_TipoSangre", "Porcentaje_personas"
-            }
-        ));
-        jScrollPane1.setViewportView(jtable);
-
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 140, 500, 90));
-
         btnmodificar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnmodificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/editar (1).png"))); // NOI18N
         btnmodificar.setText("Modificar");
@@ -191,7 +154,7 @@ public class tipoSangre_modificar extends javax.swing.JFrame {
                 btnmodificarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnmodificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 350, 130, 40));
+        jPanel1.add(btnmodificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 190, 130, 40));
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Regresar.png"))); // NOI18N
         jButton3.setText("Regresar");
@@ -202,20 +165,20 @@ public class tipoSangre_modificar extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 400, 130, 40));
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 240, 130, 40));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel3.setText("Porcentaje del tipo de sangre sangre en personas");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 360, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel5.setText("Nombre tipo sangre");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 300, -1, -1));
-        jPanel1.add(txtnombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 320, 240, 30));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 150, -1, -1));
+        jPanel1.add(txtnombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, 240, 30));
 
         jLabel4.setText("%");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 380, 20, 20));
-        jPanel1.add(txtpor, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 380, 40, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 230, 20, 20));
+        jPanel1.add(txtpor, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 230, 40, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -227,9 +190,7 @@ public class tipoSangre_modificar extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 487, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -299,8 +260,6 @@ public class tipoSangre_modificar extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jtable;
     private javax.swing.JTextField txtcod;
     private javax.swing.JTextField txtnombre;
     private javax.swing.JSpinner txtpor;

@@ -58,7 +58,7 @@ public class tipoSangre_ConsultarEliminar extends javax.swing.JFrame {
                 Mostrar= (Tipo_sangre) result.get(i);
                 matrizesBuscar[i][0] = Mostrar.getCodigo_tipo_sangre();
                 matrizesBuscar[i][1] = Mostrar.getTipo_sangre();
-                matrizesBuscar[i][3] = String.valueOf(Mostrar.getPorcentaje_personas());
+                matrizesBuscar[i][2] = String.valueOf(Mostrar.getPorcentaje_personas());
 
                 tablaConsultar.setModel(new javax.swing.table.DefaultTableModel(matrizesBuscar, new String[]{"*Cod_tipo_Sangre", "Tipo sangre",
                     "Porcentaje_sangre_personas"}));
