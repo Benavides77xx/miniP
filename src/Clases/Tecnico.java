@@ -26,6 +26,13 @@ public class Tecnico extends Persona {
         this.referencias_tec = referencias_tec;
     }
 
+    public Tecnico(String id_tecnico, String nivel_estudio_tec, int a_experiencia_tec, String referencias_tec) {
+        this.id_tecnico = id_tecnico;
+        this.nivel_estudio_tec = nivel_estudio_tec;
+        this.a_experiencia_tec = a_experiencia_tec;
+        this.referencias_tec = referencias_tec;
+    }
+    
     public Tecnico() {
     }
 

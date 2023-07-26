@@ -24,6 +24,12 @@ public class Cliente extends Persona {
         this.Intereses_personales = Intereses_personales;
     }
 
+    public Cliente(String id_cliente, String codigo_Habilidad, String Intereses_personales) {
+        this.id_cliente = id_cliente;
+        this.codigo_Habilidad = codigo_Habilidad;
+        this.Intereses_personales = Intereses_personales;
+    }
+    
     public Cliente() {
         super();
     }

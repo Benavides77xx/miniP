@@ -24,6 +24,7 @@ import Steven.Negocio_MODIFICAR;
 import Steven.Puesto_CRUD;
 import Steven.Puesto_ConsultarEliminar;
 import Steven.Puesto_MODIFICAR;
+import Steven.ReporteGraficoGente;
 import Steven.Reporte_Grafico;
 import andrea.*;
   import com.db4o.Db4o;
@@ -142,6 +143,7 @@ public class INICIO extends javax.swing.JFrame {
         jMenuItem43 = new javax.swing.JMenuItem();
         jMenu25 = new javax.swing.JMenu();
         jMenuItem66 = new javax.swing.JMenuItem();
+        jMenuItem67 = new javax.swing.JMenuItem();
 
         jCheckBoxMenuItem1.setSelected(true);
         jCheckBoxMenuItem1.setText("jCheckBoxMenuItem1");
@@ -814,6 +816,15 @@ public class INICIO extends javax.swing.JFrame {
         });
         jMenu25.add(jMenuItem66);
 
+        jMenuItem67.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Gra pastel.png"))); // NOI18N
+        jMenuItem67.setText("Reporte personas");
+        jMenuItem67.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem67ActionPerformed(evt);
+            }
+        });
+        jMenu25.add(jMenuItem67);
+
         jMenuBar1.add(jMenu25);
 
         setJMenuBar(jMenuBar1);
@@ -1220,6 +1231,12 @@ public class INICIO extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jMenuItem66ActionPerformed
 
+    private void jMenuItem67ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem67ActionPerformed
+        ReporteGraficoGente co = new ReporteGraficoGente();
+        co.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jMenuItem67ActionPerformed
+
      /**
      * @param args the command line arguments
      */
@@ -1348,6 +1365,7 @@ public class INICIO extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem64;
     private javax.swing.JMenuItem jMenuItem65;
     private javax.swing.JMenuItem jMenuItem66;
+    private javax.swing.JMenuItem jMenuItem67;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
