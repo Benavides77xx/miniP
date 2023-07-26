@@ -38,14 +38,14 @@ public class Comerciante_ConsultarEliminar extends javax.swing.JFrame {
         } else {
 
             if (BuscarOpcion.getSelectedIndex() == 1) {
-                Comerciante buscar = new Comerciante(null, 0, 0, null);
+                Comerciante buscar = new Comerciante(null, 0, 0, null, null, null, 0, null, null, null, null, null, null);
                 ObjectSet result = basep.get(buscar);
                 MostrarDatos(result);
 
             } else {
                 if (BuscarOpcion.getSelectedIndex() == 2) {
                     String codigo_comerciante = JOptionPane.showInputDialog("INGRESE EL CODIGO A CONSULTAR");
-                    Comerciante buscar = new Comerciante(codigo_comerciante, 0, 0, null);
+                    Comerciante buscar = new Comerciante(codigo_comerciante, 0, 0, null, null, null, 0, null, null, null, null, null, null);
                     ObjectSet result = basep.get(buscar);
                     MostrarDatos(result);
                 }
@@ -69,10 +69,19 @@ public class Comerciante_ConsultarEliminar extends javax.swing.JFrame {
                 matrizes[i][0] = miObjeto.getId_comerciante();
                 matrizes[i][1] = String.valueOf(miObjeto.getAños_exp());
                 matrizes[i][2] = String.valueOf(miObjeto.getNum_ventas());
-                matrizes[i][3] = miObjeto.getCedula_persona();
+                matrizes[i][3] = miObjeto.getCedula_per();
+                matrizes[i][4] = miObjeto.getNombre_per();
+                matrizes[i][5] = miObjeto.getApellido();
+                matrizes[i][6] = String.valueOf(miObjeto.getEdad_per());
+                matrizes[i][7] = miObjeto.getGenero();
+                matrizes[i][8] = miObjeto.getCelular_per();
+                matrizes[i][9] = String.valueOf(miObjeto.getFecha_nac());
+                matrizes[i][10] = miObjeto.getCorreo();
+                matrizes[i][11] = miObjeto.getCodigo_tipo_sangre();
+                matrizes[i][12] = miObjeto.getCodigo_pais();
 
                 tablaConsultar.setModel(new javax.swing.table.DefaultTableModel(matrizes, new String[]{"*Id_Comerciante", "Años de experiencia",
-                    "Numero de ventas", "Cedula"}));
+                    "Numero de ventas", "Cedula", "Nombre", "Apellido", "Edad", "Genero", "Celular", "Fecha Nacimiento", "Correo", "Cod TipoSangre", "Cod Pais"}));
             }
         }
     }
@@ -214,7 +223,7 @@ public class Comerciante_ConsultarEliminar extends javax.swing.JFrame {
                 return;
             }
             // Busca el Comerciante a eliminar
-            Comerciante revisar = new Comerciante(codigo_comerciante, 0, 0, null);
+            Comerciante revisar = new Comerciante(codigo_comerciante, 0, 0, null, null, null, 0, null, null, null, null, null, null);
             ObjectSet cassResult = baseDeDatos.get(revisar);
 
             if (cassResult.size() == 0) {

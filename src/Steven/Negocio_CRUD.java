@@ -215,7 +215,7 @@ public class Negocio_CRUD extends javax.swing.JFrame {
     }
 
     public static int comprobarComerciante(ObjectContainer basep, String id_comerciante) {
-        ObjectSet result = basep.get(new Comerciante(id_comerciante, 0, 0, null));
+        ObjectSet result = basep.get(new Comerciante(id_comerciante, 0, 0, null, null, null, 0, null, null, null, null, null, null));
         return result.size();
     }
 
