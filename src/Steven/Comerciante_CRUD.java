@@ -390,6 +390,7 @@ public class Comerciante_CRUD extends javax.swing.JFrame {
 
     }
 
+
     public static int comprobarComerciante(ObjectContainer basep, String id_comerciante) {
         Comerciante buscarC = new Comerciante(id_comerciante, 0, 0, null, null, null, 0, null, null, null, null, null, null);
         ObjectSet result = basep.get(buscarC);

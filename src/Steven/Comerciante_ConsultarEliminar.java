@@ -168,6 +168,11 @@ public class Comerciante_ConsultarEliminar extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tablaConsultar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaConsultarMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tablaConsultar);
 
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 870, 170));
@@ -252,6 +257,11 @@ public class Comerciante_ConsultarEliminar extends javax.swing.JFrame {
         ini.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void tablaConsultarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaConsultarMouseClicked
+        int i = tablaConsultar.getSelectedRow();
+        txtCodigo.setText(tablaConsultar.getValueAt(i, 0).toString());        // TODO add your handling code here:
+    }//GEN-LAST:event_tablaConsultarMouseClicked
 
     /**
      * @param args the command line arguments

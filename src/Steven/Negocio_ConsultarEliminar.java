@@ -197,6 +197,8 @@ public class Negocio_ConsultarEliminar extends javax.swing.JFrame {
         ObjectContainer baseDeDatos = Db4o.openFile(INICIO.direccionBD);
 
         try {
+            
+            
 
             // Busca el Negocio a eliminar
             Negocio revisar = new Negocio(codigo_negocio, null, null, null);

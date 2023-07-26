@@ -38,7 +38,7 @@ public class Crear_Guardia extends javax.swing.JFrame {
     String correo_per_taq = "";
     String tiposangre_per_taq = "";
     String codigo_pais_per_taq = "";
-    String id_guardia_per = "";
+    String id_guardia = "";
     int años_expreriencia_guar;
     boolean disponibilidad_guar;
     String especialidad_guar = "";
@@ -54,7 +54,7 @@ public class Crear_Guardia extends javax.swing.JFrame {
         Correo_taquillero.setText("");
         tipo_sangre_txt.setText("");
         pais_txt.setText("");
-        id_guardia.setText("");
+        txtid_guardia.setText("");
         años_experienca.setText("");
         
         especialidad_guardia.setText("");
@@ -74,7 +74,7 @@ public class Crear_Guardia extends javax.swing.JFrame {
         fechanac_per_taq = fechaNa.getDate();
         correo_per_taq = Correo_taquillero.getText();
         tiposangre_per_taq = tipo_sangre_txt.getText();
-        id_guardia_per = id_guardia.getText();
+        id_guardia = txtid_guardia.getText();
         disponibilidad_guar = chxSi.isSelected();
         codigo_pais_per_taq = pais_txt.getText();
         // Corregir la asignación de años_expreriencia_guar
@@ -97,11 +97,11 @@ public class Crear_Guardia extends javax.swing.JFrame {
         } else {
             Ced_Taquillero.setText("");
         }
-        if (!comprobarID(BaseD, id_guardia_per)) {
+        if (comprobarID(BaseD, id_guardia)) {
             error = true;
             JOptionPane.showMessageDialog(this, "Ya existe un Guardia con este ID registrado", "ERROR", JOptionPane.ERROR_MESSAGE);
         } else {
-            id_guardia.setText("");
+            txtid_guardia.setText("");
         }
 
         if (comprobarTS(BaseD, tiposangre_per_taq) == 0) {
@@ -113,7 +113,7 @@ public class Crear_Guardia extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "No existe ningun Pais con este codigo");
         }
         if (!error) {
-            Guardia miUsuario = new Guardia(id_guardia_per, años_expreriencia_guar, disponibilidad_guar, especialidad_guar, Cedula_per_guar, nombre_per_guar, apellido_per_guar, edad_per_taq, genero_per_taq, celular_per_taq, fechanac_per_taq, correo_per_taq, tiposangre_per_taq, codigo_pais_per_taq);
+            Guardia miUsuario = new Guardia(id_guardia, años_expreriencia_guar, disponibilidad_guar, especialidad_guar, Cedula_per_guar, nombre_per_guar, apellido_per_guar, edad_per_taq, genero_per_taq, celular_per_taq, fechanac_per_taq, correo_per_taq, tiposangre_per_taq, codigo_pais_per_taq);
 
             BaseD.store(miUsuario);
             JOptionPane.showMessageDialog(null, "Guardia registrado correctamente");
@@ -123,18 +123,18 @@ public class Crear_Guardia extends javax.swing.JFrame {
         }
     }
 
-    public static boolean comprobarCedula(ObjectContainer BaseD, String Cedula_per_due) {
+    public static boolean comprobarCedula(ObjectContainer BaseD, String Cedula_per_guar) {
         Query query = BaseD.query();
         query.constrain(Persona.class);
-        query.descend("cedula_per").constrain(Cedula_per_due).equal();
+        query.descend("cedula_per").constrain(Cedula_per_guar).equal();
         ObjectSet result = query.execute();
         return !result.isEmpty();
     }
 
-    public static boolean comprobarID(ObjectContainer BaseD, String id_guardia_per) {
+    public static boolean comprobarID(ObjectContainer BaseD, String id_guardia) {
         Query query = BaseD.query();
         query.constrain(Guardia.class);
-        query.descend("id_Guardia").constrain(id_guardia_per).equal();
+        query.descend("id_guardia").constrain(id_guardia).equal();
         ObjectSet result = query.execute();
         return !result.isEmpty();
     }
@@ -189,7 +189,7 @@ public class Crear_Guardia extends javax.swing.JFrame {
         cel_taquillero = new javax.swing.JTextField();
         Correo_taquillero = new javax.swing.JTextField();
         fechaNa = new com.toedter.calendar.JDateChooser();
-        id_guardia = new javax.swing.JTextField();
+        txtid_guardia = new javax.swing.JTextField();
         años_experienca = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         tipo_sangre_txt = new javax.swing.JTextField();
@@ -206,59 +206,45 @@ public class Crear_Guardia extends javax.swing.JFrame {
         jPanel1.setForeground(new java.awt.Color(153, 255, 153));
 
         jLabel1.setFont(new java.awt.Font("DialogInput", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Guardia");
 
         jLabel2.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Cedula:");
 
         jLabel3.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Nombre;");
 
         jLabel4.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Apellidos:");
 
         jLabel5.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Edad:");
 
         jLabel6.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Genero:");
 
         jLabel7.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Celular:");
 
         jLabel8.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("Fecha Nacimiento:");
 
         jLabel9.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setText("Correo:");
 
         jLabel10.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
         jLabel10.setText("Cod Tipo Sangre:");
 
         jLabel11.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
         jLabel11.setText("Cod Tipo Pais:");
 
         jLabel12.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(0, 0, 0));
         jLabel12.setText("ID Guardia:");
 
         jLabel13.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(0, 0, 0));
         jLabel13.setText("Años Expreriencia:");
 
         jLabel15.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(0, 0, 0));
         jLabel15.setText("Disponibilidad:");
 
         jButton1.setText("INGRESAR");
@@ -275,7 +261,6 @@ public class Crear_Guardia extends javax.swing.JFrame {
         });
 
         jLabel16.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
-        jLabel16.setForeground(new java.awt.Color(0, 0, 0));
         jLabel16.setText("Especialidad:");
 
         especialidad_guardia.addActionListener(new java.awt.event.ActionListener() {
@@ -339,7 +324,7 @@ public class Crear_Guardia extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(años_experienca, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(chxSi)
-                    .addComponent(id_guardia, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtid_guardia, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(especialidad_guardia, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -368,7 +353,7 @@ public class Crear_Guardia extends javax.swing.JFrame {
                                 .addComponent(jLabel12)
                                 .addGap(18, 18, 18))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(id_guardia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtid_guardia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(27, 27, 27)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel13)
@@ -517,7 +502,6 @@ public class Crear_Guardia extends javax.swing.JFrame {
     private javax.swing.JTextField edad_taquillero;
     private javax.swing.JTextField especialidad_guardia;
     private com.toedter.calendar.JDateChooser fechaNa;
-    private javax.swing.JTextField id_guardia;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
@@ -539,5 +523,6 @@ public class Crear_Guardia extends javax.swing.JFrame {
     private javax.swing.JTextField nom_taquillero;
     private javax.swing.JTextField pais_txt;
     private javax.swing.JTextField tipo_sangre_txt;
+    private javax.swing.JTextField txtid_guardia;
     // End of variables declaration//GEN-END:variables
 }

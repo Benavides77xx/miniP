@@ -311,7 +311,7 @@ public class Tecnico_crud extends javax.swing.JFrame {
     public static boolean comprobarID(ObjectContainer BaseD, String id_tecnico) {
         Query query = BaseD.query();
         query.constrain(Tecnico.class);
-        query.descend("id_dueño").constrain(id_tecnico).equal();
+        query.descend("id_Tecnico").constrain(id_tecnico).equal();
         ObjectSet result = query.execute();
         return !result.isEmpty();
     }
