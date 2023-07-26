@@ -47,8 +47,6 @@ public class Area_MODIFICAR extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         txtcodA = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jtable = new javax.swing.JTable();
         btnmodificar = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         txtnombre = new javax.swing.JTextField();
@@ -91,21 +89,6 @@ public class Area_MODIFICAR extends javax.swing.JFrame {
         });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 80, 40, -1));
 
-        jtable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, "", null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "*Codigo_Area", "Nombre", "Tamaño", "Capacidad", "Disponibilidad", "Descripción", "Id_Guardia", "Codigo_Puesto"
-            }
-        ));
-        jScrollPane1.setViewportView(jtable);
-
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 730, 90));
-
         btnmodificar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnmodificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/editar (1).png"))); // NOI18N
         btnmodificar.setText("Modificar");
@@ -127,46 +110,46 @@ public class Area_MODIFICAR extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 550, 130, 40));
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 420, 130, 40));
 
         txtnombre.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.add(txtnombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 280, 200, 30));
+        jPanel1.add(txtnombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 160, 200, 30));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel4.setText("Nombre ");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 260, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 140, -1, -1));
 
         txtdescripcion.setColumns(20);
         txtdescripcion.setRows(5);
         txtdescripcion.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jScrollPane2.setViewportView(txtdescripcion);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 340, 190, -1));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 220, 190, -1));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel8.setText("Descripcion");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 320, -1, -1));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 200, -1, -1));
 
         txtTamaño.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.add(txtTamaño, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 280, 200, 30));
+        jPanel1.add(txtTamaño, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 160, 200, 30));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel5.setText("Tamaño:");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 260, -1, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 140, -1, -1));
 
         txtCapacidad.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.add(txtCapacidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 340, 190, 30));
+        jPanel1.add(txtCapacidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 220, 190, 30));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel6.setText("Capacidad:");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 320, -1, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 200, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel7.setText("Disponibilidad:");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 380, -1, -1));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 260, -1, -1));
 
         chxSi.setText("Si");
-        jPanel1.add(chxSi, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 380, -1, -1));
+        jPanel1.add(chxSi, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 260, -1, -1));
 
         txtIdGuardia.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtIdGuardia.addActionListener(new java.awt.event.ActionListener() {
@@ -174,15 +157,15 @@ public class Area_MODIFICAR extends javax.swing.JFrame {
                 txtIdGuardiaActionPerformed(evt);
             }
         });
-        jPanel1.add(txtIdGuardia, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 430, 190, 30));
+        jPanel1.add(txtIdGuardia, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 310, 190, 30));
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel9.setText("*Id_guardia:");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 410, -1, -1));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 290, -1, -1));
 
         lbl.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lbl.setText("*Cod_puesto:");
-        jPanel1.add(lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 480, -1, -1));
+        jPanel1.add(lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 360, -1, -1));
 
         txtCod_puesto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtCod_puesto.addActionListener(new java.awt.event.ActionListener() {
@@ -190,7 +173,7 @@ public class Area_MODIFICAR extends javax.swing.JFrame {
                 txtCod_puestoActionPerformed(evt);
             }
         });
-        jPanel1.add(txtCod_puesto, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 500, 190, 30));
+        jPanel1.add(txtCod_puesto, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 380, 190, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -200,7 +183,7 @@ public class Area_MODIFICAR extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 593, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 469, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -325,7 +308,7 @@ public class Area_MODIFICAR extends javax.swing.JFrame {
                     txtCod_puesto.setText(miE.getCod_puesto());
                     btnmodificar.setEnabled(true);
                     //Hacer editable los campos de texto
-                    mostrarDatos(result);
+                   
                     HabilitarCampos_deTexto();
                     txtcodA.setEditable(false);
                 }
@@ -349,33 +332,11 @@ public class Area_MODIFICAR extends javax.swing.JFrame {
 
         basep.set(Emodificar);
         JOptionPane.showMessageDialog(null, "El Area fue modificado exitosamente");
-        mostrarDatos(result);
+        
         LimpiarCampos();
     }
 
-    public void mostrarDatos(ObjectSet result) {
-        DefaultTableModel model = (DefaultTableModel) jtable.getModel();
-        model.setRowCount(0); // Limpiar la tabla
-
-        if (result.size() == 0) {
-            JOptionPane.showMessageDialog(null, "El Area no existe");
-        } else {
-            while (result.hasNext()) {
-                Area MostrarDatos = (Area) result.next();
-                Object[] fila = {
-                    MostrarDatos.getCod_area(),
-                    MostrarDatos.getNombre(),
-                    MostrarDatos.getDescripcion(),
-                    MostrarDatos.getTamaño(),
-                    MostrarDatos.getCapacidad(),
-                    MostrarDatos.isDisponibilida(),
-                    MostrarDatos.getId_guardia(),
-                    MostrarDatos.getCod_puesto()};
-
-                model.addRow(fila);
-            }
-        }
-    }
+    
 
     public static void Cerrar_BD(ObjectContainer basep) {
 
@@ -395,9 +356,7 @@ public class Area_MODIFICAR extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jtable;
     private javax.swing.JLabel lbl;
     private javax.swing.JSpinner txtCapacidad;
     private javax.swing.JTextField txtCod_puesto;

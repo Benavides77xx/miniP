@@ -40,8 +40,6 @@ public class Puesto_MODIFICAR extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         txtcodC = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jtable = new javax.swing.JTable();
         btnmodificar = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         txtnombre = new javax.swing.JTextField();
@@ -80,21 +78,6 @@ public class Puesto_MODIFICAR extends javax.swing.JFrame {
         });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 80, 40, -1));
 
-        jtable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, "", null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
-            },
-            new String [] {
-                "*Codigo Puesto", "Nombre", "Descripción", "Tamaño", "Horario laboral", "id_comerciante"
-            }
-        ));
-        jScrollPane1.setViewportView(jtable);
-
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 730, 90));
-
         btnmodificar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnmodificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/editar (1).png"))); // NOI18N
         btnmodificar.setText("Modificar");
@@ -116,43 +99,43 @@ public class Puesto_MODIFICAR extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 550, 130, 40));
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 440, 130, 40));
 
         txtnombre.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.add(txtnombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 270, 200, 30));
+        jPanel1.add(txtnombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 160, 200, 30));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel4.setText("Nombre ");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 250, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 140, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel8.setText("Descripcion");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 310, -1, -1));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 200, -1, -1));
 
         txtdescripcion.setColumns(20);
         txtdescripcion.setRows(5);
         txtdescripcion.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jScrollPane2.setViewportView(txtdescripcion);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 330, 190, -1));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 220, 190, -1));
 
         txtTamaño.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.add(txtTamaño, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 270, 200, 30));
+        jPanel1.add(txtTamaño, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 160, 200, 30));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel5.setText("Tamaño:");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 250, -1, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 140, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel6.setText("Horario:");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 310, -1, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 200, -1, -1));
 
         cbxHorario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Matutino", "Vespertino", "Nocturno" }));
-        jPanel1.add(cbxHorario, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 330, 200, 30));
+        jPanel1.add(cbxHorario, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 220, 200, 30));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel7.setText("*Id_comerciante:");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 380, -1, -1));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 270, -1, -1));
 
         txtIdComerciante.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtIdComerciante.addActionListener(new java.awt.event.ActionListener() {
@@ -160,7 +143,7 @@ public class Puesto_MODIFICAR extends javax.swing.JFrame {
                 txtIdComercianteActionPerformed(evt);
             }
         });
-        jPanel1.add(txtIdComerciante, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 400, 190, 30));
+        jPanel1.add(txtIdComerciante, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 290, 190, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -170,7 +153,7 @@ public class Puesto_MODIFICAR extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 593, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 488, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -291,7 +274,7 @@ public class Puesto_MODIFICAR extends javax.swing.JFrame {
 
                     btnmodificar.setEnabled(true);
                     //Hacer editable los campos de texto
-                    mostrarDatos(result);
+                   
                     HabilitarCampos_deTexto();
                     txtcodC.setEditable(false);
                 }
@@ -315,32 +298,11 @@ public class Puesto_MODIFICAR extends javax.swing.JFrame {
 
         basep.set(Emodificar);
         JOptionPane.showMessageDialog(null, "El Puesto fue modificado exitosamente");
-        mostrarDatos(result);
+       
         LimpiarCampos();
     }
 
-    public void mostrarDatos(ObjectSet result) {
-        DefaultTableModel model = (DefaultTableModel) jtable.getModel();
-        model.setRowCount(0); // Limpiar la tabla
-
-        if (result.size() == 0) {
-            JOptionPane.showMessageDialog(null, "El Puesto no existe");
-        } else {
-            while (result.hasNext()) {
-                Puesto MostrarDatos = (Puesto) result.next();
-                Object[] fila = {
-                    MostrarDatos.getCod_puesto(),
-                    MostrarDatos.getNombre(),
-                    MostrarDatos.getDescripcion(),
-                    MostrarDatos.getTamaño(),
-                    MostrarDatos.getHorario_laboral(),
-                    MostrarDatos.getId_comerciante()
-                };
-
-                model.addRow(fila);
-            }
-        }
-    }
+    
 
     public static void Cerrar_BD(ObjectContainer basep) {
 
@@ -359,9 +321,7 @@ public class Puesto_MODIFICAR extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jtable;
     private javax.swing.JTextField txtIdComerciante;
     private javax.swing.JTextField txtTamaño;
     private javax.swing.JTextField txtcodC;

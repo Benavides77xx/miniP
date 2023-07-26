@@ -40,8 +40,6 @@ public class Control_Guardia_MODIFICAR extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         txtcodC = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jtable = new javax.swing.JTable();
         btnmodificar = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jCalendarFecha = new com.toedter.calendar.JDateChooser();
@@ -78,21 +76,6 @@ public class Control_Guardia_MODIFICAR extends javax.swing.JFrame {
         });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 80, 40, -1));
 
-        jtable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, "", null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
-            },
-            new String [] {
-                "*Codigo_Control", "Fecha", "Observaciones", "Id_guardia", "Codigo de area"
-            }
-        ));
-        jScrollPane1.setViewportView(jtable);
-
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 730, 90));
-
         btnmodificar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnmodificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/editar (1).png"))); // NOI18N
         btnmodificar.setText("Modificar");
@@ -114,15 +97,15 @@ public class Control_Guardia_MODIFICAR extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 550, 130, 40));
-        jPanel1.add(jCalendarFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 300, 200, 30));
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 410, 130, 40));
+        jPanel1.add(jCalendarFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 160, 200, 30));
 
         txtdescripcion.setColumns(20);
         txtdescripcion.setRows(5);
         txtdescripcion.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jScrollPane2.setViewportView(txtdescripcion);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 360, 190, -1));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 220, 190, -1));
 
         txtIdGuardia.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtIdGuardia.addActionListener(new java.awt.event.ActionListener() {
@@ -130,7 +113,7 @@ public class Control_Guardia_MODIFICAR extends javax.swing.JFrame {
                 txtIdGuardiaActionPerformed(evt);
             }
         });
-        jPanel1.add(txtIdGuardia, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 300, 190, 30));
+        jPanel1.add(txtIdGuardia, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 160, 190, 30));
 
         txtCod_area.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtCod_area.addActionListener(new java.awt.event.ActionListener() {
@@ -138,23 +121,23 @@ public class Control_Guardia_MODIFICAR extends javax.swing.JFrame {
                 txtCod_areaActionPerformed(evt);
             }
         });
-        jPanel1.add(txtCod_area, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 370, 190, 30));
+        jPanel1.add(txtCod_area, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 230, 190, 30));
 
         lbl.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lbl.setText("*Cod_area:");
-        jPanel1.add(lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 350, -1, -1));
+        jPanel1.add(lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 210, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel7.setText("*Id_guardia:");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 280, -1, -1));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 140, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel8.setText("Observaciones:");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 340, -1, -1));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 200, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel4.setText("Fecha:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 280, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 140, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -164,7 +147,9 @@ public class Control_Guardia_MODIFICAR extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 593, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 461, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 1, Short.MAX_VALUE))
         );
 
         pack();
@@ -283,7 +268,7 @@ public class Control_Guardia_MODIFICAR extends javax.swing.JFrame {
                     
                     btnmodificar.setEnabled(true);
                     //Hacer editable los campos de texto
-                    mostrarDatos(result);
+                    
                     HabilitarCampos_deTexto();
                     txtcodC.setEditable(false);
                 }
@@ -306,30 +291,11 @@ public class Control_Guardia_MODIFICAR extends javax.swing.JFrame {
 
         basep.set(Emodificar);
         JOptionPane.showMessageDialog(null, "El Control fue modificado exitosamente");
-        mostrarDatos(result);
+        
         LimpiarCampos();
     }
 
-    public void mostrarDatos(ObjectSet result) {
-        DefaultTableModel model = (DefaultTableModel) jtable.getModel();
-        model.setRowCount(0); // Limpiar la tabla
-
-        if (result.size() == 0) {
-            JOptionPane.showMessageDialog(null, "El Control no existe");
-        } else {
-            while (result.hasNext()) {
-                Control_guardia MostrarDatos = (Control_guardia) result.next();
-                Object[] fila = {
-                    MostrarDatos.getCod_control_guardia(),
-                    MostrarDatos.getFecha(),
-                    MostrarDatos.getObservaciones(),
-                    MostrarDatos.getId_guardia(),
-                    MostrarDatos.getCod_area()};
-
-                model.addRow(fila);
-            }
-        }
-    }
+    
 
     public static void Cerrar_BD(ObjectContainer basep) {
 
@@ -346,9 +312,7 @@ public class Control_Guardia_MODIFICAR extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jtable;
     private javax.swing.JLabel lbl;
     private javax.swing.JTextField txtCod_area;
     private javax.swing.JTextField txtIdGuardia;

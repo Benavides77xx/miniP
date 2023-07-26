@@ -40,8 +40,6 @@ public class Especialidad_MODIFICAR extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         txtcodC = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jtable = new javax.swing.JTable();
         btnmodificar = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -76,21 +74,6 @@ public class Especialidad_MODIFICAR extends javax.swing.JFrame {
         });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 80, 40, -1));
 
-        jtable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, "", null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "*Codigo Especialidad", "Nombre", "Descripción", "Id_guardia"
-            }
-        ));
-        jScrollPane1.setViewportView(jtable);
-
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 730, 90));
-
         btnmodificar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnmodificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/editar (1).png"))); // NOI18N
         btnmodificar.setText("Modificar");
@@ -112,29 +95,29 @@ public class Especialidad_MODIFICAR extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 550, 130, 40));
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 440, 130, 40));
 
         txtdescripcion.setColumns(20);
         txtdescripcion.setRows(5);
         txtdescripcion.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jScrollPane3.setViewportView(txtdescripcion);
 
-        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 320, 190, -1));
+        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 210, 190, -1));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel8.setText("Descripcion");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 300, -1, -1));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 190, -1, -1));
 
         txtnombre.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.add(txtnombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 260, 200, 30));
+        jPanel1.add(txtnombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 150, 200, 30));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel3.setText("Nombre ");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 240, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 130, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel7.setText("*Id_guardia");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 440, -1, -1));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 330, -1, -1));
 
         txtIdGuardia.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtIdGuardia.addActionListener(new java.awt.event.ActionListener() {
@@ -142,7 +125,7 @@ public class Especialidad_MODIFICAR extends javax.swing.JFrame {
                 txtIdGuardiaActionPerformed(evt);
             }
         });
-        jPanel1.add(txtIdGuardia, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 460, 190, 30));
+        jPanel1.add(txtIdGuardia, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 350, 190, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -152,7 +135,9 @@ public class Especialidad_MODIFICAR extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 593, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 490, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -267,7 +252,7 @@ public class Especialidad_MODIFICAR extends javax.swing.JFrame {
 
                     btnmodificar.setEnabled(true);
                     //Hacer editable los campos de texto
-                    mostrarDatos(result);
+                    
                     HabilitarCampos_deTexto();
                     txtcodC.setEditable(false);
                 }
@@ -289,30 +274,11 @@ public class Especialidad_MODIFICAR extends javax.swing.JFrame {
 
         basep.set(Emodificar);
         JOptionPane.showMessageDialog(null, "La Especialidad fue modificada exitosamente");
-        mostrarDatos(result);
+        
         LimpiarCampos();
     }
 
-    public void mostrarDatos(ObjectSet result) {
-        DefaultTableModel model = (DefaultTableModel) jtable.getModel();
-        model.setRowCount(0); // Limpiar la tabla
-
-        if (result.size() == 0) {
-            JOptionPane.showMessageDialog(null, "La Especialidad no existe");
-        } else {
-            while (result.hasNext()) {
-                Especialidad MostrarDatos = (Especialidad) result.next();
-                Object[] fila = {
-                    MostrarDatos.getCod_especialidad(),
-                    MostrarDatos.getNombre_esp(),
-                    MostrarDatos.getDescripcion(),
-                    MostrarDatos.getId_guardia()
-                };
-
-                model.addRow(fila);
-            }
-        }
-    }
+    
 
     public static void Cerrar_BD(ObjectContainer basep) {
 
@@ -328,9 +294,7 @@ public class Especialidad_MODIFICAR extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jtable;
     private javax.swing.JTextField txtIdGuardia;
     private javax.swing.JTextField txtcodC;
     private javax.swing.JTextArea txtdescripcion;

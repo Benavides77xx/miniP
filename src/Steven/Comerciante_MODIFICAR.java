@@ -40,8 +40,6 @@ public class Comerciante_MODIFICAR extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         txtcodC = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jtable = new javax.swing.JTable();
         btnmodificar = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         txtNumVentas = new javax.swing.JSpinner();
@@ -92,21 +90,6 @@ public class Comerciante_MODIFICAR extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 80, 40, -1));
-
-        jtable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, "", null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "*Codigo_Comerciante", "Años de experiencia", "Numen de ventas", "Cedula"
-            }
-        ));
-        jScrollPane1.setViewportView(jtable);
-
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 730, 90));
 
         btnmodificar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnmodificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/editar (1).png"))); // NOI18N
@@ -400,14 +383,25 @@ public class Comerciante_MODIFICAR extends javax.swing.JFrame {
                     Comerciante miE = new Comerciante();
 
                     miE = (Comerciante) result.get(i);
-                    txtcodC.setText(miE.getId_comerciante());                    
-                    txtAños_exp.setValue(String.valueOf(miE.getAños_exp()));
-                    txtNumVentas.setValue(String.valueOf(miE.getNum_ventas()));
+                    txtcodC.setText(miE.getId_comerciante());
+                    txtCedulaPersona.setText(miE.getCelular_per());
+                    txtNombre.setText(miE.getNombre_per());
+                    txtApellido.setText(miE.getApellido());
+                    txtEdad.setValue(miE.getEdad_per());
+                    Genero_combobox.setSelectedItem(miE.getGenero());
+                    txtCelular.setText(miE.getCelular_per());
+                    fechaNa.setDate(miE.getFecha_nac());
+                    txtCorreo.setText(miE.getCorreo());
+                    txtTipoSangre.setText(miE.getCodigo_tipo_sangre());
+                    txtTipoPais.setText(miE.getCodigo_pais());
+                    txtAños_exp.setValue(miE.getAños_exp());
+                    txtNumVentas.setValue(miE.getNum_ventas());
+                    
                     
                     
                     btnmodificar.setEnabled(true);
                     //Hacer editable los campos de texto
-                    mostrarDatos(result);
+                    
                     HabilitarCampos_deTexto();
                     txtcodC.setEditable(false);
                 }
@@ -438,29 +432,10 @@ public class Comerciante_MODIFICAR extends javax.swing.JFrame {
 
         basep.set(Emodificar);
         JOptionPane.showMessageDialog(null, "El Comerciante fue modificado exitosamente");
-        mostrarDatos(result);
+        
         LimpiarCampos();
     }
 
-    public void mostrarDatos(ObjectSet result) {
-        DefaultTableModel model = (DefaultTableModel) jtable.getModel();
-        model.setRowCount(0); // Limpiar la tabla
-
-        if (result.size() == 0) {
-            JOptionPane.showMessageDialog(null, "El Comerciante no existe");
-        } else {
-            while (result.hasNext()) {
-                Comerciante MostrarDatos = (Comerciante) result.next();
-                Object[] fila = {
-                    MostrarDatos.getId_comerciante(),
-                    MostrarDatos.getAños_exp(),
-                    MostrarDatos.getNum_ventas(),
-                    };
-
-                model.addRow(fila);
-            }
-        }
-    }
 
     public static void Cerrar_BD(ObjectContainer basep) {
 
@@ -487,8 +462,6 @@ public class Comerciante_MODIFICAR extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jtable;
     private javax.swing.JTextField txtApellido;
     private javax.swing.JSpinner txtAños_exp;
     private javax.swing.JTextField txtCedulaPersona;
