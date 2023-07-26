@@ -39,6 +39,9 @@ public class INICIO extends javax.swing.JFrame {
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenu15 = new javax.swing.JMenu();
+        jMenuItem44 = new javax.swing.JMenuItem();
+        jMenuItem45 = new javax.swing.JMenuItem();
+        jMenuItem46 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem23 = new javax.swing.JMenuItem();
@@ -160,7 +163,33 @@ public class INICIO extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem3);
 
+        jMenu15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/habilidad.png"))); // NOI18N
         jMenu15.setText("Habilidades del cliente");
+
+        jMenuItem44.setText("Crear");
+        jMenuItem44.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem44ActionPerformed(evt);
+            }
+        });
+        jMenu15.add(jMenuItem44);
+
+        jMenuItem45.setText("Consultar y Eliminar");
+        jMenuItem45.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem45ActionPerformed(evt);
+            }
+        });
+        jMenu15.add(jMenuItem45);
+
+        jMenuItem46.setText("Modificar");
+        jMenuItem46.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem46ActionPerformed(evt);
+            }
+        });
+        jMenu15.add(jMenuItem46);
+
         jMenu1.add(jMenu15);
 
         Personas.add(jMenu1);
@@ -834,6 +863,24 @@ public class INICIO extends javax.swing.JFrame {
         mostrar.setVisible(true); 
     }//GEN-LAST:event_jMenuItem43ActionPerformed
 
+    private void jMenuItem44ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem44ActionPerformed
+        this.dispose();
+        Crear_Habilidades mostrar = new Crear_Habilidades();
+        mostrar.setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem44ActionPerformed
+
+    private void jMenuItem45ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem45ActionPerformed
+       this.dispose();
+        Consultar_Eliminar_Habilidades mostrar = new Consultar_Eliminar_Habilidades();
+        mostrar.setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem45ActionPerformed
+
+    private void jMenuItem46ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem46ActionPerformed
+         this.dispose();
+        Modificar_Habilidades mostrar = new Modificar_Habilidades();
+        mostrar.setVisible(true); 
+    }//GEN-LAST:event_jMenuItem46ActionPerformed
+
      /**
      * @param args the command line arguments
      */
@@ -936,6 +983,9 @@ public class INICIO extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem41;
     private javax.swing.JMenuItem jMenuItem42;
     private javax.swing.JMenuItem jMenuItem43;
+    private javax.swing.JMenuItem jMenuItem44;
+    private javax.swing.JMenuItem jMenuItem45;
+    private javax.swing.JMenuItem jMenuItem46;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
