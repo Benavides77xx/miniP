@@ -49,7 +49,6 @@ public class Crear_Habilidades extends javax.swing.JFrame {
 
         if (verificar(BaseD, cod_hab) == 0) {
             Habilidades miUsuario = new Habilidades(cod_hab, habili, desc);
-
             BaseD.set(miUsuario);
             JOptionPane.showMessageDialog(null, "Habilidad Creada");
 

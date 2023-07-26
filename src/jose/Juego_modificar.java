@@ -80,12 +80,13 @@ public class Juego_modificar extends javax.swing.JFrame {
                     txtdes.setText(miE.getDescripcion());
                     txtnombre.setText(miE.getNombre_juego());
                     dateCreacion.setDate(miE.getAño_creacion());
-                    txtcap.setValue(String.valueOf(miE.getCapacidad()));
+                    txtcap.setValue(miE.getCapacidad());
+//                  txtcap.setValue(String.valueOf(miE.getCapacidad()));
                     txtduracion.setText(String.valueOf(miE.getDuracion()));
                     
                     btnmodificar.setEnabled(true);
                     //Hacer editable los campos de texto
-                    mostrarDatos(result);
+//                    mostrarDatos(result);
                     HabilitarCampos_deTexto();
                     txtcodJ.setEditable(false);
                 }
@@ -103,38 +104,38 @@ public class Juego_modificar extends javax.swing.JFrame {
         Emodificar.setDescripcion(txtdes.getText());
         Emodificar.setNombre_juego(txtnombre.getText());
         Emodificar.setAño_creacion(dateCreacion.getDate());
-        Emodificar.setCapacidad(Integer.parseInt(txtcap.getValue().toString()));
+        Emodificar.setCapacidad((int)txtcap.getValue());
         Emodificar.setDuracion(Double.parseDouble(txtduracion.getText()));
 
         basep.set(Emodificar);
         JOptionPane.showMessageDialog(null, "El Juego fue modificado exitosamente");
-        mostrarDatos(result);
+//        mostrarDatos(result);
         LimpiarCampos();
     }    
     
-    public void mostrarDatos(ObjectSet result) {
-        DefaultTableModel model = (DefaultTableModel) jtable.getModel();
-        model.setRowCount(0); // Limpiar la tabla
-
-        if (result.size() == 0) {
-            JOptionPane.showMessageDialog(null, "El Juego no existe");
-        } else {
-            while (result.hasNext()) {
-                Juego MostrarDatos = (Juego) result.next();
-                Object[] fila = {
-                    
-                    MostrarDatos.getCodigo_juego(),
-                    MostrarDatos.getNombre_juego(),
-                    MostrarDatos.getDescripcion(),  
-                    MostrarDatos.getAño_creacion(),
-                    MostrarDatos.getCapacidad(),
-                    MostrarDatos.getDuracion(),
-                    MostrarDatos.getId_dueño(),};
-
-                     model.addRow(fila);
-            }
-        }
-    }    
+//    public void mostrarDatos(ObjectSet result) {
+//        DefaultTableModel model = (DefaultTableModel) jtable.getModel();
+//        model.setRowCount(0); // Limpiar la tabla
+//
+//        if (result.size() == 0) {
+//            JOptionPane.showMessageDialog(null, "El Juego no existe");
+//        } else {
+//            while (result.hasNext()) {
+//                Juego MostrarDatos = (Juego) result.next();
+//                Object[] fila = {
+//                    
+//                    MostrarDatos.getCodigo_juego(),
+//                    MostrarDatos.getNombre_juego(),
+//                    MostrarDatos.getDescripcion(),  
+//                    MostrarDatos.getAño_creacion(),
+//                    MostrarDatos.getCapacidad(),
+//                    MostrarDatos.getDuracion(),
+//                    MostrarDatos.getId_dueño(),};
+//
+//                     model.addRow(fila);
+//            }
+//        }
+//    }    
     
     public static void Cerrar_BD(ObjectContainer basep) {
 
@@ -154,8 +155,6 @@ public class Juego_modificar extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         txtcodJ = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jtable = new javax.swing.JTable();
         btnmodificar = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
@@ -193,21 +192,6 @@ public class Juego_modificar extends javax.swing.JFrame {
         });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 80, 40, -1));
 
-        jtable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, "", null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "*Codigo_Juego", "Nombre", "Descripcion", "Año_creacion", "Capacidad", "Duracion", "*ID_dueño"
-            }
-        ));
-        jScrollPane1.setViewportView(jtable);
-
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 140, 800, 90));
-
         btnmodificar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnmodificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/editar (1).png"))); // NOI18N
         btnmodificar.setText("Modificar");
@@ -218,7 +202,7 @@ public class Juego_modificar extends javax.swing.JFrame {
                 btnmodificarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnmodificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 370, 130, 40));
+        jPanel1.add(btnmodificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 280, 130, 40));
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Regresar.png"))); // NOI18N
         jButton3.setText("Regresar");
@@ -229,36 +213,36 @@ public class Juego_modificar extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 420, 130, 40));
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 340, 130, 40));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel3.setText("Capacidad");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 380, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 290, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel5.setText("Nombre Juego");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 330, -1, -1));
-        jPanel1.add(txtnombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 350, 240, 30));
-        jPanel1.add(txtcap, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 400, 240, 30));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 220, -1, -1));
+        jPanel1.add(txtnombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 250, 240, 30));
+        jPanel1.add(txtcap, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 320, 240, 30));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel6.setText("Descripcion");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 390, -1, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 310, -1, -1));
 
         txtdes.setColumns(20);
         txtdes.setRows(5);
         jScrollPane2.setViewportView(txtdes);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 410, 240, -1));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 340, 240, -1));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel7.setText("Año creacion");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 330, -1, -1));
-        jPanel1.add(dateCreacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 350, 240, 30));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 210, -1, -1));
+        jPanel1.add(dateCreacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 230, 240, 30));
 
         jLabel4.setText("Duracion");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 440, -1, -1));
-        jPanel1.add(txtduracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 460, 240, 30));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 370, -1, -1));
+        jPanel1.add(txtduracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 400, 240, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -343,9 +327,7 @@ public class Juego_modificar extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jtable;
     private javax.swing.JSpinner txtcap;
     private javax.swing.JTextField txtcodJ;
     private javax.swing.JTextArea txtdes;

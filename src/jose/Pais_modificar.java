@@ -69,10 +69,9 @@ public class Pais_modificar extends javax.swing.JFrame {
                     txtcodP.setText(miE.getCodigo_pais());
                     txtnombre.setText(miE.getNombre_pais());                    
                     txtpoblacion.setText(String.valueOf(miE.getPoblacion()));
-
                     btnmodificar.setEnabled(true);
                     //Hacer editable los campos de texto
-                    mostrarDatos(result);
+//                    mostrarDatos(result);
                     HabilitarCampos_deTexto();
                     txtcodP.setEditable(false);
                 }
@@ -92,30 +91,30 @@ public class Pais_modificar extends javax.swing.JFrame {
 
         basep.set(Emodificar);
         JOptionPane.showMessageDialog(null, "El pais fue modificado exitosamente");
-        mostrarDatos(result);
+//        mostrarDatos(result);
         LimpiarCampos();
     }    
     
-    public void mostrarDatos(ObjectSet result) {
-        DefaultTableModel model = (DefaultTableModel) jtable.getModel();
-        model.setRowCount(0); // Limpiar la tabla
-
-        if (result.size() == 0) {
-            JOptionPane.showMessageDialog(null, "El pais no existe");
-        } else {
-            while (result.hasNext()) {
-                Pais MostrarDatos = (Pais) result.next();
-                Object[] fila = {
-                    
-                    MostrarDatos.getCodigo_pais(),
-                    MostrarDatos.getNombre_pais(),
-                    MostrarDatos.getPoblacion(),};
-
-                     model.addRow(fila);
-            }
-        }
-    }    
-    
+//    public void mostrarDatos(ObjectSet result) {
+//        DefaultTableModel model = (DefaultTableModel) jtable.getModel();
+//        model.setRowCount(0); // Limpiar la tabla
+//
+//        if (result.size() == 0) {
+//            JOptionPane.showMessageDialog(null, "El pais no existe");
+//        } else {
+//            while (result.hasNext()) {
+//                Pais MostrarDatos = (Pais) result.next();
+//                Object[] fila = {
+//                    
+//                    MostrarDatos.getCodigo_pais(),
+//                    MostrarDatos.getNombre_pais(),
+//                    MostrarDatos.getPoblacion(),};
+//
+//                     model.addRow(fila);
+//            }
+//        }
+//    }    
+//    
     public static void Cerrar_BD(ObjectContainer basep) {
 
         basep.close();
@@ -136,8 +135,6 @@ public class Pais_modificar extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         txtcodP = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jtable = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         txtnombre = new javax.swing.JTextField();
@@ -168,30 +165,15 @@ public class Pais_modificar extends javax.swing.JFrame {
         });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 80, 40, -1));
 
-        jtable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, "", null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
-            },
-            new String [] {
-                "*Codigo_pais", "Nombre", "N° Poblacion"
-            }
-        ));
-        jScrollPane1.setViewportView(jtable);
-
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 140, 500, 90));
-
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel3.setText("Nombre Pais");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 350, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 170, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel4.setText("N° Poblacion");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 400, -1, -1));
-        jPanel1.add(txtnombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 370, 230, 30));
-        jPanel1.add(txtpoblacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 420, 230, 30));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 250, -1, -1));
+        jPanel1.add(txtnombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 200, 230, 30));
+        jPanel1.add(txtpoblacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 270, 230, 30));
 
         btnmodificar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnmodificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/editar (1).png"))); // NOI18N
@@ -203,7 +185,7 @@ public class Pais_modificar extends javax.swing.JFrame {
                 btnmodificarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnmodificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 360, 130, 40));
+        jPanel1.add(btnmodificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 190, 130, 40));
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Regresar.png"))); // NOI18N
         jButton3.setText("Regresar");
@@ -214,17 +196,17 @@ public class Pais_modificar extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 420, 130, 40));
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 250, 130, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 660, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 581, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 504, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 379, Short.MAX_VALUE)
         );
 
         pack();
@@ -293,8 +275,6 @@ public class Pais_modificar extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jtable;
     private javax.swing.JTextField txtcodP;
     private javax.swing.JTextField txtnombre;
     private javax.swing.JTextField txtpoblacion;

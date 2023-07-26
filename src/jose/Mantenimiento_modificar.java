@@ -73,7 +73,7 @@ public class Mantenimiento_modificar extends javax.swing.JFrame {
 
                     btnmodificar.setEnabled(true);
                     //Hacer editable los campos de texto
-                    mostrarDatos(result);
+//                    mostrarDatos(result);
                     HabilitarCampos_deTexto();
                     txtcodM.setEditable(false);
                 }
@@ -93,31 +93,31 @@ public class Mantenimiento_modificar extends javax.swing.JFrame {
 
         basep.set(Emodificar);
         JOptionPane.showMessageDialog(null, "El Mantenimiento fue modificado exitosamente");
-        mostrarDatos(result);
+//        mostrarDatos(result);
         LimpiarCampos();
     }    
     
-    public void mostrarDatos(ObjectSet result) {
-        DefaultTableModel model = (DefaultTableModel) jtable.getModel();
-        model.setRowCount(0); // Limpiar la tabla
-
-        if (result.size() == 0) {
-            JOptionPane.showMessageDialog(null, "El Mantenimiento no existe");
-        } else {
-            while (result.hasNext()) {
-                Mantenimiento MostrarDatos = (Mantenimiento) result.next();
-                Object[] fila = {
-                    
-                    MostrarDatos.getCodigo_mantenimiento(),
-                    MostrarDatos.getDescripcion_mantenimiento(),
-                    MostrarDatos.getFecha_mantenimiento(),
-                    MostrarDatos.getId_tecnico(),
-                    MostrarDatos.getCodigo_juego(),};
-
-                     model.addRow(fila);
-            }
-        }
-    }    
+//    public void mostrarDatos(ObjectSet result) {
+//        DefaultTableModel model = (DefaultTableModel) jtable.getModel();
+//        model.setRowCount(0); // Limpiar la tabla
+//
+//        if (result.size() == 0) {
+//            JOptionPane.showMessageDialog(null, "El Mantenimiento no existe");
+//        } else {
+//            while (result.hasNext()) {
+//                Mantenimiento MostrarDatos = (Mantenimiento) result.next();
+//                Object[] fila = {
+//                    
+//                    MostrarDatos.getCodigo_mantenimiento(),
+//                    MostrarDatos.getDescripcion_mantenimiento(),
+//                    MostrarDatos.getFecha_mantenimiento(),
+//                    MostrarDatos.getId_tecnico(),
+//                    MostrarDatos.getCodigo_juego(),};
+//
+//                     model.addRow(fila);
+//            }
+//        }
+//    }    
     
     public static void Cerrar_BD(ObjectContainer basep) {
 
@@ -142,8 +142,6 @@ public class Mantenimiento_modificar extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         txtcodM = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jtable = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         btnmodificar = new javax.swing.JButton();
@@ -175,28 +173,13 @@ public class Mantenimiento_modificar extends javax.swing.JFrame {
         });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 80, 40, -1));
 
-        jtable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, "", null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
-            },
-            new String [] {
-                "*Codigo_mantenimiento", "Descripcion", "Fecha_mantenimiento", "*ID_tecnicio", "*Codigo_juego"
-            }
-        ));
-        jScrollPane1.setViewportView(jtable);
-
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, 770, 90));
-
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel3.setText("Descripcion");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 350, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 160, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel4.setText("Fecha Mantenimiento");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 490, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 320, -1, -1));
 
         btnmodificar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnmodificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/editar (1).png"))); // NOI18N
@@ -208,7 +191,7 @@ public class Mantenimiento_modificar extends javax.swing.JFrame {
                 btnmodificarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnmodificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 450, 130, 40));
+        jPanel1.add(btnmodificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 260, 130, 40));
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Regresar.png"))); // NOI18N
         jButton3.setText("Regresar");
@@ -219,26 +202,24 @@ public class Mantenimiento_modificar extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 500, 130, 40));
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 320, 130, 40));
 
         txtdes.setColumns(20);
         txtdes.setRows(5);
         jScrollPane2.setViewportView(txtdes);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 370, 290, 110));
-        jPanel1.add(dateMan, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 510, 250, 30));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 190, 290, 110));
+        jPanel1.add(dateMan, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 350, 250, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 845, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 717, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 619, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 447, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -308,9 +289,7 @@ public class Mantenimiento_modificar extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jtable;
     private javax.swing.JTextField txtcodM;
     private javax.swing.JTextArea txtdes;
     // End of variables declaration//GEN-END:variables
