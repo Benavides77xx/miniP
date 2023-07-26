@@ -221,74 +221,59 @@ public class Crear_Dueño extends javax.swing.JFrame {
 
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));
         jLabel1.setFont(new java.awt.Font("DialogInput", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Dueño");
 
         jLabel2.setBackground(new java.awt.Color(0, 0, 0));
         jLabel2.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Cedula");
 
         jLabel3.setBackground(new java.awt.Color(0, 0, 0));
         jLabel3.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Nombre");
 
         jLabel4.setBackground(new java.awt.Color(0, 0, 0));
         jLabel4.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Apellidos");
 
         jLabel5.setBackground(new java.awt.Color(0, 0, 0));
         jLabel5.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Edad");
 
         jLabel6.setBackground(new java.awt.Color(0, 0, 0));
         jLabel6.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Genero");
 
         jLabel7.setBackground(new java.awt.Color(0, 0, 0));
         jLabel7.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Celular");
 
         jLabel8.setBackground(new java.awt.Color(0, 0, 0));
         jLabel8.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("Fecha Nacimiento");
 
         jLabel9.setBackground(new java.awt.Color(0, 0, 0));
         jLabel9.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setText("Correo");
 
         jLabel10.setBackground(new java.awt.Color(0, 0, 0));
         jLabel10.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
         jLabel10.setText("*cod_Tipo Sangre");
 
         jLabel11.setBackground(new java.awt.Color(0, 0, 0));
         jLabel11.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
         jLabel11.setText("*cod_Pais");
 
         jLabel12.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel12.setForeground(new java.awt.Color(0, 0, 0));
         jLabel12.setText("ID Dueño");
 
         jLabel13.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel13.setForeground(new java.awt.Color(0, 0, 0));
         jLabel13.setText("Historial propiedad");
 
         jLabel15.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel15.setForeground(new java.awt.Color(0, 0, 0));
         jLabel15.setText("Años Experiencia");
 
         jLabel16.setBackground(new java.awt.Color(0, 0, 0));
         jLabel16.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
-        jLabel16.setForeground(new java.awt.Color(0, 0, 0));
         jLabel16.setText("Habilidades finacieras");
 
         edad_taquillero.addActionListener(new java.awt.event.ActionListener() {
@@ -307,6 +292,11 @@ public class Crear_Dueño extends javax.swing.JFrame {
         Genero_combobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una opcion", "Masculino", "Femenino" }));
 
         habilidades_financieras_combo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una opcion", "Nivel Bajo", "Nivel Medio", "Nivel Alto", " ", " " }));
+        habilidades_financieras_combo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                habilidades_financieras_comboActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("REGRESAR");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -481,6 +471,10 @@ public class Crear_Dueño extends javax.swing.JFrame {
         jose.INICIO mostrar = new jose.INICIO();
         mostrar.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void habilidades_financieras_comboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_habilidades_financieras_comboActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_habilidades_financieras_comboActionPerformed
 
     /**
      * @param args the command line arguments

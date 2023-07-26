@@ -154,7 +154,7 @@
               <StringArray count="5">
                 <StringItem index="0" value="Seleccione una opci&#xf3;n"/>
                 <StringItem index="1" value="Ver todos"/>
-                <StringItem index="2" value="ID Cliente"/>
+                <StringItem index="2" value="ID Taquillero"/>
                 <StringItem index="3" value=" "/>
                 <StringItem index="4" value=" "/>
               </StringArray>

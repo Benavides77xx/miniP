@@ -213,7 +213,7 @@
             <Component class="javax.swing.JTable" name="jtableregistro">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="13" rowCount="0">
+                  <Table columnCount="14" rowCount="0">
                     <Column editable="false" title="ID Cliente" type="java.lang.Object"/>
                     <Column editable="false" title="Cedula" type="java.lang.Object"/>
                     <Column editable="false" title="Nombre" type="java.lang.Object"/>
@@ -223,10 +223,11 @@
                     <Column editable="true" title="Celular" type="java.lang.Object"/>
                     <Column editable="true" title="Fecha Nacimiento" type="java.lang.Object"/>
                     <Column editable="true" title="Correo" type="java.lang.Object"/>
-                    <Column editable="true" title="Tipo Sangre" type="java.lang.Object"/>
-                    <Column editable="true" title="Pais" type="java.lang.Object"/>
-                    <Column editable="true" title="Habilidades" type="java.lang.Object"/>
-                    <Column editable="true" title="Intereses Personales" type="java.lang.Object"/>
+                    <Column editable="true" title="Cod_Tipo Sangre" type="java.lang.Object"/>
+                    <Column editable="true" title="Cod_Pais" type="java.lang.Object"/>
+                    <Column editable="true" title="Historial Propiedad" type="java.lang.Object"/>
+                    <Column editable="true" title="A&#xf1;os Experiencia" type="java.lang.Object"/>
+                    <Column editable="true" title="Habilidades Financieras" type="java.lang.Object"/>
                   </Table>
                 </Property>
                 <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">

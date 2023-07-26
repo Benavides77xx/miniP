@@ -205,11 +205,11 @@ public class Consultar_Eliminar_Dueño extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID Cliente", "Cedula", "Nombre", "Apellido", "Edad", "Genero", "Celular", "Fecha Nacimiento", "Correo", "Tipo Sangre", "Pais", "Habilidades", "Intereses Personales"
+                "ID Cliente", "Cedula", "Nombre", "Apellido", "Edad", "Genero", "Celular", "Fecha Nacimiento", "Correo", "Cod_Tipo Sangre", "Cod_Pais", "Historial Propiedad", "Años Experiencia", "Habilidades Financieras"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, true, true, true, true, true, true, true, true
+                false, false, false, false, false, true, true, true, true, true, true, true, true, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
