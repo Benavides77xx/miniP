@@ -5,26 +5,31 @@
  */
 package ClasesSteven;
 
+import Clases.Persona;
+import java.util.Date;
+
 /**
  *
  * @author Steven Zhicay
  */
-public class Comerciante {
+public class Comerciante extends Persona {
 
     private String id_comerciante;
     private int años_exp;
     private int num_ventas;
-    private String cedula_persona;
+    
 
     public Comerciante() {
     }
 
-    public Comerciante(String id_comerciante, int años_exp, int num_ventas, String cedula_persona) {
+    public Comerciante(String id_comerciante, int años_exp, int num_ventas, String cedula_per, String nombre_per, String Apellido, int edad_per, String genero, String celular_per, Date fecha_nac, String correo, String codigo_tipo_sangre, String codigo_pais) {
+        super(cedula_per, nombre_per, Apellido, edad_per, genero, celular_per, fecha_nac, correo, codigo_tipo_sangre, codigo_pais);
         this.id_comerciante = id_comerciante;
         this.años_exp = años_exp;
         this.num_ventas = num_ventas;
-        this.cedula_persona = cedula_persona;
     }
+
+  
 
     public String getId_comerciante() {
         return id_comerciante;
@@ -50,17 +55,11 @@ public class Comerciante {
         this.num_ventas = num_ventas;
     }
 
-    public String getCedula_persona() {
-        return cedula_persona;
-    }
-
-    public void setCedula_persona(String cedula_persona) {
-        this.cedula_persona = cedula_persona;
-    }
-
     @Override
     public String toString() {
-        return "Comerciante{" + "id_comerciante=" + id_comerciante + ", a\u00f1os_exp=" + años_exp + ", num_ventas=" + num_ventas + ", cedula_persona=" + cedula_persona + '}';
+        return "Comerciante{" + "id_comerciante=" + id_comerciante + ", a\u00f1os_exp=" + años_exp + ", num_ventas=" + num_ventas + '}';
     }
+
+ 
 
 }
