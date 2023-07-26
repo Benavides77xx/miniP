@@ -9,6 +9,7 @@ import Clases.Guardia;
 import Clases.Pais;
 import Clases.Persona;
 import Clases.Tipo_sangre;
+import ClasesSteven.Especialidad;
 import com.db4o.*;
 import com.db4o.query.Query;
 import java.util.Date;
@@ -41,7 +42,7 @@ public class Crear_Guardia extends javax.swing.JFrame {
     String id_guardia = "";
     int años_expreriencia_guar;
     boolean disponibilidad_guar;
-    String especialidad_guar = "";
+    String cod_especialidad_guar = "";
     
 
     public void LimpiarCampos() {
@@ -84,7 +85,7 @@ public class Crear_Guardia extends javax.swing.JFrame {
         // Corregir la asignación de disponibilidad_guar
         
 
-        especialidad_guar = especialidad_guardia.getText();
+        cod_especialidad_guar = especialidad_guardia.getText();
     }
 
     public void crearGuardia(ObjectContainer BaseD) {
@@ -112,8 +113,12 @@ public class Crear_Guardia extends javax.swing.JFrame {
             error = true;
             JOptionPane.showMessageDialog(null, "No existe ningun Pais con este codigo");
         }
+        if (comprobarEspecialidad(BaseD, cod_especialidad_guar) == 0) {
+            error = true;
+            JOptionPane.showMessageDialog(null, "No existe ninguna Especialidad con este codigo");
+        }
         if (!error) {
-            Guardia miUsuario = new Guardia(id_guardia, años_expreriencia_guar, disponibilidad_guar, especialidad_guar, Cedula_per_guar, nombre_per_guar, apellido_per_guar, edad_per_taq, genero_per_taq, celular_per_taq, fechanac_per_taq, correo_per_taq, tiposangre_per_taq, codigo_pais_per_taq);
+            Guardia miUsuario = new Guardia(id_guardia, años_expreriencia_guar, disponibilidad_guar, cod_especialidad_guar, Cedula_per_guar, nombre_per_guar, apellido_per_guar, edad_per_taq, genero_per_taq, celular_per_taq, fechanac_per_taq, correo_per_taq, tiposangre_per_taq, codigo_pais_per_taq);
 
             BaseD.store(miUsuario);
             JOptionPane.showMessageDialog(null, "Guardia registrado correctamente");
@@ -148,6 +153,12 @@ public class Crear_Guardia extends javax.swing.JFrame {
     public static int comprobarPais(ObjectContainer basep, String codigo_pais_per_taq) {
 
         ObjectSet result = basep.get(new Pais(codigo_pais_per_taq, null, 0));
+        return result.size();
+    }
+    
+    public static int comprobarEspecialidad(ObjectContainer basep, String cod_especialidad_guar) {
+
+        ObjectSet result = basep.get(new Especialidad(cod_especialidad_guar, null, null));
         return result.size();
     }
 
@@ -261,7 +272,7 @@ public class Crear_Guardia extends javax.swing.JFrame {
         });
 
         jLabel16.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
-        jLabel16.setText("Especialidad:");
+        jLabel16.setText("Cod Especialidad:");
 
         especialidad_guardia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

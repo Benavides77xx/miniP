@@ -42,11 +42,9 @@ public class Especialidad_CRUD extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         txtcodigo = new javax.swing.JTextField();
         txtnombre = new javax.swing.JTextField();
-        txtIdGuardia = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtdescripcion = new javax.swing.JTextArea();
         btnGuardar = new javax.swing.JButton();
@@ -70,10 +68,6 @@ public class Especialidad_CRUD extends javax.swing.JFrame {
         jLabel3.setText("Nombre ");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 140, -1, -1));
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel7.setText("*Id_guardia");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 340, -1, -1));
-
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel8.setText("Descripcion");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 200, -1, -1));
@@ -83,14 +77,6 @@ public class Especialidad_CRUD extends javax.swing.JFrame {
 
         txtnombre.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel1.add(txtnombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 160, 200, 30));
-
-        txtIdGuardia.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        txtIdGuardia.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtIdGuardiaActionPerformed(evt);
-            }
-        });
-        jPanel1.add(txtIdGuardia, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 360, 190, 30));
 
         txtdescripcion.setColumns(20);
         txtdescripcion.setRows(5);
@@ -107,7 +93,7 @@ public class Especialidad_CRUD extends javax.swing.JFrame {
                 btnGuardarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 430, 290, 30));
+        jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 400, 290, 30));
 
         jButton2.setBackground(new java.awt.Color(255, 102, 51));
         jButton2.setText("Regresar");
@@ -117,7 +103,7 @@ public class Especialidad_CRUD extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 470, 290, 30));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 450, 290, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -139,10 +125,6 @@ public class Especialidad_CRUD extends javax.swing.JFrame {
         Cerrar_BD(BaseD);
 
     }//GEN-LAST:event_btnGuardarActionPerformed
-
-    private void txtIdGuardiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdGuardiaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtIdGuardiaActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         INICIO ini = new INICIO();
@@ -189,7 +171,6 @@ public class Especialidad_CRUD extends javax.swing.JFrame {
         cod_especialida = txtcodigo.getText();
         descripcion = txtdescripcion.getText();
         nombre_esp = txtnombre.getText();
-        id_guardia = txtIdGuardia.getText();
 
     }
 
@@ -197,7 +178,6 @@ public class Especialidad_CRUD extends javax.swing.JFrame {
         txtcodigo.setText("");
         txtdescripcion.setText("");
         txtnombre.setText("");
-        txtIdGuardia.setText("");
 
     }
 
@@ -207,13 +187,10 @@ public class Especialidad_CRUD extends javax.swing.JFrame {
         if (comprobarEspecialidad(basep, cod_especialida) != 0) {
             error = true;
             JOptionPane.showMessageDialog(this, "Ya existe una especialidad con este codigo", "ERROR", JOptionPane.ERROR_MESSAGE);
-        } else if (comprobarGuardia(basep, id_guardia) == 0) {
-            error = true;
-            JOptionPane.showMessageDialog(null, "No existe ningun guardia registrado con este codigo", "Error (Reglas de integridad)", JOptionPane.ERROR_MESSAGE);
         }
 
         if (!error) {
-            Especialidad crearE = new Especialidad(cod_especialida, nombre_esp, descripcion, id_guardia);
+            Especialidad crearE = new Especialidad(cod_especialida, nombre_esp, descripcion);
             basep.set(crearE);
             JOptionPane.showMessageDialog(null, "Especialidad registrado");
             LimpiarCampos();
@@ -222,13 +199,8 @@ public class Especialidad_CRUD extends javax.swing.JFrame {
     }
 
     public static int comprobarEspecialidad(ObjectContainer basep, String cod_especialida) {
-        Especialidad buscarE = new Especialidad(cod_especialida, null, null, null);
+        Especialidad buscarE = new Especialidad(cod_especialida, null, null);
         ObjectSet result = basep.get(buscarE);
-        return result.size();
-    }
-
-    public static int comprobarGuardia(ObjectContainer basep, String id_guardia) {
-        ObjectSet result = basep.get(new Guardia(id_guardia, 0, false, null));
         return result.size();
     }
 
@@ -241,11 +213,9 @@ public class Especialidad_CRUD extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField txtIdGuardia;
     private javax.swing.JTextField txtcodigo;
     private javax.swing.JTextArea txtdescripcion;
     private javax.swing.JTextField txtnombre;

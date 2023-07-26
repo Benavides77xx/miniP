@@ -294,12 +294,7 @@ public class Consultar_Eliminar_Guardia extends javax.swing.JFrame {
             }
             
             //verifica si existen Especialidades asociadas a este guardia
-            Especialidad cass2 = new Especialidad(null,null,null,id_guardia );
-            ObjectSet result2 = baseDeDatos.get(cass2);
-            if (result2.size() > 0) {
-                JOptionPane.showMessageDialog(this, "No se puede eliminar el guardia, ya que existen Especialidades asociadas","ERROR",0);
-                return;
-            }
+          
             
             
             //verifica si existen areas asociados a este guardia

@@ -47,8 +47,6 @@ public class Especialidad_MODIFICAR extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         txtnombre = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        txtIdGuardia = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -115,18 +113,6 @@ public class Especialidad_MODIFICAR extends javax.swing.JFrame {
         jLabel3.setText("Nombre ");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 130, -1, -1));
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel7.setText("*Id_guardia");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 330, -1, -1));
-
-        txtIdGuardia.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        txtIdGuardia.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtIdGuardiaActionPerformed(evt);
-            }
-        });
-        jPanel1.add(txtIdGuardia, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 350, 190, 30));
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -155,10 +141,6 @@ public class Especialidad_MODIFICAR extends javax.swing.JFrame {
         Cerrar_BD(BaseD);
         txtcodC.setEditable(true);
     }//GEN-LAST:event_btnmodificarActionPerformed
-
-    private void txtIdGuardiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdGuardiaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtIdGuardiaActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         INICIO ini = new INICIO();
@@ -205,14 +187,13 @@ public class Especialidad_MODIFICAR extends javax.swing.JFrame {
         txtcodC.setText("");
         txtdescripcion.setText("");
         txtnombre.setText("");
-        txtIdGuardia.setText("");
+        
 
     }
 
     public void HabilitarCampos_deTexto() {
 
-        txtdescripcion.setEditable(true);
-        txtIdGuardia.setEditable(true);
+        txtdescripcion.setEditable(true);       
         txtnombre.setEditable(true);
     }
 
@@ -236,7 +217,7 @@ public class Especialidad_MODIFICAR extends javax.swing.JFrame {
 
             } else {
 
-                Especialidad Ebuscar = new Especialidad(codC, null, null, null);
+                Especialidad Ebuscar = new Especialidad(codC, null, null);
 
                 ObjectSet result = basep.get(Ebuscar);
                 for (int i = 0; i < result.size(); i++) {
@@ -247,7 +228,7 @@ public class Especialidad_MODIFICAR extends javax.swing.JFrame {
                     txtcodC.setText(miE.getCod_especialidad());
                     txtnombre.setText(miE.getNombre_esp());
                     txtdescripcion.setText(miE.getDescripcion());
-                    txtIdGuardia.setText(miE.getId_guardia());
+                    
                     
 
                     btnmodificar.setEnabled(true);
@@ -264,13 +245,13 @@ public class Especialidad_MODIFICAR extends javax.swing.JFrame {
 
     public void Modificar_Especialidad(ObjectContainer basep) {
 
-        Especialidad Emodi = new Especialidad(txtcodC.getText(), null, null, null);
+        Especialidad Emodi = new Especialidad(txtcodC.getText(), null, null);
         ObjectSet result = basep.get(Emodi);
 
         Especialidad Emodificar = (Especialidad) result.next();
         Emodificar.setNombre_esp(txtnombre.getText());
         Emodificar.setDescripcion(txtdescripcion.getText());
-        Emodificar.setId_guardia(txtIdGuardia.getText());
+       
 
         basep.set(Emodificar);
         JOptionPane.showMessageDialog(null, "La Especialidad fue modificada exitosamente");
@@ -291,11 +272,9 @@ public class Especialidad_MODIFICAR extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextField txtIdGuardia;
     private javax.swing.JTextField txtcodC;
     private javax.swing.JTextArea txtdescripcion;
     private javax.swing.JTextField txtnombre;
